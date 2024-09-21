@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm65c37ff8405"]
+
+[ext_resource type="Script" path="res://scene/scene/battle/hands.gd" id="1_wx7vc"]
+[ext_resource type="PackedScene" uid="uid://bg48fgpn1irnj" path="res://scene/card/card.tscn" id="2_0iyhg"]
+
+[node name="Hands" type="Node"]
+script = ExtResource("1_wx7vc")
+card_scene = ExtResource("2_0iyhg")
+card_pile_position = Vector2(56, 664)
+discard_pile_position = Vector2(1224, 664)

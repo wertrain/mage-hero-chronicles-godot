@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://pgiwo7i7sqws"]
+
+[ext_resource type="Texture2D" uid="uid://djv2tqbde84qb" path="res://art/card/card_pile_back_blue.png" id="2_dn2o3"]
+[ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="3_md3kx"]
+
+[sub_resource type="GDScript" id="GDScript_kr1sb"]
+script/source = "extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="CardPile" type="Node2D"]
+script = SubResource("GDScript_kr1sb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_dn2o3")
+
+[node name="Label_CardNum" type="Label" parent="Sprite2D"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1809.0
+offset_top = -1115.0
+offset_right = -766.0
+offset_bottom = -538.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_md3kx")
+theme_override_font_sizes/font_size = 480
+text = "99"

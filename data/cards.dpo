@@ -1,0 +1,282 @@
+{
+    "sheets": [
+        {
+            "name": "Cards",
+            "description": "description of what the sheet is",
+            "displayColumn": "name",
+            "guid": "c1c41635-944f-413d-af36-c2cb3caeac4d",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "a09aa2f5-1983-4a89-9369-d37f0e09540c",
+                    "name": "name",
+                    "description": "text field",
+                    "defaultValue": "",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "181496c4-11a8-439e-a78e-4c046ea1aa0a",
+                    "description": "int field",
+                    "name": "cost",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "longtext",
+                    "guid": "988bb9bd-c950-4282-865b-3e029a244ba6",
+                    "name": "description",
+                    "description": "long text field",
+                    "defaultValue": "",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "02393a2b-4fde-416e-9ade-2fa7325f91d0",
+                    "id": "0",
+                    "name": "Strike",
+                    "cost": 1,
+                    "description": "Deal 6 damage."
+                },
+                {
+                    "guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
+                    "id": "1",
+                    "name": "Heavy Blow",
+                    "cost": 2,
+                    "description": "Deal 9 damage."
+                },
+                {
+                    "guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
+                    "id": "2",
+                    "name": "Charge",
+                    "cost": 1,
+                    "description": "Deal 4 damage and gain 2 block."
+                },
+                {
+                    "guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
+                    "id": "3",
+                    "name": "Quick Slash",
+                    "cost": 2,
+                    "description": "Deal 5 damage. Draw 1 card."
+                },
+                {
+                    "guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
+                    "id": "4",
+                    "name": "Shield Bash",
+                    "cost": 2,
+                    "description": "Deal 3 damage for every block you have."
+                },
+                {
+                    "guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
+                    "id": "5",
+                    "name": "Cleave",
+                    "cost": 2,
+                    "description": "Deal 6 damage to all enemies."
+                },
+                {
+                    "guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
+                    "id": "6",
+                    "name": "Parry",
+                    "cost": 1,
+                    "description": "Negate the next attack."
+                },
+                {
+                    "guid": "857fee85-1567-4d33-9e07-3916b8188f10",
+                    "id": "7",
+                    "name": "Block",
+                    "cost": 1,
+                    "description": "Gain 5 block."
+                },
+                {
+                    "guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
+                    "id": "8",
+                    "name": "Warrior's Stance",
+                    "cost": 1,
+                    "description": "Gain 4 block at the start of your next turn."
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Deck",
+            "description": "description of what the sheet is",
+            "displayColumn": "id",
+            "guid": "b507045b-372b-4160-b169-08882640dca8",
+            "columns": [
+                {
+                    "typeStr": "list",
+                    "guid": "b714d5f8-10ee-4623-8c6e-1c413252adcf",
+                    "name": "cards",
+                    "description": "new list field",
+                    "sheet": "db801762-4f0f-403b-930f-9cacafc8a475",
+                    "defaultValue": [],
+                    "iconName": "newList",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "bd00cda3-8c40-477c-9063-9f4361358a09",
+                    "id": "0",
+                    "cards": [
+                        {
+                            "guid": "20f91508-c543-46f8-8d94-da3dea1f5245",
+                            "id": "0",
+                            "card": "02393a2b-4fde-416e-9ade-2fa7325f91d0"
+                        },
+                        {
+                            "guid": "df5356ee-023a-485d-ba3c-cd5c2d434375",
+                            "id": "1",
+                            "card": "02393a2b-4fde-416e-9ade-2fa7325f91d0"
+                        },
+                        {
+                            "guid": "444529cb-54b3-4e1e-925c-1238c867921c",
+                            "id": "2",
+                            "card": "02393a2b-4fde-416e-9ade-2fa7325f91d0"
+                        },
+                        {
+                            "guid": "0785a109-e4b3-49de-b038-afe1364a9f9e",
+                            "id": "3",
+                            "card": "02393a2b-4fde-416e-9ade-2fa7325f91d0"
+                        },
+                        {
+                            "guid": "2f69b233-0a8f-4ded-a954-d37853a46fc9",
+                            "id": "4",
+                            "card": "02393a2b-4fde-416e-9ade-2fa7325f91d0"
+                        },
+                        {
+                            "guid": "95e64d0f-8128-4509-9845-1d2cb14b2420",
+                            "card": "857fee85-1567-4d33-9e07-3916b8188f10",
+                            "id": "5"
+                        },
+                        {
+                            "guid": "40f4c069-1cb6-4c14-86e7-073a39be26de",
+                            "card": "857fee85-1567-4d33-9e07-3916b8188f10",
+                            "id": "6"
+                        },
+                        {
+                            "guid": "6b412bda-2deb-4090-8196-6fe3b4f4acea",
+                            "card": "857fee85-1567-4d33-9e07-3916b8188f10",
+                            "id": "7"
+                        },
+                        {
+                            "guid": "cdbf8ea0-b715-426c-85ad-5815affcada9",
+                            "card": "857fee85-1567-4d33-9e07-3916b8188f10",
+                            "id": "8"
+                        },
+                        {
+                            "guid": "b7a81c90-7518-4438-9157-3fe9c8445232",
+                            "card": "857fee85-1567-4d33-9e07-3916b8188f10",
+                            "id": "9"
+                        },
+                        {
+                            "guid": "791b8f0d-c107-46c0-a719-63a92c7e1d3f",
+                            "card": "6e32b47e-0359-48ab-abde-558b562cfcd9",
+                            "id": "10"
+                        },
+                        {
+                            "guid": "ce4f5138-c310-45bd-a973-e424d2936676",
+                            "card": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
+                            "id": "11"
+                        },
+                        {
+                            "guid": "815a5aee-8013-424d-8379-532e7311b242",
+                            "card": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
+                            "id": "12"
+                        },
+                        {
+                            "guid": "a00d8686-a18f-4ff1-85f2-bd1d70c58a10",
+                            "card": "55a368a5-56e0-4364-ae5d-f77a02d56799",
+                            "id": "13"
+                        },
+                        {
+                            "guid": "8f3ddea6-b784-48f7-baa2-9c44ab330517",
+                            "card": "55a368a5-56e0-4364-ae5d-f77a02d56799",
+                            "id": "14"
+                        }
+                    ]
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "cards",
+            "description": "list@b507045b-372b-4160-b169-08882640dca8",
+            "displayColumn": "id",
+            "guid": "db801762-4f0f-403b-930f-9cacafc8a475",
+            "columns": [
+                {
+                    "typeStr": "lineReference",
+                    "guid": "9ab593b5-17ed-4704-84a1-7abca9664521",
+                    "name": "card",
+                    "description": "new line reference field",
+                    "sheet": "c1c41635-944f-413d-af36-c2cb3caeac4d",
+                    "defaultValue": "02393a2b-4fde-416e-9ade-2fa7325f91d0",
+                    "iconName": "newLineLink",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "sheet": "sheetSelect",
+                        "defaultValue": "lineSelect@sheet"
+                    }
+                }
+            ],
+            "lines": [],
+            "hidden": true,
+            "isProps": false,
+            "parentSheetGUID": "b507045b-372b-4160-b169-08882640dca8",
+            "columnGUID": "b714d5f8-10ee-4623-8c6e-1c413252adcf"
+        }
+    ]
+}

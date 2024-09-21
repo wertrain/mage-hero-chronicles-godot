@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c400o3d5kjr7o"]
+
+[ext_resource type="Script" path="res://scene/common/shake2d.gd" id="1_tyghi"]
+
+[node name="Shake2d" type="Node"]
+script = ExtResource("1_tyghi")

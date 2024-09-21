@@ -1,0 +1,157 @@
+[gd_scene load_steps=19 format=3 uid="uid://bpymxv2el46iy"]
+
+[ext_resource type="Script" path="res://scene/scene/battle/battle_scene.gd" id="1_5ekfp"]
+[ext_resource type="PackedScene" uid="uid://qrdp40lvgtmj" path="res://scene/monster/monster.tscn" id="2_bbppr"]
+[ext_resource type="PackedScene" uid="uid://dq0dt1jh1c8f0" path="res://scene/background/background.tscn" id="2_otgsh"]
+[ext_resource type="PackedScene" uid="uid://dm65c37ff8405" path="res://scene/scene/battle/hands.tscn" id="4_whw1m"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_draw_phase.gd" id="5_hfo85"]
+[ext_resource type="Script" path="res://script/gameplay/fsm/state_machine.gd" id="5_jtg6y"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_action_selection.gd" id="6_83fnk"]
+[ext_resource type="Script" path="res://scene/scene/battle/debug_draw.gd" id="8_d3kb3"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_target_selection.gd" id="8_llulr"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_play_card.gd" id="10_thkca"]
+[ext_resource type="PackedScene" uid="uid://beox418pw1cb5" path="res://scene/common/bezier_arrow.tscn" id="10_twp55"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_default.gd" id="11_3fp4g"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_initial_draw_phase.gd" id="11_e7vs5"]
+[ext_resource type="Script" path="res://scene/scene/battle/hud.gd" id="12_27vba"]
+[ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="12_ohc2m"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_reshuffle_phase.gd" id="13_dfsdp"]
+[ext_resource type="Texture2D" uid="uid://djv2tqbde84qb" path="res://art/card/card_pile_back_blue.png" id="14_24khp"]
+[ext_resource type="Texture2D" uid="uid://cs3hicj3yuc6o" path="res://art/card/card_pile_back_red.png" id="15_74owy"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_5ekfp")
+monster_scene = ExtResource("2_bbppr")
+hands_scene = ExtResource("4_whw1m")
+
+[node name="Background" parent="." instance=ExtResource("2_otgsh")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("5_jtg6y")
+current_state = NodePath("Default")
+
+[node name="DrawPhase" type="Node" parent="StateMachine"]
+script = ExtResource("5_hfo85")
+
+[node name="ActionSelection" type="Node" parent="StateMachine"]
+script = ExtResource("6_83fnk")
+
+[node name="TargetSelection" type="Node" parent="StateMachine"]
+script = ExtResource("8_llulr")
+arrow_scene = ExtResource("10_twp55")
+
+[node name="PlayCard" type="Node" parent="StateMachine"]
+script = ExtResource("10_thkca")
+
+[node name="InitialDrawPhase" type="Node" parent="StateMachine"]
+script = ExtResource("11_e7vs5")
+
+[node name="Default" type="Node" parent="StateMachine"]
+script = ExtResource("11_3fp4g")
+
+[node name="ReshufflePhase" type="Node" parent="StateMachine"]
+script = ExtResource("13_dfsdp")
+
+[node name="DebugDraw" type="Node2D" parent="."]
+script = ExtResource("8_d3kb3")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("12_27vba")
+
+[node name="Sprite2D_Card" type="Sprite2D" parent="HUD"]
+position = Vector2(56, 664)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("14_24khp")
+
+[node name="Label_CardNum" type="Label" parent="HUD/Sprite2D_Card"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1809.0
+offset_top = -1115.0
+offset_right = -766.0
+offset_bottom = -538.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("12_ohc2m")
+theme_override_font_sizes/font_size = 480
+text = "99"
+
+[node name="Sprite2D_Discard" type="Sprite2D" parent="HUD"]
+position = Vector2(1224, 664)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("15_74owy")
+
+[node name="Label_CardNum" type="Label" parent="HUD/Sprite2D_Discard"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -801.5
+offset_top = -1125.5
+offset_right = 241.5
+offset_bottom = -548.5
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("12_ohc2m")
+theme_override_font_sizes/font_size = 480
+text = "99"
+
+[node name="Node2D_Energy" type="Node2D" parent="HUD"]
+position = Vector2(160, 640)
+
+[node name="Label_Energy" type="Label" parent="HUD/Node2D_Energy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -26.0
+offset_right = 67.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("12_ohc2m")
+theme_override_font_sizes/font_size = 10
+text = "Energy
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label_EnergyValue" type="Label" parent="HUD/Node2D_Energy"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -19.5
+offset_right = 48.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("12_ohc2m")
+theme_override_font_sizes/font_size = 32
+text = "3/3
+"
