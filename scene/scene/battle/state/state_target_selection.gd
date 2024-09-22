@@ -9,7 +9,10 @@ func enter():
 	arrow = arrow_scene.instantiate();
 	arrow.z_index = 10
 	add_child(arrow)
-	var card = $"../../Hands".get_active_card()
+	var root: BattleScene = get_tree().current_scene
+	var hands: Hands = root.get_hands();
+	
+	var card = hands.get_active_card()
 	arrow.start_point = card.position
 	var viewport_size = get_viewport().size
 	var center = viewport_size / 2  # 画面の中央X座標
@@ -24,6 +27,5 @@ func update(_delta):
 
 func input(event):
 	if event is InputEventMouseButton:
-		var mouse_pos = event.position
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			transitioned.emit("ActionSelection")

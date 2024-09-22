@@ -18,8 +18,8 @@ func _init_rng():
 	_rng = RandomNumberGenerator.new()
 
 # 固定シードを設定
-func set_seed(seed: int) -> void:
-	_rng.seed = seed
+func set_seed(seed_value: int) -> void:
+	_rng.seed = seed_value
 
 # 現在のシードを取得
 func get_seed() -> int:
@@ -41,9 +41,9 @@ func shuffle_array(arr: Array) -> void:
 		arr[j] = temp
 
 # ランダム範囲の整数を取得
-func randi_range(min: int, max: int) -> int:
-	return _rng.randi_range(min, max)
+func randi_range(min_value: int, max_value: int) -> int:
+	return _rng.randi_range(min_value, max_value)
 
 # ランダム範囲の浮動小数点数を取得
-func randf_range(min: float, max: float) -> float:
-	return _rng.randf_range(min, max)
+func randf_range(min_value: float, max_value: float) -> float:
+	return _rng.randf_range(min_value, max_value)

@@ -22,6 +22,7 @@ func load_cards():
 			card.id = int(c["id"])
 			card.name = c["name"]
 			card.description = c["description"]
+			card.detail_description = c["description"]
 			card.cost = int(c["cost"])
 			_card_dictionary[c["guid"]] = card
 			_cards.append(card)

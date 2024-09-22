@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt5mjixcgc2qc"]
+
+[ext_resource type="Script" path="res://scene/scene/battle/ui/sequence_message.gd" id="1_g2h5c"]
+[ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="1_m0tk4"]
+
+[node name="SequenceMessage" type="Node2D"]
+script = ExtResource("1_g2h5c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+clip_contents = true
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 32)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -11.5
+offset_right = 35.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_m0tk4")
+theme_override_font_sizes/font_size = 24
+text = "End Turn"

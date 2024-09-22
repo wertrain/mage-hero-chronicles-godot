@@ -7,7 +7,7 @@ extends Node2D
 @export var end_point: Vector2 = Vector2(100, 300) # 終点
 # ベジェ曲線の制御点
 
-var p1 = Vector2(300, 100)  # 中間点
+var middle_point = Vector2(300, 100)  # 中間点
 
 # 曲線の分割数を動的に設定可能
 var num_points = 30
@@ -18,10 +18,10 @@ func _input(event):
 		end_point = mouse_pos
 		queue_redraw()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	queue_redraw()
 
-var _angle = 0
+#var _angle = 0
 func _draw():
 	# 任意の数の点に分割してベジェ曲線を描画
 	var points = get_bezier_points(num_points)
@@ -36,7 +36,7 @@ func _draw():
 		var direction = (next_point - point).normalized()
 
 		# 画像の回転角度を計算（ラジアン）
-		var angle = direction.angle()
+		var _angle = direction.angle()
 		
 		#var rect = Rect2(point - texture_size / 2, texture_size)  # 中心に配置するために位置を調整
 		var texture_scale = 0.25
@@ -46,7 +46,7 @@ func _draw():
 		#var rect = Rect2(-texture_size / 2, texture_size)
 		# 回転のためのTransform2Dを設定
 		#var transform = Transform2D().translated(texture_point).scaled(Vector2(texture_scale, texture_scale))
-		var transform = Transform2D().translated(texture_point).rotated_local(_angle)
+		var _transform = Transform2D().translated(texture_point).rotated_local(_angle)
 		
 		#_angle += 0.01
 		#draw_set_transform(texture_point, _angle, Vector2.ONE)
@@ -59,11 +59,11 @@ func _draw():
 	#draw_polyline(points, Color(1, 0, 0), 3)
 
 # 任意個数の点にベジェ曲線を分解する関数
-func get_bezier_points(num_points: int) -> Array:
+func get_bezier_points(num: int) -> Array:
 	var curve_points = []
-	for i in range(num_points):
-		var t = float(i) / float(num_points - 1)  # 0から1の範囲で t を分割
-		var point = calculate_bezier_point(t, start_point, p1, end_point)
+	for i in range(num):
+		var t = float(i) / float(num - 1)  # 0から1の範囲で t を分割
+		var point = calculate_bezier_point(t, start_point, middle_point, end_point)
 		curve_points.append(point)
 	return curve_points
 

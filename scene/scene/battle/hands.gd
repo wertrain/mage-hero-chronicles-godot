@@ -24,6 +24,7 @@ signal card_used(card_data: CardData)
 signal card_discarded(card_data: CardData)
 signal card_returned_to_deck(card_data: CardData)
 
+var _player: BattlePlayer
 # 所持している手札カード配列
 var _cards = Array()
 # マウスオーバー中、またはコントローラー操作時に操作対象の手札カード配列中のインデックス
@@ -34,7 +35,8 @@ var _card_positions: Array
 var _card_pile: Array
 var _discard_pile: Array
 
-func set_pile(card_pile, discard_pile) -> void:
+func set_field(player: BattlePlayer, card_pile: Array, discard_pile: Array) -> void:
+	_player = player
 	_card_pile = card_pile
 	_discard_pile = discard_pile
 
@@ -49,8 +51,12 @@ func get_active_card():
 func use_active_card() -> bool:
 	if (_active_card_index == -1):
 		return false
-	var card_data = _cards[_active_card_index].get_data()
-	_use_card(_active_card_index)
+	if (!_player.try_consume_energy(_cards[_active_card_index].get_cost())):
+		ScreenEffect.play_shake(_cards[_active_card_index], 0.25, 5.0)
+		return false
+	var use_index = _active_card_index;
+	_active_card_index = -1
+	_use_card(use_index)
 	return true
 
 func _calculate_cards_position(card_count: int) -> void:
@@ -83,7 +89,7 @@ func _first_draw(card_count: int):
 		_cards.push_front(card)
 		add_child(card)
 		await _update_card_position(_cards.size()).finished
-		emit_signal("card_drawn", card_data)
+		card_drawn.emit(card_data)
 		#var card = card_scene.instantiate()
 		#card.position = _card_positions[i]
 		#_cards.append(card)
@@ -107,7 +113,7 @@ func _reshuffle():
 	_card_pile.append_array(_discard_pile)
 	_discard_pile.clear()
 	Random.get_instance().shuffle_array(_card_pile)
-	emit_signal("deck_reshuffled")
+	deck_reshuffled.emit()
 
 func _ready() -> void:
 	pass
@@ -141,6 +147,8 @@ func input_card_select(event):
 			var card_rect = _cards[_active_card_index].get_rect()
 			if card_rect.has_point(mouse_pos):
 				return
+			else:
+				_set_active_card(_active_card_index, false)
 		for i in range(_cards.size()):
 			var card_rect = _cards[i].get_rect()
 			if card_rect.has_point(mouse_pos):
@@ -170,28 +178,45 @@ func _draw_card() -> CardData:
 	_cards.push_front(card)
 	add_child(card)
 	_update_card_position(_cards.size())
-	emit_signal("card_drawn", card_data)
+	card_drawn.emit(card_data)
 	return card_data
 
 func _use_card(index: int) -> void:
 	var card = _cards[index]
 	# カード削除アニメーションの開始
-	var tween = get_tree().create_tween()
-	tween.set_parallel(true)
-	tween.set_ease(Tween.EASE_IN)
-	var animation_time = active_card_animation_time * 3
-	tween.tween_property(card, "scale", Vector2.ZERO, animation_time)
-	tween.tween_property(card, "position", Vector2(discard_pile_position), animation_time)
+	var tween_to_center = get_tree().create_tween()
+	var animation_time = active_card_animation_time * 2
+	var viewport_size = get_viewport().size
+	tween_to_center.set_parallel(true)
+	tween_to_center.set_ease(Tween.EASE_OUT)
+	tween_to_center.tween_property(card, "scale", Vector2.ONE, animation_time)
+	tween_to_center.tween_property(card, "position", 
+		Vector2(viewport_size.x / 2, (viewport_size.y / 2)), animation_time)
+	await tween_to_center.finished
+	
+	var tween_action = get_tree().create_tween()
+	animation_time = active_card_animation_time
+	tween_action.set_ease(Tween.EASE_OUT)
+	tween_action.tween_property(card, "scale", Vector2.ONE * 1.2, animation_time)
+	tween_action.tween_property(card, "scale", Vector2.ONE, animation_time)
+	await tween_action.finished
+	
+	var tween_to_discard_pile = get_tree().create_tween()
+	tween_to_discard_pile.set_parallel(true)
+	tween_to_discard_pile.set_ease(Tween.EASE_IN)
+	animation_time = active_card_animation_time * 3
+	tween_to_discard_pile.tween_property(card, "scale", Vector2.ZERO, animation_time)
+	tween_to_discard_pile.tween_property(card, "position", Vector2(discard_pile_position), animation_time)
 	# 配列的には先に削除しておいて並べなおす
 	var data = card.get_data()
-	emit_signal("card_used", data)
+	card_used.emit(data)
 	_cards.remove_at(index)
 	_update_card_position(_cards.size())
 	# Tween の完了を待ってノードから削除
-	await tween.finished
+	await tween_to_discard_pile.finished
 	_discard_pile.push_back(data)
 	remove_child(card)
-	emit_signal("card_discarded", data)
+	card_discarded.emit(data)
 
 func _update_card_position(card_count: int) -> Tween:
 	_calculate_cards_position(card_count)
@@ -229,3 +254,4 @@ func _set_active_card(index: int, is_active: bool) -> void:
 			_card_positions[index],
 			active_card_animation_time)
 	tween.play()
+	active_card_changed.emit(card.get_data())

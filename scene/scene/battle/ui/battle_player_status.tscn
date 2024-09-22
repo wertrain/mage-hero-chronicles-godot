@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuj6u21sdr3k4"]
+
+[ext_resource type="LabelSettings" uid="uid://ckf3woots0vhb" path="res://art/settings/label_settings_battle_player_status.tres" id="1_cidj3"]
+[ext_resource type="Script" path="res://scene/scene/battle/ui/battle_player_status.gd" id="1_gtlvo"]
+[ext_resource type="Texture2D" uid="uid://c71uyd4ywi1xq" path="res://art/ui/bar/bar_red_frame.png" id="2_xq372"]
+[ext_resource type="Texture2D" uid="uid://csbnabwambcp0" path="res://art/ui/bar/bar_red.png" id="3_t65x5"]
+
+[node name="BattlePlayerStatus" type="Node2D"]
+script = ExtResource("1_gtlvo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_right = 308.0
+offset_bottom = 56.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ColorRect_Inner" type="ColorRect" parent="ReferenceRect/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Label_Life" type="Label" parent="ReferenceRect/MarginContainer/ColorRect_Inner"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 94.0
+offset_bottom = 40.0
+text = "999/999
+"
+label_settings = ExtResource("1_cidj3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureProgressBar_Life" type="TextureProgressBar" parent="ReferenceRect/MarginContainer/ColorRect_Inner"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 20.0
+offset_right = 375.0
+offset_bottom = 41.0
+scale = Vector2(0.62, 0.62)
+value = 20.0
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+texture_under = ExtResource("2_xq372")
+texture_progress = ExtResource("3_t65x5")
+texture_progress_offset = Vector2(3, 2)
+
+[node name="ColorRect_BorderTop" type="ColorRect" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="ColorRect_BorderLeft" type="ColorRect" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="ColorRect_BorderRight" type="ColorRect" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect_BorderBottom" type="ColorRect" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0

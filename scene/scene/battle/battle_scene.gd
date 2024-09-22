@@ -1,43 +1,54 @@
 class_name BattleScene
 extends SceneBase
-@export var monster_scene: PackedScene
+@export var enemy_scene: PackedScene
 @export var hands_scene: PackedScene
 
-var _monster: Monster
+var _enemy: BattleEnemy
 var _card_pile = Array()
 var _discard_pile = Array()
 var _hands: Hands
+var _player: BattlePlayer
+var _camera: Camera2D
 
-func get_monster():
-	return _monster
+func get_enemy() -> BattleEnemy:
+	return _enemy
 
-func get_card_pile():
+func get_card_pile() -> Array:
 	return _card_pile
 
-func get_discard_pile():
+func get_discard_pile() -> Array:
 	return _discard_pile
 	
-func get_hands():
+func get_hands() -> Hands:
 	return _hands
+	
+func get_sequence_message() -> SequenceMessage:
+	return $SequenceMessage
 
 func _ready() -> void:
 	var my_seed = "Godot Rocks"	
 	Random.get_instance().set_seed(my_seed.hash())
 	$DebugDraw.current_seed = my_seed.hash()
-	
-	_monster = monster_scene.instantiate()
+	_camera = Camera2D.new()
+	_camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+	add_child(_camera)
+	_enemy = enemy_scene.instantiate()
 	var viewport_rect = get_viewport().size
-	_monster.position.x = viewport_rect.x / 2 - _monster.get_texture_rect().size.x
-	_monster.position.y = viewport_rect.y / 2 - _monster.get_texture_rect().size.y
+	_enemy.position.x = viewport_rect.x / 2 - _enemy.get_sprite_rect().size.x
+	_enemy.position.y = viewport_rect.y / 2 - _enemy.get_sprite_rect().size.y
+	$Background.add_sibling(_enemy)
 	# カードのロードとデッキ作成
 	var card_database = CardDataBase.new()
-	var cards_origin = card_database.load_cards()
+	var _cards_origin = card_database.load_cards()
 	_card_pile = card_database.load_deck()
 	Random.get_instance().shuffle_array(_card_pile)
-	$Background.add_sibling(_monster)
+	# プレイヤーの作成
+	_player = BattlePlayer.new()
+	_player.energy_changed.connect(_on_energy_changed)
+	$HUD.update_energy(_player.get_energy(), _player.get_max_energy())
 	# 手札を作成
 	_hands = hands_scene.instantiate()
-	_hands.set_pile(_card_pile, _discard_pile)
+	_hands.set_field(_player, _card_pile, _discard_pile)
 	_hands.card_drawn.connect(_on_card_drawn)
 	_hands.active_card_changed.connect(_on_active_card_changed)
 	_hands.deck_reshuffled.connect(_on_deck_reshuffled)
@@ -45,13 +56,22 @@ func _ready() -> void:
 	_hands.card_discarded.connect(_on_card_discarded)
 	_hands.card_returned_to_deck.connect(_on_card_returned_to_deck)
 	$Background.add_sibling(_hands)
-	$StateMachine.current_state.transitioned.emit("InitialDrawPhase")
+	$HUD/Button_EndTurn.pressed.connect(_on_endturn_button_down)
+	$BattlePlayerStatus.setup(_player)
 	_update_card_pile_num()
 	_update_discard_pile_num()
+	$StateMachine.current_state.transitioned.emit("InitialDrawPhase")	
+
+func _on_endturn_button_down():
+	#$StateMachine.current_state.transitioned.emit("EnemyTurnStart")
+	get_sequence_message().show_message("Enemy's Turn")
+	ScreenEffect.play_shake(_camera)
+	ScreenEffect.play_flash(_enemy.get_sprite(), Color.RED)
+	ScreenEffect.play_flash_screen(self, Color.WHITE, 0.05, 2)
+	pass
 
 func _on_card_drawn(_card_data: CardData):
 	_update_card_pile_num()
-	pass
 
 func _on_active_card_changed(_card_data: CardData):
 	pass
@@ -68,7 +88,11 @@ func _on_card_discarded(_card_data: CardData):
 	
 func _on_card_returned_to_deck(_card_data: CardData):
 	_update_card_pile_num()
-	
+
+func _on_energy_changed(energy: int, max_energy:int):
+	$HUD.update_energy(energy, max_energy)
+	ScreenEffect.play_pulse($HUD/Node2D_Energy)
+
 func _process(_delta: float) -> void:
 	pass
 

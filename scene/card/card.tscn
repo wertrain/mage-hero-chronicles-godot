@@ -1,17 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg48fgpn1irnj"]
+[gd_scene load_steps=6 format=3 uid="uid://bg48fgpn1irnj"]
 
 [ext_resource type="Texture2D" uid="uid://bj64ndxuxlgwk" path="res://art/card/card_background.png" id="1_6rydu"]
 [ext_resource type="Script" path="res://scene/card/card.gd" id="1_uesp4"]
-[ext_resource type="LabelSettings" uid="uid://sobj1yw70rat" path="res://art/font/card.tres" id="2_v0rus"]
 [ext_resource type="Texture2D" uid="uid://idoebtifkcqw" path="res://art/card/card_frame_yellow.png" id="3_6e3ec"]
+[ext_resource type="LabelSettings" uid="uid://cp64w0nbsecna" path="res://art/settings/label_settings_battle_card.tres" id="4_vtfyo"]
 [ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="5_6y04s"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ag08p"]
-font_size = 10
-font_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-outline_size = 1
-outline_color = Color(0.340339, 0.340339, 0.340339, 1)
-shadow_color = Color(0, 0, 0, 0.141176)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_uesp4")
@@ -25,6 +18,18 @@ texture = ExtResource("1_6rydu")
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_6e3ec")
 
+[node name="Control" type="Control" parent="Sprite2D_Card"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1921.5
+offset_top = -2636.0
+offset_right = -1921.5
+offset_bottom = -2636.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label_CardName" type="Label" parent="."]
 offset_left = -58.0
 offset_top = -109.0
@@ -32,7 +37,7 @@ offset_right = 60.0
 offset_bottom = -86.0
 text = "ストライクストライクストライク
 "
-label_settings = ExtResource("2_v0rus")
+label_settings = ExtResource("4_vtfyo")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 2
@@ -42,8 +47,10 @@ offset_left = -73.0
 offset_top = 36.0
 offset_right = 74.0
 offset_bottom = 102.0
-text = "BBCode タグの一部は、スクリプト変数のツールチップやクラス参照の XML ソースで使用できます@export。詳細については、クラス参照 BBCodeを参照してください。"
-label_settings = SubResource("LabelSettings_ag08p")
+text = "ストライクストライクストライクストライクストライクストライクストライクストライクストライクストライクストライクストライクストライクストライクストライク
+ストライクストライクストライク
+"
+label_settings = ExtResource("4_vtfyo")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

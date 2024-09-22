@@ -1,11 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpymxv2el46iy"]
+[gd_scene load_steps=23 format=3 uid="uid://bpymxv2el46iy"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/battle_scene.gd" id="1_5ekfp"]
-[ext_resource type="PackedScene" uid="uid://qrdp40lvgtmj" path="res://scene/monster/monster.tscn" id="2_bbppr"]
+[ext_resource type="PackedScene" uid="uid://btxi6fmpm53wl" path="res://scene/scene/battle/battle_enemy.tscn" id="2_51s8b"]
 [ext_resource type="PackedScene" uid="uid://dq0dt1jh1c8f0" path="res://scene/background/background.tscn" id="2_otgsh"]
 [ext_resource type="PackedScene" uid="uid://dm65c37ff8405" path="res://scene/scene/battle/hands.tscn" id="4_whw1m"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_draw_phase.gd" id="5_hfo85"]
 [ext_resource type="Script" path="res://script/gameplay/fsm/state_machine.gd" id="5_jtg6y"]
+[ext_resource type="PackedScene" uid="uid://br02qq5jqcbmy" path="res://scene/scene/ui/health_bar.tscn" id="5_yw7ko"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_action_selection.gd" id="6_83fnk"]
 [ext_resource type="Script" path="res://scene/scene/battle/debug_draw.gd" id="8_d3kb3"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_target_selection.gd" id="8_llulr"]
@@ -17,14 +18,20 @@
 [ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="12_ohc2m"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_reshuffle_phase.gd" id="13_dfsdp"]
 [ext_resource type="Texture2D" uid="uid://djv2tqbde84qb" path="res://art/card/card_pile_back_blue.png" id="14_24khp"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_turn_start.gd" id="14_kq3gl"]
 [ext_resource type="Texture2D" uid="uid://cs3hicj3yuc6o" path="res://art/card/card_pile_back_red.png" id="15_74owy"]
+[ext_resource type="PackedScene" uid="uid://bt5mjixcgc2qc" path="res://scene/scene/battle/ui/sequence_message.tscn" id="20_4dgw6"]
+[ext_resource type="PackedScene" uid="uid://cuj6u21sdr3k4" path="res://scene/scene/battle/ui/battle_player_status.tscn" id="21_4o78b"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_5ekfp")
-monster_scene = ExtResource("2_bbppr")
+enemy_scene = ExtResource("2_51s8b")
 hands_scene = ExtResource("4_whw1m")
 
 [node name="Background" parent="." instance=ExtResource("2_otgsh")]
+
+[node name="HealthBar" parent="Background" instance=ExtResource("5_yw7ko")]
+position = Vector2(32, 574)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("5_jtg6y")
@@ -51,6 +58,9 @@ script = ExtResource("11_3fp4g")
 
 [node name="ReshufflePhase" type="Node" parent="StateMachine"]
 script = ExtResource("13_dfsdp")
+
+[node name="EnemyTurnStart" type="Node" parent="StateMachine"]
+script = ExtResource("14_kq3gl")
 
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("8_d3kb3")
@@ -155,3 +165,17 @@ theme_override_fonts/font = ExtResource("12_ohc2m")
 theme_override_font_sizes/font_size = 32
 text = "3/3
 "
+
+[node name="Button_EndTurn" type="Button" parent="HUD"]
+offset_left = 968.0
+offset_top = 536.0
+offset_right = 1211.0
+offset_bottom = 574.0
+theme_override_fonts/font = ExtResource("12_ohc2m")
+theme_override_font_sizes/font_size = 24
+text = "End Turn"
+
+[node name="SequenceMessage" parent="." instance=ExtResource("20_4dgw6")]
+
+[node name="BattlePlayerStatus" parent="." instance=ExtResource("21_4o78b")]
+position = Vector2(32, 32)

@@ -15,8 +15,8 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	pass
 
-func transition(new_state_name: StringName = "") -> void:
-	transitioned.emit(new_state_name)
+func transition(_new_state_name: StringName = "") -> void:
+	transitioned.emit(_new_state_name)
 
-func input(event) -> void:
+func input(_event) -> void:
 	pass

@@ -10,10 +10,14 @@ func set_data(data: CardData) -> void:
 	$Label_CardName.text = data.name
 	$Label_Description.text = data.description
 	$Label_Cost.text = str(data.cost)
+	$Sprite2D_Card/Control.tooltip_text = data.detail_description
 	_cost = data.cost
 
 func get_data() -> CardData:
 	return _data
+	
+func get_cost() -> int:
+	return _cost
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
