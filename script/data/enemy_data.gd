@@ -1,7 +1,7 @@
-class_name MonsterData
+class_name EnemyData
 extends RefCounted
 
 var id: int = 0
 var name: String
-var life: int
+var health: int
 var attack: int

@@ -29,8 +29,8 @@ func try_consume_energy(cost: int) -> bool:
 	else:
 		return false
 
-func damage(damage: int) -> bool:
-	_life -= damage
+func damage(damage_value: int) -> bool:
+	_life -= damage_value
 	if _life <= 0:
 		_life -= 0
 	life_changed.emit(_life, _max_life)

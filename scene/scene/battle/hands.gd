@@ -140,20 +140,20 @@ func _process(_delta: float) -> void:
 		_set_active_card(current_index, false)
 		_set_active_card(_active_card_index, true)
 
-func input_card_select(event):
+func input_card_select(event) -> Card:
 	if event is InputEventMouseMotion:
 		var mouse_pos = event.position
 		if (_active_card_index != -1):
 			var card_rect = _cards[_active_card_index].get_rect()
 			if card_rect.has_point(mouse_pos):
-				return
+				return null
 			else:
 				_set_active_card(_active_card_index, false)
 		for i in range(_cards.size()):
 			var card_rect = _cards[i].get_rect()
 			if card_rect.has_point(mouse_pos):
 				if (_active_card_index == i):
-					return
+					return null
 				_set_active_card(_active_card_index, false)
 				_set_active_card(i, true)
 				_active_card_index = i
@@ -165,6 +165,7 @@ func input_card_select(event):
 				if card_rect.has_point(mouse_pos):
 					if (_active_card_index == i):
 						return _cards[i]
+	return null
 
 func _draw_card() -> CardData:
 	var card_data = _card_pile.pop_front()

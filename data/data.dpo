@@ -1,7 +1,7 @@
 {
     "sheets": [
         {
-            "name": "Cards",
+            "name": "Card",
             "description": "description of what the sheet is",
             "displayColumn": "name",
             "guid": "c1c41635-944f-413d-af36-c2cb3caeac4d",
@@ -61,6 +61,19 @@
                         "description": "text",
                         "defaultValue": "longtext"
                     }
+                },
+                {
+                    "typeStr": "list",
+                    "guid": "ca02e0a5-2c09-4711-a7ae-0b4e2f7b8a92",
+                    "name": "actions",
+                    "description": "new list field",
+                    "sheet": "42bf137b-0628-40e1-9446-58087f7db203",
+                    "defaultValue": [],
+                    "iconName": "newList",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text"
+                    }
                 }
             ],
             "lines": [
@@ -70,7 +83,17 @@
                     "name": "Strike",
                     "cost": 1,
                     "description": "Deal 6 damage.",
-                    "detail_description": "Deal 6 damage."
+                    "detail_description": "Deal 6 damage.",
+                    "actions": [
+                        {
+                            "guid": "d5f226db-18da-4a08-815d-22e1b3c0b3ec",
+                            "type": "damage",
+                            "target": "enemy",
+                            "value": 6,
+                            "turns": 0,
+                            "id": "0"
+                        }
+                    ]
                 },
                 {
                     "guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
@@ -78,7 +101,17 @@
                     "name": "Heavy Blow",
                     "cost": 2,
                     "description": "Deal 9 damage.",
-                    "detail_description": "Deal 9 damage."
+                    "detail_description": "Deal 9 damage.",
+                    "actions": [
+                        {
+                            "guid": "2af41f55-a0d2-4b83-837c-55c0512b95cd",
+                            "type": "damage",
+                            "target": "enemy",
+                            "value": 9,
+                            "turns": 0,
+                            "id": "0"
+                        }
+                    ]
                 },
                 {
                     "guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
@@ -86,7 +119,25 @@
                     "name": "Charge",
                     "cost": 1,
                     "description": "Deal 4 damage and gain 2 block.",
-                    "detail_description": "Deal 4 damage and gain 2 block."
+                    "detail_description": "Deal 4 damage and gain 2 block.",
+                    "actions": [
+                        {
+                            "guid": "2cc6c694-e3ca-4e8d-a0cc-273d3f37469f",
+                            "type": "damage",
+                            "target": "enemy",
+                            "value": 4,
+                            "turns": 0,
+                            "id": "0"
+                        },
+                        {
+                            "guid": "0bbea739-bc49-4eb2-9ef3-380271a1ded7",
+                            "type": "shield",
+                            "target": "self",
+                            "value": 2,
+                            "turns": 0,
+                            "id": "1"
+                        }
+                    ]
                 },
                 {
                     "guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
@@ -94,7 +145,25 @@
                     "name": "Quick Slash",
                     "cost": 2,
                     "description": "Deal 5 damage. Draw 1 card.",
-                    "detail_description": "Deal 5 damage. Draw 1 card."
+                    "detail_description": "Deal 5 damage. Draw 1 card.",
+                    "actions": [
+                        {
+                            "guid": "2ca05357-927f-4105-87d4-7e17259e4dd7",
+                            "type": "damage",
+                            "target": "enemy",
+                            "value": 5,
+                            "turns": 0,
+                            "id": "0"
+                        },
+                        {
+                            "guid": "b8be75b2-a628-4052-ac4f-23547d7e31ba",
+                            "type": "draw",
+                            "target": "self",
+                            "value": 1,
+                            "turns": 0,
+                            "id": "1"
+                        }
+                    ]
                 },
                 {
                     "guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
@@ -102,7 +171,8 @@
                     "name": "Shield Bash",
                     "cost": 2,
                     "description": "Deal 3 damage for every block you have.",
-                    "detail_description": "Deal 3 damage for every block you have."
+                    "detail_description": "Deal 3 damage for every block you have.",
+                    "actions": []
                 },
                 {
                     "guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
@@ -110,15 +180,43 @@
                     "name": "Cleave",
                     "cost": 2,
                     "description": "Deal 6 damage to all enemies.",
-                    "detail_description": "Deal 6 damage to all enemies."
+                    "detail_description": "Deal 6 damage to all enemies.",
+                    "actions": [
+                        {
+                            "guid": "a41a532b-2473-43c2-8a4b-ffd72c78337b",
+                            "type": "damage",
+                            "target": "all_enemies",
+                            "value": 6,
+                            "turns": 0,
+                            "id": "0"
+                        }
+                    ]
                 },
                 {
                     "guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
                     "id": "6",
                     "name": "Parry",
-                    "cost": 1,
-                    "description": "Negate the next attack.",
-                    "detail_description": "Negate the next attack."
+                    "cost": 2,
+                    "description": "Gain 5 block. Draw 1 card.",
+                    "detail_description": "Gain 5 block. Draw 1 card.",
+                    "actions": [
+                        {
+                            "guid": "570db5db-d212-4d88-887b-013d2c79a18f",
+                            "type": "shield",
+                            "target": "self",
+                            "value": 5,
+                            "turns": 0,
+                            "id": "0"
+                        },
+                        {
+                            "guid": "5c623352-1b0e-4c08-a83b-49abfc362f82",
+                            "type": "draw",
+                            "target": "self",
+                            "value": 1,
+                            "turns": 0,
+                            "id": "1"
+                        }
+                    ]
                 },
                 {
                     "guid": "857fee85-1567-4d33-9e07-3916b8188f10",
@@ -126,15 +224,43 @@
                     "name": "Block",
                     "cost": 1,
                     "description": "Gain 5 block.",
-                    "detail_description": "Gain 5 block."
+                    "detail_description": "Gain 5 block.",
+                    "actions": [
+                        {
+                            "guid": "1314b470-5b56-4359-b3c0-23e4f41db753",
+                            "type": "shield",
+                            "target": "self",
+                            "value": 5,
+                            "turns": 0,
+                            "id": "0"
+                        }
+                    ]
                 },
                 {
                     "guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
                     "id": "8",
                     "name": "Warrior's Stance",
-                    "cost": 1,
-                    "description": "Gain 4 block at the start of your next turn.",
-                    "detail_description": "Gain 4 block at the start of your next turn."
+                    "cost": 2,
+                    "description": "Gain 5 block. Gain 4 block at the start of your next turn.",
+                    "detail_description": "Gain 5 block. Gain 4 block at the start of your next turn.",
+                    "actions": [
+                        {
+                            "guid": "a533a5ce-04b9-428d-95b7-d4458a9ba29e",
+                            "type": "shield",
+                            "target": "self",
+                            "value": 5,
+                            "turns": 0,
+                            "id": "0"
+                        },
+                        {
+                            "guid": "9562781f-af6d-4487-97fd-1bc8dd4978c9",
+                            "type": "shield",
+                            "target": "self",
+                            "value": 4,
+                            "turns": 1,
+                            "id": "1"
+                        }
+                    ]
                 }
             ],
             "hidden": false,
@@ -864,6 +990,95 @@
                     ]
                 }
             }
+        },
+        {
+            "name": "actions",
+            "description": "list@c1c41635-944f-413d-af36-c2cb3caeac4d",
+            "displayColumn": "id",
+            "guid": "42bf137b-0628-40e1-9446-58087f7db203",
+            "columns": [
+                {
+                    "typeStr": "enum",
+                    "guid": "0e35b155-3747-4301-b797-c2c4a4b13dd7",
+                    "name": "type",
+                    "description": "new enum field",
+                    "options": "damage, shield, draw",
+                    "defaultValue": "damage",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "enum",
+                    "guid": "230a9a7d-2bc7-4d8d-8ba4-8f403346dd21",
+                    "name": "target",
+                    "description": "new enum field",
+                    "options": "enemy, self, all_enemies, random_enemy, all_allies",
+                    "defaultValue": "",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "08dd6d36-5aa8-497d-93ee-c578318aaf06",
+                    "description": "int field",
+                    "name": "value",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "33aa9151-8b41-4db0-a47d-e12fec044ead",
+                    "description": "int field",
+                    "name": "turns",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                }
+            ],
+            "lines": [],
+            "hidden": true,
+            "isProps": false,
+            "parentSheetGUID": "c1c41635-944f-413d-af36-c2cb3caeac4d",
+            "columnGUID": "ca02e0a5-2c09-4711-a7ae-0b4e2f7b8a92"
+        },
+        {
+            "name": "action",
+            "description": "props@42bf137b-0628-40e1-9446-58087f7db203",
+            "displayColumn": "id",
+            "guid": "a53d3183-88f9-4987-81e9-5e7ce516c3e1",
+            "columns": [],
+            "lines": [],
+            "hidden": true,
+            "isProps": true,
+            "parentSheetGUID": "42bf137b-0628-40e1-9446-58087f7db203",
+            "columnGUID": "1a160edc-242f-4885-843f-d2103ed4df2b"
         }
     ]
 }

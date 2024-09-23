@@ -18,4 +18,5 @@ func input(event):
 	if card:
 		#transitioned.emit("TargetSelection")
 		if (hands.use_active_card()):
-			transitioned.emit("PlayCard")
+			var params = {"card": card}
+			transitioned_with_param.emit("PlayCard", params)

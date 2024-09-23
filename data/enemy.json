@@ -1,0 +1,484 @@
+{
+	"lines": [
+		{
+			"guid": "826386d7-699f-48ac-add1-5f95863c0f8e",
+			"id": "0",
+			"name": "Slime",
+			"health": 10,
+			"attack": 7,
+			"image": "..\\..\\art\\enemy\\pipo-enemy009.png"
+		},
+		{
+			"guid": "b58bee12-74a8-4ff4-bb21-5d5e68434770",
+			"id": "1",
+			"name": "Poison Slime",
+			"health": 8,
+			"attack": 5,
+			"image": "..\\..\\art\\enemy\\pipo-enemy009a.png"
+		},
+		{
+			"guid": "0bd520e4-3d59-4fd2-b7e3-ea57e72ab823",
+			"id": "2",
+			"name": "Metal Slime",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy009b.png"
+		},
+		{
+			"guid": "a0275eb4-c71c-45ea-842c-0e8261ba82be",
+			"id": "3",
+			"name": "Lost Pup",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy002.png"
+		},
+		{
+			"guid": "760af618-705f-48cc-a92f-a9f2cc641c75",
+			"id": "4",
+			"name": "Stray Dog",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy002a.png"
+		},
+		{
+			"guid": "8e044d03-d151-43c0-afce-d2277136e83a",
+			"id": "5",
+			"name": "Direhound",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy002b.png"
+		},
+		{
+			"guid": "ccaad60b-79cc-49f2-9c64-67b5048c12b8",
+			"id": "6",
+			"name": "Garden Snake",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy003.png"
+		},
+		{
+			"guid": "184a37d6-70ce-491c-ae0a-6dc3d7d42cc4",
+			"id": "7",
+			"name": "Serpent",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy003a.png"
+		},
+		{
+			"guid": "babbd4a0-f09d-4dd9-86ba-6b33f4715297",
+			"id": "8",
+			"name": "Viperlord",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy003b.png"
+		},
+		{
+			"guid": "10efbb4a-48c2-4c48-b3e7-dff0fd6b677c",
+			"id": "9",
+			"name": "Tinyclaw",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy004.png"
+		},
+		{
+			"guid": "99460c84-92ff-4e96-b3f2-7446104b9b18",
+			"id": "10",
+			"name": "Horned Beetle",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy004a.png"
+		},
+		{
+			"guid": "280c0607-c3d0-4135-8040-7b11aa2dd332",
+			"id": "11",
+			"name": "Ironhorn",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy004b.png"
+		},
+		{
+			"guid": "e6b8d458-f3f5-4db7-bcdc-ca0d013d95ac",
+			"id": "12",
+			"name": "Whisp",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy010.png"
+		},
+		{
+			"guid": "0b8b96a1-028e-4de4-b9b8-688287af8fa1",
+			"id": "13",
+			"name": "Phantom",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy010a.png"
+		},
+		{
+			"guid": "6b916b99-1e74-4e43-9721-bd9f02734c5c",
+			"id": "14",
+			"name": "Specterlord",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy010b.png"
+		},
+		{
+			"guid": "214b73ce-0792-4137-8b37-b4cecc3abbc2",
+			"id": "15",
+			"name": "Shambler",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy011.png"
+		},
+		{
+			"guid": "ee4675ea-823a-453b-8950-a07d1cf4f016",
+			"id": "16",
+			"name": "Gravewalker",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy011a.png"
+		},
+		{
+			"guid": "c204de9a-14f5-4e52-82e5-bdede150c606",
+			"id": "17",
+			"name": "Deathlord",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy011b.png"
+		},
+		{
+			"guid": "3203f6dd-e377-457f-9067-03370447194e",
+			"id": "18",
+			"name": "Squire",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy018.png"
+		},
+		{
+			"guid": "0ddab57c-5d4a-4347-bd0e-be3e13f3552f",
+			"id": "19",
+			"name": "Iron Knight",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy018a.png"
+		},
+		{
+			"guid": "2911c0f1-0aef-4779-aced-e6da0a25d9a4",
+			"id": "20",
+			"name": "Black Paladin",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy018b.png"
+		},
+		{
+			"guid": "6df66f82-ec74-4e8c-9fb6-706d8526fd89",
+			"id": "21",
+			"name": "Pebble Golem",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy033.png"
+		},
+		{
+			"guid": "63289180-30ad-4495-82d4-a9b87660ca35",
+			"id": "22",
+			"name": "Stone Golem",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy033a.png"
+		},
+		{
+			"guid": "13488a20-9957-416b-81f0-24b6bcecad3c",
+			"id": "23",
+			"name": "Iron Colossus",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy033b.png"
+		},
+		{
+			"guid": "dba46bab-bf68-4209-8f14-99d673e8aaf2",
+			"id": "24",
+			"name": "Brown Bear",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy037.png"
+		},
+		{
+			"guid": "d1757799-cfd9-41d7-bbbb-41a1eebd42dd",
+			"id": "25",
+			"name": "Big Black",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy037a.png"
+		},
+		{
+			"guid": "11a261ac-b7b9-48ee-8fb3-2592cdb0e789",
+			"id": "26",
+			"name": "Whiteclaw",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy037b.png"
+		},
+		{
+			"guid": "d272a346-fd4a-4056-8c7f-50d420d6d21f",
+			"id": "27",
+			"name": "Jellipuff",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy046.png"
+		},
+		{
+			"guid": "4ea6a1d8-2aac-463f-949a-af08d827bf9d",
+			"id": "28",
+			"name": "Stinger Jelly",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy046a.png"
+		},
+		{
+			"guid": "174c46c9-15e8-435d-9070-dcd37a2453d3",
+			"id": "29",
+			"name": "Thunderjelly",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy046b.png"
+		},
+		{
+			"guid": "f36af1a2-a73a-4ea6-bd72-3e574251a961",
+			"id": "30",
+			"name": "Petalbloom",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy007.png"
+		},
+		{
+			"guid": "1afb5689-79f8-41da-8149-0d3bf3a65132",
+			"id": "31",
+			"name": "Bloomthorn",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy007a.png"
+		},
+		{
+			"guid": "243ae0d6-b992-450d-9ee4-d2b525c1bb2e",
+			"id": "32",
+			"name": "Deathblossom",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy007b.png"
+		},
+		{
+			"guid": "a44ff8b9-99a2-49b7-b647-854d7ce8c008",
+			"id": "33",
+			"name": "Hatchling",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy021.png"
+		},
+		{
+			"guid": "c9c600b4-1e32-47a5-924d-b2aaa24fd72d",
+			"id": "34",
+			"name": "Flamewing",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy021a.png"
+		},
+		{
+			"guid": "deb678a9-3fb0-40e1-a509-3bdf09d17fcc",
+			"id": "35",
+			"name": "Ancient Wyrm",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy021b.png"
+		},
+		{
+			"guid": "987af9a1-963c-4354-8323-58e68b29bcdb",
+			"id": "36",
+			"name": "Apprentice",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy025.png"
+		},
+		{
+			"guid": "d3cc5ba0-0caa-4ef7-a38d-a9aec3391971",
+			"id": "37",
+			"name": "Spellbinder",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy025a.png"
+		},
+		{
+			"guid": "009ed557-5eb8-44fc-8043-d30a9e8ec426",
+			"id": "38",
+			"name": "Archmage",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy025b.png"
+		},
+		{
+			"guid": "0687435a-2a83-469e-80f9-a8880bf1a3fb",
+			"id": "39",
+			"name": "Imp",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy024.png"
+		},
+		{
+			"guid": "c08b5af2-7e69-4502-a6e5-b07364879132",
+			"id": "40",
+			"name": "Hellfiend",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy024a.png"
+		},
+		{
+			"guid": "ecab0e21-1537-41b8-954a-edf76663f5df",
+			"id": "41",
+			"name": "Abyssal Lord",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy024b.png"
+		},
+		{
+			"guid": "d2334ce5-f9d9-418f-8033-8fdfef6fff9a",
+			"id": "42",
+			"name": "Wailing Spirit",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy045.png"
+		},
+		{
+			"guid": "acb4302f-4547-45ef-84b1-b22cf7348b91",
+			"id": "43",
+			"name": "Haunting Banshee",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy045a.png"
+		},
+		{
+			"guid": "c48f09bc-180c-483b-b3f3-2140d1e327fb",
+			"id": "44",
+			"name": "Deathwail",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy045b.png"
+		},
+		{
+			"guid": "335f8f98-bc36-469c-951a-3658ae8ebfe7",
+			"id": "45",
+			"name": "Bonewalker",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy039.png"
+		},
+		{
+			"guid": "5d696a0b-18d6-4111-a39a-b95fff545068",
+			"id": "46",
+			"name": "Skeleton Warrior",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy039a.png"
+		},
+		{
+			"guid": "8d54b4f6-bf6c-4f7e-9861-677fa72900a0",
+			"id": "47",
+			"name": "Bone King",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy039b.png"
+		},
+		{
+			"guid": "6c17a45d-22ed-4562-b296-5acd6125c7a2",
+			"id": "48",
+			"name": "Bonecaster",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy026.png"
+		},
+		{
+			"guid": "c5067e5b-6df7-404e-b8e8-996ae72d7573",
+			"id": "49",
+			"name": "Dark Lich",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy026a.png"
+		},
+		{
+			"guid": "75278730-dd2c-4280-9586-ad9e9eaceda3",
+			"id": "50",
+			"name": "Lich King",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy026b.png"
+		},
+		{
+			"guid": "0385702c-2f9e-4dc9-8c1a-47f940b062c3",
+			"id": "51",
+			"name": "Bloodling",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy040.png"
+		},
+		{
+			"guid": "e4e2161b-1e89-4d6d-8d33-f21ec9e347f1",
+			"id": "52",
+			"name": "Nightstalker",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy040a.png"
+		},
+		{
+			"guid": "bb23e1bb-4782-4945-a9ac-f8ab24b20747",
+			"id": "53",
+			"name": "Vampire Lord",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy040b.png"
+		},
+		{
+			"guid": "0956c43a-90ae-4e64-aaf8-0b0759de98a7",
+			"id": "54",
+			"name": "Shadow Scout",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy048.png"
+		},
+		{
+			"guid": "2943bd17-1741-49ac-867d-b022cdb9c452",
+			"id": "55",
+			"name": "Nightblade",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy048a.png"
+		},
+		{
+			"guid": "7efdb815-e4d1-46c7-892f-7e3c6de3e73a",
+			"id": "56",
+			"name": "Shadowmaster",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy048b.png"
+		},
+		{
+			"guid": "dc8fa320-ebc9-4604-b836-9aa6d1fa72d7",
+			"id": "57",
+			"name": "Flutterwing",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy022.png"
+		},
+		{
+			"guid": "f10f00ea-a6dd-473b-a840-5bfd773309b4",
+			"id": "58",
+			"name": "Skywatcher",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy022a.png"
+		},
+		{
+			"guid": "75926df3-b9a7-461c-b285-d0af9f505c10",
+			"id": "59",
+			"name": "Stormclaw",
+			"health": 0,
+			"attack": 0,
+			"image": "..\\..\\art\\enemy\\pipo-enemy022b.png"
+		}
+	]
+}

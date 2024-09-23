@@ -1,19 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://btxi6fmpm53wl"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/battle_enemy.gd" id="1_dwp1u"]
-[ext_resource type="Texture2D" uid="uid://cfwya2titaqo" path="res://art/enemy/goblin.png" id="1_u08mp"]
 [ext_resource type="PackedScene" uid="uid://c400o3d5kjr7o" path="res://scene/common/shake2d.tscn" id="2_r37mq"]
+[ext_resource type="Texture2D" uid="uid://g8okru7rwt0k" path="res://art/enemy/pipo-enemy002.png" id="2_tdqpn"]
 [ext_resource type="PackedScene" uid="uid://br02qq5jqcbmy" path="res://scene/scene/ui/health_bar.tscn" id="3_30w52"]
 
 [node name="BattleEnemy" type="Node2D"]
 script = ExtResource("1_dwp1u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = ExtResource("1_u08mp")
+texture = ExtResource("2_tdqpn")
 
 [node name="Shake2D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_r37mq")]
 target = NodePath("../Sprite2D")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_30w52")]
-position = Vector2(-128, 104)
+position = Vector2(120, 488)

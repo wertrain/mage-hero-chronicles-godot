@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_turn_start.gd" id="14_kq3gl"]
 [ext_resource type="Texture2D" uid="uid://cs3hicj3yuc6o" path="res://art/card/card_pile_back_red.png" id="15_74owy"]
 [ext_resource type="PackedScene" uid="uid://bt5mjixcgc2qc" path="res://scene/scene/battle/ui/sequence_message.tscn" id="20_4dgw6"]
-[ext_resource type="PackedScene" uid="uid://cuj6u21sdr3k4" path="res://scene/scene/battle/ui/battle_player_status.tscn" id="21_4o78b"]
+[ext_resource type="PackedScene" uid="uid://bfj8co0b8wgyq" path="res://scene/effect/effect_spawner.tscn" id="22_6x2u5"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_5ekfp")
@@ -31,7 +31,7 @@ hands_scene = ExtResource("4_whw1m")
 [node name="Background" parent="." instance=ExtResource("2_otgsh")]
 
 [node name="HealthBar" parent="Background" instance=ExtResource("5_yw7ko")]
-position = Vector2(32, 574)
+position = Vector2(72, 544)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("5_jtg6y")
@@ -174,8 +174,8 @@ offset_bottom = 574.0
 theme_override_fonts/font = ExtResource("12_ohc2m")
 theme_override_font_sizes/font_size = 24
 text = "End Turn"
+metadata/_edit_use_anchors_ = true
 
 [node name="SequenceMessage" parent="." instance=ExtResource("20_4dgw6")]
 
-[node name="BattlePlayerStatus" parent="." instance=ExtResource("21_4o78b")]
-position = Vector2(32, 32)
+[node name="EffectSpawner" parent="." instance=ExtResource("22_6x2u5")]

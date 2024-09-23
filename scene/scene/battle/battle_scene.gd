@@ -34,13 +34,15 @@ func _ready() -> void:
 	add_child(_camera)
 	_enemy = enemy_scene.instantiate()
 	var viewport_rect = get_viewport().size
-	_enemy.position.x = viewport_rect.x / 2 - _enemy.get_sprite_rect().size.x
-	_enemy.position.y = viewport_rect.y / 2 - _enemy.get_sprite_rect().size.y
+	_enemy.position.x = viewport_rect.x / 2
+	_enemy.position.y = viewport_rect.y / 2
 	$Background.add_sibling(_enemy)
 	# カードのロードとデッキ作成
-	var card_database = CardDataBase.new()
-	var _cards_origin = card_database.load_cards()
-	_card_pile = card_database.load_deck()
+	var database = DataBase.new()
+	var _cards_origin = database.load_cards()
+	_card_pile = database.load_deck()
+	var enemys = database.load_enemy()
+	_enemy.set_data(enemys[0])
 	Random.get_instance().shuffle_array(_card_pile)
 	# プレイヤーの作成
 	_player = BattlePlayer.new()
@@ -57,7 +59,7 @@ func _ready() -> void:
 	_hands.card_returned_to_deck.connect(_on_card_returned_to_deck)
 	$Background.add_sibling(_hands)
 	$HUD/Button_EndTurn.pressed.connect(_on_endturn_button_down)
-	$BattlePlayerStatus.setup(_player)
+	#$BattlePlayerStatus.setup(_player)
 	_update_card_pile_num()
 	_update_discard_pile_num()
 	$StateMachine.current_state.transitioned.emit("InitialDrawPhase")	
@@ -68,6 +70,7 @@ func _on_endturn_button_down():
 	ScreenEffect.play_shake(_camera)
 	ScreenEffect.play_flash(_enemy.get_sprite(), Color.RED)
 	ScreenEffect.play_flash_screen(self, Color.WHITE, 0.05, 2)
+	$EffectSpawner.spawn("000", _enemy.position)
 	pass
 
 func _on_card_drawn(_card_data: CardData):
