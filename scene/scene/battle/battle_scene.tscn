@@ -29,6 +29,7 @@ enemy_scene = ExtResource("2_51s8b")
 hands_scene = ExtResource("4_whw1m")
 
 [node name="Background" parent="." instance=ExtResource("2_otgsh")]
+visible = false
 
 [node name="HealthBar" parent="Background" instance=ExtResource("5_yw7ko")]
 position = Vector2(72, 544)

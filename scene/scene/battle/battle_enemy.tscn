@@ -15,4 +15,4 @@ texture = ExtResource("2_tdqpn")
 target = NodePath("../Sprite2D")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_30w52")]
-position = Vector2(120, 488)
+position = Vector2(-136, 200)

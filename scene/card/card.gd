@@ -12,6 +12,7 @@ func set_data(data: CardData) -> void:
 	$Label_Cost.text = str(data.cost)
 	$Sprite2D_Card/Control.tooltip_text = data.detail_description
 	_cost = data.cost
+	_data = data
 
 func get_data() -> CardData:
 	return _data

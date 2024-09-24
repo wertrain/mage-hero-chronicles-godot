@@ -25,6 +25,15 @@ func load_cards() -> Array:
 			card.description = c["description"]
 			card.detail_description = c["description"]
 			card.cost = int(c["cost"])
+			for a in c["actions"]:
+				var action:BattleAciton = BattleAciton.new()
+				action.set_action_type(a["type"])
+				action.set_target_type(a["target"])
+				action._value = int(a["value"])
+				action._turns = int(a["turns"])
+				action.set_effect_type(a["effect_type"])
+				action._effect_index = int(a["effect_index"])
+				card.actions.append(action)
 			_card_dictionary[c["guid"]] = card
 			_cards.append(card)
 		return _cards

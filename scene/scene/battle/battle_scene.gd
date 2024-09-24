@@ -21,9 +21,15 @@ func get_discard_pile() -> Array:
 	
 func get_hands() -> Hands:
 	return _hands
+
+func get_camera() -> Camera2D:
+	return _camera
 	
 func get_sequence_message() -> SequenceMessage:
 	return $SequenceMessage
+
+func get_effect_spawner() -> EffectSpawner:
+	return $EffectSpawner
 
 func _ready() -> void:
 	var my_seed = "Godot Rocks"	
@@ -34,8 +40,8 @@ func _ready() -> void:
 	add_child(_camera)
 	_enemy = enemy_scene.instantiate()
 	var viewport_rect = get_viewport().size
-	_enemy.position.x = viewport_rect.x / 2
-	_enemy.position.y = viewport_rect.y / 2
+	_enemy.position.x = viewport_rect.x / 2.0
+	_enemy.position.y = viewport_rect.y / 2.0 - _enemy.get_sprite_rect().size.y / 2.0
 	$Background.add_sibling(_enemy)
 	# カードのロードとデッキ作成
 	var database = DataBase.new()
@@ -70,7 +76,7 @@ func _on_endturn_button_down():
 	ScreenEffect.play_shake(_camera)
 	ScreenEffect.play_flash(_enemy.get_sprite(), Color.RED)
 	ScreenEffect.play_flash_screen(self, Color.WHITE, 0.05, 2)
-	$EffectSpawner.spawn("000", _enemy.position)
+	$EffectSpawner.spawn(EffectSpawner.EffectType.IMPACT_A, "000", _enemy.position)
 	pass
 
 func _on_card_drawn(_card_data: CardData):
