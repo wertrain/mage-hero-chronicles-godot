@@ -11,7 +11,8 @@ func enter_with_params(params: Dictionary):
 	for a in card_data.actions:
 		var action: BattleAciton = a
 		if action._type == BattleAciton.ActionType.DAMAGE:
-			enemy.damage(action._value)
+			if false == enemy.damage(action._value):
+				ScreenEffect.play_fadeout(enemy)
 		root.get_effect_spawner().spawn(action._effect_type, action._effect_index, enemy.position)
 	await get_tree().create_timer(1).timeout
 	transitioned.emit("ActionSelection")

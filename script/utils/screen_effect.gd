@@ -1,9 +1,20 @@
 class_name ScreenEffect
 extends Object
 
+static var _active_fadeout_twists: Dictionary = {}
 static var _active_pulse_twists: Dictionary = {}
 static var _active_shake_twists: Dictionary = {}
 static var _active_flash_twists: Dictionary = {}
+
+static func play_fadeout(target: Node2D, duration: float = 0.5):
+	if (_active_fadeout_twists.has(target)):
+		return;
+	var tween: Tween = target.get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(target, "modulate:a", 0, duration)
+	_active_fadeout_twists[target] = tween
+	await tween.finished
+	_active_fadeout_twists.erase(target)
 
 static func play_pulse(target: Node2D):
 	if (_active_pulse_twists.has(target)):
