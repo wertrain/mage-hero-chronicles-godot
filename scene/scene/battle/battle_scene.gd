@@ -76,7 +76,7 @@ func _on_endturn_button_down():
 	ScreenEffect.play_shake(_camera)
 	ScreenEffect.play_flash(_enemy.get_sprite(), Color.RED)
 	ScreenEffect.play_flash_screen(self, Color.WHITE, 0.05, 2)
-	$EffectSpawner.spawn(EffectSpawner.EffectType.IMPACT_A, "000", _enemy.position)
+	$EffectSpawner.spawn(EffectSpawner.EffectType.IMPACT_A, 0, _enemy.position)
 	pass
 
 func _on_card_drawn(_card_data: CardData):
