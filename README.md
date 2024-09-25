@@ -13,3 +13,5 @@ This repository license does not apply to these assets
 * https://bdragon1727.itch.io/retro-impact-effect-pack-all
 * http://www.fontna.com/blog/1226/
 * https://www.1001fonts.com/sofachrome-font.html
+* https://wenrexa.itch.io/ui-different02
+* https://prinbles.itch.io/robin
