@@ -29,7 +29,7 @@ func load_cards() -> Array:
 				var action:BattleAciton = BattleAciton.new()
 				action.set_action_type(a["type"])
 				action.set_target_type(a["target"])
-				action._value = int(a["value"])
+				action._value = BattleAcitonValue.new(a["value"])
 				action._turns = int(a["turns"])
 				action.set_effect_type(a["effect_type"])
 				action._effect_index = int(a["effect_index"])

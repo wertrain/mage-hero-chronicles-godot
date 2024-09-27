@@ -18,7 +18,7 @@ enum ActionTarget {
 
 var _type: ActionType
 var _target: ActionTarget
-var _value: int
+var _value: BattleAcitonValue
 var _turns: int
 var _effect_type: EffectSpawner.EffectType
 var _effect_index: int

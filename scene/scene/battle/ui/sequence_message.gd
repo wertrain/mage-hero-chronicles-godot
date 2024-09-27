@@ -5,7 +5,7 @@ func show_message(message: String):
 	var tween_in = get_tree().create_tween()
 	tween_in.set_ease(Tween.EASE_IN_OUT)
 	var viewport_size = get_viewport().size
-	var target_size_y = 64
+	var target_size_y = 64.0
 	$CanvasLayer/ColorRect.position.y = (viewport_size.y / 2.0) - (target_size_y / 2.0)
 	$CanvasLayer/ColorRect.size.x = viewport_size.x
 	$CanvasLayer/ColorRect.size.y = 0
