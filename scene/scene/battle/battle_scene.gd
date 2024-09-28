@@ -4,14 +4,21 @@ extends SceneBase
 @export var hands_scene: PackedScene
 
 var _enemy: BattleEnemy
-var _card_pile = Array()
-var _discard_pile = Array()
+var _enemies: Array = Array()
+var _card_pile: Array  = Array()
+var _discard_pile: Array  = Array()
 var _hands: Hands
 var _player: BattlePlayer
 var _camera: Camera2D
 
 func get_enemy() -> BattleEnemy:
 	return _enemy
+
+func get_enemies() -> Array:
+	return _enemies
+
+func get_player() -> BattlePlayer:
+	return _player
 
 func get_card_pile() -> Array:
 	return _card_pile
@@ -42,6 +49,7 @@ func _ready() -> void:
 	var viewport_rect = get_viewport().size
 	_enemy.position.x = viewport_rect.x / 2.0
 	_enemy.position.y = viewport_rect.y / 2.0 - _enemy.get_sprite_rect().size.y / 2.0
+	_enemies.append(_enemy)
 	$Background.add_sibling(_enemy)
 	# カードのロードとデッキ作成
 	var database = DataBase.new()

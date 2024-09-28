@@ -57,6 +57,28 @@ func load_enemy() -> Array:
 			enemy.name = e["name"]
 			enemy.health = int(e["health"])
 			enemy.attack = e["attack"]
+			for a in e["actions"]:
+				var action:EnemyBattleAciton = EnemyBattleAciton.new()
+				action._name = a["name"]
+				action.set_action_type(a["type"])
+				action.set_target_type(a["target"])
+				action._value = BattleAcitonValue.new(a["value"])
+				action._frequency = float(a["frequency"])
+				if false == a["conditions"].is_empty():
+					for c in a["conditions"]:
+						var condition = EnemyBattleAcitonCondition.new()
+						condition.set_condition_type(c["type"])
+						condition._expression = c["expression"]
+						action._conditions.append(condition)
+				if false == a["steps"].is_empty():
+					for s in a["steps"]:
+						var step = EnemyBattleAcitonStep.new()
+						step._name = s["name"]
+						step.set_action_type(s["type"])
+						step.set_target_type(s["target"])
+						step._value = BattleAcitonValue.new(a["value"])
+						action._steps.append(step)
+				enemy.actions.append(action)
 			_enemy_dictionary[enemy.name] = enemy
 			_enemys.append(enemy)
 		return _enemys

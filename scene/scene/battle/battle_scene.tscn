@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpymxv2el46iy"]
+[gd_scene load_steps=24 format=3 uid="uid://bpymxv2el46iy"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/battle_scene.gd" id="1_5ekfp"]
 [ext_resource type="PackedScene" uid="uid://btxi6fmpm53wl" path="res://scene/scene/battle/battle_enemy.tscn" id="2_51s8b"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://djv2tqbde84qb" path="res://art/card/card_pile_back_blue.png" id="14_24khp"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_turn_start.gd" id="14_kq3gl"]
 [ext_resource type="Texture2D" uid="uid://cs3hicj3yuc6o" path="res://art/card/card_pile_back_red.png" id="15_74owy"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_preparation.gd" id="16_a8234"]
 [ext_resource type="PackedScene" uid="uid://bt5mjixcgc2qc" path="res://scene/scene/battle/ui/sequence_message.tscn" id="20_4dgw6"]
 [ext_resource type="PackedScene" uid="uid://bfj8co0b8wgyq" path="res://scene/effect/effect_spawner.tscn" id="22_6x2u5"]
 
@@ -62,6 +63,9 @@ script = ExtResource("13_dfsdp")
 
 [node name="EnemyTurnStart" type="Node" parent="StateMachine"]
 script = ExtResource("14_kq3gl")
+
+[node name="EnemyPreparation" type="Node" parent="StateMachine"]
+script = ExtResource("16_a8234")
 
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("8_d3kb3")
