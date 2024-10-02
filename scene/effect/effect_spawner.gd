@@ -11,8 +11,8 @@ enum EffectType {
 }
 
 var sprite_frame_list = [
-	preload("res://art/effect/frames/impact_a1.tres"),
-	preload("res://art/effect/frames/impact_a1.tres"),
+	preload("res://art/effect/frames/sprite_frames_impact_a1.tres"),
+	preload("res://art/effect/frames/sprite_frames_impact_a1.tres"),
 ]
 
 var effect_scale_list = [

@@ -3,27 +3,31 @@ extends SceneBase
 @export var enemy_scene: PackedScene
 @export var hands_scene: PackedScene
 
+var _battle_info: BattleInfo
 var _enemy: BattleEnemy
-var _enemies: Array = Array()
-var _card_pile: Array  = Array()
-var _discard_pile: Array  = Array()
+var _enemies: Array[BattleEnemy] = []
+var _card_pile: Array[CardData]  = []
+var _discard_pile: Array[CardData]  = []
 var _hands: Hands
 var _player: BattlePlayer
 var _camera: Camera2D
 
+func get_battle_info() -> BattleInfo:
+	return _battle_info
+
 func get_enemy() -> BattleEnemy:
 	return _enemy
 
-func get_enemies() -> Array:
+func get_enemies() -> Array[BattleEnemy]:
 	return _enemies
 
 func get_player() -> BattlePlayer:
 	return _player
 
-func get_card_pile() -> Array:
+func get_card_pile() -> Array[CardData]:
 	return _card_pile
 
-func get_discard_pile() -> Array:
+func get_discard_pile() -> Array[CardData]:
 	return _discard_pile
 	
 func get_hands() -> Hands:
@@ -76,7 +80,10 @@ func _ready() -> void:
 	#$BattlePlayerStatus.setup(_player)
 	_update_card_pile_num()
 	_update_discard_pile_num()
-	$StateMachine.current_state.transitioned.emit("InitialDrawPhase")	
+	$StateMachine.current_state.transitioned.emit("InitialDrawPhase")
+	_battle_info = BattleInfo.new()
+	_battle_info._enemies = _enemies
+	_battle_info._player = _player
 
 func _on_endturn_button_down():
 	#$StateMachine.current_state.transitioned.emit("EnemyTurnStart")

@@ -10,7 +10,7 @@ signal health_changed(health, max_life)
 func get_health() -> int:
 	return _health
 
-func get_max_life() -> int:
+func get_max_health() -> int:
 	return _max_health
 	
 func get_shield() -> int:

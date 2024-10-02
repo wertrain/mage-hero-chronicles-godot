@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c34hbduefwx1p"]
+
+[ext_resource type="Texture2D" uid="uid://ckiwfbk3e2qts" path="res://art/icon/rpg_weapon_tool.png" id="1_635xb"]
+
+[resource]
+atlas = ExtResource("1_635xb")

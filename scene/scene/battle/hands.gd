@@ -26,21 +26,21 @@ signal card_returned_to_deck(card_data: CardData)
 
 var _player: BattlePlayer
 # 所持している手札カード配列
-var _cards = Array()
+var _cards: Array[Card] = []
 # マウスオーバー中、またはコントローラー操作時に操作対象の手札カード配列中のインデックス
 var _active_card_index = -1
 # カードの配置位置 _calculate_cards_position で計算され、枚数ごとに位置が変わる
-var _card_positions: Array
+var _card_positions: Array[Vector2]
 # デッキまでの参照（親ノードがインスタンス化する）
-var _card_pile: Array
-var _discard_pile: Array
+var _card_pile: Array[CardData]
+var _discard_pile: Array[CardData]
 
-func set_field(player: BattlePlayer, card_pile: Array, discard_pile: Array) -> void:
+func set_field(player: BattlePlayer, card_pile: Array[CardData], discard_pile: Array[CardData]) -> void:
 	_player = player
 	_card_pile = card_pile
 	_discard_pile = discard_pile
 
-func get_cards() -> Array:
+func get_cards() -> Array[Card]:
 	return _cards
 
 func get_active_card():

@@ -7,4 +7,4 @@ func enter():
 	hands._first_draw(5)
 
 func update(_delta):
-	transitioned.emit("ActionSelection")
+	transitioned.emit("EnemyPreparation")

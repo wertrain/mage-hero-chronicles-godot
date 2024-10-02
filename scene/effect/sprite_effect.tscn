@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b74d58dqcbe1"]
 
 [ext_resource type="Script" path="res://scene/effect/sprite_effect.gd" id="1_lftjw"]
-[ext_resource type="SpriteFrames" uid="uid://dkhb4lng3j3s7" path="res://art/effect/frames/impact_a1.tres" id="1_stvyh"]
+[ext_resource type="SpriteFrames" uid="uid://dkhb4lng3j3s7" path="res://art/effect/frames/sprite_frames_impact_a1.tres" id="1_stvyh"]
 
 [node name="SpriteEffect" type="Node2D"]
 script = ExtResource("1_lftjw")

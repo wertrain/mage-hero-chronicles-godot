@@ -1,9 +1,10 @@
+# Json をパースして各データクラスとして取得
 class_name DataBase
 extends Node
 
-var _cards: Array
+var _cards: Array[CardData]
 var _card_dictionary: Dictionary
-var _enemys: Array
+var _enemys: Array[EnemyData]
 var _enemy_dictionary: Dictionary
 
 func _load_data(file_path):
@@ -15,7 +16,7 @@ func _load_data(file_path):
 	push_error("not found: %s" % file_path)
 	return null
 
-func load_cards() -> Array:
+func load_cards() -> Array[CardData]:
 	var card_data = _load_data("res://data/cards.json") as Dictionary
 	if card_data != null:
 		for c in card_data["lines"]:
@@ -37,16 +38,16 @@ func load_cards() -> Array:
 			_card_dictionary[c["guid"]] = card
 			_cards.append(card)
 		return _cards
-	return Array()
+	return []
 
-func load_deck() -> Array:
+func load_deck() -> Array[CardData]:
 	var deck_data = _load_data("res://data/deck.json") as Dictionary
 	if deck_data != null:
-		var deck = Array()
+		var deck: Array[CardData] = []
 		for c in deck_data["cards"]:
 			deck.append(_card_dictionary[c["card"]])
 		return deck
-	return Array()
+	return []
 
 func load_enemy() -> Array:
 	var enemy_data = _load_data("res://data/enemy.json") as Dictionary
@@ -82,4 +83,4 @@ func load_enemy() -> Array:
 			_enemy_dictionary[enemy.name] = enemy
 			_enemys.append(enemy)
 		return _enemys
-	return Array()
+	return []

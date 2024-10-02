@@ -3,7 +3,7 @@ extends Node2D
 
 @export var animation_name: String = "000" # 再生するアニメーションの名前
 @export var autoplay: bool = true # 自動再生するかどうか
-@export var sprite_frames: SpriteFrames = preload("res://art/effect/frames/impact_a1.tres")
+@export var sprite_frames: SpriteFrames = preload("res://art/effect/frames/sprite_frames_impact_a1.tres")
 @export var speed_scale: float = 1
 
 # Called when the node enters the scene tree for the first time.
