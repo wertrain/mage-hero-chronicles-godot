@@ -50,7 +50,7 @@ func _check_condition(conditions: Array[EnemyBattleAcitonCondition], enemy: Batt
 		var value = _evaluate_expression(condition._expression)
 		match condition._type:
 			EnemyBattleAcitonCondition.ConditionType.HP_BELOW:
-				if (enemy.get_status().get_health() / enemy.get_status().get_max_health()) * 100 < value:
+				if (float(enemy.get_status().get_health()) / float(enemy.get_status().get_max_health())) * 100.0 < value:
 					return false
 			EnemyBattleAcitonCondition.ConditionType.TURN_NUMBER:
 				if not (battle_info.get_turn_number() == value):

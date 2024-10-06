@@ -23,6 +23,24 @@ var _turns: int
 var _effect_type: EffectSpawner.EffectType
 var _effect_index: int
 
+func get_type() -> ActionType:
+	return _type
+
+func get_target() -> ActionTarget:
+	return _target
+
+func get_value() -> BattleAcitonValue:
+	return _value
+
+func get_turns() -> int:
+	return _turns
+
+func get_effect_type() -> EffectSpawner.EffectType:
+	return _effect_type
+
+func get_effect_index() -> int:
+	return _effect_index
+
 func set_action_type(type: String) -> void:
 	_type = _string_to_action_type(type)
 

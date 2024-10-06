@@ -1,4 +1,4 @@
-class_name EnemyTurnStart
+class_name BattleStart
 extends State
 
 var isMessageShown: bool
@@ -6,9 +6,9 @@ var isMessageShown: bool
 func enter():
 	var root: BattleScene = get_tree().current_scene
 	isMessageShown = false
-	await root.get_sequence_message().show_message("Enemy's Turn")
+	await root.get_sequence_message().show_message("BATTLE x START")
 	isMessageShown = true
 
 func update(_delta: float):
-	transitioned.emit("EnemyAction")
-	
+	if isMessageShown:
+		transitioned.emit("PlayerTurnStart")

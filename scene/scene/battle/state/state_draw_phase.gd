@@ -7,6 +7,6 @@ extends State
 func enter():
 	await get_tree().create_timer(0.5).timeout
 	transitioned.emit("ActionSelection")
-		
+
 func update(_delta):
 	pass

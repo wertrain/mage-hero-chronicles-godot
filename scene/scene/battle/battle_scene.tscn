@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpymxv2el46iy"]
+[gd_scene load_steps=27 format=3 uid="uid://bpymxv2el46iy"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/battle_scene.gd" id="1_5ekfp"]
 [ext_resource type="PackedScene" uid="uid://btxi6fmpm53wl" path="res://scene/scene/battle/battle_enemy.tscn" id="2_51s8b"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://script/gameplay/fsm/state_machine.gd" id="5_jtg6y"]
 [ext_resource type="PackedScene" uid="uid://br02qq5jqcbmy" path="res://scene/scene/ui/health_bar.tscn" id="5_yw7ko"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_action_selection.gd" id="6_83fnk"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_battle_start.gd" id="7_6clmm"]
 [ext_resource type="Script" path="res://scene/scene/battle/debug_draw.gd" id="8_d3kb3"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_player_turn_start.gd" id="8_en1te"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_target_selection.gd" id="8_llulr"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_play_card.gd" id="10_thkca"]
 [ext_resource type="PackedScene" uid="uid://beox418pw1cb5" path="res://scene/common/bezier_arrow.tscn" id="10_twp55"]
@@ -21,6 +23,7 @@
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_turn_start.gd" id="14_kq3gl"]
 [ext_resource type="Texture2D" uid="uid://cs3hicj3yuc6o" path="res://art/card/card_pile_back_red.png" id="15_74owy"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_preparation.gd" id="16_a8234"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_action.gd" id="17_7cmbn"]
 [ext_resource type="PackedScene" uid="uid://bt5mjixcgc2qc" path="res://scene/scene/battle/ui/sequence_message.tscn" id="20_4dgw6"]
 [ext_resource type="PackedScene" uid="uid://bfj8co0b8wgyq" path="res://scene/effect/effect_spawner.tscn" id="22_6x2u5"]
 
@@ -39,6 +42,18 @@ position = Vector2(72, 544)
 script = ExtResource("5_jtg6y")
 current_state = NodePath("Default")
 
+[node name="BattleStart" type="Node" parent="StateMachine"]
+script = ExtResource("7_6clmm")
+
+[node name="PlayerTurnStart" type="Node" parent="StateMachine"]
+script = ExtResource("8_en1te")
+
+[node name="EnemyPreparation" type="Node" parent="StateMachine"]
+script = ExtResource("16_a8234")
+
+[node name="InitialDrawPhase" type="Node" parent="StateMachine"]
+script = ExtResource("11_e7vs5")
+
 [node name="DrawPhase" type="Node" parent="StateMachine"]
 script = ExtResource("5_hfo85")
 
@@ -52,20 +67,17 @@ arrow_scene = ExtResource("10_twp55")
 [node name="PlayCard" type="Node" parent="StateMachine"]
 script = ExtResource("10_thkca")
 
-[node name="InitialDrawPhase" type="Node" parent="StateMachine"]
-script = ExtResource("11_e7vs5")
+[node name="EnemyTurnStart" type="Node" parent="StateMachine"]
+script = ExtResource("14_kq3gl")
+
+[node name="EnemyAction" type="Node" parent="StateMachine"]
+script = ExtResource("17_7cmbn")
 
 [node name="Default" type="Node" parent="StateMachine"]
 script = ExtResource("11_3fp4g")
 
 [node name="ReshufflePhase" type="Node" parent="StateMachine"]
 script = ExtResource("13_dfsdp")
-
-[node name="EnemyTurnStart" type="Node" parent="StateMachine"]
-script = ExtResource("14_kq3gl")
-
-[node name="EnemyPreparation" type="Node" parent="StateMachine"]
-script = ExtResource("16_a8234")
 
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("8_d3kb3")

@@ -18,6 +18,9 @@ func get_status() -> BattleStatus:
 func get_data() -> EnemyData:
 	return _enemy_data
 
+func get_action_queue() -> Array[EnemyBattleAciton]:
+	return _action_queue
+
 func shake() -> void:
 	$Shake2D.play_shake()
 

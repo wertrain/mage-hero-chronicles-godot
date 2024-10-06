@@ -1,5 +1,11 @@
 class_name BattleScene
 extends SceneBase
+
+## 戦闘シーン
+##
+## 戦闘に関わるすべての要素はここでインスタンス化する
+## シーケンス自体は StateMachine で管理する
+
 @export var enemy_scene: PackedScene
 @export var hands_scene: PackedScene
 
@@ -80,19 +86,19 @@ func _ready() -> void:
 	#$BattlePlayerStatus.setup(_player)
 	_update_card_pile_num()
 	_update_discard_pile_num()
-	$StateMachine.current_state.transitioned.emit("InitialDrawPhase")
+	$StateMachine.current_state.transitioned.emit("BattleStart")
 	_battle_info = BattleInfo.new()
 	_battle_info._enemies = _enemies
 	_battle_info._player = _player
 
 func _on_endturn_button_down():
+	$StateMachine.current_state.transitioned.emit("EnemyTurnStart")
 	#$StateMachine.current_state.transitioned.emit("EnemyTurnStart")
-	get_sequence_message().show_message("Enemy's Turn")
-	ScreenEffect.play_shake(_camera)
-	ScreenEffect.play_flash(_enemy.get_sprite(), Color.RED)
-	ScreenEffect.play_flash_screen(self, Color.WHITE, 0.05, 2)
-	$EffectSpawner.spawn(EffectSpawner.EffectType.IMPACT_A, 0, _enemy.position)
-	pass
+	#get_sequence_message().show_message("Enemy's Turn")
+	#ScreenEffect.play_shake(_camera)
+	#ScreenEffect.play_flash(_enemy.get_sprite(), Color.RED)
+	#ScreenEffect.play_flash_screen(self, Color.WHITE, 0.05, 2)
+	#$EffectSpawner.spawn(EffectSpawner.EffectType.IMPACT_A, 0, _enemy.position)
 
 func _on_card_drawn(_card_data: CardData):
 	_update_card_pile_num()

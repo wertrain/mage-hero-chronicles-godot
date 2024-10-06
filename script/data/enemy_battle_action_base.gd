@@ -27,11 +27,23 @@ var _type: ActionType
 var _target: ActionTarget
 var _value: BattleAcitonValue
 
+func get_name() -> String:
+	return _name
+
+func set_name(name: String) -> void:
+	_name = name
+
 func set_action_type(type: String) -> void:
 	_type = _string_to_action_type(type)
 
 func set_target_type(target: String) -> void:
 	_target = _string_to_action_target(target)
+
+func get_value() -> BattleAcitonValue:
+	return _value
+
+func set_value(value: BattleAcitonValue) -> void:
+	_value = value
 
 func _string_to_action_type(type: String) -> ActionType:
 	match type:
