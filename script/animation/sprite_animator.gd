@@ -54,11 +54,25 @@ func _jump_slam(target: Sprite2D) -> Tween:
 	var duration_return = 0.2
 	var tween = target.get_tree().create_tween()
 	# ジャンプ動作
-	tween.interpolate_property(target, "position", jump_position, duration_jump).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(target, "position", jump_position, duration_jump).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	# 叩きつける動作
-	tween.interpolate_property(target, "position", slam_position, duration_slam).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(target, "position", slam_position, duration_slam).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	# 元の位置に戻る
-	tween.interpolate_property(target, "position", original_position, duration_return).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(target, "position", original_position, duration_return).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	return tween
+
+func _dash_side(target: Sprite2D) -> Tween:
+	var original_position = target.position
+	var dash_position = target.position + Vector2(150, 0)  # 横にダッシュ
+	var return_position = target.position  # 元の位置に戻る
+	var duration_delay = 0.2
+	var duration_dash = 0.2
+	var duration_return = 0.3
+	var tween = target.get_tree().create_tween()
+	# ダッシュ動作
+	tween.tween_property(self, "position", dash_position, duration_dash).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	# 少し遅れて元の位置に戻る
+	tween.tween_property(self, "position", return_position, duration_return).set_ease(Tween.EASE_IN).set_delay(duration_delay).set_trans(Tween.TRANS_QUAD)
 	return tween
 	
 # 前方に迫る攻撃
