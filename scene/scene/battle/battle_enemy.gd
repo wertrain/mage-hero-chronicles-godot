@@ -32,6 +32,20 @@ func set_data(data: EnemyData) -> void:
 	_battle_status.set_health(data.health, data.health)
 	$HealthBar.set_health(data.health, data.health)
 
+func start_attack_action() -> Tween:
+	# スプライトを元の位置から前方に移動させる
+	var original_position = $Sprite2D.position
+	var attack_position = $Sprite2D.position + Vector2(50, 0)  # 右方向に50ピクセル移動
+
+	# 移動とその後の元の位置への戻り
+	var tween = get_tree().create_tween()
+	tween.tween_property($Sprite2D, "position", attack_position, 0.2).set_ease(Tween.EASE_OUT) #Tween.TRANS_QUAD
+	tween.tween_property($Sprite2D, "position", original_position, 0.2).set_ease(Tween.EASE_IN)#, Tween.TRANS_QUAD, Tween.EASE_IN, 0.2)
+	# スプライトを少し回転させる（振る動作を表現）
+	tween.tween_property($Sprite2D, "rotation_degrees", 20, 0.2).set_ease(Tween.EASE_OUT) #Tween.TRANS_QUAD, Tween.EASE_OUT
+	tween.tween_property($Sprite2D, "rotation_degrees",  0, 0.2).set_ease(Tween.EASE_IN) #Tween.TRANS_QUAD, Tween.EASE_IN
+	return tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_battle_status = BattleStatus.new()

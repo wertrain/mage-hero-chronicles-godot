@@ -17,18 +17,19 @@ func enter():
 	var root: BattleScene = get_tree().current_scene
 	_enemies = root.get_enemies()
 	_sequence = _ActionSequence.EntryEnemy
-
+	_action_enemy_index = 0
 func update(_delta: float):
 	match _sequence:
 		_ActionSequence.EntryEnemy:
 			_action = _enemies[_action_enemy_index].get_action_queue().pop_front()
 			_sequence = _ActionSequence.StartAction
 		_ActionSequence.StartAction:
+			_sequence = _ActionSequence.UpdateAction
+			await _enemies[_action_enemy_index].start_attack_action().finished
+		_ActionSequence.UpdateAction:
 			var root: BattleScene = get_tree().current_scene
 			ScreenEffect.play_flash_screen(root, Color.RED)
 			ScreenEffect.play_shake(root.get_camera())
-			_sequence = _ActionSequence.UpdateAction
-		_ActionSequence.UpdateAction:
 			_sequence = _ActionSequence.CheckNext
 		_ActionSequence.CheckNext:
 			_action_enemy_index = _action_enemy_index + 1

@@ -10,5 +10,6 @@ func enter():
 	isMessageShown = true
 
 func update(_delta: float):
-	transitioned.emit("EnemyAction")
+	if isMessageShown:
+		transitioned.emit("EnemyAction")
 	
