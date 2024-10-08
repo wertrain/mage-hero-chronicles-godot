@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cok65817dkr67"]
+
+[ext_resource type="Script" path="res://test/test_sprite_animator.gd" id="1_wgo2x"]
+[ext_resource type="Texture2D" uid="uid://g8okru7rwt0k" path="res://art/enemy/pipo-enemy002.png" id="2_lpu2r"]
+[ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="3_52j2b"]
+
+[node name="SpriteAnimatorTest" type="Node2D"]
+script = ExtResource("1_wgo2x")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(640, 200)
+texture = ExtResource("2_lpu2r")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_52j2b")
+theme_override_font_sizes/font_size = 65
+text = "ATTACK"

@@ -54,6 +54,8 @@ func _ready() -> void:
 	_attack_warning_icon.atlas_texture = load("res://art/icon/atlas_texture_rpg_weapon_tool.tres")
 	_attack_warning_icon.scale = Vector2(2.0, 2.0)
 	add_child(_attack_warning_icon)
+	_attack_warning_icon.set_atlas_region(Ids.IconType.WOODEN_ARMOR)
+	_attack_warning_icon.start_floating()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
