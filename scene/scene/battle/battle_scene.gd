@@ -15,7 +15,7 @@ var _enemies: Array[BattleEnemy] = []
 var _card_pile: Array[CardData]  = []
 var _discard_pile: Array[CardData]  = []
 var _hands: Hands
-var _player: BattlePlayer
+var _player: BattlePlayerStatus
 var _camera: Camera2D
 
 func get_battle_info() -> BattleInfo:
@@ -27,7 +27,7 @@ func get_enemy() -> BattleEnemy:
 func get_enemies() -> Array[BattleEnemy]:
 	return _enemies
 
-func get_player() -> BattlePlayer:
+func get_player() -> BattlePlayerStatus:
 	return _player
 
 func get_card_pile() -> Array[CardData]:
@@ -69,8 +69,11 @@ func _ready() -> void:
 	_enemy.set_data(enemys[0])
 	Random.get_instance().shuffle_array(_card_pile)
 	# プレイヤーの作成
-	_player = BattlePlayer.new()
+	_player = BattlePlayerStatus.new()
 	_player.energy_changed.connect(_on_energy_changed)
+	_player.health_changed.connect(_on_player_health_changed)
+	_player.shield_changed.connect(_on_player_shield_changed)
+	$HealthBar.set_health(_player.get_health(), _player.get_max_health())
 	$HUD.update_energy(_player.get_energy(), _player.get_max_energy())
 	# 手札を作成
 	_hands = hands_scene.instantiate()
@@ -118,6 +121,12 @@ func _on_card_discarded(_card_data: CardData):
 	
 func _on_card_returned_to_deck(_card_data: CardData):
 	_update_card_pile_num()
+
+func _on_player_health_changed(health: int, max_health: int):
+	$HealthBar.set_health(health, max_health)
+
+func _on_player_shield_changed(shield: int):
+	$HealthBar.set_shield(shield)
 
 func _on_energy_changed(energy: int, max_energy:int):
 	$HUD.update_energy(energy, max_energy)

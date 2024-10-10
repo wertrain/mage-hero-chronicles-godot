@@ -25,8 +25,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_accept") and not _is_animation):
 		var key = _animation_names.keys()[_animation_index]
-		var name = _animation_names.get(key)
-		$Control/Label.text = name
+		var anim_name = _animation_names.get(key)
+		$Control/Label.text = anim_name
 		_is_animation = true
 		await _animator.start_animation(key, $Control/Sprite2D).finished
 		_is_animation = false

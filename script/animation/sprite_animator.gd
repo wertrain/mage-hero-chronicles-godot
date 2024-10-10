@@ -79,7 +79,6 @@ func _jump_slam(target: Sprite2D) -> Tween:
 func _dash_side(target: Sprite2D) -> Tween:
 	var original_position = target.position
 	var dash_position = target.position + Vector2(150, 0)  # 横にダッシュ
-	var return_position = target.position  # 元の位置に戻る
 	var duration_delay = (0.2 / speed_multiplier)
 	var duration_dash = (0.2 / speed_multiplier)
 	var duration_return = (0.3 / speed_multiplier)
@@ -87,7 +86,7 @@ func _dash_side(target: Sprite2D) -> Tween:
 	# ダッシュ動作
 	tween.tween_property(target, "position", dash_position, duration_dash).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	# 少し遅れて元の位置に戻る
-	tween.tween_property(target, "position", return_position, duration_return).set_ease(Tween.EASE_IN).set_delay(duration_delay).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(target, "position", original_position, duration_return).set_ease(Tween.EASE_IN).set_delay(duration_delay).set_trans(Tween.TRANS_QUAD)
 	return tween
 	
 func _charge(target: Sprite2D) -> Tween:

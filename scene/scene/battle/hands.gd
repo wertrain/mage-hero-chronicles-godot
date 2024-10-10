@@ -24,7 +24,7 @@ signal card_used(card_data: CardData)
 signal card_discarded(card_data: CardData)
 signal card_returned_to_deck(card_data: CardData)
 
-var _player: BattlePlayer
+var _player: BattlePlayerStatus
 # 所持している手札カード配列
 var _cards: Array[Card] = []
 # マウスオーバー中、またはコントローラー操作時に操作対象の手札カード配列中のインデックス
@@ -35,7 +35,7 @@ var _card_positions: Array[Vector2]
 var _card_pile: Array[CardData]
 var _discard_pile: Array[CardData]
 
-func set_field(player: BattlePlayer, card_pile: Array[CardData], discard_pile: Array[CardData]) -> void:
+func set_field(player: BattlePlayerStatus, card_pile: Array[CardData], discard_pile: Array[CardData]) -> void:
 	_player = player
 	_card_pile = card_pile
 	_discard_pile = discard_pile

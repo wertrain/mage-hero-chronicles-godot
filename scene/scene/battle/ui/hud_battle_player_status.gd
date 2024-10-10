@@ -1,4 +1,4 @@
-class_name BattlePlayerStatus
+class_name HudBattlePlayerStatus
 extends Node2D
 
 var _life: int = 0

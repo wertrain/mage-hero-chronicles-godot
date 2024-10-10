@@ -5,9 +5,9 @@ extends RefCounted
 
 var _turn_number: int = 0
 var _enemies: Array[BattleEnemy] = []
-var _player: BattlePlayer
+var _player: BattlePlayerStatus
 
-func get_player() -> BattlePlayer:
+func get_player() -> BattlePlayerStatus:
 	return _player
 
 func get_enemies() -> Array[BattleEnemy]:

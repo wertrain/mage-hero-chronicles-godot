@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuj6u21sdr3k4"]
 
 [ext_resource type="LabelSettings" uid="uid://ckf3woots0vhb" path="res://art/settings/label_settings_battle_player_status.tres" id="1_cidj3"]
-[ext_resource type="Script" path="res://scene/scene/battle/ui/battle_player_status.gd" id="1_gtlvo"]
+[ext_resource type="Script" path="res://scene/scene/battle/ui/hud_battle_player_status.gd" id="1_gtlvo"]
 [ext_resource type="Texture2D" uid="uid://c71uyd4ywi1xq" path="res://art/ui/bar/bar_red_frame.png" id="2_xq372"]
 [ext_resource type="Texture2D" uid="uid://csbnabwambcp0" path="res://art/ui/bar/bar_red.png" id="3_t65x5"]
 

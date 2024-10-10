@@ -1,4 +1,4 @@
-class_name BattlePlayer
+class_name BattlePlayerStatus
 extends BattleStatus
 
 var _current_energy: int = 3

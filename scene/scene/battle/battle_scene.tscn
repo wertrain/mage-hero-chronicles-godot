@@ -35,7 +35,7 @@ hands_scene = ExtResource("4_whw1m")
 [node name="Background" parent="." instance=ExtResource("2_otgsh")]
 visible = false
 
-[node name="HealthBar" parent="Background" instance=ExtResource("5_yw7ko")]
+[node name="HealthBar" parent="." instance=ExtResource("5_yw7ko")]
 position = Vector2(72, 544)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
