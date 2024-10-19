@@ -34,6 +34,8 @@ var _card_positions: Array[Vector2]
 # デッキまでの参照（親ノードがインスタンス化する）
 var _card_pile: Array[CardData]
 var _discard_pile: Array[CardData]
+# 入力操作可能か？
+var _is_enabled_input: bool
 
 func set_field(player: BattlePlayerStatus, card_pile: Array[CardData], discard_pile: Array[CardData]) -> void:
 	_player = player
@@ -59,6 +61,9 @@ func use_active_card() -> bool:
 	_use_card(use_index)
 	return true
 
+func set_input_enabled(enabled: bool):
+	_is_enabled_input = enabled
+
 func _calculate_cards_position(card_count: int) -> void:
 	var viewport_size = get_viewport().size
 	var center_x = viewport_size.x / 2  # 画面の中央X座標
@@ -79,10 +84,15 @@ func _calculate_cards_position(card_count: int) -> void:
 		_card_positions.append(card_pos)
 
 func _first_draw(card_count: int):
+	_is_enabled_input = false
 	# カードの配置を計算
 	for i in range(card_count):
-		var card = card_scene.instantiate()
 		var card_data = _card_pile.pop_front()
+		if (card_data == null):
+			await _reshuffle()
+			_first_draw(card_count - i) # 無限ループの恐れはある
+			return
+		var card = card_scene.instantiate()
 		card.set_data(card_data)
 		card.position = card_pile_position
 		card.scale = Vector2.ZERO
@@ -94,18 +104,18 @@ func _first_draw(card_count: int):
 		#card.position = _card_positions[i]
 		#_cards.append(card)
 		#add_child(card)
+	_is_enabled_input = true
 
 func _reshuffle():
-	var card_count:int = min(_discard_pile.size(), 3)
+	var card_count:int = min(_discard_pile.size(), 4)
 	for i in range(card_count):
 		var card = card_scene.instantiate()
 		card.position = discard_pile_position
 		card.scale = Vector2.ONE * 0.5
 		add_child(card)
 		var tween = get_tree().create_tween()
-		tween.set_parallel(true)
-		tween.set_ease(Tween.EASE_OUT)
-		var animation_time = 0.4
+		tween.set_parallel(true).set_ease(Tween.EASE_OUT)
+		var animation_time = 0.2
 		tween.tween_property(card, "scale", Vector2.ZERO, animation_time)
 		tween.tween_property(card, "position", Vector2(card_pile_position), animation_time)
 		await tween.finished
@@ -116,6 +126,7 @@ func _reshuffle():
 	deck_reshuffled.emit()
 
 func _ready() -> void:
+	_is_enabled_input = true
 	pass
 	#_arrange_hand()
 	#_first_draw(5)
@@ -126,6 +137,8 @@ func _process(_delta: float) -> void:
 	#		_active_card_index = 0
 	#		_set_active_card(_active_card_index, true)
 	#		return
+	if (not _is_enabled_input):
+		return
 	var current_index = _active_card_index
 	if (Input.is_action_just_pressed("ui_left")):
 		_active_card_index = _active_card_index - 1
@@ -141,6 +154,8 @@ func _process(_delta: float) -> void:
 		_set_active_card(_active_card_index, true)
 
 func input_card_select(event) -> Card:
+	if (not _is_enabled_input):
+		return null
 	if event is InputEventMouseMotion:
 		var mouse_pos = event.position
 		if (_active_card_index != -1):
@@ -219,6 +234,43 @@ func _use_card(index: int) -> void:
 	remove_child(card)
 	card_discarded.emit(data)
 
+func _discard_card(index: int) -> void:
+	var card = _cards[index]
+	var tween_to_discard_pile = get_tree().create_tween()
+	tween_to_discard_pile.set_parallel(true)
+	tween_to_discard_pile.set_ease(Tween.EASE_IN)
+	var animation_time = active_card_animation_time * 3
+	tween_to_discard_pile.tween_property(card, "scale", Vector2.ZERO, animation_time)
+	tween_to_discard_pile.tween_property(card, "position", Vector2(discard_pile_position), animation_time)
+	# 配列的には先に削除しておいて並べなおす
+	var data = card.get_data()
+	_cards.remove_at(index)
+	_update_card_position(_cards.size())
+	# Tween の完了を待ってノードから削除
+	await tween_to_discard_pile.finished
+	_discard_pile.push_back(data)
+	remove_child(card)
+	card_discarded.emit(data)
+	
+func _discard_all_card() -> void:
+	var tween_to_discard_pile = get_tree().create_tween()
+	for index in range(_cards.size()):
+		var card = _cards[index]
+		tween_to_discard_pile.set_parallel(true)
+		tween_to_discard_pile.set_ease(Tween.EASE_IN)
+		var animation_time = active_card_animation_time * 3
+		tween_to_discard_pile.tween_property(card, "scale", Vector2.ZERO, animation_time)
+		tween_to_discard_pile.tween_property(card, "position", Vector2(discard_pile_position), animation_time)
+	# Tween の完了を待ってノードから削除
+	await tween_to_discard_pile.finished
+	for card in _cards:
+		var data = card.get_data()
+		_discard_pile.push_back(data)
+		remove_child(card)
+		card_discarded.emit(data)
+	_cards.clear()
+
+# 枚数に応じたカードの位置を計算し、そこに移動させる
 func _update_card_position(card_count: int) -> Tween:
 	_calculate_cards_position(card_count)
 	var tween = get_tree().create_tween()

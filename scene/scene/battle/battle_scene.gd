@@ -73,6 +73,7 @@ func _ready() -> void:
 	_player.energy_changed.connect(_on_energy_changed)
 	_player.health_changed.connect(_on_player_health_changed)
 	_player.shield_changed.connect(_on_player_shield_changed)
+	_player.shield_reset.connect(_on_player_shield_reset)
 	$HealthBar.set_health(_player.get_health(), _player.get_max_health())
 	$HUD.update_energy(_player.get_energy(), _player.get_max_energy())
 	# 手札を作成
@@ -95,7 +96,7 @@ func _ready() -> void:
 	_battle_info._player = _player
 
 func _on_endturn_button_down():
-	$StateMachine.current_state.transitioned.emit("EnemyTurnStart")
+	$StateMachine.current_state.transitioned.emit("PlayerTurnEnd")
 	#$StateMachine.current_state.transitioned.emit("EnemyTurnStart")
 	#get_sequence_message().show_message("Enemy's Turn")
 	#ScreenEffect.play_shake(_camera)
@@ -127,6 +128,9 @@ func _on_player_health_changed(health: int, max_health: int):
 
 func _on_player_shield_changed(shield: int):
 	$HealthBar.set_shield(shield)
+
+func _on_player_shield_reset():
+	$HealthBar.set_shield(0)
 
 func _on_energy_changed(energy: int, max_energy:int):
 	$HUD.update_energy(energy, max_energy)

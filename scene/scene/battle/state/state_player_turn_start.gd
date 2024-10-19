@@ -7,4 +7,4 @@ func enter():
 	root.get_player().reset_energy()
 
 func update(_delta):
-	transitioned.emit("InitialDrawPhase")
+	transitioned.emit("DrawPhase")

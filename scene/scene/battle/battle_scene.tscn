@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_play_card.gd" id="10_thkca"]
 [ext_resource type="PackedScene" uid="uid://beox418pw1cb5" path="res://scene/common/bezier_arrow.tscn" id="10_twp55"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_default.gd" id="11_3fp4g"]
-[ext_resource type="Script" path="res://scene/scene/battle/state/state_initial_draw_phase.gd" id="11_e7vs5"]
 [ext_resource type="Script" path="res://scene/scene/battle/hud.gd" id="12_27vba"]
 [ext_resource type="FontFile" uid="uid://jyeokg8ohqjm" path="res://art/font/sofachrome_rg.otf" id="12_ohc2m"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_reshuffle_phase.gd" id="13_dfsdp"]
@@ -23,6 +22,7 @@
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_turn_start.gd" id="14_kq3gl"]
 [ext_resource type="Texture2D" uid="uid://cs3hicj3yuc6o" path="res://art/card/card_pile_back_red.png" id="15_74owy"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_preparation.gd" id="16_a8234"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_player_turn_end.gd" id="16_jt5vg"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_enemy_action.gd" id="17_7cmbn"]
 [ext_resource type="PackedScene" uid="uid://bt5mjixcgc2qc" path="res://scene/scene/battle/ui/sequence_message.tscn" id="20_4dgw6"]
 [ext_resource type="PackedScene" uid="uid://bfj8co0b8wgyq" path="res://scene/effect/effect_spawner.tscn" id="22_6x2u5"]
@@ -51,9 +51,6 @@ script = ExtResource("8_en1te")
 [node name="EnemyPreparation" type="Node" parent="StateMachine"]
 script = ExtResource("16_a8234")
 
-[node name="InitialDrawPhase" type="Node" parent="StateMachine"]
-script = ExtResource("11_e7vs5")
-
 [node name="DrawPhase" type="Node" parent="StateMachine"]
 script = ExtResource("5_hfo85")
 
@@ -66,6 +63,9 @@ arrow_scene = ExtResource("10_twp55")
 
 [node name="PlayCard" type="Node" parent="StateMachine"]
 script = ExtResource("10_thkca")
+
+[node name="PlayerTurnEnd" type="Node" parent="StateMachine"]
+script = ExtResource("16_jt5vg")
 
 [node name="EnemyTurnStart" type="Node" parent="StateMachine"]
 script = ExtResource("14_kq3gl")

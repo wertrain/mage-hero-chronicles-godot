@@ -7,6 +7,7 @@ var _current_shield: int = 0
 
 signal health_changed(health, max_health)
 signal shield_changed(shield)
+signal shield_reset()
 	
 func get_health() -> int:
 	return _health
@@ -44,3 +45,7 @@ func apply_damage(value: int) -> bool:
 func add_shield(amount: int) -> void:
 	_current_shield += amount
 	shield_changed.emit(_current_shield)
+
+func reset_shield() -> void:
+	_current_shield = 0
+	shield_reset.emit()

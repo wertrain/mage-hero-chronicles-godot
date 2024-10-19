@@ -11,7 +11,7 @@ func _update_life_text() -> void:
 	bar.max_value = _max_life;
 	bar.value = _life
 	
-func setup(battle_player: BattlePlayer):
+func setup(battle_player: BattlePlayerStatus):
 	battle_player.life_changed.connect(_on_life_changed)
 	_life = battle_player.get_life()
 	_max_life = battle_player.get_max_life()
