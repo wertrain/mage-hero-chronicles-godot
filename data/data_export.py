@@ -11,7 +11,7 @@ def export_sheets(dpo_filepath):
         if lines:
             filename = f"{sheet_name}.json"
             with open(filename, 'w') as file:
-                json.dump({"lines": lines}, file, indent=4)
+                json.dump({"lines": lines}, file, indent='\t')
     print("complete.")
 
 export_sheets("data.dpo")
