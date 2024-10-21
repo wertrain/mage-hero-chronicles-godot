@@ -74,9 +74,16 @@ func _evaluate_expression(expression: String) -> float:
 	var result = expr.execute([], null)
 	return result if result != null else 0.0
 
+# 特定の enum 値を文字列で取得
+func get_enum_name(value: int, enum_dict: Dictionary) -> String:
+	for key in enum_dict.keys():
+		if enum_dict[key] == value:
+			return key
+	return "UNKNOWN"
+
 func _debug_dump_action(action: EnemyBattleAciton):
 	print("<DUMP> Enemy action")
 	print("       Name: %s" % action._name)
-	print("     Target: %s" % action._target)
-	print("       Type: %s" % action._type)
-	print("      Value: %s" % action._value)
+	print("     Target: %s" % get_enum_name(action._target, EnemyBattleAciton.ActionTarget))
+	print("       Type: %s" % get_enum_name(action._type, EnemyBattleAciton.ActionType))
+	print("      Value: [%s] %s" % [get_enum_name(action._value._type, BattleAcitonValue.ValueType), action._value._expression])
