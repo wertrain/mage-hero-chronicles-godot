@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://btxi6fmpm53wl"]
+[gd_scene load_steps=6 format=3 uid="uid://btxi6fmpm53wl"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/battle_enemy.gd" id="1_dwp1u"]
 [ext_resource type="PackedScene" uid="uid://c400o3d5kjr7o" path="res://scene/common/shake2d.tscn" id="2_r37mq"]
 [ext_resource type="Texture2D" uid="uid://g8okru7rwt0k" path="res://art/enemy/pipo-enemy002.png" id="2_tdqpn"]
 [ext_resource type="PackedScene" uid="uid://br02qq5jqcbmy" path="res://scene/scene/ui/health_bar.tscn" id="3_30w52"]
+[ext_resource type="PackedScene" uid="uid://7b6i3scpvwu1" path="res://scene/scene/battle/ui/attack_warning_icon.tscn" id="5_x4on4"]
 
 [node name="BattleEnemy" type="Node2D"]
 script = ExtResource("1_dwp1u")
@@ -16,3 +17,5 @@ target = NodePath("../Sprite2D")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_30w52")]
 position = Vector2(-136, 200)
+
+[node name="AttackWarningIcon" parent="." instance=ExtResource("5_x4on4")]

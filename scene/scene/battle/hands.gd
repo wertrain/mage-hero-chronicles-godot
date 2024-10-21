@@ -270,7 +270,7 @@ func _discard_all_card() -> void:
 		card_discarded.emit(data)
 	_cards.clear()
 
-# 枚数に応じたカードの位置を計算し、そこに移動させる
+## 枚数に応じたカードの位置を計算し、そこに移動させる
 func _update_card_position(card_count: int) -> Tween:
 	_calculate_cards_position(card_count)
 	var tween = get_tree().create_tween()

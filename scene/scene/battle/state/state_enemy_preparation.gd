@@ -1,12 +1,17 @@
 class_name EnemyPreparation
 extends State
 
-enum IconType {
-	
-}
-
 var _action_counters: Dictionary = {}
 var _battle_info: BattleInfo
+
+var _icon_table: Dictionary = {
+	EnemyBattleAciton.ActionType.ATTACK: AttackWarningIcon.Icons.ATTACK,
+	EnemyBattleAciton.ActionType.SHIELD: AttackWarningIcon.Icons.SHIELD,
+	EnemyBattleAciton.ActionType.BUFF: AttackWarningIcon.Icons.SHIELD,
+	EnemyBattleAciton.ActionType.DEBUFF: AttackWarningIcon.Icons.SHIELD,
+	EnemyBattleAciton.ActionType.MULTI_TURN_ACTION: AttackWarningIcon.Icons.SHIELD,
+	EnemyBattleAciton.ActionType.UNDEFINED: AttackWarningIcon.Icons.SHIELD,
+}
 
 func enter():
 	var root: BattleScene = get_tree().current_scene
@@ -15,6 +20,8 @@ func enter():
 	for enemy in enemies:
 		var data: EnemyData = enemy.get_data()
 		execute_enemy_action(enemy, data, _battle_info)
+		var first_action: EnemyBattleAciton = enemy._action_queue.front()
+		enemy.show_warning_icon(_icon_table[first_action._type], first_action._value.execute_battle_action(enemy.get_status()))
 
 func update(_delta: float):
 	transitioned.emit("ActionSelection")

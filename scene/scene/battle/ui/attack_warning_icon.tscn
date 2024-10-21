@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://7b6i3scpvwu1"]
+
+[ext_resource type="Script" path="res://script/core/atlas_sprite2d.gd" id="1_3j20w"]
+[ext_resource type="Script" path="res://scene/scene/battle/ui/attack_warning_icon.gd" id="1_e71ab"]
+[ext_resource type="Texture2D" uid="uid://c34hbduefwx1p" path="res://art/icon/atlas_texture_rpg_weapon_tool.tres" id="2_1rtbm"]
+[ext_resource type="FontFile" uid="uid://cyh4qjrj0p4r" path="res://art/font/logotypegothic.otf" id="4_r81js"]
+
+[node name="AttackWarningIcon" type="Node2D"]
+script = ExtResource("1_e71ab")
+
+[node name="AtlasSprite2D" type="Sprite2D" parent="."]
+script = ExtResource("1_3j20w")
+atlas_texture = ExtResource("2_1rtbm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.176419, 0.176419, 0.176419, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_r81js")
+theme_override_font_sizes/font_size = 22
+text = "999
+"
+horizontal_alignment = 1

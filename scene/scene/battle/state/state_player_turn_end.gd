@@ -6,8 +6,6 @@ func enter():
 	var hands = root.get_hands()
 	# 手札の破棄
 	hands._discard_all_card()
-	# シールドの破棄
-	root.get_player().reset_shield()
 	pass
 
 func update(_delta: float):

@@ -4,7 +4,6 @@ extends Node2D
 var _enemy_data: EnemyData
 var _battle_status: BattleStatus
 var _action_queue: Array[EnemyBattleAciton] = []
-var _attack_warning_icon: AtlasSprite2D
 var _sprite_animator: SpriteAnimator
 
 func get_sprite() -> Sprite2D:
@@ -33,19 +32,21 @@ func set_data(data: EnemyData) -> void:
 	_battle_status.set_health(data.health, data.health)
 	$HealthBar.set_health(data.health, data.health)
 
+func show_warning_icon(icon_type: AttackWarningIcon.Icons, value: int) -> void:
+	$AttackWarningIcon.set_icon(icon_type, value)
+	$AttackWarningIcon.set_visible(true)
+
+func hidden_warning_icon() -> void:
+	$AttackWarningIcon.set_icon(AttackWarningIcon.Icons.ATTACK, 0)
+	$AttackWarningIcon.set_visible(false)
+
 func start_attack_action() -> Tween:
-	return _sprite_animator.start_animation(SpriteAnimator.AnimationType.FORWARD_SCALE, $Sprite2D,)
+	return _sprite_animator.start_animation(SpriteAnimator.AnimationType.FORWARD_SCALE, $Sprite2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_battle_status = BattleStatus.new()
 	_battle_status.health_changed.connect(_on_health_changed)
-	_attack_warning_icon = AtlasSprite2D.new()
-	_attack_warning_icon.atlas_texture = load("res://art/icon/atlas_texture_rpg_weapon_tool.tres")
-	_attack_warning_icon.scale = Vector2(2.0, 2.0)
-	add_child(_attack_warning_icon)
-	_attack_warning_icon.set_atlas_region(Ids.IconType.WOODEN_ARMOR)
-	_attack_warning_icon.start_floating()
 	_sprite_animator = SpriteAnimator.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

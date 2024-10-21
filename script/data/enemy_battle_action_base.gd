@@ -9,8 +9,7 @@ enum ActionType {
 	SHIELD,
 	BUFF,
 	DEBUFF,
-	ATTACKUP,
-	ATTACKDOWN,
+	MULTI_TURN_ACTION,
 	UNDEFINED
 }
 
@@ -51,8 +50,7 @@ func _string_to_action_type(type: String) -> ActionType:
 		"shield": return ActionType.SHIELD
 		"buff": return ActionType.BUFF
 		"debuff": return ActionType.DEBUFF
-		"attackup": return ActionType.ATTACKUP
-		"attackdown": return ActionType.ATTACKDOWN
+		"multi_turn_action": return ActionType.MULTI_TURN_ACTION
 	return ActionType.UNDEFINED
 
 func _string_to_action_target(target: String) -> ActionTarget:
