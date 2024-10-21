@@ -17,7 +17,7 @@ func _load_data(file_path):
 	return null
 
 func load_cards() -> Array[CardData]:
-	var card_data = _load_data("res://data/cards.json") as Dictionary
+	var card_data = _load_data("res://data/card.json") as Dictionary
 	if card_data != null:
 		for c in card_data["lines"]:
 			var card:CardData = CardData.new()
@@ -44,8 +44,9 @@ func load_deck() -> Array[CardData]:
 	var deck_data = _load_data("res://data/deck.json") as Dictionary
 	if deck_data != null:
 		var deck: Array[CardData] = []
-		for c in deck_data["cards"]:
-			deck.append(_card_dictionary[c["card"]])
+		for l in deck_data["lines"]:
+			for c in l["cards"]:
+				deck.append(_card_dictionary[c["card"]])
 		return deck
 	return []
 
