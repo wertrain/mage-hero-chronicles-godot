@@ -66,6 +66,7 @@ func load_enemy() -> Array:
 				action.set_target_type(a["target"])
 				action._value = BattleAcitonValue.new(a["value"])
 				action._frequency = float(a["frequency"])
+				action.set_priority(int(a["priority"]))
 				if false == a["conditions"].is_empty():
 					for c in a["conditions"]:
 						var condition = EnemyBattleAcitonCondition.new()
@@ -78,7 +79,8 @@ func load_enemy() -> Array:
 						step._name = s["name"]
 						step.set_action_type(s["type"])
 						step.set_target_type(s["target"])
-						step._value = BattleAcitonValue.new(a["value"])
+						step._value = BattleAcitonValue.new(s["value"])
+						step.set_priority(int(s["priority"]))
 						action._steps.append(step)
 				enemy.actions.append(action)
 			_enemy_dictionary[enemy.name] = enemy

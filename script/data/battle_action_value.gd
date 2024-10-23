@@ -30,6 +30,7 @@ func execute_battle_action(status :BattleStatus) -> int:
 		var expression = _expression
 		# ステータスを数式に置換
 		expression = expression.replace("current_shield", str(status.get_shield()))
+		expression = expression.replace("current_attack", str(status.get_attack()))
 		result = _evaluate_expression(expression)
 	return result
 

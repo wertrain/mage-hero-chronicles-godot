@@ -4,6 +4,7 @@ extends RefCounted
 var _health: int = 100
 var _max_health: int = 100
 var _current_shield: int = 0
+var _current_attack: int = 1
 
 signal health_changed(health, max_health)
 signal shield_changed(shield)
@@ -18,12 +19,18 @@ func get_max_health() -> int:
 func get_shield() -> int:
 	return _current_shield
 
+func get_attack() -> int:
+	return _current_attack
+
 func set_health(health: int, max_health: int) -> void:
 	_max_health = max_health
 	_health = health
 
 func set_shield(shield: int) -> void:
 	_current_shield = shield
+
+func set_attack(attack: int) -> void:
+	_current_attack = attack
 
 func apply_damage(value: int) -> bool:
 	var damage_value = value

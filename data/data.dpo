@@ -604,7 +604,7 @@
                     "actions": [
                         {
                             "guid": "39d65745-6dfe-42de-9b6c-53c54727842a",
-                            "name": "Tackle",
+                            "name": "",
                             "type": "attack",
                             "target": "player",
                             "value": {
@@ -615,11 +615,12 @@
                             "steps": [],
                             "frequency": 80,
                             "id": "0",
-                            "conditions": []
+                            "conditions": [],
+                            "priority": 0
                         },
                         {
                             "guid": "ed11d30e-fc07-44e5-96ff-3172648ccbc6",
-                            "name": "Slime Special",
+                            "name": "",
                             "type": "multi_turn_action",
                             "target": "player",
                             "value": {},
@@ -635,16 +636,22 @@
                                         "expression": "10"
                                     },
                                     "description": "",
-                                    "id": "0"
+                                    "id": "0",
+                                    "priority": 0
                                 },
                                 {
                                     "guid": "d45bc5d1-f828-49c9-9ab3-f52516a6b2de",
                                     "name": "Heavy blow",
                                     "type": "attack",
                                     "target": "player",
-                                    "value": {},
+                                    "value": {
+                                        "guid": "31d92816-399f-4518-b652-d409c5149bf2",
+                                        "type": "calculation",
+                                        "expression": "current_attack * 2"
+                                    },
                                     "description": "",
-                                    "id": "1"
+                                    "id": "1",
+                                    "priority": 0
                                 }
                             ],
                             "frequency": 20,
@@ -656,7 +663,8 @@
                                     "expression": "10",
                                     "id": "0"
                                 }
-                            ]
+                            ],
+                            "priority": 0
                         }
                     ]
                 },
@@ -1390,7 +1398,7 @@
                     "guid": "a8056b1f-0fda-4e8b-81be-1b124afd4f3b",
                     "name": "type",
                     "description": "new enum field",
-                    "options": "attack, shield, buff, debuff, multi_turn_action",
+                    "options": "attack, shield, buff, debuff, multi_turn_action, attackup, attackdown",
                     "defaultValue": "attack",
                     "iconName": "newEnum",
                     "configurable": {
@@ -1469,6 +1477,23 @@
                     "configurable": {
                         "name": "text",
                         "description": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "869e922e-545f-4a47-a223-92b76c567641",
+                    "description": "int field",
+                    "name": "priority",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
                     }
                 }
             ],
@@ -1592,6 +1617,23 @@
                         "name": "text",
                         "description": "text",
                         "defaultValue": "longtext"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "566315d0-7a9d-4131-89a9-4a76562c4a00",
+                    "description": "int field",
+                    "name": "priority",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
                     }
                 }
             ],

@@ -3,7 +3,7 @@ extends Node2D
 
 var _enemy_data: EnemyData
 var _battle_status: BattleStatus
-var _action_queue: Array[EnemyBattleAciton] = []
+var _action_queue: Array[EnemyBattleAcitonBase] = []
 var _sprite_animator: SpriteAnimator
 
 func get_sprite() -> Sprite2D:
@@ -18,7 +18,7 @@ func get_status() -> BattleStatus:
 func get_data() -> EnemyData:
 	return _enemy_data
 
-func get_action_queue() -> Array[EnemyBattleAciton]:
+func get_action_queue() -> Array[EnemyBattleAcitonBase]:
 	return _action_queue
 
 func shake() -> void:
@@ -31,6 +31,7 @@ func set_data(data: EnemyData) -> void:
 	_enemy_data = data
 	_battle_status.set_health(data.health, data.health)
 	$HealthBar.set_health(data.health, data.health)
+	_battle_status.set_attack(data.attack)
 
 func show_warning_icon(icon_type: AttackWarningIcon.Icons, value: int) -> void:
 	$AttackWarningIcon.set_icon(icon_type, value)

@@ -12,7 +12,7 @@ var _sequence: _ActionSequence
 var _action_enemy_index: int = 0
 var _enemies: Array[BattleEnemy]
 var _player: BattlePlayerStatus
-var _current_action: EnemyBattleAciton
+var _current_action: EnemyBattleAcitonBase
 var _current_enemy: BattleEnemy
 var _is_running_current_action: bool
 

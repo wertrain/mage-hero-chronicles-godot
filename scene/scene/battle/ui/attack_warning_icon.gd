@@ -5,7 +5,9 @@ enum Icons {
 	ATTACK = Ids.IconType.IRON_SWORD,
 	SHIELD = Ids.IconType.IRON_ARMOR,
 	SPECIAL = Ids.IconType.MONSTER_EGG,
-	CRITICAL = Ids.IconType.SKULL
+	CRITICAL = Ids.IconType.SKULL,
+	ITEM = Ids.IconType.BLUE_POTION_2,
+	BOOK = Ids.IconType.BOOK_3,
 }
 
 var _icon_type: Icons = Icons.ATTACK
