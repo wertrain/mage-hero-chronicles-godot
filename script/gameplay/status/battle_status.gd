@@ -5,10 +5,12 @@ var _health: int = 100
 var _max_health: int = 100
 var _current_shield: int = 0
 var _current_attack: int = 1
+var _status_effects: Array[BattleStatusEffect]
 
 signal health_changed(health, max_health)
 signal shield_changed(shield)
 signal shield_reset()
+signal status_effects_changed(status_effects)
 	
 func get_health() -> int:
 	return _health
@@ -17,10 +19,18 @@ func get_max_health() -> int:
 	return _max_health
 	
 func get_shield() -> int:
-	return _current_shield
+	var total_shield = _current_shield
+	for effect in _status_effects:
+		if effect.get_type() == BattleStatusEffect.StatusEffectType.DEFENCE:
+			total_shield += effect.get_value()
+	return total_shield
 
 func get_attack() -> int:
-	return _current_attack
+	var total_attack = _current_attack
+	for effect in _status_effects:
+		if effect.get_type() == BattleStatusEffect.StatusEffectType.ATTACK:
+			total_attack += effect.get_value()
+	return total_attack
 
 func set_health(health: int, max_health: int) -> void:
 	_max_health = max_health
@@ -52,6 +62,10 @@ func apply_damage(value: int) -> bool:
 func add_shield(amount: int) -> void:
 	_current_shield += amount
 	shield_changed.emit(_current_shield)
+
+func add_status_effects(status_effect: BattleStatusEffect) -> void:
+	_status_effects.append(status_effect)
+	status_effects_changed.emit(_status_effects)
 
 func reset_shield() -> void:
 	_current_shield = 0

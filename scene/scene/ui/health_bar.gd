@@ -4,6 +4,7 @@ extends Node2D
 var current_shield: int = 0
 var shield_bar_texture = preload("res://art/ui/bar/bar_blue.png")
 var normal_bar_texture = preload("res://art/ui/bar/bar_red.png")
+var status_effect_icon_scene = preload("res://scene/scene/battle/ui/battle_status_effect_icon.tscn")
 
 func set_health(health: int, max_health: int) -> void:
 	$TextureProgressBar.max_value = max_health
@@ -20,6 +21,17 @@ func set_shield(shield: int) -> void:
 		$TextureProgressBar.texture_progress = shield_bar_texture
 	else:
 		$TextureProgressBar.texture_progress = normal_bar_texture
+
+func set_status_effect(effects: Array[BattleStatusEffect]) -> void:
+	for child in $Node2D_StatusIcons.get_children():
+		child.queue_free()
+	for index in range(effects.size()):
+		var effect = effects[index] 
+		var node: Node2D = status_effect_icon_scene.instantiate()
+		node.position = Vector2(24 * index, 0)
+		node.scale = Vector2(0.8, 0.8)
+		node.set_icon(effect.get_type(), effect.get_value())
+		$Node2D_StatusIcons.add_child(node)
 
 func get_health() -> int:
 	return $TextureProgressBar.value

@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://7b6i3scpvwu1"]
+[gd_scene load_steps=4 format=3 uid="uid://7b6i3scpvwu1"]
 
-[ext_resource type="Script" path="res://script/core/atlas_sprite2d.gd" id="1_3j20w"]
 [ext_resource type="Script" path="res://scene/scene/battle/ui/attack_warning_icon.gd" id="1_e71ab"]
-[ext_resource type="Texture2D" uid="uid://c34hbduefwx1p" path="res://art/icon/atlas_texture_rpg_weapon_tool.tres" id="2_1rtbm"]
 [ext_resource type="FontFile" uid="uid://cyh4qjrj0p4r" path="res://art/font/logotypegothic.otf" id="4_r81js"]
+[ext_resource type="SpriteFrames" uid="uid://drqo8om74j8iv" path="res://art/icon/battle_popupemotes.tres" id="5_ga5hf"]
 
 [node name="AttackWarningIcon" type="Node2D"]
 script = ExtResource("1_e71ab")
 
-[node name="AtlasSprite2D" type="Sprite2D" parent="."]
-script = ExtResource("1_3j20w")
-atlas_texture = ExtResource("2_1rtbm")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("5_ga5hf")
+animation = &"angry"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -18,9 +18,9 @@ atlas_texture = ExtResource("2_1rtbm")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -20.0
-offset_top = 20.0
+offset_top = -4.0
 offset_right = 20.0
-offset_bottom = 43.0
+offset_bottom = 19.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.176419, 0.176419, 0.176419, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

@@ -75,3 +75,6 @@ theme_override_font_sizes/font_size = 100
 text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Node2D_StatusIcons" type="Node2D" parent="."]
+position = Vector2(10, 35)

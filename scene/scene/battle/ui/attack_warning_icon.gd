@@ -2,12 +2,25 @@ class_name AttackWarningIcon
 extends Node2D
 
 enum Icons {
-	ATTACK = Ids.IconType.IRON_SWORD,
-	SHIELD = Ids.IconType.IRON_ARMOR,
-	SPECIAL = Ids.IconType.MONSTER_EGG,
-	CRITICAL = Ids.IconType.SKULL,
-	ITEM = Ids.IconType.BLUE_POTION_2,
-	BOOK = Ids.IconType.BOOK_3,
+	ATTACK,
+	SPECIAL,
+	INCANTATION,
+	CRITICAL,
+	DEADLY,
+	UPPER,
+	DOWNER,
+	ERUPTION
+}
+
+var _icon_map: Dictionary = {
+	Icons.ATTACK: "sword",
+	Icons.SPECIAL: "mysterious",
+	Icons.INCANTATION: "incantation",
+	Icons.CRITICAL: "critical",
+	Icons.DEADLY: "deadly",
+	Icons.UPPER: "upper",
+	Icons.DOWNER: "downer",
+	Icons.ERUPTION: "eruption"
 }
 
 var _icon_type: Icons = Icons.ATTACK
@@ -19,9 +32,9 @@ var _original_position: Vector2
 func set_icon(type: Icons, value: int) -> void:
 	_icon_type = type
 	_attack_value = value
-	$AtlasSprite2D.set_atlas_region(type)
+	$AnimatedSprite2D.play(_icon_map[type])
 	$Label.visible = not (value == 0)
-	$Label.text = "%d" % value
+	$Label.text = "%d" % value	
 
 func start_floating():
 	var float_distance = 5  # 小さな上下動き
@@ -36,9 +49,6 @@ func stop_floating():
 		_floating_tween.stop()
 
 func _ready() -> void:
-	$AtlasSprite2D.atlas_texture = load("res://art/icon/atlas_texture_rpg_weapon_tool.tres")
-	$AtlasSprite2D.scale = Vector2(2.0, 2.0)
-	$AtlasSprite2D.modulate = Color(1, 0, 0)
 	# 元の位置を保持
 	_original_position = position
 	set_icon(Icons.ATTACK, 0)

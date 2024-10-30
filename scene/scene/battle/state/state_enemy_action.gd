@@ -32,14 +32,9 @@ func update(_delta: float):
 			_sequence = _ActionSequence.StartAction
 		_ActionSequence.StartAction:
 			_sequence = _ActionSequence.UpdateAction
-			_is_running_current_action = true
-			await _current_enemy.start_attack_action().finished
 			_apply_action()
-			_is_running_current_action = false
 		_ActionSequence.UpdateAction:
-			var root: BattleScene = get_tree().current_scene
-			ScreenEffect.play_flash_screen(root, Color.RED)
-			ScreenEffect.play_shake(root.get_camera())
+			_apply_screen_effect()
 			_sequence = _ActionSequence.CheckNext
 		_ActionSequence.CheckNext:
 			if _is_running_current_action:
@@ -54,6 +49,33 @@ func update(_delta: float):
 func _apply_action():
 	match _current_action._type:
 		EnemyBattleAciton.ActionType.ATTACK:
+			# 敵のスプライトアニメーション
+			_is_running_current_action = true
+			await _current_enemy.start_attack_action(SpriteAnimator.AnimationType.FORWARD_SCALE).finished
+			_is_running_current_action = false
+			# ダメージ計算
 			var damage = _current_action._value.execute_battle_action(_current_enemy.get_status())
 			_player.apply_damage(damage)
+		EnemyBattleAciton.ActionType.ATTACK_UP:
+			# 敵のスプライトアニメーション
+			_is_running_current_action = true
+			await _current_enemy.start_attack_action(SpriteAnimator.AnimationType.JUMP_SLAM).finished
+			_is_running_current_action = false
+			# 攻撃力アップの値計算
+			var value = _current_action._value.execute_battle_action(_current_enemy.get_status())
+			# 対象の決定と反映
+			match _current_action._target:
+				EnemyBattleAciton.ActionTarget.SELF:
+					_current_enemy.get_status().add_status_effects(
+						BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.ATTACK, value))
 	_current_enemy.hidden_warning_icon()
+
+## アクションを反映させる
+func _apply_screen_effect():
+	var root: BattleScene = get_tree().current_scene
+	match _current_action._type:
+		EnemyBattleAciton.ActionType.ATTACK:
+			ScreenEffect.play_flash_screen(root, Color.RED)
+			ScreenEffect.play_shake(root.get_camera())
+		EnemyBattleAciton.ActionType.ATTACK_UP:
+			ScreenEffect.play_shake(root.get_camera())

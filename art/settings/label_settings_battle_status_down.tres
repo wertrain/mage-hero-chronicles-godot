@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cl7i43ac17tre"]
+
+[ext_resource type="FontFile" uid="uid://cyh4qjrj0p4r" path="res://art/font/logotypegothic.otf" id="1_kvndw"]
+
+[resource]
+font = ExtResource("1_kvndw")
+font_color = Color(0.03, 0.434167, 1, 1)
+outline_size = 6
+outline_color = Color(0.0551877, 0, 0.743316, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)

@@ -6,13 +6,13 @@ var _battle_info: BattleInfo
 
 var _icon_table: Dictionary = {
 	EnemyBattleAciton.ActionType.ATTACK: AttackWarningIcon.Icons.ATTACK,
-	EnemyBattleAciton.ActionType.SHIELD: AttackWarningIcon.Icons.SHIELD,
-	EnemyBattleAciton.ActionType.BUFF: AttackWarningIcon.Icons.SPECIAL,
-	EnemyBattleAciton.ActionType.DEBUFF: AttackWarningIcon.Icons.SPECIAL,
+	EnemyBattleAciton.ActionType.SHIELD: AttackWarningIcon.Icons.SPECIAL,
+	EnemyBattleAciton.ActionType.BUFF: AttackWarningIcon.Icons.UPPER,
+	EnemyBattleAciton.ActionType.DEBUFF: AttackWarningIcon.Icons.DOWNER,
 	EnemyBattleAciton.ActionType.MULTI_TURN_ACTION: AttackWarningIcon.Icons.CRITICAL,
-	EnemyBattleAciton.ActionType.ATTACK_UP: AttackWarningIcon.Icons.ITEM,
-	EnemyBattleAciton.ActionType.ATTACK_DOWN: AttackWarningIcon.Icons.BOOK,
-	EnemyBattleAciton.ActionType.UNDEFINED: AttackWarningIcon.Icons.CRITICAL,
+	EnemyBattleAciton.ActionType.ATTACK_UP: AttackWarningIcon.Icons.UPPER,
+	EnemyBattleAciton.ActionType.ATTACK_DOWN: AttackWarningIcon.Icons.DOWNER,
+	EnemyBattleAciton.ActionType.UNDEFINED: AttackWarningIcon.Icons.INCANTATION,
 }
 
 func enter():

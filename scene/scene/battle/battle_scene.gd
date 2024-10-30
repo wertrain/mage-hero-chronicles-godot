@@ -73,6 +73,7 @@ func _ready() -> void:
 	_player.energy_changed.connect(_on_energy_changed)
 	_player.health_changed.connect(_on_player_health_changed)
 	_player.shield_changed.connect(_on_player_shield_changed)
+	_player.status_effects_changed.connect(_on_player_status_effects_changed)
 	_player.shield_reset.connect(_on_player_shield_reset)
 	$HealthBar.set_health(_player.get_health(), _player.get_max_health())
 	$HUD.update_energy(_player.get_energy(), _player.get_max_energy())
@@ -128,6 +129,9 @@ func _on_player_health_changed(health: int, max_health: int):
 
 func _on_player_shield_changed(shield: int):
 	$HealthBar.set_shield(shield)
+
+func _on_player_status_effects_changed(status_effects: Array[BattleStatusEffect]):
+	$HealthBar.set_shield(status_effects)
 
 func _on_player_shield_reset():
 	$HealthBar.set_shield(0)

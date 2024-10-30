@@ -41,13 +41,14 @@ func hidden_warning_icon() -> void:
 	$AttackWarningIcon.set_icon(AttackWarningIcon.Icons.ATTACK, 0)
 	$AttackWarningIcon.set_visible(false)
 
-func start_attack_action() -> Tween:
-	return _sprite_animator.start_animation(SpriteAnimator.AnimationType.FORWARD_SCALE, $Sprite2D)
+func start_attack_action(type: SpriteAnimator.AnimationType) -> Tween:
+	return _sprite_animator.start_animation(type, $Sprite2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_battle_status = BattleStatus.new()
 	_battle_status.health_changed.connect(_on_health_changed)
+	_battle_status.status_effects_changed.connect(_on_status_effects_changed)
 	_sprite_animator = SpriteAnimator.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,3 +57,6 @@ func _process(_delta: float) -> void:
 
 func _on_health_changed(health: int, max_health :int) -> void:
 	$HealthBar.set_health(health, max_health)
+	
+func _on_status_effects_changed(status_effects: Array[BattleStatusEffect]) -> void:
+	$HealthBar.set_status_effect(status_effects)
