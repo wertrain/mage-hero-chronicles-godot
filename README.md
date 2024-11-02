@@ -16,3 +16,6 @@ This repository license does not apply to these assets
 * https://www.1001fonts.com/sofachrome-font.html
 * https://wenrexa.itch.io/ui-different02
 * https://prinbles.itch.io/robin
+* https://henrysoftware.itch.io/pixel-interface
+* https://pipoya.itch.io/free-popup-emotes-pack
+* https://soulofkiran.itch.io/medieval-fantasy-volume-one
