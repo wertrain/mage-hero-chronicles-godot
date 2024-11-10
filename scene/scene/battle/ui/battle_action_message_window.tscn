@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://6eygu5tbojt3"]
+[gd_scene load_steps=4 format=3 uid="uid://6eygu5tbojt3"]
 
+[ext_resource type="Script" path="res://scene/scene/battle/ui/battle_action_message_window.gd" id="1_85x5f"]
 [ext_resource type="Texture2D" uid="uid://b0vm6gvujpx75" path="res://art/ui/window/border.png" id="1_ti8db"]
 [ext_resource type="LabelSettings" uid="uid://c757sngtfuk7j" path="res://art/settings/label_settings_battle_message.tres" id="2_mu0pc"]
 
 [node name="BattleActionMessageWindow" type="Node2D"]
+script = ExtResource("1_85x5f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
@@ -16,19 +24,22 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer/CenterContainer"]
 layout_mode = 2
-text = "WWWWWWWWW"
+text = "WWW"
 label_settings = ExtResource("2_mu0pc")
 horizontal_alignment = 1
 vertical_alignment = 1

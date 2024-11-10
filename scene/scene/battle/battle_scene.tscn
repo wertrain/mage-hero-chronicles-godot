@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bpymxv2el46iy"]
+[gd_scene load_steps=28 format=3 uid="uid://bpymxv2el46iy"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/battle_scene.gd" id="1_5ekfp"]
 [ext_resource type="PackedScene" uid="uid://btxi6fmpm53wl" path="res://scene/scene/battle/battle_enemy.tscn" id="2_51s8b"]
 [ext_resource type="PackedScene" uid="uid://dq0dt1jh1c8f0" path="res://scene/background/background.tscn" id="2_otgsh"]
+[ext_resource type="PackedScene" uid="uid://6eygu5tbojt3" path="res://scene/scene/battle/ui/battle_action_message_window.tscn" id="4_luwnp"]
 [ext_resource type="PackedScene" uid="uid://dm65c37ff8405" path="res://scene/scene/battle/hands.tscn" id="4_whw1m"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_draw_phase.gd" id="5_hfo85"]
 [ext_resource type="Script" path="res://script/gameplay/fsm/state_machine.gd" id="5_jtg6y"]
@@ -31,6 +32,7 @@
 script = ExtResource("1_5ekfp")
 enemy_scene = ExtResource("2_51s8b")
 hands_scene = ExtResource("4_whw1m")
+action_message_window = ExtResource("4_luwnp")
 
 [node name="Background" parent="." instance=ExtResource("2_otgsh")]
 visible = false

@@ -8,6 +8,7 @@ extends SceneBase
 
 @export var enemy_scene: PackedScene
 @export var hands_scene: PackedScene
+@export var action_message_window: PackedScene
 
 var _battle_info: BattleInfo
 var _enemy: BattleEnemy
@@ -47,6 +48,13 @@ func get_sequence_message() -> SequenceMessage:
 
 func get_effect_spawner() -> EffectSpawner:
 	return $EffectSpawner
+
+func show_action_message(message: String, seconds: float, position: Vector2) -> void:
+	var action_message = action_message_window.instantiate()
+	action_message.position = position
+	add_child(action_message)
+	await action_message.show_message(message, seconds)
+	action_message.queue_free()
 
 func _ready() -> void:
 	var my_seed = "Godot Rocks"	
