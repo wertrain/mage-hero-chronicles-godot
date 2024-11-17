@@ -6,7 +6,11 @@ func enter_with_params(params: Dictionary):
 	var card_data:CardData = card.get_data()
 	var root: BattleScene = get_tree().current_scene
 	var player_status: BattlePlayerStatus = root.get_player()
-	var enemy: BattleEnemy = root.get_enemy()
+	var enemy: BattleEnemy = params["enemy"]
+	var hands: Hands = root.get_hands()
+	# ここでカードを使用する
+	# 条件判定によって失敗する可能性のある実装なので強制的にカードを使わせたほうがよいかも
+	hands.use_active_card()
 	for a in card_data.actions:
 		var action: BattleAciton = a
 		if action.get_type() == BattleAciton.ActionType.DAMAGE:

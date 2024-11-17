@@ -49,7 +49,22 @@ func get_active_card():
 	if (_active_card_index == -1):
 		return null
 	return _cards[_active_card_index]
-	
+
+## 選択中のカードを使用できるか判定する
+## コストをチェックして使用できるカードであれば true を返す
+## 使用できないカードであれば、カードを揺らすアニメーションを再生する
+## @todo カードが使用できない条件が他にもあるはずなので、チェック自体を外部化してもよいかもしれない
+func is_use_active_card() -> bool:
+	if (_active_card_index == -1):
+		return false
+	if (_player.get_energy() < _cards[_active_card_index].get_cost()):
+		ScreenEffect.play_shake(_cards[_active_card_index], 0.25, 5.0)
+		return false
+	return true
+
+## 選択中のカードを使用する
+## 使用できないカードであれば、カードを揺らすアニメーションを再生して false を返す
+## @todo カードが使用できない条件が他にもあるはずなので、チェック自体を外部化してもよいかもしれない
 func use_active_card() -> bool:
 	if (_active_card_index == -1):
 		return false
@@ -127,35 +142,54 @@ func _reshuffle():
 
 func _ready() -> void:
 	_is_enabled_input = true
-	pass
 	#_arrange_hand()
 	#_first_draw(5)
 
 func _process(_delta: float) -> void:
+	pass
 	#if (_active_card_index == -1):
 	#	if (Input.is_anything_pressed()):
 	#		_active_card_index = 0
 	#		_set_active_card(_active_card_index, true)
 	#		return
-	if (not _is_enabled_input):
-		return
-	var current_index = _active_card_index
-	if (Input.is_action_just_pressed("ui_left")):
-		_active_card_index = _active_card_index - 1
-		if (_active_card_index < 0):
-			_active_card_index = _cards.size() - 1
-		_set_active_card(current_index, false)
-		_set_active_card(_active_card_index, true)
-	if (Input.is_action_just_pressed("ui_right")):
-		_active_card_index = _active_card_index + 1
-		if (_active_card_index > _cards.size() - 1):
-			_active_card_index = 0
-		_set_active_card(current_index, false)
-		_set_active_card(_active_card_index, true)
+	#if (not _is_enabled_input):
+	#	return
+	#var current_index = _active_card_index
+	#if (Input.is_action_just_pressed("ui_left")):
+	#	_active_card_index = _active_card_index - 1
+	#	if (_active_card_index < 0):
+	#		_active_card_index = _cards.size() - 1
+	#	_set_active_card(current_index, false)
+	#	_set_active_card(_active_card_index, true)
+	#if (Input.is_action_just_pressed("ui_right")):
+	#	_active_card_index = _active_card_index + 1
+	#	if (_active_card_index > _cards.size() - 1):
+	#		_active_card_index = 0
+	#	_set_active_card(current_index, false)
+	#	_set_active_card(_active_card_index, true)
 
 func input_card_select(event) -> Card:
 	if (not _is_enabled_input):
 		return null
+	if event.is_action_type() and event.is_pressed():
+		var current_index = _active_card_index
+		if event.is_action("ui_left"):
+			_active_card_index = _active_card_index - 1
+			if (_active_card_index < 0):
+				_active_card_index = _cards.size() - 1
+			_set_active_card(current_index, false)
+			_set_active_card(_active_card_index, true)
+			return null
+		elif event.is_action("ui_right"):
+			_active_card_index = _active_card_index + 1
+			if (_active_card_index > _cards.size() - 1):
+				_active_card_index = 0
+			_set_active_card(current_index, false)
+			_set_active_card(_active_card_index, true)
+			return null
+		elif event.is_action("ui_accept"):
+			if (_active_card_index != -1):
+				return _cards[_active_card_index]
 	if event is InputEventMouseMotion:
 		var mouse_pos = event.position
 		if (_active_card_index != -1):
@@ -164,6 +198,7 @@ func input_card_select(event) -> Card:
 				return null
 			else:
 				_set_active_card(_active_card_index, false)
+				_active_card_index = -1
 		for i in range(_cards.size()):
 			var card_rect = _cards[i].get_rect()
 			if card_rect.has_point(mouse_pos):

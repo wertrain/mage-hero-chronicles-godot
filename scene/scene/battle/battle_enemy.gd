@@ -1,6 +1,8 @@
 class_name BattleEnemy
 extends Node2D
 
+@export var outline_material: Material
+
 var _enemy_data: EnemyData
 var _battle_status: BattleStatus
 var _action_queue: Array[EnemyBattleAcitonBase] = []
@@ -40,6 +42,11 @@ func show_warning_icon(icon_type: AttackWarningIcon.Icons, value: int) -> void:
 func hidden_warning_icon() -> void:
 	$AttackWarningIcon.set_icon(AttackWarningIcon.Icons.ATTACK, 0)
 	$AttackWarningIcon.set_visible(false)
+	
+func set_visible_outline(visible) -> void:
+	$Sprite2D.material = null if not visible else outline_material
+	if (visible):
+		$Sprite2D.material.set_shader_parameter("color", Globals.TARGET_SELECTION_COLOR)
 
 func start_attack_action(type: SpriteAnimator.AnimationType) -> Tween:
 	return _sprite_animator.start_animation(type, $Sprite2D)

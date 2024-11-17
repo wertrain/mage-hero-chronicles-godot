@@ -2,21 +2,26 @@ class_name ActionSelection
 extends State
 
 func enter():
-	pass
-		
-func update(_delta):
 	var root: BattleScene = get_tree().current_scene
 	var hands: Hands = root.get_hands()
-	if (Input.is_action_just_pressed("ui_accept")):
-		if (hands._draw_card() == null):
-			hands._reshuffle()
+	hands.set_input_enabled(true)
+		
+func update(_delta):
+	pass
+	#var root: BattleScene = get_tree().current_scene
+	#var hands: Hands = root.get_hands()
+	#if (Input.is_action_just_pressed("ui_accept")):
+	#	if (hands._draw_card() == null):
+	#		hands._reshuffle()
 
 func input(event):
 	var root: BattleScene = get_tree().current_scene
 	var hands: Hands = root.get_hands()
 	var card = hands.input_card_select(event)
+	var enemies = root.get_enemies()
 	if card:
-		#transitioned.emit("TargetSelection")
-		if (hands.use_active_card()):
-			var params = {"card": card}
-			transitioned_with_param.emit("PlayCard", params)
+		if (not hands.is_use_active_card()):
+			return
+		hands.set_input_enabled(false)
+		var params = {"card": card}
+		transitioned_with_param.emit("TargetSelection", params)

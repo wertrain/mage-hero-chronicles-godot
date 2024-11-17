@@ -9,6 +9,7 @@ extends SceneBase
 @export var enemy_scene: PackedScene
 @export var hands_scene: PackedScene
 @export var action_message_window: PackedScene
+@export var target_selection_arrow: PackedScene
 
 var _battle_info: BattleInfo
 var _enemy: BattleEnemy
@@ -18,6 +19,7 @@ var _discard_pile: Array[CardData]  = []
 var _hands: Hands
 var _player: BattlePlayerStatus
 var _camera: Camera2D
+var _target_selection_arrow: BezierArrow
 
 func get_battle_info() -> BattleInfo:
 	return _battle_info
@@ -49,12 +51,46 @@ func get_sequence_message() -> SequenceMessage:
 func get_effect_spawner() -> EffectSpawner:
 	return $EffectSpawner
 
+func get_target_selection_arrow() -> BezierArrow:
+	return _target_selection_arrow
+
 func show_action_message(message: String, seconds: float, position: Vector2) -> void:
 	var action_message = action_message_window.instantiate()
 	action_message.position = position
 	add_child(action_message)
 	await action_message.show_message(message, seconds)
 	action_message.queue_free()
+	
+func set_monsters() -> void:
+	# モンスター間の間隔（スペース）
+	const spacing = 0.0  # 任意の間隔、必要に応じて調整
+	# モンスターを生成して追加
+	var total_width = 0.0
+	# 余白分を考慮して画像サイズを半分で計算
+	const width_scale = 0.5
+	# モンスターを3体（または複数）生成
+	for i in range(3):  # ここでは3体のモンスターを例にします
+		var enemy = enemy_scene.instantiate()
+		var enemy_width = enemy.get_sprite_rect().size.x * width_scale
+		total_width += enemy_width
+		_enemies.append(enemy)
+	# モンスター間の間隔を合計幅に加算
+	total_width += spacing * (_enemies.size() - 1)
+	# 画面サイズの取得
+	var viewport_rect = get_viewport().size
+	# モンスター群の幅を画面中央に配置
+	var start_x = (viewport_rect.x - total_width) / 2  # 中央から開始位置を計算
+	var current_x = start_x
+	# 各モンスターを配置
+	for enemy in _enemies:
+		var enemy_width = enemy.get_sprite_rect().size.x * width_scale
+		var enemy_height = enemy.get_sprite_rect().size.y		
+		# モンスターの中心を基準として配置
+		enemy.position.x = current_x + enemy_width / 2  # 左側から中央基準に調整
+		enemy.position.y = viewport_rect.y / 2.0 - enemy_height / 2.0
+		current_x += enemy_width + spacing
+		$Background.add_sibling(enemy)
+	_enemy = _enemies[0]
 
 func _ready() -> void:
 	var my_seed = "Godot Rocks"	
@@ -63,18 +99,19 @@ func _ready() -> void:
 	_camera = Camera2D.new()
 	_camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
 	add_child(_camera)
-	_enemy = enemy_scene.instantiate()
-	var viewport_rect = get_viewport().size
-	_enemy.position.x = viewport_rect.x / 2.0
-	_enemy.position.y = viewport_rect.y / 2.0 - _enemy.get_sprite_rect().size.y / 2.0
-	_enemies.append(_enemy)
-	$Background.add_sibling(_enemy)
+	#_enemy = enemy_scene.instantiate()
+	#var viewport_rect = get_viewport().size
+	#_enemy.position.x = viewport_rect.x / 2.0
+	#_enemy.position.y = viewport_rect.y / 2.0 - _enemy.get_sprite_rect().size.y / 2.0
+	#_enemies.append(_enemy)
+	set_monsters()
 	# カードのロードとデッキ作成
 	var database = DataBase.new()
 	var _cards_origin = database.load_cards()
 	_card_pile = database.load_deck()
-	var enemys = database.load_enemy()
-	_enemy.set_data(enemys[0])
+	var enemies_data = database.load_enemy()
+	for enemy in _enemies:
+		enemy.set_data(enemies_data[0])
 	Random.get_instance().shuffle_array(_card_pile)
 	# プレイヤーの作成
 	_player = BattlePlayerStatus.new()
@@ -99,6 +136,8 @@ func _ready() -> void:
 	#$BattlePlayerStatus.setup(_player)
 	_update_card_pile_num()
 	_update_discard_pile_num()
+	_target_selection_arrow = target_selection_arrow.instantiate()
+	add_child(_target_selection_arrow)
 	$StateMachine.current_state.transitioned.emit("BattleStart")
 	_battle_info = BattleInfo.new()
 	_battle_info._enemies = _enemies

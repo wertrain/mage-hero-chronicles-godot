@@ -33,6 +33,7 @@ script = ExtResource("1_5ekfp")
 enemy_scene = ExtResource("2_51s8b")
 hands_scene = ExtResource("4_whw1m")
 action_message_window = ExtResource("4_luwnp")
+target_selection_arrow = ExtResource("10_twp55")
 
 [node name="Background" parent="." instance=ExtResource("2_otgsh")]
 visible = false
@@ -61,7 +62,6 @@ script = ExtResource("6_83fnk")
 
 [node name="TargetSelection" type="Node" parent="StateMachine"]
 script = ExtResource("8_llulr")
-arrow_scene = ExtResource("10_twp55")
 
 [node name="PlayCard" type="Node" parent="StateMachine"]
 script = ExtResource("10_thkca")
