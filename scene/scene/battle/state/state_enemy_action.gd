@@ -25,7 +25,7 @@ func enter():
 	_enemies = _battle_scene.get_enemies()
 	_player = _battle_scene.get_player()
 	_sequence = _ActionSequence.EntryEnemy
-	_action_enemy_index = 0
+	_action_enemy_index = _get_next_enemy_index(0)
 	_is_running_current_action = false
 	_is_show_message = false
 
@@ -33,7 +33,7 @@ func update(_delta: float):
 	match _sequence:
 		_ActionSequence.EntryEnemy:
 			_current_enemy = _enemies[_action_enemy_index]
-			_current_action = _current_enemy.get_action_queue().pop_front()			
+			_current_action = _current_enemy.get_action_queue().pop_front()	
 			_sequence = _ActionSequence.ShowActionName
 		_ActionSequence.ShowActionName:
 			_current_enemy.hidden_warning_icon()
@@ -50,8 +50,8 @@ func update(_delta: float):
 		_ActionSequence.CheckNext:
 			if _is_running_current_action:
 				return
-			_action_enemy_index = _action_enemy_index + 1
-			if (_action_enemy_index >= _enemies.size()):
+			_action_enemy_index = _get_next_enemy_index(_action_enemy_index + 1)
+			if (_action_enemy_index < 0):
 				transitioned.emit("PlayerTurnStart")
 			else:
 				_sequence = _ActionSequence.EntryEnemy
@@ -78,7 +78,7 @@ func _apply_action():
 			match _current_action._target:
 				EnemyBattleAciton.ActionTarget.SELF:
 					_current_enemy.get_status().add_status_effects(
-						BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.ATTACK, value))
+						BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.OFFENSE, value))
 	_current_enemy.hidden_warning_icon()
 
 ## アクションを反映させる
@@ -90,3 +90,9 @@ func _apply_screen_effect():
 			ScreenEffect.play_shake(root.get_camera())
 		EnemyBattleAciton.ActionType.ATTACK_UP:
 			ScreenEffect.play_shake(root.get_camera())
+
+func _get_next_enemy_index(start_index: int) -> int:
+	for index in range(start_index, _enemies.size()):
+		if (not _enemies[index].is_dead()):
+			return index
+	return -1

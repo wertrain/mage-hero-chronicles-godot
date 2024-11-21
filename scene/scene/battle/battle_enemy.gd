@@ -51,6 +51,9 @@ func set_visible_outline(visible) -> void:
 func start_attack_action(type: SpriteAnimator.AnimationType) -> Tween:
 	return _sprite_animator.start_animation(type, $Sprite2D)
 
+func is_dead() -> bool:
+	return _battle_status.has_status_effect(BattleStatusEffect.StatusEffectType.DEAD)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_battle_status = BattleStatus.new()
@@ -66,4 +69,4 @@ func _on_health_changed(health: int, max_health :int) -> void:
 	$HealthBar.set_health(health, max_health)
 	
 func _on_status_effects_changed(status_effects: Array[BattleStatusEffect]) -> void:
-	$HealthBar.set_status_effect(status_effects)
+	$HealthBar.set_status_effect_icons(status_effects)

@@ -35,7 +35,7 @@ var _card_positions: Array[Vector2]
 var _card_pile: Array[CardData]
 var _discard_pile: Array[CardData]
 # 入力操作可能か？
-var _is_enabled_input: bool
+var _enabled_input_count: int
 
 func set_field(player: BattlePlayerStatus, card_pile: Array[CardData], discard_pile: Array[CardData]) -> void:
 	_player = player
@@ -76,8 +76,15 @@ func use_active_card() -> bool:
 	_use_card(use_index)
 	return true
 
+func is_enabled_input():
+	return _enabled_input_count == 0
+
 func set_input_enabled(enabled: bool):
-	_is_enabled_input = enabled
+	if (enabled):
+		if _enabled_input_count > 0:
+			_enabled_input_count -= 1
+	else:
+		_enabled_input_count += 1
 
 func _calculate_cards_position(card_count: int) -> void:
 	var viewport_size = get_viewport().size
@@ -99,7 +106,6 @@ func _calculate_cards_position(card_count: int) -> void:
 		_card_positions.append(card_pos)
 
 func _first_draw(card_count: int):
-	_is_enabled_input = false
 	# カードの配置を計算
 	for i in range(card_count):
 		var card_data = _card_pile.pop_front()
@@ -119,7 +125,6 @@ func _first_draw(card_count: int):
 		#card.position = _card_positions[i]
 		#_cards.append(card)
 		#add_child(card)
-	_is_enabled_input = true
 
 func _reshuffle():
 	var card_count:int = min(_discard_pile.size(), 4)
@@ -141,7 +146,7 @@ func _reshuffle():
 	deck_reshuffled.emit()
 
 func _ready() -> void:
-	_is_enabled_input = true
+	pass
 	#_arrange_hand()
 	#_first_draw(5)
 
@@ -152,7 +157,7 @@ func _process(_delta: float) -> void:
 	#		_active_card_index = 0
 	#		_set_active_card(_active_card_index, true)
 	#		return
-	#if (not _is_enabled_input):
+	#if (not is_enabled_input():
 	#	return
 	#var current_index = _active_card_index
 	#if (Input.is_action_just_pressed("ui_left")):
@@ -169,7 +174,7 @@ func _process(_delta: float) -> void:
 	#	_set_active_card(_active_card_index, true)
 
 func input_card_select(event) -> Card:
-	if (not _is_enabled_input):
+	if (not is_enabled_input()):
 		return null
 	if event.is_action_type() and event.is_pressed():
 		var current_index = _active_card_index

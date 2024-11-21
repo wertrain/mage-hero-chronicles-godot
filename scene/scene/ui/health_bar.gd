@@ -22,15 +22,17 @@ func set_shield(shield: int) -> void:
 	else:
 		$TextureProgressBar.texture_progress = normal_bar_texture
 
-func set_status_effect(effects: Array[BattleStatusEffect]) -> void:
+func set_status_effect_icons(effects: Array[BattleStatusEffect]) -> void:
 	for child in $Node2D_StatusIcons.get_children():
 		child.queue_free()
 	for index in range(effects.size()):
-		var effect = effects[index] 
-		var node: Node2D = status_effect_icon_scene.instantiate()
+		var effect:BattleStatusEffect = effects[index]
+		if BattleStatusEffectIcon.get_icon_type(effect.get_type(), effect.get_value()) == BattleStatusEffectIcon.Icons.None:
+			continue
+		var node: BattleStatusEffectIcon = status_effect_icon_scene.instantiate()
 		node.position = Vector2(24 * index, 0)
 		node.scale = Vector2(0.8, 0.8)
-		node.set_icon(effect.get_type(), effect.get_value())
+		node.add_icon(effect.get_type(), effect.get_value())
 		$Node2D_StatusIcons.add_child(node)
 
 func get_health() -> int:

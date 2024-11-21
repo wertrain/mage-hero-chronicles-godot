@@ -15,6 +15,7 @@ func enter_with_params(params: Dictionary):
 		var action: BattleAciton = a
 		if action.get_type() == BattleAciton.ActionType.DAMAGE:
 			if false == enemy.damage(action.get_value().execute_battle_action(player_status)):
+				enemy.get_status().add_status_effects(BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.DEAD, 0))
 				ScreenEffect.play_fadeout(enemy)
 			# Play Effect
 			root.get_effect_spawner().spawn(action._effect_type, action._effect_index, enemy.position)

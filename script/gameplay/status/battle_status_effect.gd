@@ -2,8 +2,15 @@ class_name BattleStatusEffect
 extends RefCounted
 
 enum StatusEffectType {
-	ATTACK,
-	DEFENCE,
+	OFFENSE,           # 攻撃力
+	DEFENSE,           # 防御力
+	POISONED,          # 毒
+	PARALYZED,         # 麻痺
+	CONFUSED,          # 混乱
+	BURNED,            # 火傷
+	FROZEN,            # 凍結
+	DEAD,              # 戦闘不能
+	STUNNED            # スタン
 }
 
 enum EffectDurationType {
@@ -11,7 +18,7 @@ enum EffectDurationType {
 	TURN_BASED   # ターン経過で消える
 }
 
-var _type: StatusEffectType = StatusEffectType.ATTACK
+var _type: StatusEffectType = StatusEffectType.OFFENSE
 var _value: int = 0
 var _duration_type: EffectDurationType = EffectDurationType.PERSISTENT  # 持続時間のタイプ
 var _remaining_turns: int = 0
