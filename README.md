@@ -19,3 +19,4 @@ This repository license does not apply to these assets
 * https://henrysoftware.itch.io/pixel-interface
 * https://pipoya.itch.io/free-popup-emotes-pack
 * https://soulofkiran.itch.io/medieval-fantasy-volume-one
+* https://etahoshi.itch.io/minimal-fantasy-gui-by-eta

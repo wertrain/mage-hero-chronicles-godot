@@ -6,3 +6,4 @@ var name: String
 var health: int
 var attack: int
 var actions: Array[EnemyBattleAciton] = []
+var gold: int

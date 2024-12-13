@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://by31iabc44btg"]
+
+[ext_resource type="Shader" path="res://shader/blur.gdshader" id="1_gx7op"]
+[ext_resource type="Texture2D" uid="uid://1p68culr74vh" path="res://art/background/magicforest.jpg" id="2_do042"]
+
+[resource]
+shader = ExtResource("1_gx7op")
+shader_parameter/blur_amount = 1.107
+shader_parameter/screen_texture = ExtResource("2_do042")

@@ -61,7 +61,7 @@ func show_action_message(message: String, seconds: float, position: Vector2) -> 
 	await action_message.show_message(message, seconds)
 	action_message.queue_free()
 	
-func set_monsters() -> void:
+func set_monsters(monster_num: int) -> void:
 	# モンスター間の間隔（スペース）
 	const spacing = 0.0  # 任意の間隔、必要に応じて調整
 	# モンスターを生成して追加
@@ -69,7 +69,7 @@ func set_monsters() -> void:
 	# 余白分を考慮して画像サイズを半分で計算
 	const width_scale = 0.5
 	# モンスターを3体（または複数）生成
-	for i in range(3):  # ここでは3体のモンスターを例にします
+	for i in range(monster_num):
 		var enemy = enemy_scene.instantiate()
 		var enemy_width = enemy.get_sprite_rect().size.x * width_scale
 		total_width += enemy_width
@@ -104,7 +104,7 @@ func _ready() -> void:
 	#_enemy.position.x = viewport_rect.x / 2.0
 	#_enemy.position.y = viewport_rect.y / 2.0 - _enemy.get_sprite_rect().size.y / 2.0
 	#_enemies.append(_enemy)
-	set_monsters()
+	set_monsters(1)
 	# カードのロードとデッキ作成
 	var database = DataBase.new()
 	var _cards_origin = database.load_cards()

@@ -72,7 +72,8 @@
 					],
 					"priority": 0
 				}
-			]
+			],
+			"gold": 5
 		},
 		{
 			"guid": "b58bee12-74a8-4ff4-bb21-5d5e68434770",
@@ -81,7 +82,8 @@
 			"health": 8,
 			"attack": 5,
 			"image": "..\\..\\art\\enemy\\pipo-enemy009a.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "0bd520e4-3d59-4fd2-b7e3-ea57e72ab823",
@@ -90,7 +92,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy009b.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "a0275eb4-c71c-45ea-842c-0e8261ba82be",
@@ -99,7 +102,8 @@
 			"health": 10,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy002.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "760af618-705f-48cc-a92f-a9f2cc641c75",
@@ -108,7 +112,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy002a.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "8e044d03-d151-43c0-afce-d2277136e83a",
@@ -117,7 +122,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy002b.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "ccaad60b-79cc-49f2-9c64-67b5048c12b8",
@@ -126,7 +132,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy003.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "184a37d6-70ce-491c-ae0a-6dc3d7d42cc4",
@@ -135,7 +142,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy003a.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "babbd4a0-f09d-4dd9-86ba-6b33f4715297",
@@ -144,7 +152,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy003b.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "10efbb4a-48c2-4c48-b3e7-dff0fd6b677c",
@@ -153,7 +162,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy004.png",
-			"actions": []
+			"actions": [],
+			"gold": 5
 		},
 		{
 			"guid": "99460c84-92ff-4e96-b3f2-7446104b9b18",
@@ -162,7 +172,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy004a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "280c0607-c3d0-4135-8040-7b11aa2dd332",
@@ -171,7 +182,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy004b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "e6b8d458-f3f5-4db7-bcdc-ca0d013d95ac",
@@ -180,7 +192,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy010.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "0b8b96a1-028e-4de4-b9b8-688287af8fa1",
@@ -189,7 +202,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy010a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "6b916b99-1e74-4e43-9721-bd9f02734c5c",
@@ -198,7 +212,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy010b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "214b73ce-0792-4137-8b37-b4cecc3abbc2",
@@ -207,7 +222,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy011.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "ee4675ea-823a-453b-8950-a07d1cf4f016",
@@ -216,7 +232,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy011a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "c204de9a-14f5-4e52-82e5-bdede150c606",
@@ -225,7 +242,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy011b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "3203f6dd-e377-457f-9067-03370447194e",
@@ -234,7 +252,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy018.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "0ddab57c-5d4a-4347-bd0e-be3e13f3552f",
@@ -243,7 +262,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy018a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "2911c0f1-0aef-4779-aced-e6da0a25d9a4",
@@ -252,7 +272,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy018b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "6df66f82-ec74-4e8c-9fb6-706d8526fd89",
@@ -261,7 +282,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy033.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "63289180-30ad-4495-82d4-a9b87660ca35",
@@ -270,7 +292,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy033a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "13488a20-9957-416b-81f0-24b6bcecad3c",
@@ -279,7 +302,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy033b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "dba46bab-bf68-4209-8f14-99d673e8aaf2",
@@ -288,7 +312,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy037.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "d1757799-cfd9-41d7-bbbb-41a1eebd42dd",
@@ -297,7 +322,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy037a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "11a261ac-b7b9-48ee-8fb3-2592cdb0e789",
@@ -306,7 +332,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy037b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "d272a346-fd4a-4056-8c7f-50d420d6d21f",
@@ -315,7 +342,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy046.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "4ea6a1d8-2aac-463f-949a-af08d827bf9d",
@@ -324,7 +352,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy046a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "174c46c9-15e8-435d-9070-dcd37a2453d3",
@@ -333,7 +362,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy046b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "f36af1a2-a73a-4ea6-bd72-3e574251a961",
@@ -342,7 +372,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy007.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "1afb5689-79f8-41da-8149-0d3bf3a65132",
@@ -351,7 +382,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy007a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "243ae0d6-b992-450d-9ee4-d2b525c1bb2e",
@@ -360,7 +392,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy007b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "a44ff8b9-99a2-49b7-b647-854d7ce8c008",
@@ -369,7 +402,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy021.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "c9c600b4-1e32-47a5-924d-b2aaa24fd72d",
@@ -378,7 +412,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy021a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "deb678a9-3fb0-40e1-a509-3bdf09d17fcc",
@@ -387,7 +422,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy021b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "987af9a1-963c-4354-8323-58e68b29bcdb",
@@ -396,7 +432,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy025.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "d3cc5ba0-0caa-4ef7-a38d-a9aec3391971",
@@ -405,7 +442,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy025a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "009ed557-5eb8-44fc-8043-d30a9e8ec426",
@@ -414,7 +452,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy025b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "0687435a-2a83-469e-80f9-a8880bf1a3fb",
@@ -423,7 +462,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy024.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "c08b5af2-7e69-4502-a6e5-b07364879132",
@@ -432,7 +472,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy024a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "ecab0e21-1537-41b8-954a-edf76663f5df",
@@ -441,7 +482,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy024b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "d2334ce5-f9d9-418f-8033-8fdfef6fff9a",
@@ -450,7 +492,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy045.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "acb4302f-4547-45ef-84b1-b22cf7348b91",
@@ -459,7 +502,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy045a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "c48f09bc-180c-483b-b3f3-2140d1e327fb",
@@ -468,7 +512,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy045b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "335f8f98-bc36-469c-951a-3658ae8ebfe7",
@@ -477,7 +522,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy039.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "5d696a0b-18d6-4111-a39a-b95fff545068",
@@ -486,7 +532,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy039a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "8d54b4f6-bf6c-4f7e-9861-677fa72900a0",
@@ -495,7 +542,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy039b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "6c17a45d-22ed-4562-b296-5acd6125c7a2",
@@ -504,7 +552,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy026.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "c5067e5b-6df7-404e-b8e8-996ae72d7573",
@@ -513,7 +562,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy026a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "75278730-dd2c-4280-9586-ad9e9eaceda3",
@@ -522,7 +572,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy026b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "0385702c-2f9e-4dc9-8c1a-47f940b062c3",
@@ -531,7 +582,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy040.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "e4e2161b-1e89-4d6d-8d33-f21ec9e347f1",
@@ -540,7 +592,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy040a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "bb23e1bb-4782-4945-a9ac-f8ab24b20747",
@@ -549,7 +602,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy040b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "0956c43a-90ae-4e64-aaf8-0b0759de98a7",
@@ -558,7 +612,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy048.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "2943bd17-1741-49ac-867d-b022cdb9c452",
@@ -567,7 +622,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy048a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "7efdb815-e4d1-46c7-892f-7e3c6de3e73a",
@@ -576,7 +632,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy048b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "dc8fa320-ebc9-4604-b836-9aa6d1fa72d7",
@@ -585,7 +642,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy022.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "f10f00ea-a6dd-473b-a840-5bfd773309b4",
@@ -594,7 +652,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy022a.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		},
 		{
 			"guid": "75926df3-b9a7-461c-b285-d0af9f505c10",
@@ -603,7 +662,8 @@
 			"health": 0,
 			"attack": 0,
 			"image": "..\\..\\art\\enemy\\pipo-enemy022b.png",
-			"actions": []
+			"actions": [],
+			"gold": 0
 		}
 	]
 }

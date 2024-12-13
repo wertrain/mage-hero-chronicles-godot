@@ -59,6 +59,7 @@ func load_enemy() -> Array:
 			enemy.name = e["name"]
 			enemy.health = int(e["health"])
 			enemy.attack = e["attack"]
+			enemy.gold = e["gold"]
 			for a in e["actions"]:
 				var action:EnemyBattleAciton = EnemyBattleAciton.new()
 				action._name = a["name"]

@@ -24,7 +24,4 @@ func enter_with_params(params: Dictionary):
 		if action.get_type() == BattleAciton.ActionType.SHIELD:
 			player_status.add_shield(action.get_value().execute_battle_action(player_status))
 	await get_tree().create_timer(1).timeout
-	transitioned.emit("ActionSelection")
-
-
-	
+	transitioned.emit("CheckVictoryOrDefeat")

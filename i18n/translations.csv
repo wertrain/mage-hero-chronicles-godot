@@ -1,0 +1,8 @@
+keys,en,ja
+REWARD_GET_REWARD,Get Reward,報酬を獲得
+REWARD_GOLD,%d Gold,%d ゴールド
+REWARD_GET_CARD,Get Card,カードを獲得
+REWARD_GET_ITEM,Get Item,アイテムを獲得
+REWARD_GET_TREASURE,Get Treasure,レリックを獲得
+REWARD_GET_CARD_NUM,Select %d Card,%d 枚のカードを選択
+REWARD_GET_CARD_SKIP,SKIP,カードの取得をスキップ
