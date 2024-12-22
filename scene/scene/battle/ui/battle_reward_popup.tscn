@@ -37,7 +37,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -91,7 +90,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_82wp4")
 theme_override_font_sizes/font_size = 0
-text = "GET_REWARD"
+text = "REWARD_GET_REWARD"
 label_settings = ExtResource("5_air2c")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -151,6 +150,7 @@ text = "REWARD_GET_TREASURE"
 icon = SubResource("AtlasTexture_ivj3b")
 
 [node name="Control_RewardSelectCard" type="Control" parent="CanvasLayer/ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

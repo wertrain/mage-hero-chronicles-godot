@@ -18,8 +18,9 @@ func _ready() -> void:
 		_button_coin.text = tr("REWARD_GOLD") % _total_gold
 	else:
 		_button_coin.visible = false
-	$CanvasLayer/ColorRect/Control/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_CARD_NUM") % _selectable_cards_num
-		
+	
+	$CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_CARD_NUM") % _selectable_cards_num
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
