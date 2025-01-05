@@ -26,6 +26,7 @@ func load_cards() -> Array[CardData]:
 			card.description = c["description"]
 			card.detail_description = c["description"]
 			card.cost = int(c["cost"])
+			card.rarity = int(c["rarity"])
 			for a in c["actions"]:
 				var action:BattleAciton = BattleAciton.new()
 				action.set_action_type(a["type"])

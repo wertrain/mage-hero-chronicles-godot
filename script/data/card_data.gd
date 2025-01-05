@@ -7,3 +7,4 @@ var description: String
 var detail_description: String
 var cost: int = 0
 var actions: Array[BattleAciton] = []
+var rarity: int = 0

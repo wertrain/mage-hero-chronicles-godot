@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://t6bi5r04vgmh"]
+[gd_scene load_steps=12 format=3 uid="uid://t6bi5r04vgmh"]
 
 [ext_resource type="Script" path="res://scene/scene/battle/ui/battle_reward_popup.gd" id="1_r813q"]
 [ext_resource type="Texture2D" uid="uid://dy62xxu35mgtd" path="res://art/ui/window/RectangleBox_96x96.png" id="2_ffqy6"]
+[ext_resource type="PackedScene" uid="uid://bg48fgpn1irnj" path="res://scene/card/card.tscn" id="2_kjbfj"]
 [ext_resource type="Texture2D" uid="uid://hbsbm106ikyv" path="res://art/ui/window/TitleBox_64x16.png" id="3_15eex"]
 [ext_resource type="FontFile" uid="uid://cyh4qjrj0p4r" path="res://art/font/logotypegothic.otf" id="4_82wp4"]
 [ext_resource type="LabelSettings" uid="uid://f2kwubcmdrkq" path="res://art/settings/label_settings_reward_title.tres" id="5_air2c"]
@@ -25,6 +26,7 @@ region = Rect2(64, 64, 32, 32)
 
 [node name="BattleRewardPopup" type="Node2D"]
 script = ExtResource("1_r813q")
+card_scene = ExtResource("2_kjbfj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -37,6 +39,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -150,7 +153,6 @@ text = "REWARD_GET_TREASURE"
 icon = SubResource("AtlasTexture_ivj3b")
 
 [node name="Control_RewardSelectCard" type="Control" parent="CanvasLayer/ColorRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,7 +204,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer_CardsArea" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(480, 450)
+custom_minimum_size = Vector2(480, 350)
 layout_mode = 2
 
 [node name="Button_Skip" type="Button" parent="CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer"]

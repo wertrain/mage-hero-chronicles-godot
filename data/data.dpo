@@ -74,6 +74,23 @@
                         "name": "text",
                         "description": "text"
                     }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "3a11be29-7321-4833-977b-22c0c26fafa7",
+                    "description": "int field",
+                    "name": "rarity",
+                    "min": -1,
+                    "max": 10,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
                 }
             ],
             "lines": [
@@ -99,7 +116,8 @@
                                 "expression": "6"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
@@ -123,7 +141,8 @@
                                 "expression": "9"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
@@ -161,7 +180,8 @@
                                 "expression": "2"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
@@ -199,7 +219,8 @@
                                 "expression": "1"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
@@ -223,7 +244,8 @@
                                 "expression": "current_shield * 3"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
@@ -247,7 +269,8 @@
                                 "expression": "6"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
@@ -285,7 +308,8 @@
                                 "expression": "1"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "857fee85-1567-4d33-9e07-3916b8188f10",
@@ -309,7 +333,8 @@
                                 "expression": "5"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 },
                 {
                     "guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
@@ -347,7 +372,8 @@
                                 "expression": "4"
                             }
                         }
-                    ]
+                    ],
+                    "rarity": 0
                 }
             ],
             "hidden": false,
