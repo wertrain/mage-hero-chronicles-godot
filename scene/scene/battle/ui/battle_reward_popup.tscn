@@ -38,8 +38,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect"]
-visible = false
+[node name="Control_RewardMenu" type="Control" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect/Control_RewardMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,7 +65,7 @@ patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
 
-[node name="MarginContainer_Title" type="MarginContainer" parent="CanvasLayer/ColorRect/NinePatchRect"]
+[node name="MarginContainer_Title" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -69,7 +76,7 @@ offset_right = 77.5
 offset_bottom = 25.0
 grow_horizontal = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect/NinePatchRect/MarginContainer_Title"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/MarginContainer_Title"]
 layout_mode = 2
 texture = ExtResource("3_15eex")
 patch_margin_left = 6
@@ -79,17 +86,17 @@ patch_margin_bottom = 6
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/NinePatchRect/MarginContainer_Title"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/MarginContainer_Title"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/NinePatchRect/MarginContainer_Title/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/MarginContainer_Title/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect/NinePatchRect/MarginContainer_Title/MarginContainer/CenterContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/MarginContainer_Title/MarginContainer/CenterContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_82wp4")
 theme_override_font_sizes/font_size = 0
@@ -98,7 +105,7 @@ label_settings = ExtResource("5_air2c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer_Body" type="MarginContainer" parent="CanvasLayer/ColorRect/NinePatchRect"]
+[node name="MarginContainer_Body" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,7 +113,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/NinePatchRect"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -120,39 +127,50 @@ offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/NinePatchRect/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="Button_Coin" type="Button" parent="CanvasLayer/ColorRect/NinePatchRect/CenterContainer/VBoxContainer"]
+[node name="Button_Coin" type="Button" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "REWARD_GOLD"
 icon = SubResource("AtlasTexture_byba4")
 
-[node name="Button_Card" type="Button" parent="CanvasLayer/ColorRect/NinePatchRect/CenterContainer/VBoxContainer"]
+[node name="Button_Card" type="Button" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "REWARD_GET_CARD"
 icon = SubResource("AtlasTexture_xg607")
 
-[node name="Button_Item" type="Button" parent="CanvasLayer/ColorRect/NinePatchRect/CenterContainer/VBoxContainer"]
+[node name="Button_Item" type="Button" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "REWARD_GET_ITEM"
 icon = SubResource("AtlasTexture_p6w7b")
 
-[node name="Button_Treasure" type="Button" parent="CanvasLayer/ColorRect/NinePatchRect/CenterContainer/VBoxContainer"]
+[node name="Button_Treasure" type="Button" parent="CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "REWARD_GET_TREASURE"
 icon = SubResource("AtlasTexture_ivj3b")
 
+[node name="Button_Skip" type="Button" parent="CanvasLayer/ColorRect/Control_RewardMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+offset_left = 490.0
+offset_top = 550.0
+offset_right = 790.0
+offset_bottom = 581.0
+size_flags_horizontal = 4
+text = "REWARD_GET_REWARD_SKIP"
+
 [node name="Control_RewardSelectCard" type="Control" parent="CanvasLayer/ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,3 +230,65 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "REWARD_GET_CARD_SKIP"
+
+[node name="Control_RewardSelectItem" type="Control" parent="CanvasLayer/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectItem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer_Title" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title"]
+layout_mode = 2
+texture = ExtResource("3_15eex")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_82wp4")
+theme_override_font_sizes/font_size = 0
+text = "REWARD_GET_ITEM_NUM"
+label_settings = ExtResource("5_air2c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer_ItemArea" type="MarginContainer" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(480, 350)
+layout_mode = 2
+
+[node name="Button_Skip" type="Button" parent="CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "REWARD_GET_ITEM_SKIP"

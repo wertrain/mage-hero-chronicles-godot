@@ -14,6 +14,7 @@ var active_card_animation_time: float = 0.3
 var _total_gold: int = 0
 var _rewarded_cards: Array[Card]
 var _selectable_cards_num: int = 1
+var _selectable_items_num: int = 1
 # カードの配置位置 _calculate_cards_position で計算され、枚数ごとに位置が変わる
 var _card_positions: Array[Vector2]
 
@@ -24,38 +25,47 @@ var _button_treasure: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer/ColorRect/NinePatchRect/CenterContainer/VBoxContainer/Button_Card.button_down.connect(_on_card_button_pressed)
+	$CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Card.button_down.connect(_on_card_button_pressed)
+	$CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Item.button_down.connect(_on_item_button_pressed)
 	$CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/Button_Skip.button_down.connect(_on_return_to_top_button_pressed)
-	_button_coin = $CanvasLayer/ColorRect/NinePatchRect/CenterContainer/VBoxContainer/Button_Coin
+	$CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/Button_Skip.button_down.connect(_on_return_to_top_button_pressed)
+	_button_coin = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Coin
+	_button_card = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Card
+	_button_item = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Item
+	_button_item = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Treasure
 	if _total_gold > 0:
 		_button_coin.text = tr("REWARD_GOLD") % _total_gold
 	else:
 		_button_coin.visible = false
 	# ウィンドウの初期表示状態を適用
-	$CanvasLayer/ColorRect/NinePatchRect.visible = true
+	$CanvasLayer/ColorRect/Control_RewardMenu.visible = true
 	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = false
 	
 	$CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_CARD_NUM") % _selectable_cards_num
 	# カードを読み込む（バトルシーンでもロードしているので共通化してもよさそう）
 	var database = DataBase.new()
 	var cards_origin: Array[CardData] = database.load_cards()
-	for i in range(4):
+	for i in range(5):
 		var card: Card = card_scene.instantiate()
 		card.set_data(cards_origin[2])
 		_rewarded_cards.push_back(card)
 		$CanvasLayer/ColorRect/Control_RewardSelectCard.add_child(card)
 	_calculate_cards_position(_rewarded_cards.size())
 
+	$CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_ITEM_NUM") % _selectable_items_num
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-	
-func _on_return_to_top_button_pressed():
-	$CanvasLayer/ColorRect/NinePatchRect.visible = true
-	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = false
 
+func _on_return_to_top_button_pressed():
+	$CanvasLayer/ColorRect/Control_RewardMenu.visible = true
+	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = false
+	$CanvasLayer/ColorRect/Control_RewardSelectItem.visible = false
+	
+# 報酬選択でカードが押された時のイベント
 func _on_card_button_pressed():
-	$CanvasLayer/ColorRect/NinePatchRect.visible = false
+	$CanvasLayer/ColorRect/Control_RewardMenu.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = true
 	var viewport_size = get_viewport().size
 	var center_x = viewport_size.x / 2  # 画面の中央X座標
@@ -71,6 +81,11 @@ func _on_card_button_pressed():
 		var animation_time = active_card_animation_time
 		tween.tween_property(card, "scale", Vector2.ONE, animation_time)
 		tween.tween_property(card, "position", _card_positions[i], animation_time)
+
+# 報酬選択でアイテムが押された時のイベント
+func _on_item_button_pressed():
+	$CanvasLayer/ColorRect/Control_RewardMenu.visible = false
+	$CanvasLayer/ColorRect/Control_RewardSelectItem.visible = true
 	
 func _calculate_cards_position(card_count: int) -> void:
 	var viewport_size = get_viewport().size
