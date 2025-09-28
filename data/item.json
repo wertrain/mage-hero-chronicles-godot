@@ -1,0 +1,29 @@
+{
+	"lines": [
+		{
+			"guid": "eaad98f5-883f-44e8-81c5-4b69353fb350",
+			"id": "0",
+			"name": "Herb of Renewal",
+			"description": "Restore 50 HP.",
+			"detail_description": "astes awful. Works great. Don\u7ab6\u51b2 ask how many bugs are in there.",
+			"actions": [
+				{
+					"guid": "8a625dd7-edbe-4df2-a6f2-8e66ea562d06",
+					"type": "heal",
+					"target": "self",
+					"value": {
+						"guid": "09aee2bc-e95b-4ff9-b0de-c07ab5d098bb",
+						"type": "fixed",
+						"expression": "50"
+					},
+					"id": "0",
+					"turns": 0,
+					"effect_type": "impact_a",
+					"effect_index": 0
+				}
+			],
+			"rarity": 0,
+			"image": ""
+		}
+	]
+}

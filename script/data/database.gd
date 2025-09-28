@@ -22,9 +22,9 @@ func load_cards() -> Array[CardData]:
 		for c in card_data["lines"]:
 			var card:CardData = CardData.new()
 			card.id = int(c["id"])
-			card.name = c["name"]
-			card.description = c["description"]
-			card.detail_description = c["description"]
+			card.name = tr(c["name"])
+			card.description = tr(c["description"])
+			card.detail_description = tr(c["detail_description"])
 			card.cost = int(c["cost"])
 			card.rarity = int(c["rarity"])
 			for a in c["actions"]:

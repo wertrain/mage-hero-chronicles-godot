@@ -1,0 +1,28 @@
+keys,en,ja
+CARD_STRIKE,Strike,こうげき
+CARD_STRIKE_DESC,Deal 6 damage.,6のダメージを与える
+CARD_STRIKE_DDESC,Deal 6 damage.,6のダメージを与える
+CARD_HEAVY_BLOW,Heavy Blow,ぶんまわし
+CARD_HEAVY_BLOW_DESC,Deal 9 damage.,9のダメージを与える
+CARD_HEAVY_BLOW_DDESC,Deal 9 damage.,9のダメージを与える
+CARD_CHARGE,Charge,とつげき
+CARD_CHARGE_DESC,Deal 4 damage and gain 2 block.,4のダメージを与え、シールドを2つ得る
+CARD_CHARGE_DDESC,Deal 4 damage and gain 2 block.,4のダメージを与え、シールドを2つ得る
+CARD_QUICK_SLASH,Quick Slash,しっぷう斬り
+CARD_QUICK_SLASH_DESC,Deal 5 damage. Draw 1 card.,5のダメージを与え、山札からカードを一枚引く
+CARD_QUICK_SLASH_DDESC,Deal 5 damage. Draw 1 card.,5のダメージを与え、山札からカードを一枚引く
+CARD_SHIELD_BASH,Shield Bash,シールドアタック
+CARD_SHIELD_BASH_DESC,Deal 3 damage for every block you have.,シールドの値1につき、3ダメージを与える
+CARD_SHIELD_BASH_DDESC,Deal 3 damage for every block you have.,シールドの値1につき、3ダメージを与える
+CARD_CLEAVE,Cleave,なぎはらい
+CARD_CLEAVE_DESC,Deal 6 damage to all enemies.,すべての敵に6ダメージを与える
+CARD_CLEAVE_DDESC,Deal 6 damage to all enemies.,すべての敵に6ダメージを与える
+CARD_PARRY,Parry,みかわし
+CARD_PARRY_DESC,Gain 3 block. Draw 1 card.,シールドを3つ得て、山札からカードを一枚引く
+CARD_PARRY_DDESC,Gain 3 block. Draw 1 card.,シールドを3つ得て、山札からカードを一枚引く
+CARD_BLOCK,Block,ぼうぎょ
+CARD_BLOCK_DESC,Gain 5 block.,シールドを5つ得る
+CARD_BLOCK_DDESC,Gain 5 block.,シールドを5つ得る
+CARD_WARRIORS_STANCE,Warrior's Stance,戦士の構え
+CARD_WARRIORS_STANCE_DESC,Gain 5 block. Gain 4 block at the start of your next turn.,シールドを5つ得て、さらにターンごとに4つシールドを得る
+CARD_WARRIORS_STANCE_DDESC,Gain 5 block. Gain 4 block at the start of your next turn.,シールドを5つ得て、さらにターンごとに4つシールドを得る

@@ -3,10 +3,10 @@
 		{
 			"guid": "02393a2b-4fde-416e-9ade-2fa7325f91d0",
 			"id": "0",
-			"name": "Strike",
+			"name": "CARD_STRIKE",
 			"cost": 1,
-			"description": "Deal 6 damage.",
-			"detail_description": "Deal 6 damage.",
+			"description": "CARD_STRIKE_DESC",
+			"detail_description": "CARD_STRIKE_DDESC",
 			"actions": [
 				{
 					"guid": "d5f226db-18da-4a08-815d-22e1b3c0b3ec",
@@ -28,10 +28,10 @@
 		{
 			"guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
 			"id": "1",
-			"name": "Heavy Blow",
+			"name": "CARD_HEAVY_BLOW",
 			"cost": 2,
-			"description": "Deal 9 damage.",
-			"detail_description": "Deal 9 damage.",
+			"description": "CARD_HEAVY_BLOW_DESC",
+			"detail_description": "CARD_HEAVY_BLOW_DDESC",
 			"actions": [
 				{
 					"guid": "2af41f55-a0d2-4b83-837c-55c0512b95cd",
@@ -53,10 +53,10 @@
 		{
 			"guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
 			"id": "2",
-			"name": "Charge",
+			"name": "CARD_CHARGE",
 			"cost": 1,
-			"description": "Deal 4 damage and gain 2 block.",
-			"detail_description": "Deal 4 damage and gain 2 block.",
+			"description": "CARD_CHARGE_DESC",
+			"detail_description": "CARD_CHARGE_DDESC",
 			"actions": [
 				{
 					"guid": "2cc6c694-e3ca-4e8d-a0cc-273d3f37469f",
@@ -92,10 +92,10 @@
 		{
 			"guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
 			"id": "3",
-			"name": "Quick Slash",
+			"name": "CARD_QUICK_SLASH",
 			"cost": 2,
-			"description": "Deal 5 damage. Draw 1 card.",
-			"detail_description": "Deal 5 damage. Draw 1 card.",
+			"description": "CARD_QUICK_SLASH_DESC",
+			"detail_description": "CARD_QUICK_SLASH_DDESC",
 			"actions": [
 				{
 					"guid": "2ca05357-927f-4105-87d4-7e17259e4dd7",
@@ -131,10 +131,10 @@
 		{
 			"guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
 			"id": "4",
-			"name": "Shield Bash",
+			"name": "CARD_SHIELD_BASH",
 			"cost": 2,
-			"description": "Deal 3 damage for every block you have.",
-			"detail_description": "Deal 3 damage for every block you have.",
+			"description": "CARD_SHIELD_BASH_DESC",
+			"detail_description": "CARD_SHIELD_BASH_DDESC",
 			"actions": [
 				{
 					"guid": "02b27e87-3a49-4307-b3c6-fed206db85cf",
@@ -156,10 +156,10 @@
 		{
 			"guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
 			"id": "5",
-			"name": "Cleave",
+			"name": "CARD_CLEAVE",
 			"cost": 2,
-			"description": "Deal 6 damage to all enemies.",
-			"detail_description": "Deal 6 damage to all enemies.",
+			"description": "CARD_CLEAVE_DESC",
+			"detail_description": "CARD_CLEAVE_DDESC",
 			"actions": [
 				{
 					"guid": "a41a532b-2473-43c2-8a4b-ffd72c78337b",
@@ -181,10 +181,10 @@
 		{
 			"guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
 			"id": "6",
-			"name": "Parry",
+			"name": "CARD_PARRY",
 			"cost": 2,
-			"description": "Gain 5 block. Draw 1 card.",
-			"detail_description": "Gain 5 block. Draw 1 card.",
+			"description": "CARD_PARRY_DESC",
+			"detail_description": "CARD_PARRY_DDESC",
 			"actions": [
 				{
 					"guid": "570db5db-d212-4d88-887b-013d2c79a18f",
@@ -197,7 +197,7 @@
 					"value": {
 						"guid": "f35dd715-1b39-407b-be62-87fa55b1e68b",
 						"type": "fixed",
-						"expression": "5"
+						"expression": "3"
 					}
 				},
 				{
@@ -220,10 +220,10 @@
 		{
 			"guid": "857fee85-1567-4d33-9e07-3916b8188f10",
 			"id": "7",
-			"name": "Block",
+			"name": "CARD_BLOCK",
 			"cost": 1,
-			"description": "Gain 5 block.",
-			"detail_description": "Gain 5 block.",
+			"description": "CARD_BLOCK_DESC",
+			"detail_description": "CARD_BLOCK_DDESC",
 			"actions": [
 				{
 					"guid": "1314b470-5b56-4359-b3c0-23e4f41db753",
@@ -245,10 +245,10 @@
 		{
 			"guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
 			"id": "8",
-			"name": "Warrior's Stance",
+			"name": "CARD_WARRIORS_STANCE",
 			"cost": 2,
-			"description": "Gain 5 block. Gain 4 block at the start of your next turn.",
-			"detail_description": "Gain 5 block. Gain 4 block at the start of your next turn.",
+			"description": "CARD_WARRIORS_STANCE_DESC",
+			"detail_description": "CARD_WARRIORS_STANCE_DDESC",
 			"actions": [
 				{
 					"guid": "a533a5ce-04b9-428d-95b7-d4458a9ba29e",

@@ -40,7 +40,7 @@ ui_cancel={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://i18n/translations.ja.translation", "res://i18n/translations.en.translation")
+locale/translations=PackedStringArray("res://i18n/translations.ja.translation", "res://i18n/translations.en.translation", "res://i18n/translations_card.en.translation", "res://i18n/translations_card.ja.translation")
 
 [rendering]
 

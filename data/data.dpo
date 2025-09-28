@@ -97,10 +97,10 @@
                 {
                     "guid": "02393a2b-4fde-416e-9ade-2fa7325f91d0",
                     "id": "0",
-                    "name": "Strike",
+                    "name": "CARD_STRIKE",
                     "cost": 1,
-                    "description": "Deal 6 damage.",
-                    "detail_description": "Deal 6 damage.",
+                    "description": "CARD_STRIKE_DESC",
+                    "detail_description": "CARD_STRIKE_DDESC",
                     "actions": [
                         {
                             "guid": "d5f226db-18da-4a08-815d-22e1b3c0b3ec",
@@ -122,10 +122,10 @@
                 {
                     "guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
                     "id": "1",
-                    "name": "Heavy Blow",
+                    "name": "CARD_HEAVY_BLOW",
                     "cost": 2,
-                    "description": "Deal 9 damage.",
-                    "detail_description": "Deal 9 damage.",
+                    "description": "CARD_HEAVY_BLOW_DESC",
+                    "detail_description": "CARD_HEAVY_BLOW_DDESC",
                     "actions": [
                         {
                             "guid": "2af41f55-a0d2-4b83-837c-55c0512b95cd",
@@ -147,10 +147,10 @@
                 {
                     "guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
                     "id": "2",
-                    "name": "Charge",
+                    "name": "CARD_CHARGE",
                     "cost": 1,
-                    "description": "Deal 4 damage and gain 2 block.",
-                    "detail_description": "Deal 4 damage and gain 2 block.",
+                    "description": "CARD_CHARGE_DESC",
+                    "detail_description": "CARD_CHARGE_DDESC",
                     "actions": [
                         {
                             "guid": "2cc6c694-e3ca-4e8d-a0cc-273d3f37469f",
@@ -186,10 +186,10 @@
                 {
                     "guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
                     "id": "3",
-                    "name": "Quick Slash",
+                    "name": "CARD_QUICK_SLASH",
                     "cost": 2,
-                    "description": "Deal 5 damage. Draw 1 card.",
-                    "detail_description": "Deal 5 damage. Draw 1 card.",
+                    "description": "CARD_QUICK_SLASH_DESC",
+                    "detail_description": "CARD_QUICK_SLASH_DDESC",
                     "actions": [
                         {
                             "guid": "2ca05357-927f-4105-87d4-7e17259e4dd7",
@@ -225,10 +225,10 @@
                 {
                     "guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
                     "id": "4",
-                    "name": "Shield Bash",
+                    "name": "CARD_SHIELD_BASH",
                     "cost": 2,
-                    "description": "Deal 3 damage for every block you have.",
-                    "detail_description": "Deal 3 damage for every block you have.",
+                    "description": "CARD_SHIELD_BASH_DESC",
+                    "detail_description": "CARD_SHIELD_BASH_DDESC",
                     "actions": [
                         {
                             "guid": "02b27e87-3a49-4307-b3c6-fed206db85cf",
@@ -250,10 +250,10 @@
                 {
                     "guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
                     "id": "5",
-                    "name": "Cleave",
+                    "name": "CARD_CLEAVE",
                     "cost": 2,
-                    "description": "Deal 6 damage to all enemies.",
-                    "detail_description": "Deal 6 damage to all enemies.",
+                    "description": "CARD_CLEAVE_DESC",
+                    "detail_description": "CARD_CLEAVE_DDESC",
                     "actions": [
                         {
                             "guid": "a41a532b-2473-43c2-8a4b-ffd72c78337b",
@@ -275,10 +275,10 @@
                 {
                     "guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
                     "id": "6",
-                    "name": "Parry",
+                    "name": "CARD_PARRY",
                     "cost": 2,
-                    "description": "Gain 5 block. Draw 1 card.",
-                    "detail_description": "Gain 5 block. Draw 1 card.",
+                    "description": "CARD_PARRY_DESC",
+                    "detail_description": "CARD_PARRY_DDESC",
                     "actions": [
                         {
                             "guid": "570db5db-d212-4d88-887b-013d2c79a18f",
@@ -291,7 +291,7 @@
                             "value": {
                                 "guid": "f35dd715-1b39-407b-be62-87fa55b1e68b",
                                 "type": "fixed",
-                                "expression": "5"
+                                "expression": "3"
                             }
                         },
                         {
@@ -314,10 +314,10 @@
                 {
                     "guid": "857fee85-1567-4d33-9e07-3916b8188f10",
                     "id": "7",
-                    "name": "Block",
+                    "name": "CARD_BLOCK",
                     "cost": 1,
-                    "description": "Gain 5 block.",
-                    "detail_description": "Gain 5 block.",
+                    "description": "CARD_BLOCK_DESC",
+                    "detail_description": "CARD_BLOCK_DDESC",
                     "actions": [
                         {
                             "guid": "1314b470-5b56-4359-b3c0-23e4f41db753",
@@ -339,10 +339,10 @@
                 {
                     "guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
                     "id": "8",
-                    "name": "Warrior's Stance",
+                    "name": "CARD_WARRIORS_STANCE",
                     "cost": 2,
-                    "description": "Gain 5 block. Gain 4 block at the start of your next turn.",
-                    "detail_description": "Gain 5 block. Gain 4 block at the start of your next turn.",
+                    "description": "CARD_WARRIORS_STANCE_DESC",
+                    "detail_description": "CARD_WARRIORS_STANCE_DDESC",
                     "actions": [
                         {
                             "guid": "a533a5ce-04b9-428d-95b7-d4458a9ba29e",
@@ -1868,6 +1868,284 @@
             "isProps": false,
             "parentSheetGUID": "fd7c2de5-401e-4af3-b1d0-6f107256a2ab",
             "columnGUID": "791d9f9a-d5bf-4331-b759-46cb49cdda4e"
+        },
+        {
+            "name": "Item",
+            "description": "description of what the sheet is",
+            "displayColumn": "id",
+            "guid": "2515eeb4-10dc-42ef-bd8b-b6802202bb68",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "eb80254e-6277-4660-91eb-e5577d2d4fc8",
+                    "name": "name",
+                    "description": "text field",
+                    "defaultValue": "",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "longtext",
+                    "guid": "781c56a7-3470-4a90-9eb3-41e7e2f54fc5",
+                    "name": "description",
+                    "description": "long text field",
+                    "defaultValue": "",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                },
+                {
+                    "typeStr": "longtext",
+                    "guid": "91a81ffd-06f7-4179-83ae-54f5db6a8429",
+                    "name": "detail_description",
+                    "description": "long text field",
+                    "defaultValue": "",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                },
+                {
+                    "typeStr": "list",
+                    "guid": "a32abdf3-1628-4817-a90e-8aef9f49b706",
+                    "name": "actions",
+                    "description": "new list field",
+                    "sheet": "200c8ebb-f009-4c78-9037-9634f9232dd5",
+                    "defaultValue": [],
+                    "iconName": "newList",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "afc1c3a4-185e-4976-a670-694f464d02e7",
+                    "description": "int field",
+                    "name": "rarity",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "image",
+                    "guid": "259d6716-6519-4642-9092-820f8dd86a51",
+                    "name": "image",
+                    "description": "new image field",
+                    "defaultValue": "",
+                    "iconName": "newImage",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "eaad98f5-883f-44e8-81c5-4b69353fb350",
+                    "id": "0",
+                    "name": "Herb of Renewal",
+                    "description": "Restore 50 HP.",
+                    "detail_description": "astes awful. Works great. Don’t ask how many bugs are in there.",
+                    "actions": [
+                        {
+                            "guid": "8a625dd7-edbe-4df2-a6f2-8e66ea562d06",
+                            "type": "heal",
+                            "target": "self",
+                            "value": {
+                                "guid": "09aee2bc-e95b-4ff9-b0de-c07ab5d098bb",
+                                "type": "fixed",
+                                "expression": "50"
+                            },
+                            "id": "0",
+                            "turns": 0,
+                            "effect_type": "impact_a",
+                            "effect_index": 0
+                        }
+                    ],
+                    "rarity": 0,
+                    "image": ""
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "actions",
+            "description": "list@2515eeb4-10dc-42ef-bd8b-b6802202bb68",
+            "displayColumn": "id",
+            "guid": "200c8ebb-f009-4c78-9037-9634f9232dd5",
+            "columns": [
+                {
+                    "typeStr": "enum",
+                    "guid": "d1377078-e855-477a-b583-e8220bef7171",
+                    "name": "type",
+                    "description": "new enum field",
+                    "options": "damage, shield, draw, heal",
+                    "defaultValue": "damage",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "enum",
+                    "guid": "5b89eb61-5c74-42eb-862d-0a2bb54fafa3",
+                    "name": "target",
+                    "description": "new enum field",
+                    "options": "enemy, self, all_enemies, random_enemy, all_allies",
+                    "defaultValue": "self",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "props",
+                    "guid": "7f4299f5-8874-4e63-a1db-0f507a92c384",
+                    "name": "value",
+                    "description": "new properties field",
+                    "sheet": "98a23f45-3fae-49b7-b9e8-164194720b1f",
+                    "defaultValue": {},
+                    "iconName": "newProps",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "084a15ad-75a5-4858-806c-3c5047f66382",
+                    "description": "int field",
+                    "name": "turns",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "enum",
+                    "guid": "53a24e14-4a25-4f99-afda-0abc24c42ddd",
+                    "name": "effect_type",
+                    "description": "new enum field",
+                    "options": "impact_a, impact_b",
+                    "defaultValue": "impact_a",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "9b3bd8ad-c52e-4d99-a056-0c7c0ceaf023",
+                    "description": "int field",
+                    "name": "effect_index",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                }
+            ],
+            "lines": [],
+            "hidden": true,
+            "isProps": false,
+            "parentSheetGUID": "2515eeb4-10dc-42ef-bd8b-b6802202bb68",
+            "columnGUID": "a32abdf3-1628-4817-a90e-8aef9f49b706"
+        },
+        {
+            "name": "value",
+            "description": "props@200c8ebb-f009-4c78-9037-9634f9232dd5",
+            "displayColumn": "id",
+            "guid": "98a23f45-3fae-49b7-b9e8-164194720b1f",
+            "columns": [
+                {
+                    "typeStr": "enum",
+                    "guid": "51872c7d-8fa6-47ff-86dc-1a8a92c2fa6e",
+                    "name": "type",
+                    "description": "new enum field",
+                    "options": "fixed, calculation",
+                    "defaultValue": "fixed",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "text",
+                    "guid": "1373dfba-8ef0-47f3-a623-1f0930c504b0",
+                    "name": "expression",
+                    "description": "text field",
+                    "defaultValue": "",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                }
+            ],
+            "lines": [],
+            "hidden": true,
+            "isProps": true,
+            "parentSheetGUID": "200c8ebb-f009-4c78-9037-9634f9232dd5",
+            "columnGUID": "7f4299f5-8874-4e63-a1db-0f507a92c384"
         }
     ]
 }
