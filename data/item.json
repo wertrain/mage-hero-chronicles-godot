@@ -3,9 +3,9 @@
 		{
 			"guid": "eaad98f5-883f-44e8-81c5-4b69353fb350",
 			"id": "0",
-			"name": "Herb of Renewal",
-			"description": "Restore 50 HP.",
-			"detail_description": "astes awful. Works great. Don\u7ab6\u51b2 ask how many bugs are in there.",
+			"name": "ITEM_HERB_OF_RENEWAL",
+			"description": "ITEM_HERB_OF_RENEWAL_DESC",
+			"detail_description": "ITEM_HERB_OF_RENEWAL_DDESC",
 			"actions": [
 				{
 					"guid": "8a625dd7-edbe-4df2-a6f2-8e66ea562d06",

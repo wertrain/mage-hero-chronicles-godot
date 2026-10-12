@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://btxi6fmpm53wl"]
 
-[ext_resource type="Script" path="res://scene/scene/battle/battle_enemy.gd" id="1_dwp1u"]
+[ext_resource type="Script" uid="uid://bujrh0n8srapx" path="res://scene/scene/battle/battle_enemy.gd" id="1_dwp1u"]
 [ext_resource type="Material" uid="uid://cpkvd1d4frxex" path="res://shader/outline_material.tres" id="2_epixk"]
 [ext_resource type="PackedScene" uid="uid://c400o3d5kjr7o" path="res://scene/common/shake2d.tscn" id="2_r37mq"]
 [ext_resource type="Texture2D" uid="uid://g8okru7rwt0k" path="res://art/enemy/pipo-enemy002.png" id="2_tdqpn"]
@@ -12,6 +12,9 @@ script = ExtResource("1_dwp1u")
 outline_material = ExtResource("2_epixk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tdqpn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("2_tdqpn")
 
 [node name="Shake2D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_r37mq")]

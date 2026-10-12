@@ -89,3 +89,19 @@ func load_enemy() -> Array:
 			_enemys.append(enemy)
 		return _enemys
 	return []
+
+func load_items() -> Array[ItemData]:
+	var item_data = _load_data("res://data/item.json") as Dictionary
+	if item_data != null:
+		var items: Array[ItemData] = []
+		for i in item_data["lines"]:
+			var item:ItemData = ItemData.new()
+			item.id = int(i["id"])
+			item.name = tr(i["name"])
+			item.description = tr(i["description"])
+			item.detail_description = tr(i["detail_description"])
+			item.cost = int(i["cost"])
+			item.rarity = int(i["rarity"])
+			items.append(item)
+		return items
+	return []

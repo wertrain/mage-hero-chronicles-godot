@@ -5,6 +5,7 @@ enum ActionType {
 	DAMAGE,
 	SHIELD,
 	DRAW,
+	HEAL,
 	UNDEFINED
 }
 

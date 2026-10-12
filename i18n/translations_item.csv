@@ -1,4 +1,4 @@
 keys,en,ja
 ITEM_HERB_OF_RENEWAL,Herb of Renewal,いやしの草
-ITEM_DESC_HERB_OF_RENEWAL,Restore 50 HP.,HPを50回復する
-ITEM_FLAV_HERB_OF_RENEWAL,astes awful. Works great. Don’t ask how many bugs are in there.,苦いがよく効く。中に何匹虫がいるかは聞かないでね。
+ITEM_HERB_OF_RENEWAL_DESC,Restore 50 HP.,HPを50回復する
+ITEM_HERB_OF_RENEWAL_DDESC,astes awful. Works great. Don’t ask how many bugs are in there.,苦いがよく効く。中に何匹虫がいるかは聞かないでね。

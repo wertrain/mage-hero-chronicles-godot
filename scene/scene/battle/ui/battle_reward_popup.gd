@@ -13,6 +13,7 @@ var active_card_animation_time: float = 0.3
 
 var _total_gold: int = 0
 var _rewarded_cards: Array[Card]
+#var _rewarded_items: Array[Item]
 var _selectable_cards_num: int = 1
 var _selectable_items_num: int = 1
 # カードの配置位置 _calculate_cards_position で計算され、枚数ごとに位置が変わる
@@ -53,18 +54,23 @@ func _ready() -> void:
 	_calculate_cards_position(_rewarded_cards.size())
 
 	$CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_ITEM_NUM") % _selectable_items_num
+	var items_origin: Array[ItemData] = database.load_items()
+	
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 func _on_return_to_top_button_pressed():
+	$StateMachine.current_state.transitioned.emit("RewardSelectTop")
 	$CanvasLayer/ColorRect/Control_RewardMenu.visible = true
 	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectItem.visible = false
 	
 # 報酬選択でカードが押された時のイベント
 func _on_card_button_pressed():
+	$StateMachine.current_state.transitioned.emit("RewardSelectCard")
 	$CanvasLayer/ColorRect/Control_RewardMenu.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = true
 	var viewport_size = get_viewport().size
@@ -84,6 +90,7 @@ func _on_card_button_pressed():
 
 # 報酬選択でアイテムが押された時のイベント
 func _on_item_button_pressed():
+	$StateMachine.current_state.transitioned.emit("RewardSelectItem")
 	$CanvasLayer/ColorRect/Control_RewardMenu.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectItem.visible = true
 	
