@@ -61,6 +61,12 @@ func add_shield(amount: int) -> void:
 	_current_shield += amount
 	shield_changed.emit(_current_shield)
 
+func heal(amount: int) -> void:
+	if amount <= 0 or _health <= 0:
+		return
+	_health = mini(_health + amount, _max_health)
+	health_changed.emit(_health, _max_health)
+
 func add_status_effects(status_effect: BattleStatusEffect) -> void:
 	_status_effects.append(status_effect)
 	status_effects_changed.emit(_status_effects)

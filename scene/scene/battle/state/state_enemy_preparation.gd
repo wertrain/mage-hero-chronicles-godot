@@ -20,6 +20,7 @@ func enter():
 	var enemies = root.get_enemies()
 	_battle_info = root.get_battle_info()
 	for enemy in enemies:
+		# 敵ごとに次の行動を決め、プレイヤーターン中に予告アイコンを表示する。
 		var data: EnemyData = enemy.get_data()
 		execute_enemy_action(enemy, data, _battle_info)
 		var first_action: EnemyBattleAcitonBase = enemy._action_queue.front()

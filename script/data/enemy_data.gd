@@ -5,5 +5,6 @@ var id: int = 0
 var name: String
 var health: int
 var attack: int
+var image_path: String
 var actions: Array[EnemyBattleAciton] = []
 var gold: int

@@ -1,115 +1,139 @@
 class_name BattleRewardPopup
 extends Node2D
 
+signal reward_completed
+
 @export var card_scene: PackedScene
-# 全カードが配置される最大幅
-var max_width: float = 700.0 
-# カード間の最小間隔
+
+var max_width: float = 700.0
 var min_spacing: float = 150.0
-# アクティブなカードのサイズ倍率
-var active_card_scale: float = 1.3
-var active_card_offset_y: float = 100
 var active_card_animation_time: float = 0.3
+var _total_gold: int
+var _rewarded_cards: Array[Card] = []
+var _rewarded_items: Array[ItemData] = []
+var _card_positions: Array[Vector2] = []
+var _player: BattlePlayerStatus
+var _completed: bool = false
 
-var _total_gold: int = 0
-var _rewarded_cards: Array[Card]
-#var _rewarded_items: Array[Item]
-var _selectable_cards_num: int = 1
-var _selectable_items_num: int = 1
-# カードの配置位置 _calculate_cards_position で計算され、枚数ごとに位置が変わる
-var _card_positions: Array[Vector2]
-
-var _button_coin: Button
-var _button_card: Button
-var _button_item: Button
-var _button_treasure: Button
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Card.button_down.connect(_on_card_button_pressed)
-	$CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Item.button_down.connect(_on_item_button_pressed)
-	$CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/Button_Skip.button_down.connect(_on_return_to_top_button_pressed)
-	$CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/Button_Skip.button_down.connect(_on_return_to_top_button_pressed)
-	_button_coin = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Coin
-	_button_card = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Card
-	_button_item = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Item
-	_button_item = $CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/Button_Treasure
-	if _total_gold > 0:
-		_button_coin.text = tr("REWARD_GOLD") % _total_gold
-	else:
-		_button_coin.visible = false
-	# ウィンドウの初期表示状態を適用
-	$CanvasLayer/ColorRect/Control_RewardMenu.visible = true
-	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = false
-	
-	$CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_CARD_NUM") % _selectable_cards_num
-	# カードを読み込む（バトルシーンでもロードしているので共通化してもよさそう）
-	var database = DataBase.new()
-	var cards_origin: Array[CardData] = database.load_cards()
-	for i in range(5):
+	# 報酬画面は戦闘シーンから敵・プレイヤー情報を受け取り、選択肢を作る。
+	var menu_path := "CanvasLayer/ColorRect/Control_RewardMenu/NinePatchRect/CenterContainer/VBoxContainer/"
+	get_node(menu_path + "Button_Card").pressed.connect(_on_card_button_pressed)
+	get_node(menu_path + "Button_Item").pressed.connect(_on_item_button_pressed)
+	get_node("CanvasLayer/ColorRect/Control_RewardMenu/Button_Skip").pressed.connect(_complete_reward)
+	get_node("CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/Button_Skip").pressed.connect(_on_return_to_top_button_pressed)
+	get_node("CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/Button_Skip").pressed.connect(_on_return_to_top_button_pressed)
+	var battle: BattleScene = get_tree().current_scene as BattleScene
+	_player = battle.get_player()
+	_total_gold = 0
+	# 複数敵戦では倒した敵全員のゴールドを合算してランに加える。
+	for enemy in battle.get_enemies():
+		_total_gold += enemy.get_data().gold
+	RunData.add_gold(_total_gold)
+
+	var coin_button: Button = get_node(menu_path + "Button_Coin")
+	coin_button.text = "+" + (tr("REWARD_GOLD") % _total_gold)
+	coin_button.disabled = true
+	get_node(menu_path + "Button_Treasure").visible = false
+	get_node("CanvasLayer/ColorRect/Control_RewardSelectCard/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label").text = tr("REWARD_GET_CARD_NUM") % 1
+	get_node("CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label").text = tr("REWARD_GET_ITEM_NUM") % 1
+
+	var database := DataBase.new()
+	var card_data := database.load_cards()
+	# 全カードから3枚を候補として引き、選択された1枚だけRunDataのデッキへ追加する。
+	card_data.shuffle()
+	var card_count: int = mini(3, card_data.size())
+	for index in range(card_count):
 		var card: Card = card_scene.instantiate()
-		card.set_data(cards_origin[2])
-		_rewarded_cards.push_back(card)
-		$CanvasLayer/ColorRect/Control_RewardSelectCard.add_child(card)
-	_calculate_cards_position(_rewarded_cards.size())
+		card.set_data(card_data[index])
+		_rewarded_cards.append(card)
+		get_node("CanvasLayer/ColorRect/Control_RewardSelectCard").add_child(card)
+	_calculate_cards_position(card_count)
 
-	$CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_Title/MarginContainer/CenterContainer/Label.text = tr("REWARD_GET_ITEM_NUM") % _selectable_items_num
-	var items_origin: Array[ItemData] = database.load_items()
-	
-		
+	_rewarded_items = database.load_items()
+	_build_item_choices()
+	get_node(menu_path + "Button_Card").visible = not _rewarded_cards.is_empty()
+	get_node(menu_path + "Button_Item").visible = not _rewarded_items.is_empty()
+	get_node("CanvasLayer/ColorRect/Control_RewardMenu").visible = true
+	get_node("CanvasLayer/ColorRect/Control_RewardSelectCard").visible = false
+	get_node("CanvasLayer/ColorRect/Control_RewardSelectItem").visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _input(event: InputEvent) -> void:
+	if _completed or not (event is InputEventMouseButton):
+		return
+	if not event.pressed or event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	if not get_node("CanvasLayer/ColorRect/Control_RewardSelectCard").visible:
+		return
+	var mouse_position := get_viewport().get_mouse_position()
+	for card in _rewarded_cards:
+		if card.get_rect().has_point(mouse_position):
+			get_viewport().set_input_as_handled()
+			RunData.add_card(card.get_data())
+			_complete_reward()
+			return
 
-func _on_return_to_top_button_pressed():
+func _build_item_choices() -> void:
+	var area: MarginContainer = get_node("CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_ItemArea")
+	var choices := VBoxContainer.new()
+	choices.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	choices.add_theme_constant_override("separation", 12)
+	area.add_child(choices)
+	for item in _rewarded_items:
+		var button := Button.new()
+		button.custom_minimum_size = Vector2(420, 64)
+		button.text = item.name + " — " + item.description
+		button.pressed.connect(_claim_item.bind(item))
+		choices.add_child(button)
+
+func _claim_item(item: ItemData) -> void:
+	# 現在実装しているアイテム効果は回復なので、戦闘後にその場で適用して報酬を閉じる。
+	for action in item.actions:
+		if action.get_type() == BattleAciton.ActionType.HEAL:
+			var amount: int = action.get_value().execute_battle_action(_player)
+			_player.heal(amount)
+	_complete_reward()
+
+func _on_return_to_top_button_pressed() -> void:
 	$StateMachine.current_state.transitioned.emit("RewardSelectTop")
 	$CanvasLayer/ColorRect/Control_RewardMenu.visible = true
 	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectItem.visible = false
-	
-# 報酬選択でカードが押された時のイベント
-func _on_card_button_pressed():
+
+func _on_card_button_pressed() -> void:
 	$StateMachine.current_state.transitioned.emit("RewardSelectCard")
 	$CanvasLayer/ColorRect/Control_RewardMenu.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectCard.visible = true
-	var viewport_size = get_viewport().size
-	var center_x = viewport_size.x / 2  # 画面の中央X座標
-	var center_y = viewport_size.y / 2  # 画面の中央X座標
-	var tween = get_tree().create_tween()
+	var center: Vector2 = get_viewport().size / 2.0
+	var tween := get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.set_ease(Tween.EASE_OUT)
-	for i in range(_rewarded_cards.size()):
-		var card = _rewarded_cards[i]
-		card.z_index = i
-		card.position = Vector2(center_x, center_y)
+	for index in range(_rewarded_cards.size()):
+		var card := _rewarded_cards[index]
+		card.z_index = index
+		card.position = center
 		card.scale = Vector2.ONE * 0.5
-		var animation_time = active_card_animation_time
-		tween.tween_property(card, "scale", Vector2.ONE, animation_time)
-		tween.tween_property(card, "position", _card_positions[i], animation_time)
+		tween.tween_property(card, "scale", Vector2.ONE, active_card_animation_time)
+		tween.tween_property(card, "position", _card_positions[index], active_card_animation_time)
 
-# 報酬選択でアイテムが押された時のイベント
-func _on_item_button_pressed():
+func _on_item_button_pressed() -> void:
 	$StateMachine.current_state.transitioned.emit("RewardSelectItem")
 	$CanvasLayer/ColorRect/Control_RewardMenu.visible = false
 	$CanvasLayer/ColorRect/Control_RewardSelectItem.visible = true
-	
+
+func _complete_reward() -> void:
+	# ボタン連打などによる重複遷移を防ぎ、報酬完了をBattleSceneへ通知する。
+	if _completed:
+		return
+	_completed = true
+	reward_completed.emit()
+	queue_free()
+
 func _calculate_cards_position(card_count: int) -> void:
-	var viewport_size = get_viewport().size
-	var center_x = viewport_size.x / 2  # 画面の中央X座標
-	var center_y = viewport_size.y / 2  # 画面の中央X座標
-	# 最大幅を超えないようにカード間のスペースを計算
-	var total_width = min(max_width, card_count * min_spacing)
-	var card_spacing = 0
-	if card_count > 1:
-		card_spacing = total_width / (card_count - 1)
-	_card_positions.clear()	
-	# カードの配置を計算
-	for i in range(card_count):
-		# カードのX座標を計算
-		var card_pos_x = center_x
-		if card_count > 1:
-			card_pos_x = center_x - (total_width / 2) + i * card_spacing
-		# カードの位置を設定
-		var card_pos = Vector2(card_pos_x, center_y)  # Y座標は固定
-		_card_positions.append(card_pos)
+	var center: Vector2 = get_viewport().size / 2.0
+	var total_width: float = minf(max_width, card_count * min_spacing)
+	var spacing: float = total_width / float(card_count - 1) if card_count > 1 else 0.0
+	_card_positions.clear()
+	for index in range(card_count):
+		var x: float = center.x if card_count == 1 else center.x - total_width / 2.0 + index * spacing
+		_card_positions.append(Vector2(x, center.y))

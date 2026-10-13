@@ -9,3 +9,36 @@ REWARD_GET_CARD_NUM,Select %d Card(s),%d 枚のカードを選択
 REWARD_GET_CARD_SKIP,SKIP,カードの取得をスキップ
 REWARD_GET_ITEM_NUM,Select %d Item(s),%d 個のアイテムを選択
 REWARD_GET_ITEM_SKIP,SKIP,アイテムの取得をスキップ
+BATTLE_VICTORY,VICTORY,勝利
+BATTLE_DEFEAT_RETRY,DEFEAT - Press Enter to Retry,敗北 - Enterキーで再挑戦
+JOURNEY_TITLE,Choose Your Next Path,次の行き先を選ぶ
+JOURNEY_PROGRESS,Journey progress: %d / 3 battles,旅の進行：%d / 3 戦突破
+JOURNEY_GOLD,Gold: %d,所持ゴールド：%d
+JOURNEY_BATTLE_NODE,Battle %d,第%d戦
+JOURNEY_BOSS_NODE,Boss,ボス
+JOURNEY_REST_CONTINUE,Rest (+30 HP) and continue,休憩して進む（HP +30）
+JOURNEY_CONTINUE,Continue to the next battle,そのまま次の戦闘へ
+JOURNEY_REST_BOSS,Rest (+30 HP) before the boss,休憩してボスへ（HP +30）
+JOURNEY_BOSS,Challenge the boss,ボスに挑む
+JOURNEY_CLEAR_TITLE,Journey Complete!,冒険クリア！
+JOURNEY_CLEAR_BODY,The mage has defeated the boss.,魔法使いはボスを倒した。
+JOURNEY_NEW_RUN,Start a new journey,新しい旅を始める
+JOURNEY_UPGRADE_CARD,Upgrade a card,カードを強化
+JOURNEY_UPGRADE_TITLE,Choose a card to upgrade,強化するカードを選ぶ
+JOURNEY_UPGRADE_PROMPT,Choose one card. Its stronger version will stay in your deck.,強化するカードを1枚選びます。強化版はデッキに残ります。
+Slime,Slime,スライム
+Poison Slime,Poison Slime,どくスライム
+Lost Pup,Lost Pup,迷子の子犬
+Ancient Wyrm,Ancient Wyrm,古代竜
+Corrosive Spit,Corrosive Spit,酸のつぶて
+Harden,Harden,からだを固める
+Bite,Bite,かみつき
+Howl,Howl,遠ぼえ
+Tackle,Tackle,たいあたり
+Charging,Charging,ちからをためる
+PowerUp,PowerUp,攻撃力アップ
+Heavy blow,Heavy blow,強打
+Flame Breath,Flame Breath,火炎の息
+Draconic Charge,Draconic Charge,竜の力をためる
+Gather Power,Gather Power,力をためる
+Tail Smash,Tail Smash,しっぽたたき

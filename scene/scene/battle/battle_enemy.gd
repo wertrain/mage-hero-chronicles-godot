@@ -7,6 +7,7 @@ var _enemy_data: EnemyData
 var _battle_status: BattleStatus
 var _action_queue: Array[EnemyBattleAcitonBase] = []
 var _sprite_animator: SpriteAnimator
+var _name_label: Label
 
 func get_sprite() -> Sprite2D:
 	return $Sprite2D
@@ -31,9 +32,16 @@ func damage(damage_value: int) -> bool:
 
 func set_data(data: EnemyData) -> void:
 	_enemy_data = data
+	# 敵定義の画像を本体とシーンに残る予備スプライトへ適用し、素材を揃えておく。
+	if not data.image_path.is_empty() and ResourceLoader.exists(data.image_path):
+		var texture := load(data.image_path) as Texture2D
+		$Sprite2D.texture = texture
+		$Sprite2D2.texture = texture
 	_battle_status.set_health(data.health, data.health)
 	$HealthBar.set_health(data.health, data.health)
 	_battle_status.set_attack(data.attack)
+	_name_label.text = data.name
+	_name_label.position.y = -$Sprite2D.get_rect().size.y / 2.0 - 42.0
 
 func show_warning_icon(icon_type: AttackWarningIcon.Icons, value: int) -> void:
 	$AttackWarningIcon.set_icon(icon_type, value)
@@ -56,10 +64,21 @@ func is_dead() -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# シーンに残っている旧スプライトは重ね描画を防ぐため隠し、本体だけ表示する。
+	$Sprite2D2.visible = false
 	_battle_status = BattleStatus.new()
 	_battle_status.health_changed.connect(_on_health_changed)
 	_battle_status.status_effects_changed.connect(_on_status_effects_changed)
 	_sprite_animator = SpriteAnimator.new()
+	_name_label = Label.new()
+	_name_label.size = Vector2(320, 36)
+	_name_label.position.x = -160.0
+	_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_name_label.add_theme_color_override("font_color", Color(1.0, 0.94, 0.78))
+	_name_label.add_theme_color_override("font_outline_color", Color(0.05, 0.04, 0.06))
+	_name_label.add_theme_constant_override("outline_size", 5)
+	_name_label.add_theme_font_size_override("font_size", 20)
+	add_child(_name_label)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

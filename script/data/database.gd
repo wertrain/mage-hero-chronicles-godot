@@ -22,6 +22,9 @@ func load_cards() -> Array[CardData]:
 		for c in card_data["lines"]:
 			var card:CardData = CardData.new()
 			card.id = int(c["id"])
+			card.guid = c["guid"]
+			# 元カードと強化カードは別定義。GUIDを使って強化先を引けるようにする。
+			card.upgrade_guid = str(c.get("upgrade_guid", ""))
 			card.name = tr(c["name"])
 			card.description = tr(c["description"])
 			card.detail_description = tr(c["detail_description"])
@@ -51,19 +54,25 @@ func load_deck() -> Array[CardData]:
 		return deck
 	return []
 
+func get_card(guid: String) -> CardData:
+	# load_cards() 後に使う。休憩所が参照する upgrade_guid から強化版を引く。
+	return _card_dictionary.get(guid) as CardData
+
 func load_enemy() -> Array:
 	var enemy_data = _load_data("res://data/enemy.json") as Dictionary
 	if enemy_data != null:
 		for e in enemy_data["lines"]:
 			var enemy: EnemyData = EnemyData.new()
 			enemy.id = int(e["id"])
-			enemy.name = e["name"]
+			enemy.name = tr(e["name"])
 			enemy.health = int(e["health"])
 			enemy.attack = e["attack"]
+			var image_file: String = str(e.get("image", "")).replace("\\", "/").get_file()
+			enemy.image_path = "res://art/enemy/" + image_file if not image_file.is_empty() else ""
 			enemy.gold = e["gold"]
 			for a in e["actions"]:
 				var action:EnemyBattleAciton = EnemyBattleAciton.new()
-				action._name = a["name"]
+				action._name = tr(a["name"])
 				action.set_action_type(a["type"])
 				action.set_target_type(a["target"])
 				action._value = BattleAcitonValue.new(a["value"])
@@ -78,7 +87,7 @@ func load_enemy() -> Array:
 				if false == a["steps"].is_empty():
 					for s in a["steps"]:
 						var step = EnemyBattleAcitonStep.new()
-						step._name = s["name"]
+						step._name = tr(s["name"])
 						step.set_action_type(s["type"])
 						step.set_target_type(s["target"])
 						step._value = BattleAcitonValue.new(s["value"])
@@ -100,8 +109,17 @@ func load_items() -> Array[ItemData]:
 			item.name = tr(i["name"])
 			item.description = tr(i["description"])
 			item.detail_description = tr(i["detail_description"])
-			item.cost = int(i["cost"])
+			item.cost = int(i.get("cost", 0))
 			item.rarity = int(i["rarity"])
+			for a in i.get("actions", []):
+				var action: BattleAciton = BattleAciton.new()
+				action.set_action_type(a["type"])
+				action.set_target_type(a["target"])
+				action._value = BattleAcitonValue.new(a["value"])
+				action._turns = int(a.get("turns", 0))
+				action.set_effect_type(a.get("effect_type", "impact_a"))
+				action._effect_index = int(a.get("effect_index", 0))
+				item.actions.append(action)
 			items.append(item)
 		return items
 	return []

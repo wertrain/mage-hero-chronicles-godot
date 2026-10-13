@@ -79,11 +79,44 @@
 			"guid": "b58bee12-74a8-4ff4-bb21-5d5e68434770",
 			"id": "1",
 			"name": "Poison Slime",
-			"health": 8,
+			"health": 22,
 			"attack": 5,
 			"image": "..\\..\\art\\enemy\\pipo-enemy009a.png",
-			"actions": [],
-			"gold": 5
+			"actions": [
+				{
+					"guid": "26c1a4c8-70b1-4eaf-a337-d32154ef4421",
+					"name": "Corrosive Spit",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "ab015ed0-d77c-4c7e-85e2-5fe700beca63",
+						"type": "fixed",
+						"expression": "6"
+					},
+					"steps": [],
+					"frequency": 65,
+					"id": "0",
+					"conditions": [],
+					"priority": 0
+				},
+				{
+					"guid": "469efbec-1376-40cc-b8f1-ce34fd0c8938",
+					"name": "Harden",
+					"type": "attackup",
+					"target": "self",
+					"value": {
+						"guid": "bfa14854-ad66-4990-b3dd-5b6d6942a39d",
+						"type": "fixed",
+						"expression": "3"
+					},
+					"steps": [],
+					"frequency": 35,
+					"id": "1",
+					"conditions": [],
+					"priority": 0
+				}
+			],
+			"gold": 8
 		},
 		{
 			"guid": "0bd520e4-3d59-4fd2-b7e3-ea57e72ab823",
@@ -99,11 +132,44 @@
 			"guid": "a0275eb4-c71c-45ea-842c-0e8261ba82be",
 			"id": "3",
 			"name": "Lost Pup",
-			"health": 10,
-			"attack": 0,
+			"health": 20,
+			"attack": 6,
 			"image": "..\\..\\art\\enemy\\pipo-enemy002.png",
-			"actions": [],
-			"gold": 5
+			"actions": [
+				{
+					"guid": "b51f3ad2-835f-4a85-b4f3-a3b48943f1f2",
+					"name": "Bite",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "07c213a5-9031-4123-b379-c6b70b2e6f1b",
+						"type": "fixed",
+						"expression": "7"
+					},
+					"steps": [],
+					"frequency": 75,
+					"id": "0",
+					"conditions": [],
+					"priority": 0
+				},
+				{
+					"guid": "d8ef299e-1dbf-453b-9972-9d4a2c9467cf",
+					"name": "Howl",
+					"type": "attackup",
+					"target": "self",
+					"value": {
+						"guid": "78b3d162-c2d0-44c5-89b4-8368dc9e4c7d",
+						"type": "fixed",
+						"expression": "3"
+					},
+					"steps": [],
+					"frequency": 25,
+					"id": "1",
+					"conditions": [],
+					"priority": 0
+				}
+			],
+			"gold": 10
 		},
 		{
 			"guid": "760af618-705f-48cc-a92f-a9f2cc641c75",
@@ -419,11 +485,69 @@
 			"guid": "deb678a9-3fb0-40e1-a509-3bdf09d17fcc",
 			"id": "35",
 			"name": "Ancient Wyrm",
-			"health": 0,
-			"attack": 0,
+			"health": 60,
+			"attack": 9,
 			"image": "..\\..\\art\\enemy\\pipo-enemy021b.png",
-			"actions": [],
-			"gold": 0
+			"actions": [
+				{
+					"guid": "1d6f0f8a-646f-4679-b5fb-46f8d74d5d3c",
+					"name": "Flame Breath",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "a89f0b98-4afb-4704-b599-b28799f219a3",
+						"type": "fixed",
+						"expression": "10"
+					},
+					"steps": [],
+					"frequency": 70,
+					"id": "0",
+					"conditions": [],
+					"priority": 0
+				},
+				{
+					"guid": "68d97e14-45ec-4fbd-80e1-6d83f47bf50e",
+					"name": "Draconic Charge",
+					"type": "multi_turn_action",
+					"target": "player",
+					"value": {
+						"guid": "488ee2f2-9207-4757-95d7-9fea64b34567",
+						"type": "fixed",
+						"expression": "0"
+					},
+					"steps": [
+						{
+							"guid": "c8b05d9a-7aa2-42d5-9532-3142ef67c6a5",
+							"name": "Gather Power",
+							"type": "attackup",
+							"target": "self",
+							"value": {
+								"guid": "f176a955-5452-4e85-b913-100133f52c18",
+								"type": "fixed",
+								"expression": "5"
+							},
+							"priority": 0
+						},
+						{
+							"guid": "166d8d0a-3576-43ad-9ce2-75e8a23f2355",
+							"name": "Tail Smash",
+							"type": "attack",
+							"target": "player",
+							"value": {
+								"guid": "6f953519-64cf-4c95-b18a-bd78ee598951",
+								"type": "calculation",
+								"expression": "current_attack * 2"
+							},
+							"priority": 0
+						}
+					],
+					"frequency": 30,
+					"id": "1",
+					"conditions": [],
+					"priority": 0
+				}
+			],
+			"gold": 40
 		},
 		{
 			"guid": "987af9a1-963c-4354-8323-58e68b29bcdb",

@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bt5mjixcgc2qc" path="res://scene/scene/battle/ui/sequence_message.tscn" id="20_4dgw6"]
 [ext_resource type="Script" path="res://scene/scene/battle/state/state_check_victory_or_defeat.gd" id="21_bx1kn"]
 [ext_resource type="PackedScene" uid="uid://bfj8co0b8wgyq" path="res://scene/effect/effect_spawner.tscn" id="22_6x2u5"]
+[ext_resource type="Script" path="res://scene/scene/battle/state/state_game_over.gd" id="23_gameover"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_5ekfp")
@@ -84,6 +85,9 @@ script = ExtResource("13_dfsdp")
 
 [node name="CheckVictoryOrDefeat" type="Node" parent="StateMachine"]
 script = ExtResource("21_bx1kn")
+
+[node name="GameOver" type="Node" parent="StateMachine"]
+script = ExtResource("23_gameover")
 
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("8_d3kb3")

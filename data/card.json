@@ -23,7 +23,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "3333024d-299d-475f-bc9a-8af7b03888bc"
 		},
 		{
 			"guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
@@ -48,7 +49,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "bcfbec3f-2ee5-4457-9451-9a46d6c8b407"
 		},
 		{
 			"guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
@@ -87,7 +89,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "9c610179-229b-4fa2-bcf9-81daf2045adb"
 		},
 		{
 			"guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
@@ -126,7 +129,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "25710174-ad79-4c0a-abef-8f8ab1edb3a9"
 		},
 		{
 			"guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
@@ -151,7 +155,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "f6d9805b-168e-4ee9-9b71-f5c7e1387fe2"
 		},
 		{
 			"guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
@@ -176,7 +181,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "e48e6ab2-d27f-449c-aea0-33c9c357f2c7"
 		},
 		{
 			"guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
@@ -215,7 +221,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "8b3cdc1e-6df8-47b1-8bdf-509221223664"
 		},
 		{
 			"guid": "857fee85-1567-4d33-9e07-3916b8188f10",
@@ -240,7 +247,8 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "6bc7324e-60c7-4df3-8e19-b47ace575d9f"
 		},
 		{
 			"guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
@@ -279,7 +287,298 @@
 					}
 				}
 			],
-			"rarity": 0
+			"rarity": 0,
+			"upgrade_guid": "0ab8667f-bab0-4fa8-a877-095e1e82a537"
+		},
+		{
+			"guid": "3333024d-299d-475f-bc9a-8af7b03888bc",
+			"id": "9",
+			"name": "CARD_STRIKE_UPGRADED",
+			"cost": 1,
+			"description": "CARD_STRIKE_DESC_UPGRADED",
+			"detail_description": "CARD_STRIKE_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "8aefd1c8-c651-465d-a76b-488c40733ca0",
+					"type": "damage",
+					"target": "enemy",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "impact_a",
+					"effect_index": 20,
+					"value": {
+						"guid": "31fc2006-1ee0-4e82-9cb5-c413298eeb24",
+						"type": "fixed",
+						"expression": "9"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "bcfbec3f-2ee5-4457-9451-9a46d6c8b407",
+			"id": "10",
+			"name": "CARD_HEAVY_BLOW_UPGRADED",
+			"cost": 2,
+			"description": "CARD_HEAVY_BLOW_DESC_UPGRADED",
+			"detail_description": "CARD_HEAVY_BLOW_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "2a0d98fe-4696-463c-af40-ec29df91d381",
+					"type": "damage",
+					"target": "enemy",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "impact_a",
+					"effect_index": 4,
+					"value": {
+						"guid": "54d5138d-bf24-49f3-afae-b140846b639f",
+						"type": "fixed",
+						"expression": "13"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "9c610179-229b-4fa2-bcf9-81daf2045adb",
+			"id": "11",
+			"name": "CARD_CHARGE_UPGRADED",
+			"cost": 1,
+			"description": "CARD_CHARGE_DESC_UPGRADED",
+			"detail_description": "CARD_CHARGE_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "56b58415-d911-4a90-9501-5050b4491a93",
+					"type": "damage",
+					"target": "enemy",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "impact_a",
+					"effect_index": 8,
+					"value": {
+						"guid": "25723f86-fdbc-458e-b799-703af8c49428",
+						"type": "fixed",
+						"expression": "6"
+					}
+				},
+				{
+					"guid": "6ada2303-3df0-40ad-96e2-942e9d4b003b",
+					"type": "shield",
+					"target": "self",
+					"turns": 0,
+					"id": "1",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "14254c86-c3d9-4382-8033-314c29e51002",
+						"type": "fixed",
+						"expression": "3"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "25710174-ad79-4c0a-abef-8f8ab1edb3a9",
+			"id": "12",
+			"name": "CARD_QUICK_SLASH_UPGRADED",
+			"cost": 2,
+			"description": "CARD_QUICK_SLASH_DESC_UPGRADED",
+			"detail_description": "CARD_QUICK_SLASH_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "3d69254a-e817-4ea7-a6d6-bc276779ed0a",
+					"type": "damage",
+					"target": "enemy",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "impact_a",
+					"effect_index": 7,
+					"value": {
+						"guid": "16670c87-4cec-469f-940c-43d63edf3c15",
+						"type": "fixed",
+						"expression": "7"
+					}
+				},
+				{
+					"guid": "b8be75b2-a628-4052-ac4f-23547d7e31ba",
+					"type": "draw",
+					"target": "self",
+					"turns": 0,
+					"id": "1",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "72b253a9-7b73-456c-9be1-53c15f3ca15b",
+						"type": "fixed",
+						"expression": "1"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "f6d9805b-168e-4ee9-9b71-f5c7e1387fe2",
+			"id": "13",
+			"name": "CARD_SHIELD_BASH_UPGRADED",
+			"cost": 2,
+			"description": "CARD_SHIELD_BASH_DESC_UPGRADED",
+			"detail_description": "CARD_SHIELD_BASH_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "e7552dc2-8ed4-455f-a0d7-06463cdc90db",
+					"type": "damage",
+					"target": "enemy",
+					"turns": 0,
+					"effect_type": "impact_a",
+					"effect_index": 0,
+					"id": "0",
+					"value": {
+						"guid": "1cafc083-b788-43d7-b55e-8eaeddefbd21",
+						"type": "calculation",
+						"expression": "current_shield * 4"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "e48e6ab2-d27f-449c-aea0-33c9c357f2c7",
+			"id": "14",
+			"name": "CARD_CLEAVE_UPGRADED",
+			"cost": 2,
+			"description": "CARD_CLEAVE_DESC_UPGRADED",
+			"detail_description": "CARD_CLEAVE_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "fb1bc427-1e0a-439f-b93a-4a9982cfe934",
+					"type": "damage",
+					"target": "all_enemies",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "impact_a",
+					"effect_index": 21,
+					"value": {
+						"guid": "a106ccf1-c1f0-44ad-90ee-403bd9177d4a",
+						"type": "fixed",
+						"expression": "8"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "8b3cdc1e-6df8-47b1-8bdf-509221223664",
+			"id": "15",
+			"name": "CARD_PARRY_UPGRADED",
+			"cost": 2,
+			"description": "CARD_PARRY_DESC_UPGRADED",
+			"detail_description": "CARD_PARRY_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "2e42b0b4-4395-4760-8aff-2a316bea840a",
+					"type": "shield",
+					"target": "self",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "8a6f2524-fb5a-49b2-9c44-85f83d2bae57",
+						"type": "fixed",
+						"expression": "5"
+					}
+				},
+				{
+					"guid": "5c623352-1b0e-4c08-a83b-49abfc362f82",
+					"type": "draw",
+					"target": "self",
+					"turns": 0,
+					"id": "1",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "d9e0349d-a4e6-4aaf-9a18-16ba897001a3",
+						"type": "fixed",
+						"expression": "1"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "6bc7324e-60c7-4df3-8e19-b47ace575d9f",
+			"id": "16",
+			"name": "CARD_BLOCK_UPGRADED",
+			"cost": 1,
+			"description": "CARD_BLOCK_DESC_UPGRADED",
+			"detail_description": "CARD_BLOCK_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "312d2d7b-c782-4510-9c4b-a4692b0a1a8c",
+					"type": "shield",
+					"target": "self",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "8ba4f89a-c319-4544-9f97-d9db87b64639",
+						"type": "fixed",
+						"expression": "8"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
+		},
+		{
+			"guid": "0ab8667f-bab0-4fa8-a877-095e1e82a537",
+			"id": "17",
+			"name": "CARD_WARRIORS_STANCE_UPGRADED",
+			"cost": 2,
+			"description": "CARD_WARRIORS_STANCE_DESC_UPGRADED",
+			"detail_description": "CARD_WARRIORS_STANCE_DDESC_UPGRADED",
+			"actions": [
+				{
+					"guid": "6007a070-67c9-49d6-bc9f-8dcb0a3d5624",
+					"type": "shield",
+					"target": "self",
+					"turns": 0,
+					"id": "0",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "45f95f51-5be0-4e14-9e09-1d8efb297dd3",
+						"type": "fixed",
+						"expression": "7"
+					}
+				},
+				{
+					"guid": "d7d34528-f8e2-480a-a25e-d6ef8ad8acbd",
+					"type": "shield",
+					"target": "self",
+					"turns": 1,
+					"id": "1",
+					"effect_type": "",
+					"effect_index": 0,
+					"value": {
+						"guid": "e6fdbe0e-6bc7-43da-8506-8769d805b913",
+						"type": "fixed",
+						"expression": "5"
+					}
+				}
+			],
+			"rarity": 0,
+			"upgrade_guid": ""
 		}
 	]
 }

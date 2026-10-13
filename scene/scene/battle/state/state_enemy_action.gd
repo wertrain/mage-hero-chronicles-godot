@@ -25,6 +25,7 @@ func enter():
 	_enemies = _battle_scene.get_enemies()
 	_player = _battle_scene.get_player()
 	_sequence = _ActionSequence.EntryEnemy
+	# 生きている敵だけを先頭から順に行動させる。
 	_action_enemy_index = _get_next_enemy_index(0)
 	_is_running_current_action = false
 	_is_show_message = false
@@ -51,8 +52,12 @@ func update(_delta: float):
 			if _is_running_current_action:
 				return
 			_action_enemy_index = _get_next_enemy_index(_action_enemy_index + 1)
+			# 敵全員の行動後に、敗北判定かプレイヤーターンへ移る。
 			if (_action_enemy_index < 0):
-				transitioned.emit("PlayerTurnStart")
+				if _player.get_health() <= 0:
+					transitioned.emit("GameOver")
+				else:
+					transitioned.emit("PlayerTurnStart")
 			else:
 				_sequence = _ActionSequence.EntryEnemy
 

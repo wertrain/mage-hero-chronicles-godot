@@ -10,11 +10,11 @@ enum ActionType {
 }
 
 enum ActionTarget {
-	ENEMY,
-	SELF,
-	ALL_ENEMIES,
-	RANDOM_ENEMY,
-	ALL_ALLIES
+	ENEMY,        # プレイヤーが選んだ敵1体
+	SELF,         # 効果を使った本人（プレイヤー、または敵）
+	ALL_ENEMIES,  # 生存中の敵全員
+	RANDOM_ENEMY, # 生存中の敵からランダムに1体
+	ALL_ALLIES    # 同じ陣営の全員
 }
 
 var _type: ActionType
@@ -56,6 +56,7 @@ func _string_to_action_type(type: String) -> ActionType:
 		"damage": return ActionType.DAMAGE
 		"shield": return ActionType.SHIELD
 		"draw":   return ActionType.DRAW
+		"heal":   return ActionType.HEAL
 	return ActionType.UNDEFINED
 
 func _string_to_action_target(target: String) -> ActionTarget:
