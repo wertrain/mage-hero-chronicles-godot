@@ -47,3 +47,9 @@ func randi_range(min_value: int, max_value: int) -> int:
 # ランダム範囲の浮動小数点数を取得
 func randf_range(min_value: float, max_value: float) -> float:
 	return _rng.randf_range(min_value, max_value)
+
+## 配列から選ぶ処理も同じラン用乱数器を使い、Array.pick_random()の別系列を避ける。
+func pick_array_item(arr: Array) -> Variant:
+	if arr.is_empty():
+		return null
+	return arr[_rng.randi_range(0, arr.size() - 1)]

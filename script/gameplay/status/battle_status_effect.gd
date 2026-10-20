@@ -9,6 +9,7 @@ enum StatusEffectType {
 	CONFUSED,          # 混乱
 	BURNED,            # 火傷
 	FROZEN,            # 凍結
+	REGEN,             # 再生
 	DEAD,              # 戦闘不能
 	STUNNED            # スタン
 }
@@ -32,6 +33,9 @@ func get_type() -> StatusEffectType:
 
 func get_value() -> int:
 	return _value
+
+func set_value(value: int) -> void:
+	_value = value
 
 func get_duration_type() -> EffectDurationType:
 	return _duration_type

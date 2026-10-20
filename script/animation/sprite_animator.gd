@@ -10,7 +10,9 @@ enum AnimationType {
 	FORWARD_SCALE,
 	CHARGE_SCALE,
 	ROTATE_SCALE,
-	SHOCKWAVE_SCALE
+	SHOCKWAVE_SCALE,
+	CAST,
+	DEFEND
 }
 
 var speed_multiplier: float = 1.0  # 1.0で通常速度、2.0で2倍速、0.5で半分速
@@ -40,6 +42,10 @@ func start_animation(type: AnimationType, target: Sprite2D) -> Tween:
 			return _rotate_scale(target)
 		AnimationType.SHOCKWAVE_SCALE:
 			return _shockwave_scale(target)
+		AnimationType.CAST:
+			return _cast(target)
+		AnimationType.DEFEND:
+			return _defend(target)
 	push_warning("undefined animation type.")
 	return null
 
@@ -179,4 +185,38 @@ func _shockwave_scale(target: Sprite2D) -> Tween:
 	tween.tween_property(target, "scale", enlarged_scale, duration_enlarged_scale).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(target, "scale", reduced_scale, duration_reduced_scale).set_delay(duration_reduced_delay).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(target, "scale", original_scale, duration_return_scale).set_delay(duration_return_delay).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	return tween
+
+## 魔法や毒を使う動き。少し身を縮めて浮き上がり、術を放つように戻す。
+func _cast(target: Sprite2D) -> Tween:
+	var original_position: Vector2 = target.position
+	var original_scale: Vector2 = target.scale
+	var original_rotation: float = target.rotation_degrees
+	var crouched_scale := original_scale * Vector2(0.94, 1.06)
+	var raised_position := original_position + Vector2(0, -14)
+	var tween := target.get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(target, "scale", crouched_scale, 0.12)
+	tween.tween_property(target, "position", raised_position, 0.12)
+	tween.tween_property(target, "rotation_degrees", original_rotation - 4.0, 0.12)
+	tween.chain().set_parallel(true).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(target, "scale", original_scale, 0.16)
+	tween.tween_property(target, "position", original_position, 0.16)
+	tween.tween_property(target, "rotation_degrees", original_rotation, 0.16)
+	return tween
+
+## 防御姿勢。いったん体を固めてから元の姿勢に戻る短い演出。
+func _defend(target: Sprite2D) -> Tween:
+	var original_scale: Vector2 = target.scale
+	var original_rotation: float = target.rotation_degrees
+	var guarded_scale := original_scale * Vector2(0.88, 1.08)
+	var tween := target.get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(target, "scale", guarded_scale, 0.12)
+	tween.tween_property(target, "rotation_degrees", original_rotation + 3.0, 0.12)
+	tween.chain().set_parallel(true).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(target, "scale", original_scale, 0.18)
+	tween.tween_property(target, "rotation_degrees", original_rotation, 0.18)
 	return tween

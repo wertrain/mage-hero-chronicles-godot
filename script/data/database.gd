@@ -23,6 +23,7 @@ func load_cards() -> Array[CardData]:
 			var card:CardData = CardData.new()
 			card.id = int(c["id"])
 			card.guid = c["guid"]
+			card.job = str(c.get("job", "warrior"))
 			# 元カードと強化カードは別定義。GUIDを使って強化先を引けるようにする。
 			card.upgrade_guid = str(c.get("upgrade_guid", ""))
 			card.name = tr(c["name"])
@@ -36,6 +37,7 @@ func load_cards() -> Array[CardData]:
 				action.set_target_type(a["target"])
 				action._value = BattleAcitonValue.new(a["value"])
 				action._turns = int(a["turns"])
+				action.set_status_type(str(a.get("status_type", "poisoned")))
 				action.set_effect_type(a["effect_type"])
 				action._effect_index = int(a["effect_index"])
 				card.actions.append(action)
@@ -44,13 +46,28 @@ func load_cards() -> Array[CardData]:
 		return _cards
 	return []
 
-func load_deck() -> Array[CardData]:
+func load_cards_for_job(job: String) -> Array[CardData]:
+	# 全カード定義は強化参照用にロードし、現在の職業に合うカードだけ報酬候補にする。
+	var matching_cards: Array[CardData] = []
+	for card in load_cards():
+		if card.job == job:
+			matching_cards.append(card)
+	return matching_cards
+
+func load_deck(job: String = "warrior") -> Array[CardData]:
 	var deck_data = _load_data("res://data/deck.json") as Dictionary
 	if deck_data != null:
 		var deck: Array[CardData] = []
 		for l in deck_data["lines"]:
+			# 職業ごとの初期デッキを選択する。job未指定の古いデータは戦士として扱う。
+			if str(l.get("job", "warrior")) != job:
+				continue
 			for c in l["cards"]:
-				deck.append(_card_dictionary[c["card"]])
+				var card: CardData = _card_dictionary.get(c["card"]) as CardData
+				if card != null:
+					deck.append(card)
+			if not deck.is_empty():
+				return deck
 		return deck
 	return []
 
@@ -78,6 +95,7 @@ func load_enemy() -> Array:
 				action._value = BattleAcitonValue.new(a["value"])
 				action._frequency = float(a["frequency"])
 				action.set_priority(int(a["priority"]))
+				action.set_turns(int(a.get("turns", 0)))
 				if false == a["conditions"].is_empty():
 					for c in a["conditions"]:
 						var condition = EnemyBattleAcitonCondition.new()
@@ -92,6 +110,7 @@ func load_enemy() -> Array:
 						step.set_target_type(s["target"])
 						step._value = BattleAcitonValue.new(s["value"])
 						step.set_priority(int(s["priority"]))
+						step.set_turns(int(s.get("turns", 0)))
 						action._steps.append(step)
 				enemy.actions.append(action)
 			_enemy_dictionary[enemy.name] = enemy
@@ -123,3 +142,24 @@ func load_items() -> Array[ItemData]:
 			items.append(item)
 		return items
 	return []
+
+func load_relics() -> Array[RelicData]:
+	# レリック定義はJSONで管理し、効果値を追加してもロジックを散らさない。
+	var relic_data := _load_data("res://data/relic.json") as Dictionary
+	if relic_data == null:
+		return []
+	var relics: Array[RelicData] = []
+	for entry in relic_data.get("lines", []):
+		var relic := RelicData.new()
+		relic.id = int(entry.get("id", 0))
+		relic.guid = str(entry.get("guid", ""))
+		relic.name = tr(str(entry.get("name", "")))
+		relic.description = tr(str(entry.get("description", "")))
+		relic.detail_description = tr(str(entry.get("detail_description", "")))
+		relic.battle_start_shield = int(entry.get("battle_start_shield", 0))
+		relic.battle_victory_gold = int(entry.get("battle_victory_gold", 0))
+		relic.treasure_choice_bonus = int(entry.get("treasure_choice_bonus", 0))
+		for effect in entry.get("hook_effects", []):
+			relic.hook_effects.append(effect.duplicate(true))
+		relics.append(relic)
+	return relics

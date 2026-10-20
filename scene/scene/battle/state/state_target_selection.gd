@@ -12,9 +12,7 @@ var _enabled_input: bool = false
 
 func enter_with_params(params: Dictionary):
 	var card: Card = params["card"]
-	var card_data:CardData = card.get_data()
 	var root: BattleScene = get_tree().current_scene
-	var player_status: BattlePlayerStatus = root.get_player()
 	_card = card
 	_enemies = root.get_enemies()	
 	_enabled_input = false

@@ -12,7 +12,8 @@ enum ActionType {
 	MULTI_TURN_ACTION,
 	ATTACK_UP,
 	ATTACK_DOWN,
-	UNDEFINED
+	UNDEFINED,
+	POISON
 }
 
 enum ActionTarget {
@@ -28,6 +29,8 @@ var _type: ActionType
 var _target: ActionTarget
 var _value: BattleAcitonValue
 var _priority: int
+## 状態効果の持続ターン。0なら戦闘中持続する。
+var _turns: int = 0
 
 func get_name() -> String:
 	return _name
@@ -59,6 +62,12 @@ func get_priority() -> int:
 func set_priority(priority: int) -> void:
 	_priority = priority
 
+func get_turns() -> int:
+	return _turns
+
+func set_turns(turns: int) -> void:
+	_turns = maxi(0, turns)
+
 func _string_to_action_type(type: String) -> ActionType:
 	match type:
 		"attack": return ActionType.ATTACK
@@ -68,6 +77,7 @@ func _string_to_action_type(type: String) -> ActionType:
 		"multi_turn_action": return ActionType.MULTI_TURN_ACTION
 		"attackup": return ActionType.ATTACK_UP
 		"attackdown": return ActionType.ATTACK_DOWN
+		"poison": return ActionType.POISON
 	return ActionType.UNDEFINED
 
 func _string_to_action_target(target: String) -> ActionTarget:

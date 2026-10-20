@@ -79,6 +79,89 @@
 					"card": "55a368a5-56e0-4364-ae5d-f77a02d56799",
 					"id": "14"
 				}
+			],
+			"job": "warrior"
+		},
+		{
+			"guid": "1a18323d-240e-49f0-9254-cdd0671ca089",
+			"id": "1",
+			"job": "mage",
+			"cards": [
+				{
+					"guid": "583c1f3d-caff-43b6-9d42-763ed72b233a",
+					"id": "0",
+					"card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+				},
+				{
+					"guid": "d945a268-4e62-4f69-89ba-e39f1879082d",
+					"id": "1",
+					"card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+				},
+				{
+					"guid": "6341ea95-1b17-401c-b872-3d7729ca38bc",
+					"id": "2",
+					"card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+				},
+				{
+					"guid": "8f45c391-e8e3-4759-b013-d9577e3dfffe",
+					"id": "3",
+					"card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+				},
+				{
+					"guid": "ce46361c-fc5e-4c06-bc83-c0337b911e10",
+					"id": "4",
+					"card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+				},
+				{
+					"guid": "1604e58b-ee31-4ba3-9396-54f6352f5754",
+					"id": "5",
+					"card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+				},
+				{
+					"guid": "8c1dab0c-49de-4eb7-9a83-9cc379edafdd",
+					"id": "6",
+					"card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+				},
+				{
+					"guid": "4ea2823a-99b4-4ff0-b20d-a26c58c7d4e4",
+					"id": "7",
+					"card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+				},
+				{
+					"guid": "5c933e61-30b2-4c84-b83c-c631881cd91d",
+					"id": "8",
+					"card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+				},
+				{
+					"guid": "08dac3cf-e20a-4273-8c0a-e5eb43627785",
+					"id": "9",
+					"card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+				},
+				{
+					"guid": "e281856f-06bf-456b-b5c8-f99e3058d93e",
+					"id": "10",
+					"card": "c88dc5be-7267-48cf-a353-00d34d28cea0"
+				},
+				{
+					"guid": "9c69a94a-cf10-4b56-973f-2631cce35e20",
+					"id": "11",
+					"card": "c88dc5be-7267-48cf-a353-00d34d28cea0"
+				},
+				{
+					"guid": "5e5e067e-bb7d-4fb6-9c37-90c9dedfb963",
+					"id": "12",
+					"card": "c88dc5be-7267-48cf-a353-00d34d28cea0"
+				},
+				{
+					"guid": "03a38c8e-a12e-4b8c-ac86-5e06e1a2b923",
+					"id": "13",
+					"card": "6c94780a-b8f4-45f6-bc54-9c34775e5142"
+				},
+				{
+					"guid": "4af270eb-fbe2-4339-b985-ff749283d4bd",
+					"id": "14",
+					"card": "6c94780a-b8f4-45f6-bc54-9c34775e5142"
+				}
 			]
 		}
 	]

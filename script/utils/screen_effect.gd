@@ -6,6 +6,17 @@ static var _active_fadeout_twists: Dictionary = {}
 static var _active_pulse_twists: Dictionary = {}
 static var _active_shake_twists: Dictionary = {}
 static var _active_flash_twists: Dictionary = {}
+## 演出用の乱数はゲーム判定用とは分け、見た目の揺れで戦闘結果が変わらないようにする。
+static var _visual_rng: RandomNumberGenerator
+
+static func set_seed(seed_value: int) -> void:
+	_visual_rng = RandomNumberGenerator.new()
+	_visual_rng.seed = seed_value ^ 0x5EED5EED
+
+static func _random_visual_offset(min_value: float, max_value: float) -> float:
+	if _visual_rng == null:
+		set_seed(0)
+	return _visual_rng.randf_range(min_value, max_value)
 
 static func play_fadein(target: Node2D, duration: float = 0.5):
 	if (_active_fadein_twists.has(target)):
@@ -53,8 +64,8 @@ static func play_shake(target: Node2D, duration: float = 0.5, magnitude: float =
 	for i in range(shake_count):
 		# ランダムなオフセットを生成
 		var random_offset = Vector2(
-			randf_range(-magnitude, magnitude),
-			randf_range(-magnitude, magnitude)
+			_random_visual_offset(-magnitude, magnitude),
+			_random_visual_offset(-magnitude, magnitude)
 		)
 		# 位置をランダムにシェイク
 		tween.tween_property(target, "position", original_position + random_offset, shake_time)
@@ -100,7 +111,7 @@ static func play_flash_screen(
 	var max_a: float = 0.7
 	var tween: Tween = scene.get_tree().create_tween()
 	for i in range(count):
-		var delay_time = randf_range(min_interval, max_interval) * i
+		var delay_time = _random_visual_offset(min_interval, max_interval) * i
 		tween.tween_property(flash_rect, "modulate:a", max_a, duration).set_trans(Tween.TRANS_LINEAR)
 		tween.tween_property(flash_rect, "modulate:a",     0, duration).set_trans(Tween.TRANS_LINEAR).set_delay(delay_time)
 	await tween.finished	

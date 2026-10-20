@@ -94,7 +94,7 @@
 						"expression": "6"
 					},
 					"steps": [],
-					"frequency": 65,
+					"frequency": 55,
 					"id": "0",
 					"conditions": [],
 					"priority": 0
@@ -102,16 +102,33 @@
 				{
 					"guid": "469efbec-1376-40cc-b8f1-ce34fd0c8938",
 					"name": "Harden",
-					"type": "attackup",
+					"type": "shield",
 					"target": "self",
 					"value": {
 						"guid": "bfa14854-ad66-4990-b3dd-5b6d6942a39d",
 						"type": "fixed",
-						"expression": "3"
+						"expression": "6"
 					},
 					"steps": [],
-					"frequency": 35,
+					"frequency": 25,
 					"id": "1",
+					"conditions": [],
+					"turns": 1,
+					"priority": 0
+				},
+				{
+					"guid": "5bd1bfe2-a450-4dcd-a698-4c32a1f7dcb2",
+					"name": "Toxic Spit",
+					"type": "poison",
+					"target": "player",
+					"value": {
+						"guid": "cceccec8-98a1-48cf-bf62-59355d20508a",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 20,
+					"id": "2",
 					"conditions": [],
 					"priority": 0
 				}

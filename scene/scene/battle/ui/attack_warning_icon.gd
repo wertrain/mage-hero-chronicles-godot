@@ -25,9 +25,9 @@ var _icon_map: Dictionary = {
 
 var _icon_type: Icons = Icons.ATTACK
 var _attack_value: int = 0
-var _floating_tween: Tween
 # 元の位置を保持するための変数
 var _original_position: Vector2
+var _float_elapsed: float = 0.0
 
 func set_icon(type: Icons, value: int) -> void:
 	_icon_type = type
@@ -36,24 +36,16 @@ func set_icon(type: Icons, value: int) -> void:
 	$Label.visible = not (value == 0)
 	$Label.text = "%d" % value	
 
-func start_floating():
-	var float_distance = 5  # 小さな上下動き
-	var duration = 1.0  # アニメーションの速さ
-	_floating_tween = get_tree().create_tween()
-	_floating_tween.tween_property(self, "position", _original_position + Vector2(0, -float_distance), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_floating_tween.tween_property(self, "position", _original_position + Vector2(0, +float_distance), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_floating_tween.set_loops(0)
-
-func stop_floating():
-	if (_floating_tween != null and _floating_tween.is_running()):
-		_floating_tween.stop()
-
 func _ready() -> void:
 	# 元の位置を保持
 	_original_position = position
+	_float_elapsed = 0.0
 	set_icon(Icons.ATTACK, 0)
-	start_floating()
 	set_visible(false)
 
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	# Tweenの無限ループに頼らず、予告アイコンを滑らかに上下させる。
+	if not visible:
+		return
+	_float_elapsed += delta
+	position = _original_position + Vector2(0, sin(_float_elapsed * TAU / 2.0) * 5.0)

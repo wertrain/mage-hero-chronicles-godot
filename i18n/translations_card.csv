@@ -53,3 +53,57 @@ CARD_BLOCK_DDESC_UPGRADED,Gain 8 block.,シールドを8つ得る
 CARD_WARRIORS_STANCE_UPGRADED,Warrior's Stance+,戦士の構え＋
 CARD_WARRIORS_STANCE_DESC_UPGRADED,Gain 7 block. Gain 5 block at the start of your next turn.,シールドを7つ得て、さらにターンごとに5つシールドを得る
 CARD_WARRIORS_STANCE_DDESC_UPGRADED,Gain 7 block. Gain 5 block at the start of your next turn.,シールドを7つ得て、さらにターンごとに5つシールドを得る
+CARD_MAGE_FIREBOLT,Firebolt,火球
+CARD_MAGE_FIREBOLT_DESC,Deal 7 damage.,敵1体に7ダメージを与える
+CARD_MAGE_FIREBOLT_DDESC,Deal 7 damage.,敵1体に7ダメージを与える
+CARD_MAGE_FIREBOLT_UPGRADED,Firebolt+,火球＋
+CARD_MAGE_FIREBOLT_DESC_UPGRADED,Deal 10 damage.,敵1体に10ダメージを与える
+CARD_MAGE_FIREBOLT_DDESC_UPGRADED,Deal 10 damage.,敵1体に10ダメージを与える
+CARD_MAGE_MANA_WARD,Mana Ward,マナの護り
+CARD_MAGE_MANA_WARD_DESC,Gain 6 shield and draw 1 card.,シールドを6得て、カードを1枚引く
+CARD_MAGE_MANA_WARD_DDESC,Gain 6 shield and draw 1 card.,シールドを6得て、カードを1枚引く
+CARD_MAGE_MANA_WARD_UPGRADED,Mana Ward+,マナの護り＋
+CARD_MAGE_MANA_WARD_DESC_UPGRADED,Gain 8 shield and draw 1 card.,シールドを8得て、カードを1枚引く
+CARD_MAGE_MANA_WARD_DDESC_UPGRADED,Gain 8 shield and draw 1 card.,シールドを8得て、カードを1枚引く
+CARD_MAGE_ARCANE_BURST,Arcane Burst,秘術の奔流
+CARD_MAGE_ARCANE_BURST_DESC,Deal 12 damage to all enemies.,敵全体に12ダメージを与える
+CARD_MAGE_ARCANE_BURST_DDESC,Deal 12 damage to all enemies.,敵全体に12ダメージを与える
+CARD_MAGE_ARCANE_BURST_UPGRADED,Arcane Burst+,秘術の奔流＋
+CARD_MAGE_ARCANE_BURST_DESC_UPGRADED,Deal 16 damage to all enemies.,敵全体に16ダメージを与える
+CARD_MAGE_ARCANE_BURST_DDESC_UPGRADED,Deal 16 damage to all enemies.,敵全体に16ダメージを与える
+CARD_JOB_REWARD_FLAME_SLASH,Flame Slash,火炎斬り
+CARD_JOB_REWARD_FLAME_SLASH_DESC,Deal 14 damage and gain 4 shield.,敵1体に14ダメージを与え、シールドを4得る
+CARD_JOB_REWARD_FLAME_SLASH_DDESC,Deal 14 damage and gain 4 shield.,敵1体に14ダメージを与え、シールドを4得る
+CARD_JOB_REWARD_FLAME_SLASH_UPGRADED,Flame Slash+,火炎斬り＋
+CARD_JOB_REWARD_FLAME_SLASH_DESC_UPGRADED,Deal 18 damage and gain 6 shield.,敵1体に18ダメージを与え、シールドを6得る
+CARD_JOB_REWARD_FLAME_SLASH_DDESC_UPGRADED,Deal 18 damage and gain 6 shield.,敵1体に18ダメージを与え、シールドを6得る
+CARD_MAGE_VENOM_BOLT,Venom Bolt,毒矢
+CARD_MAGE_VENOM_BOLT_DESC,Deal 4 damage and inflict Poison 2.,敵1体に4ダメージを与え、毒2を付与する
+CARD_MAGE_VENOM_BOLT_DDESC,Deal 4 damage and inflict Poison 2. Poison deals damage at the start of the enemy's turn and loses 1 strength each time. Reapplying Poison adds its strength.,敵1体に4ダメージを与え、毒2を付与する。毒は敵のターン開始時にダメージを与え、発動するたびに強さが1減る。毒を重ねると強さが加算される
+CARD_MAGE_FLAME_SEAL,Flame Seal,火炎の印
+CARD_MAGE_FLAME_SEAL_DESC,Deal 5 damage and inflict Burn 2.,敵1体に5ダメージを与え、火傷2を付与する
+CARD_MAGE_FLAME_SEAL_DDESC,Deal 5 damage and inflict Burn 2. Burn deals damage at the start of the enemy's turn and loses 1 strength each time. Reapplying Burn adds its strength.,敵1体に5ダメージを与え、火傷2を付与する。火傷は敵のターン開始時にダメージを与え、発動するたびに強さが1減る。火傷を重ねると強さが加算される
+CARD_WARRIOR_CRIPPLING_BLOW,Crippling Blow,弱体の一撃
+CARD_WARRIOR_CRIPPLING_BLOW_DESC,Deal 6 damage and reduce the enemy's attack by 2 for 2 turns.,敵1体に6ダメージを与え、2ターンの間攻撃力を2下げる
+CARD_WARRIOR_CRIPPLING_BLOW_DDESC,Deal 6 damage and reduce the enemy's attack by 2 for 2 turns.,敵1体に6ダメージを与え、2ターンの間攻撃力を2下げる
+CARD_WARRIOR_STUNNING_BLOW,Stunning Blow,気絶打ち
+CARD_WARRIOR_STUNNING_BLOW_DESC,Deal 6 damage and stun the enemy for 1 turn.,敵1体に6ダメージを与え、1ターン気絶させる
+CARD_WARRIOR_STUNNING_BLOW_DDESC,Deal 6 damage and stun the enemy for 1 turn. A stunned enemy skips its next action.,敵1体に6ダメージを与え、1ターン気絶させる。気絶した敵は次の行動を飛ばす
+CARD_WARRIOR_SECOND_WIND,Second Wind,戦いの息吹
+CARD_WARRIOR_SECOND_WIND_DESC,Regenerate 3 HP at the start of your next 3 turns.,次の3ターンの開始時にHPを3回復する
+CARD_WARRIOR_SECOND_WIND_DDESC,Regenerate 3 HP at the start of your next 3 turns. The effect is removed after its final tick.,次の3ターンの開始時にHPを3回復する。最後の発動後に効果は消える
+CARD_MAGE_VENOM_BOLT_UPGRADED,Venom Bolt+,毒矢＋
+CARD_MAGE_VENOM_BOLT_DESC_UPGRADED,Deal 6 damage and inflict Poison 3.,敵1体に6ダメージを与え、毒3を付与する
+CARD_MAGE_VENOM_BOLT_DDESC_UPGRADED,Deal 6 damage and inflict Poison 3. Poison deals damage at the start of the enemy's turn and loses 1 strength each time. Reapplying Poison adds its strength.,敵1体に6ダメージを与え、毒3を付与する。毒は敵のターン開始時にダメージを与え、発動するたびに強さが1減る。毒を重ねると強さが加算される
+CARD_MAGE_FLAME_SEAL_UPGRADED,Flame Seal+,火炎の印＋
+CARD_MAGE_FLAME_SEAL_DESC_UPGRADED,Deal 7 damage and inflict Burn 3.,敵1体に7ダメージを与え、火傷3を付与する
+CARD_MAGE_FLAME_SEAL_DDESC_UPGRADED,Deal 7 damage and inflict Burn 3. Burn deals damage at the start of the enemy's turn and loses 1 strength each time. Reapplying Burn adds its strength.,敵1体に7ダメージを与え、火傷3を付与する。火傷は敵のターン開始時にダメージを与え、発動するたびに強さが1減る。火傷を重ねると強さが加算される
+CARD_WARRIOR_CRIPPLING_BLOW_UPGRADED,Crippling Blow+,弱体の一撃＋
+CARD_WARRIOR_CRIPPLING_BLOW_DESC_UPGRADED,Deal 8 damage and reduce the enemy's attack by 3 for 2 turns.,敵1体に8ダメージを与え、2ターンの間攻撃力を3下げる
+CARD_WARRIOR_CRIPPLING_BLOW_DDESC_UPGRADED,Deal 8 damage and reduce the enemy's attack by 3 for 2 turns. This lowers damage from both fixed and attack-based actions.,敵1体に8ダメージを与え、2ターンの間攻撃力を3下げる。固定値・攻撃力参照のどちらの攻撃ダメージも減らす
+CARD_WARRIOR_STUNNING_BLOW_UPGRADED,Stunning Blow+,気絶打ち＋
+CARD_WARRIOR_STUNNING_BLOW_DESC_UPGRADED,Deal 9 damage and stun the enemy for 1 turn.,敵1体に9ダメージを与え、1ターン気絶させる
+CARD_WARRIOR_STUNNING_BLOW_DDESC_UPGRADED,Deal 9 damage and stun the enemy for 1 turn. A stunned enemy skips its next action.,敵1体に9ダメージを与え、1ターン気絶させる。気絶した敵は次の行動を飛ばす
+CARD_WARRIOR_SECOND_WIND_UPGRADED,Second Wind+,戦いの息吹＋
+CARD_WARRIOR_SECOND_WIND_DESC_UPGRADED,Regenerate 4 HP at the start of your next 3 turns.,次の3ターンの開始時にHPを4回復する
+CARD_WARRIOR_SECOND_WIND_DDESC_UPGRADED,Regenerate 4 HP at the start of your next 3 turns. The effect is removed after its final tick.,次の3ターンの開始時にHPを4回復する。最後の発動後に効果は消える

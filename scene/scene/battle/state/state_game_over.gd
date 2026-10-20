@@ -3,6 +3,7 @@ extends State
 
 func enter() -> void:
 	var root: BattleScene = get_tree().current_scene
+	root.trigger_relic_hook(RunData.RelicHook.BATTLE_DEFEAT, {"player": root.get_player()})
 	# 敗北を知らせ、入力待ちの案内を画面上に残す。
 	var retry_message := tr("BATTLE_DEFEAT_RETRY")
 	await root.get_sequence_message().show_message(retry_message)

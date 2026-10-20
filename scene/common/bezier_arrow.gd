@@ -111,13 +111,13 @@ func get_bezier_points(num_points: int) -> Array:
 	return curve_points
 
 ## 2次ベジェ曲線上の点を計算する関数
-func calculate_bezier_point(t: float, p0: Vector2, p1: Vector2, p2: Vector2) -> Vector2:
+func calculate_bezier_point(t: float, start_point: Vector2, control_point: Vector2, end_point: Vector2) -> Vector2:
 	var u = 1 - t
 	var tt = t * t
 	var uu = u * u
 
-	var point = uu * p0   # (1 - t)^2 * p0
-	point += 2 * u * t * p1  # 2 * (1 - t) * t * p1
-	point += tt * p2   # t^2 * p2
+	var point = uu * start_point   # (1 - t)^2 * start point
+	point += 2 * u * t * control_point  # 2 * (1 - t) * t * control point
+	point += tt * end_point   # t^2 * end point
 	
 	return point

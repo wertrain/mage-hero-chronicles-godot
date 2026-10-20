@@ -25,15 +25,18 @@ func set_shield(shield: int) -> void:
 func set_status_effect_icons(effects: Array[BattleStatusEffect]) -> void:
 	for child in $Node2D_StatusIcons.get_children():
 		child.queue_free()
-	for index in range(effects.size()):
-		var effect:BattleStatusEffect = effects[index]
+	var visible_index := 0
+	for effect: BattleStatusEffect in effects:
 		if BattleStatusEffectIcon.get_icon_type(effect.get_type(), effect.get_value()) == BattleStatusEffectIcon.Icons.None:
 			continue
 		var node: BattleStatusEffectIcon = status_effect_icon_scene.instantiate()
-		node.position = Vector2(24 * index, 0)
+		node.position = Vector2(44 * visible_index, 0)
 		node.scale = Vector2(0.8, 0.8)
-		node.add_icon(effect.get_type(), effect.get_value())
 		$Node2D_StatusIcons.add_child(node)
+		# 子スプライトの_ready()でアトラスを初期化してから表示内容を設定する。
+		var remaining_turns := effect.get_remaining_turns() if effect.get_duration_type() == BattleStatusEffect.EffectDurationType.TURN_BASED else 0
+		node.add_icon(effect.get_type(), effect.get_value(), remaining_turns)
+		visible_index += 1
 
 func get_health() -> int:
 	return $TextureProgressBar.value

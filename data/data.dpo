@@ -104,6 +104,19 @@
                         "description": "text",
                         "defaultValue": "text"
                     }
+                },
+                {
+                    "typeStr": "text",
+                    "guid": "7801a100-53cb-5f4f-a470-ec6dbcf62001",
+                    "name": "job",
+                    "description": "Card reward class",
+                    "defaultValue": "warrior",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
                 }
             ],
             "lines": [
@@ -131,7 +144,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "3333024d-299d-475f-bc9a-8af7b03888bc"
+                    "upgrade_guid": "3333024d-299d-475f-bc9a-8af7b03888bc",
+                    "job": "warrior"
                 },
                 {
                     "guid": "55a368a5-56e0-4364-ae5d-f77a02d56799",
@@ -157,7 +171,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "bcfbec3f-2ee5-4457-9451-9a46d6c8b407"
+                    "upgrade_guid": "bcfbec3f-2ee5-4457-9451-9a46d6c8b407",
+                    "job": "warrior"
                 },
                 {
                     "guid": "6e32b47e-0359-48ab-abde-558b562cfcd9",
@@ -197,7 +212,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "9c610179-229b-4fa2-bcf9-81daf2045adb"
+                    "upgrade_guid": "9c610179-229b-4fa2-bcf9-81daf2045adb",
+                    "job": "warrior"
                 },
                 {
                     "guid": "10a4cd28-bea9-4174-9c37-e0b2b25ca08c",
@@ -237,7 +253,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "25710174-ad79-4c0a-abef-8f8ab1edb3a9"
+                    "upgrade_guid": "25710174-ad79-4c0a-abef-8f8ab1edb3a9",
+                    "job": "warrior"
                 },
                 {
                     "guid": "b749f9dd-00a6-4bc9-921a-ee7bfbc2f4e5",
@@ -263,7 +280,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "f6d9805b-168e-4ee9-9b71-f5c7e1387fe2"
+                    "upgrade_guid": "f6d9805b-168e-4ee9-9b71-f5c7e1387fe2",
+                    "job": "warrior"
                 },
                 {
                     "guid": "77fdd3fd-1bce-4ae9-82ba-d23e54882db2",
@@ -289,7 +307,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "e48e6ab2-d27f-449c-aea0-33c9c357f2c7"
+                    "upgrade_guid": "e48e6ab2-d27f-449c-aea0-33c9c357f2c7",
+                    "job": "warrior"
                 },
                 {
                     "guid": "971c7720-17c8-44ee-9ec8-c5e4f4546d8a",
@@ -329,7 +348,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "8b3cdc1e-6df8-47b1-8bdf-509221223664"
+                    "upgrade_guid": "8b3cdc1e-6df8-47b1-8bdf-509221223664",
+                    "job": "warrior"
                 },
                 {
                     "guid": "857fee85-1567-4d33-9e07-3916b8188f10",
@@ -355,7 +375,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "6bc7324e-60c7-4df3-8e19-b47ace575d9f"
+                    "upgrade_guid": "6bc7324e-60c7-4df3-8e19-b47ace575d9f",
+                    "job": "warrior"
                 },
                 {
                     "guid": "b2036b92-b1ed-4137-88a0-f28767e5a7ee",
@@ -395,7 +416,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": "0ab8667f-bab0-4fa8-a877-095e1e82a537"
+                    "upgrade_guid": "0ab8667f-bab0-4fa8-a877-095e1e82a537",
+                    "job": "warrior"
                 },
                 {
                     "guid": "3333024d-299d-475f-bc9a-8af7b03888bc",
@@ -421,7 +443,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "bcfbec3f-2ee5-4457-9451-9a46d6c8b407",
@@ -447,7 +470,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "9c610179-229b-4fa2-bcf9-81daf2045adb",
@@ -487,7 +511,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "25710174-ad79-4c0a-abef-8f8ab1edb3a9",
@@ -527,7 +552,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "f6d9805b-168e-4ee9-9b71-f5c7e1387fe2",
@@ -553,7 +579,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "e48e6ab2-d27f-449c-aea0-33c9c357f2c7",
@@ -579,7 +606,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "8b3cdc1e-6df8-47b1-8bdf-509221223664",
@@ -619,7 +647,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "6bc7324e-60c7-4df3-8e19-b47ace575d9f",
@@ -645,7 +674,8 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
                 },
                 {
                     "guid": "0ab8667f-bab0-4fa8-a877-095e1e82a537",
@@ -685,7 +715,672 @@
                         }
                     ],
                     "rarity": 0,
-                    "upgrade_guid": ""
+                    "upgrade_guid": "",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "88618d89-8a04-53ad-9457-f48f18d40a23",
+                    "id": "18",
+                    "name": "CARD_MAGE_FIREBOLT",
+                    "cost": 1,
+                    "description": "CARD_MAGE_FIREBOLT_DESC",
+                    "detail_description": "CARD_MAGE_FIREBOLT_DDESC",
+                    "actions": [
+                        {
+                            "guid": "d4820ecf-5255-5790-b675-38a3a66cf3cb",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "92b7c63e-da9d-5385-bc84-8d250a120b1b",
+                                "type": "fixed",
+                                "expression": "7"
+                            }
+                        }
+                    ],
+                    "rarity": 0,
+                    "upgrade_guid": "d288b11d-ab2a-5ef4-97db-d9b2eafd1d56",
+                    "job": "mage"
+                },
+                {
+                    "guid": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7",
+                    "id": "19",
+                    "name": "CARD_MAGE_MANA_WARD",
+                    "cost": 1,
+                    "description": "CARD_MAGE_MANA_WARD_DESC",
+                    "detail_description": "CARD_MAGE_MANA_WARD_DDESC",
+                    "actions": [
+                        {
+                            "guid": "8ddf1897-c3e9-5359-ad43-d4cafcdad7fe",
+                            "type": "shield",
+                            "target": "self",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "3b34fe4c-737b-5d10-9644-1db4a0045afe",
+                                "type": "fixed",
+                                "expression": "6"
+                            }
+                        },
+                        {
+                            "guid": "796cdb3a-9ce3-56f7-b1eb-2a3999171a96",
+                            "type": "draw",
+                            "target": "self",
+                            "turns": 0,
+                            "id": "1",
+                            "effect_type": "",
+                            "effect_index": 21,
+                            "value": {
+                                "guid": "9468b5c2-dc9d-5a78-aef6-fc5ba563ff4d",
+                                "type": "fixed",
+                                "expression": "1"
+                            }
+                        }
+                    ],
+                    "rarity": 0,
+                    "upgrade_guid": "8aac0594-4f61-5cc2-b164-29a45b3d502b",
+                    "job": "mage"
+                },
+                {
+                    "guid": "e7098466-b207-5f3d-81f5-0fbb2f68f55d",
+                    "id": "20",
+                    "name": "CARD_MAGE_ARCANE_BURST",
+                    "cost": 2,
+                    "description": "CARD_MAGE_ARCANE_BURST_DESC",
+                    "detail_description": "CARD_MAGE_ARCANE_BURST_DDESC",
+                    "actions": [
+                        {
+                            "guid": "b65e15d6-f1b1-5e6f-80e1-9d498cba4f83",
+                            "type": "damage",
+                            "target": "all_enemies",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "79a0b4a2-324b-5f7d-b3bc-57c250aa0cac",
+                                "type": "fixed",
+                                "expression": "12"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "d41d3771-1d33-57c7-8ebc-3a0e374ab4ea",
+                    "job": "mage"
+                },
+                {
+                    "guid": "d288b11d-ab2a-5ef4-97db-d9b2eafd1d56",
+                    "id": "21",
+                    "name": "CARD_MAGE_FIREBOLT_UPGRADED",
+                    "cost": 1,
+                    "description": "CARD_MAGE_FIREBOLT_DESC_UPGRADED",
+                    "detail_description": "CARD_MAGE_FIREBOLT_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "f440e740-aaf3-507b-9368-8a7e34f226d5",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "71483a2b-0b93-5058-8096-ee2790a21ddf",
+                                "type": "fixed",
+                                "expression": "10"
+                            }
+                        }
+                    ],
+                    "rarity": 0,
+                    "upgrade_guid": "",
+                    "job": "mage"
+                },
+                {
+                    "guid": "8aac0594-4f61-5cc2-b164-29a45b3d502b",
+                    "id": "22",
+                    "name": "CARD_MAGE_MANA_WARD_UPGRADED",
+                    "cost": 1,
+                    "description": "CARD_MAGE_MANA_WARD_DESC_UPGRADED",
+                    "detail_description": "CARD_MAGE_MANA_WARD_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "e9953e6c-a406-5524-a13b-cb969b2ac18f",
+                            "type": "shield",
+                            "target": "self",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "4d6a759b-3889-5e67-8d49-23a45d22c7bb",
+                                "type": "fixed",
+                                "expression": "8"
+                            }
+                        },
+                        {
+                            "guid": "8436ee74-2466-5f72-bf63-60d7a86df9cd",
+                            "type": "draw",
+                            "target": "self",
+                            "turns": 0,
+                            "id": "1",
+                            "effect_type": "",
+                            "effect_index": 21,
+                            "value": {
+                                "guid": "175f334d-340c-5c8c-93ca-3f44688a15d3",
+                                "type": "fixed",
+                                "expression": "1"
+                            }
+                        }
+                    ],
+                    "rarity": 0,
+                    "upgrade_guid": "",
+                    "job": "mage"
+                },
+                {
+                    "guid": "d41d3771-1d33-57c7-8ebc-3a0e374ab4ea",
+                    "id": "23",
+                    "name": "CARD_MAGE_ARCANE_BURST_UPGRADED",
+                    "cost": 2,
+                    "description": "CARD_MAGE_ARCANE_BURST_DESC_UPGRADED",
+                    "detail_description": "CARD_MAGE_ARCANE_BURST_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "1feeef08-5c00-5a9f-9d26-965f9424e565",
+                            "type": "damage",
+                            "target": "all_enemies",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "658f174f-e434-5711-937b-fabb979435e8",
+                                "type": "fixed",
+                                "expression": "16"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "",
+                    "job": "mage"
+                },
+                {
+                    "guid": "2b1d2638-2d9c-5b34-bb46-3673c087c524",
+                    "id": "24",
+                    "name": "CARD_JOB_REWARD_FLAME_SLASH",
+                    "cost": 2,
+                    "description": "CARD_JOB_REWARD_FLAME_SLASH_DESC",
+                    "detail_description": "CARD_JOB_REWARD_FLAME_SLASH_DDESC",
+                    "actions": [
+                        {
+                            "guid": "a5b39441-495d-5087-80d7-0f3e8485f6ca",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "0f9c0225-1188-5e25-bc0a-4686c7a64312",
+                                "type": "fixed",
+                                "expression": "14"
+                            }
+                        },
+                        {
+                            "guid": "1af2a172-c7cb-5763-92e6-907e09a7e226",
+                            "type": "shield",
+                            "target": "self",
+                            "turns": 0,
+                            "id": "1",
+                            "effect_type": "",
+                            "effect_index": 21,
+                            "value": {
+                                "guid": "35211d2e-e22a-5fe3-94a3-948ae934cb8f",
+                                "type": "fixed",
+                                "expression": "4"
+                            }
+                        }
+                    ],
+                    "rarity": 2,
+                    "upgrade_guid": "0bc31613-53e7-4bcc-a9b7-2cecea843477",
+                    "job": "transition"
+                },
+                {
+                    "guid": "c88dc5be-7267-48cf-a353-00d34d28cea0",
+                    "id": "25",
+                    "name": "CARD_MAGE_VENOM_BOLT",
+                    "cost": 1,
+                    "description": "CARD_MAGE_VENOM_BOLT_DESC",
+                    "detail_description": "CARD_MAGE_VENOM_BOLT_DDESC",
+                    "actions": [
+                        {
+                            "guid": "259e799c-b595-480c-b4c9-dc07cf0d0bb5",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "0750a059-7088-4bdf-994a-54e5c987ed69",
+                                "type": "fixed",
+                                "expression": "4"
+                            }
+                        },
+                        {
+                            "guid": "58cc428b-2a89-4384-83ce-f9dac7cbff54",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "1",
+                            "status_type": "poisoned",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "23b0906a-7403-4802-96a3-036df9f9a5f4",
+                                "type": "fixed",
+                                "expression": "2"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "b26fb92a-08cc-4a07-9712-474a6774eedd",
+                    "job": "mage"
+                },
+                {
+                    "guid": "6c94780a-b8f4-45f6-bc54-9c34775e5142",
+                    "id": "26",
+                    "name": "CARD_MAGE_FLAME_SEAL",
+                    "cost": 1,
+                    "description": "CARD_MAGE_FLAME_SEAL_DESC",
+                    "detail_description": "CARD_MAGE_FLAME_SEAL_DDESC",
+                    "actions": [
+                        {
+                            "guid": "5e748630-85e9-45cc-9851-5b3831d9696f",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "d277229f-718e-4866-b331-49d5de54a860",
+                                "type": "fixed",
+                                "expression": "5"
+                            }
+                        },
+                        {
+                            "guid": "890cfb88-f008-4114-b972-f0498256261e",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "1",
+                            "status_type": "burned",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "edebe6d1-1b89-4a4d-8c21-7605f23632ad",
+                                "type": "fixed",
+                                "expression": "2"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "",
+                    "job": "mage"
+                },
+                {
+                    "guid": "694652ef-a0b0-4e8f-b253-93185839bfdf",
+                    "id": "27",
+                    "name": "CARD_WARRIOR_CRIPPLING_BLOW",
+                    "cost": 1,
+                    "description": "CARD_WARRIOR_CRIPPLING_BLOW_DESC",
+                    "detail_description": "CARD_WARRIOR_CRIPPLING_BLOW_DDESC",
+                    "actions": [
+                        {
+                            "guid": "31c2ba76-956f-4035-9aae-3fe5bc9bfb9f",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "74023dd4-98f9-4f23-9a83-dd4a92e0b236",
+                                "type": "fixed",
+                                "expression": "6"
+                            }
+                        },
+                        {
+                            "guid": "422a4613-5a18-4aed-af10-74b705f10afe",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 2,
+                            "id": "1",
+                            "status_type": "offense",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "46fcc97f-fd66-4c29-b806-18e56c11af1d",
+                                "type": "fixed",
+                                "expression": "-2"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "82232715-26cd-40a4-98ad-7bb99668f977",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "6cfafe9f-5c14-40bc-b7fe-0950e0ac6721",
+                    "id": "28",
+                    "name": "CARD_WARRIOR_STUNNING_BLOW",
+                    "cost": 2,
+                    "description": "CARD_WARRIOR_STUNNING_BLOW_DESC",
+                    "detail_description": "CARD_WARRIOR_STUNNING_BLOW_DDESC",
+                    "actions": [
+                        {
+                            "guid": "5a4cbff7-0926-410c-8caf-101b2a486447",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "566643be-5ae0-470f-8e14-9683626fb66c",
+                                "type": "fixed",
+                                "expression": "6"
+                            }
+                        },
+                        {
+                            "guid": "b75c7d49-4c8a-4386-9216-d898ec3efeb6",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 1,
+                            "id": "1",
+                            "status_type": "stunned",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "dd95ef46-ac66-4f1f-8a3d-3f1a68859a83",
+                                "type": "fixed",
+                                "expression": "1"
+                            }
+                        }
+                    ],
+                    "rarity": 2,
+                    "upgrade_guid": "9e952067-8b2a-4698-b08f-284741b427b9",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "f8540ad7-8473-4806-a93e-e20be2073874",
+                    "id": "29",
+                    "name": "CARD_WARRIOR_SECOND_WIND",
+                    "cost": 1,
+                    "description": "CARD_WARRIOR_SECOND_WIND_DESC",
+                    "detail_description": "CARD_WARRIOR_SECOND_WIND_DDESC",
+                    "actions": [
+                        {
+                            "guid": "9c6c1877-c043-4813-ac21-5591051dea34",
+                            "type": "status",
+                            "target": "self",
+                            "turns": 3,
+                            "id": "0",
+                            "status_type": "regen",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "491653ba-0aae-4ebe-965d-1e766ff4a7a4",
+                                "type": "fixed",
+                                "expression": "3"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "05f3bb7f-0eee-4d03-a3ef-2973079743f8",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "1529bdb9-89a5-4595-ac0a-c2e4d6189bde",
+                    "id": "30",
+                    "name": "CARD_MAGE_VENOM_BOLT_UPGRADED",
+                    "cost": 1,
+                    "description": "CARD_MAGE_VENOM_BOLT_DESC_UPGRADED",
+                    "detail_description": "CARD_MAGE_VENOM_BOLT_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "e2400f4d-f2cd-4821-a409-0d605646bba2",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "1f8bf922-631b-4333-a3e9-ff5bd0d80550",
+                                "type": "fixed",
+                                "expression": "6"
+                            }
+                        },
+                        {
+                            "guid": "05406b29-4f75-4326-ae9b-0f4dbd6e9ec7",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "1",
+                            "status_type": "poisoned",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "5d1aeae5-f34f-484f-ad3f-42244c84dd5e",
+                                "type": "fixed",
+                                "expression": "3"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "",
+                    "job": "mage"
+                },
+                {
+                    "guid": "b26fb92a-08cc-4a07-9712-474a6774eedd",
+                    "id": "31",
+                    "name": "CARD_MAGE_FLAME_SEAL_UPGRADED",
+                    "cost": 1,
+                    "description": "CARD_MAGE_FLAME_SEAL_DESC_UPGRADED",
+                    "detail_description": "CARD_MAGE_FLAME_SEAL_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "557d622b-ffda-4981-8aca-0787bf42f7cc",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "4662c1a5-e664-442c-a060-4b14aa4827e3",
+                                "type": "fixed",
+                                "expression": "7"
+                            }
+                        },
+                        {
+                            "guid": "abc5811a-c68d-4c9e-ae0e-aaf450008186",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "1",
+                            "status_type": "burned",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "bfbbd2bc-5d0e-4909-8cba-1428d0902d8a",
+                                "type": "fixed",
+                                "expression": "3"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "",
+                    "job": "mage"
+                },
+                {
+                    "guid": "82232715-26cd-40a4-98ad-7bb99668f977",
+                    "id": "32",
+                    "name": "CARD_WARRIOR_CRIPPLING_BLOW_UPGRADED",
+                    "cost": 1,
+                    "description": "CARD_WARRIOR_CRIPPLING_BLOW_DESC_UPGRADED",
+                    "detail_description": "CARD_WARRIOR_CRIPPLING_BLOW_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "07b55f24-a2be-4cf9-b310-1a7010113e38",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "9517c59a-b936-4d76-903b-8e6d63ea01fc",
+                                "type": "fixed",
+                                "expression": "8"
+                            }
+                        },
+                        {
+                            "guid": "f5932aee-56f0-4440-be45-cb30499b33b9",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 2,
+                            "id": "1",
+                            "status_type": "offense",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "05c65978-0c02-4077-93c0-d4c7e0293c83",
+                                "type": "fixed",
+                                "expression": "-3"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "9e952067-8b2a-4698-b08f-284741b427b9",
+                    "id": "33",
+                    "name": "CARD_WARRIOR_STUNNING_BLOW_UPGRADED",
+                    "cost": 2,
+                    "description": "CARD_WARRIOR_STUNNING_BLOW_DESC_UPGRADED",
+                    "detail_description": "CARD_WARRIOR_STUNNING_BLOW_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "dc94b1ca-5e6d-46a0-b5ab-18383dbcc005",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "e577fdd2-bd1f-4b7c-ac21-fd72dfad4937",
+                                "type": "fixed",
+                                "expression": "9"
+                            }
+                        },
+                        {
+                            "guid": "c4cf7343-9d8d-446a-8b91-16c0d18c6070",
+                            "type": "status",
+                            "target": "enemy",
+                            "turns": 1,
+                            "id": "1",
+                            "status_type": "stunned",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "a7e1e3d0-df01-4af4-b32d-4984e4287cb8",
+                                "type": "fixed",
+                                "expression": "1"
+                            }
+                        }
+                    ],
+                    "rarity": 2,
+                    "upgrade_guid": "",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "05f3bb7f-0eee-4d03-a3ef-2973079743f8",
+                    "id": "34",
+                    "name": "CARD_WARRIOR_SECOND_WIND_UPGRADED",
+                    "cost": 1,
+                    "description": "CARD_WARRIOR_SECOND_WIND_DESC_UPGRADED",
+                    "detail_description": "CARD_WARRIOR_SECOND_WIND_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "4dab49b1-f775-4827-adc3-29281b64587f",
+                            "type": "status",
+                            "target": "self",
+                            "turns": 3,
+                            "id": "0",
+                            "status_type": "regen",
+                            "effect_type": "",
+                            "effect_index": 0,
+                            "value": {
+                                "guid": "80bd0dd8-b80c-4028-88a5-ca7551219ae9",
+                                "type": "fixed",
+                                "expression": "4"
+                            }
+                        }
+                    ],
+                    "rarity": 1,
+                    "upgrade_guid": "",
+                    "job": "warrior"
+                },
+                {
+                    "guid": "0bc31613-53e7-4bcc-a9b7-2cecea843477",
+                    "id": "35",
+                    "name": "CARD_JOB_REWARD_FLAME_SLASH_UPGRADED",
+                    "cost": 2,
+                    "description": "CARD_JOB_REWARD_FLAME_SLASH_DESC_UPGRADED",
+                    "detail_description": "CARD_JOB_REWARD_FLAME_SLASH_DDESC_UPGRADED",
+                    "actions": [
+                        {
+                            "guid": "4ecdb6b5-07a3-41a2-a72e-d6af1187d45c",
+                            "type": "damage",
+                            "target": "enemy",
+                            "turns": 0,
+                            "id": "0",
+                            "effect_type": "impact_a",
+                            "effect_index": 20,
+                            "value": {
+                                "guid": "c1684e7d-1817-44ee-9353-bd8f654bdb83",
+                                "type": "fixed",
+                                "expression": "18"
+                            }
+                        },
+                        {
+                            "guid": "76436df2-6ca0-44d0-ad26-25cd0b91423d",
+                            "type": "shield",
+                            "target": "self",
+                            "turns": 0,
+                            "id": "1",
+                            "effect_type": "",
+                            "effect_index": 21,
+                            "value": {
+                                "guid": "75147f8c-78f8-4a6a-8237-2be3d1b49e30",
+                                "type": "fixed",
+                                "expression": "6"
+                            }
+                        }
+                    ],
+                    "rarity": 2,
+                    "upgrade_guid": "",
+                    "job": "transition"
                 }
             ],
             "hidden": false,
@@ -721,6 +1416,19 @@
                     "configurable": {
                         "name": "text",
                         "description": "text"
+                    }
+                },
+                {
+                    "typeStr": "text",
+                    "guid": "6a9b5c3e-9031-46af-8fda-285736aa7f90",
+                    "name": "job",
+                    "description": "Starting vocation",
+                    "defaultValue": "warrior",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
                     }
                 }
             ],
@@ -804,7 +1512,90 @@
                             "card": "55a368a5-56e0-4364-ae5d-f77a02d56799",
                             "id": "14"
                         }
-                    ]
+                    ],
+                    "job": "warrior"
+                },
+                {
+                    "guid": "1a18323d-240e-49f0-9254-cdd0671ca089",
+                    "id": "1",
+                    "cards": [
+                        {
+                            "guid": "583c1f3d-caff-43b6-9d42-763ed72b233a",
+                            "id": "0",
+                            "card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+                        },
+                        {
+                            "guid": "d945a268-4e62-4f69-89ba-e39f1879082d",
+                            "id": "1",
+                            "card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+                        },
+                        {
+                            "guid": "6341ea95-1b17-401c-b872-3d7729ca38bc",
+                            "id": "2",
+                            "card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+                        },
+                        {
+                            "guid": "8f45c391-e8e3-4759-b013-d9577e3dfffe",
+                            "id": "3",
+                            "card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+                        },
+                        {
+                            "guid": "ce46361c-fc5e-4c06-bc83-c0337b911e10",
+                            "id": "4",
+                            "card": "88618d89-8a04-53ad-9457-f48f18d40a23"
+                        },
+                        {
+                            "guid": "1604e58b-ee31-4ba3-9396-54f6352f5754",
+                            "id": "5",
+                            "card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+                        },
+                        {
+                            "guid": "8c1dab0c-49de-4eb7-9a83-9cc379edafdd",
+                            "id": "6",
+                            "card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+                        },
+                        {
+                            "guid": "4ea2823a-99b4-4ff0-b20d-a26c58c7d4e4",
+                            "id": "7",
+                            "card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+                        },
+                        {
+                            "guid": "5c933e61-30b2-4c84-b83c-c631881cd91d",
+                            "id": "8",
+                            "card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+                        },
+                        {
+                            "guid": "08dac3cf-e20a-4273-8c0a-e5eb43627785",
+                            "id": "9",
+                            "card": "5620fd67-d269-50b8-ba2e-7ceb472c8ed7"
+                        },
+                        {
+                            "guid": "e281856f-06bf-456b-b5c8-f99e3058d93e",
+                            "id": "10",
+                            "card": "c88dc5be-7267-48cf-a353-00d34d28cea0"
+                        },
+                        {
+                            "guid": "9c69a94a-cf10-4b56-973f-2631cce35e20",
+                            "id": "11",
+                            "card": "c88dc5be-7267-48cf-a353-00d34d28cea0"
+                        },
+                        {
+                            "guid": "5e5e067e-bb7d-4fb6-9c37-90c9dedfb963",
+                            "id": "12",
+                            "card": "c88dc5be-7267-48cf-a353-00d34d28cea0"
+                        },
+                        {
+                            "guid": "03a38c8e-a12e-4b8c-ac86-5e06e1a2b923",
+                            "id": "13",
+                            "card": "6c94780a-b8f4-45f6-bc54-9c34775e5142"
+                        },
+                        {
+                            "guid": "4af270eb-fbe2-4339-b985-ff749283d4bd",
+                            "id": "14",
+                            "card": "6c94780a-b8f4-45f6-bc54-9c34775e5142"
+                        }
+                    ],
+                    "job": "mage"
                 }
             ],
             "hidden": false,
@@ -1043,7 +1834,7 @@
                                 "expression": "6"
                             },
                             "steps": [],
-                            "frequency": 65,
+                            "frequency": 55,
                             "id": "0",
                             "conditions": [],
                             "priority": 0
@@ -1051,16 +1842,33 @@
                         {
                             "guid": "469efbec-1376-40cc-b8f1-ce34fd0c8938",
                             "name": "Harden",
-                            "type": "attackup",
+                            "type": "shield",
                             "target": "self",
                             "value": {
                                 "guid": "bfa14854-ad66-4990-b3dd-5b6d6942a39d",
                                 "type": "fixed",
-                                "expression": "3"
+                                "expression": "6"
                             },
                             "steps": [],
-                            "frequency": 35,
+                            "frequency": 25,
                             "id": "1",
+                            "conditions": [],
+                            "turns": 1,
+                            "priority": 0
+                        },
+                        {
+                            "guid": "5bd1bfe2-a450-4dcd-a698-4c32a1f7dcb2",
+                            "name": "Toxic Spit",
+                            "type": "poison",
+                            "target": "player",
+                            "value": {
+                                "guid": "cceccec8-98a1-48cf-bf62-59355d20508a",
+                                "type": "fixed",
+                                "expression": "2"
+                            },
+                            "steps": [],
+                            "frequency": 20,
+                            "id": "2",
                             "conditions": [],
                             "priority": 0
                         }
@@ -1766,8 +2574,23 @@
                     "guid": "0e35b155-3747-4301-b797-c2c4a4b13dd7",
                     "name": "type",
                     "description": "new enum field",
-                    "options": "damage, shield, draw",
+                    "options": "damage, shield, draw, heal, poison, status",
                     "defaultValue": "damage",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "enum",
+                    "guid": "e2d54b7a-79e0-4135-bfe6-963f8593d742",
+                    "name": "status_type",
+                    "description": "Status effect applied by a status action",
+                    "options": "poisoned, burned, offense, defense, paralyzed, frozen, stunned, regen",
+                    "defaultValue": "poisoned",
                     "iconName": "newEnum",
                     "configurable": {
                         "name": "text",
@@ -1937,7 +2760,7 @@
                     "guid": "a8056b1f-0fda-4e8b-81be-1b124afd4f3b",
                     "name": "type",
                     "description": "new enum field",
-                    "options": "attack, shield, buff, debuff, multi_turn_action, attackup, attackdown",
+                    "options": "attack, shield, buff, debuff, multi_turn_action, attackup, attackdown, poison",
                     "defaultValue": "attack",
                     "iconName": "newEnum",
                     "configurable": {
@@ -2107,7 +2930,7 @@
                     "guid": "fb2756bb-d939-475b-bfe3-33de8912416a",
                     "name": "type",
                     "description": "new enum field",
-                    "options": "attack, shield, buff, debuff, attackup, attackdown",
+                    "options": "attack, shield, buff, debuff, attackup, attackdown, poison",
                     "defaultValue": "attack",
                     "iconName": "newEnum",
                     "configurable": {
@@ -2582,6 +3405,222 @@
             "isProps": true,
             "parentSheetGUID": "200c8ebb-f009-4c78-9037-9634f9232dd5",
             "columnGUID": "7f4299f5-8874-4e63-a1db-0f507a92c384"
+        },
+        {
+            "name": "Relic",
+            "description": "Passive relics collected during a run",
+            "displayColumn": "id",
+            "guid": "45dcf068-4cf9-48dd-a37a-a43ca6f64a69",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "8113141e-7780-498e-a9ab-6b5ce6059cc0",
+                    "name": "name",
+                    "description": "Localization key for the relic name",
+                    "defaultValue": "",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "longtext",
+                    "guid": "39d290b2-c2c5-46c2-b4d3-c8f49ecb8c59",
+                    "name": "description",
+                    "description": "Localization key for the relic effect",
+                    "defaultValue": "",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                },
+                {
+                    "typeStr": "longtext",
+                    "guid": "1db24618-3dd1-43eb-8c7f-8f6d472e2bbf",
+                    "name": "detail_description",
+                    "description": "Detailed relic description key",
+                    "defaultValue": "",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "61ae78e5-f4b8-4d4f-af93-b36e0175e3b2",
+                    "name": "battle_start_shield",
+                    "description": "Shield granted at the start of each battle",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "014b6425-b20d-43e0-815e-583fffdb4a81",
+                    "name": "battle_victory_gold",
+                    "description": "Extra gold granted after battle victory",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "508fe154-d6b5-4caf-9feb-79f410b97790",
+                    "name": "treasure_choice_bonus",
+                    "description": "Additional choices shown at treasure nodes",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "longtext",
+                    "guid": "edb847d5-6dc5-4453-aef3-5f8d52e7a3ad",
+                    "name": "hook_effects",
+                    "description": "JSON list of effects activated by relic timing hooks",
+                    "defaultValue": "[]",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "d39ab553-f9cc-49cb-8e13-0a547954fb55",
+                    "id": "0",
+                    "name": "RELIC_GUARD_CHARM",
+                    "description": "RELIC_GUARD_CHARM_DESC",
+                    "detail_description": "RELIC_GUARD_CHARM_DESC",
+                    "battle_start_shield": 5,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[]"
+                },
+                {
+                    "guid": "bc56d43d-7cf7-496c-87ec-dbfc7cae1ffa",
+                    "id": "1",
+                    "name": "RELIC_GOLDEN_POUCH",
+                    "description": "RELIC_GOLDEN_POUCH_DESC",
+                    "detail_description": "RELIC_GOLDEN_POUCH_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"battle_victory\",\"type\":\"bonus_gold\",\"amount\":10}]"
+                },
+                {
+                    "guid": "89539706-c95f-437c-974e-a703be7df346",
+                    "id": "2",
+                    "name": "RELIC_EXPLORER_COMPASS",
+                    "description": "RELIC_EXPLORER_COMPASS_DESC",
+                    "detail_description": "RELIC_EXPLORER_COMPASS_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"treasure_opened\",\"type\":\"extra_relic_choice\",\"amount\":1}]"
+                },
+                {
+                    "guid": "b6746c82-1376-433a-91a1-a811fb654d03",
+                    "id": "3",
+                    "name": "RELIC_WARDING_BEAD",
+                    "description": "RELIC_WARDING_BEAD_DESC",
+                    "detail_description": "RELIC_WARDING_BEAD_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"player_turn_start\",\"type\":\"shield\",\"amount\":3}]"
+                },
+                {
+                    "guid": "2de70c2e-61ba-473b-8914-e35070f9dd91",
+                    "id": "4",
+                    "name": "RELIC_SWORDSMAN_SIGIL",
+                    "description": "RELIC_SWORDSMAN_SIGIL_DESC",
+                    "detail_description": "RELIC_SWORDSMAN_SIGIL_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"card_played\",\"type\":\"shield\",\"amount\":1}]"
+                },
+                {
+                    "guid": "1042fac2-59b1-42a0-9d60-2db3541553c7",
+                    "id": "5",
+                    "name": "RELIC_HUNTER_FANG",
+                    "description": "RELIC_HUNTER_FANG_DESC",
+                    "detail_description": "RELIC_HUNTER_FANG_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"enemy_defeated\",\"type\":\"gold\",\"amount\":2}]"
+                },
+                {
+                    "guid": "fe2c498a-8f4d-4072-a9df-1eb4c9d20c16",
+                    "id": "6",
+                    "name": "RELIC_MENDER_RING",
+                    "description": "RELIC_MENDER_RING_DESC",
+                    "detail_description": "RELIC_MENDER_RING_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"battle_victory\",\"type\":\"heal\",\"amount\":5}]"
+                },
+                {
+                    "guid": "33f90829-caa2-4f3c-934a-72c3ba3e8c04",
+                    "id": "7",
+                    "name": "RELIC_RESTFUL_CHARM",
+                    "description": "RELIC_RESTFUL_CHARM_DESC",
+                    "detail_description": "RELIC_RESTFUL_CHARM_DESC",
+                    "battle_start_shield": 0,
+                    "battle_victory_gold": 0,
+                    "treasure_choice_bonus": 0,
+                    "hook_effects": "[{\"trigger\":\"route_node_selected\",\"type\":\"heal\",\"amount\":5,\"node_type\":\"rest\"}]"
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
         }
     ]
 }

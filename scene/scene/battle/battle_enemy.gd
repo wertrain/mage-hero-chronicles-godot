@@ -43,6 +43,14 @@ func set_data(data: EnemyData) -> void:
 	_name_label.text = data.name
 	_name_label.position.y = -$Sprite2D.get_rect().size.y / 2.0 - 42.0
 
+func promote_to_elite() -> void:
+	# HPを1.5倍、攻撃力を2上げて、専用表示で通常敵との違いを示す。
+	var elite_max_health := ceili(_enemy_data.health * 1.5)
+	_battle_status.set_health(elite_max_health, elite_max_health)
+	$HealthBar.set_health(elite_max_health, elite_max_health)
+	_battle_status.add_status_effects(BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.OFFENSE, 2))
+	_name_label.text = tr("BATTLE_ELITE_ENEMY_NAME") % _enemy_data.name
+
 func show_warning_icon(icon_type: AttackWarningIcon.Icons, value: int) -> void:
 	$AttackWarningIcon.set_icon(icon_type, value)
 	$AttackWarningIcon.set_visible(true)
@@ -56,8 +64,12 @@ func set_visible_outline(visible) -> void:
 	if (visible):
 		$Sprite2D.material.set_shader_parameter("color", Globals.TARGET_SELECTION_COLOR)
 
-func start_attack_action(type: SpriteAnimator.AnimationType) -> Tween:
+func start_action_animation(type: SpriteAnimator.AnimationType) -> Tween:
 	return _sprite_animator.start_animation(type, $Sprite2D)
+
+func start_attack_action(type: SpriteAnimator.AnimationType) -> Tween:
+	# 既存の呼び出し元との互換性を残しつつ、敵の全行動演出を同じ入口にまとめる。
+	return start_action_animation(type)
 
 func is_dead() -> bool:
 	return _battle_status.has_status_effect(BattleStatusEffect.StatusEffectType.DEAD)

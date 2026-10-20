@@ -6,7 +6,9 @@ enum ActionType {
 	SHIELD,
 	DRAW,
 	HEAL,
-	UNDEFINED
+	UNDEFINED,
+	POISON,
+	STATUS
 }
 
 enum ActionTarget {
@@ -21,6 +23,7 @@ var _type: ActionType
 var _target: ActionTarget
 var _value: BattleAcitonValue
 var _turns: int
+var _status_type: BattleStatusEffect.StatusEffectType = BattleStatusEffect.StatusEffectType.POISONED
 var _effect_type: EffectSpawner.EffectType
 var _effect_index: int
 
@@ -35,6 +38,9 @@ func get_value() -> BattleAcitonValue:
 
 func get_turns() -> int:
 	return _turns
+
+func get_status_type() -> BattleStatusEffect.StatusEffectType:
+	return _status_type
 
 func get_effect_type() -> EffectSpawner.EffectType:
 	return _effect_type
@@ -51,13 +57,30 @@ func set_target_type(target: String) -> void:
 func set_effect_type(type: String) -> void:
 	_effect_type = _string_to_effect_type(type)
 
+func set_status_type(type: String) -> void:
+	_status_type = _string_to_status_type(type)
+
 func _string_to_action_type(type: String) -> ActionType:
 	match type:
 		"damage": return ActionType.DAMAGE
 		"shield": return ActionType.SHIELD
 		"draw":   return ActionType.DRAW
 		"heal":   return ActionType.HEAL
+		"poison": return ActionType.POISON
+		"status": return ActionType.STATUS
 	return ActionType.UNDEFINED
+
+func _string_to_status_type(type: String) -> BattleStatusEffect.StatusEffectType:
+	match type:
+		"poisoned": return BattleStatusEffect.StatusEffectType.POISONED
+		"burned": return BattleStatusEffect.StatusEffectType.BURNED
+		"offense": return BattleStatusEffect.StatusEffectType.OFFENSE
+		"defense": return BattleStatusEffect.StatusEffectType.DEFENSE
+		"paralyzed": return BattleStatusEffect.StatusEffectType.PARALYZED
+		"frozen": return BattleStatusEffect.StatusEffectType.FROZEN
+		"stunned": return BattleStatusEffect.StatusEffectType.STUNNED
+		"regen": return BattleStatusEffect.StatusEffectType.REGEN
+	return BattleStatusEffect.StatusEffectType.POISONED
 
 func _string_to_action_target(target: String) -> ActionTarget:
 	match target:

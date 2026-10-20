@@ -1,4 +1,33 @@
 keys,en,ja
+RUN_START_TITLE,Choose Your Journey,冒険の始まり
+RUN_START_SUBTITLE,Choose your vocation and adventure route. Then pick your starting position on the map.,職業と冒険ルートを選んでください。そのあとマップで開始位置を選びます
+RUN_START_JOB_HEADER,Vocation,職業
+RUN_START_JOB_WARRIOR,Warrior,戦士
+RUN_START_JOB_MAGE,Mage,魔法使い
+RUN_START_JOB_DESC_WARRIOR,Warriors recover 5 HP after each victory.,戦士は戦闘勝利後にHPを5回復します
+RUN_START_JOB_DESC_MAGE,Mages begin with one extra energy each turn.,魔法使いは毎ターンの最大エナジーが1増えます
+RUN_START_ROUTE_HEADER,Adventure Route,冒険ルート
+RUN_START_ROUTE_ROAD,King's Road,王都街道
+RUN_START_ROUTE_FOREST,Herbalist's Forest,薬草師の森
+RUN_START_ROUTE_RUINS,Old Ruins,古代遺跡
+RUN_START_ROUTE_DESC_ROAD,A safe route with more chances to rest and find treasure.,休憩や宝箱を見つけやすい比較的安全なルートです
+RUN_START_ROUTE_DESC_FOREST,Follow the forest trail toward herbalist events and card upgrades.,薬草師のイベントやカード強化につながる森のルートです
+RUN_START_ROUTE_DESC_RUINS,Explore old shrines and seek ways to strengthen your deck.,古い祠やデッキ強化の機会を探す遺跡のルートです
+RUN_START_BEGIN,Begin Adventure,冒険を始める
+RUN_START_DEBUG_WARRIOR,Debug: Start first battle as Warrior,デバッグ：戦士で初戦を開始
+JOURNEY_INITIAL_MAP_START,Departure,出発地点
+JOURNEY_INITIAL_MAP_NEXT,Choose one of the starting locations at the bottom of the map.,マップ下部にある開始地点のひとつを選んでください
+JOURNEY_INITIAL_MAP_CONTINUE,Choose a connected first battle above your starting point.,開始地点からつながる初戦を選んでください
+JOURNEY_INITIAL_LEFT,Western Entrance,西の入口
+JOURNEY_INITIAL_CENTER,Main Road,中央の街道
+JOURNEY_INITIAL_RIGHT,Eastern Entrance,東の入口
+JOURNEY_INITIAL_DESC_LEFT,Begin from the western side of the map.,マップの西側から冒険を始めます
+JOURNEY_INITIAL_DESC_CENTER,Begin from the central road.,中央の街道から冒険を始めます
+JOURNEY_INITIAL_DESC_RIGHT,Begin from the eastern side of the map.,マップの東側から冒険を始めます
+JOURNEY_INITIAL_FAR_LEFT,Northwestern Entrance,北西の入口
+JOURNEY_INITIAL_FAR_RIGHT,Northeastern Entrance,北東の入口
+JOURNEY_INITIAL_DESC_FAR_LEFT,Begin from the far western trail.,マップの北西側から冒険を始めます
+JOURNEY_INITIAL_DESC_FAR_RIGHT,Begin from the far eastern trail.,マップの北東側から冒険を始めます
 REWARD_GET_REWARD,Get Reward,報酬を獲得
 REWARD_GET_REWARD_SKIP,SKIP,スキップ
 REWARD_GOLD,%d Gold,%d ゴールド
@@ -8,13 +37,20 @@ REWARD_GET_TREASURE,Get Treasure,レリックを獲得
 REWARD_GET_CARD_NUM,Select %d Card(s),%d 枚のカードを選択
 REWARD_GET_CARD_SKIP,SKIP,カードの取得をスキップ
 REWARD_GET_ITEM_NUM,Select %d Item(s),%d 個のアイテムを選択
+REWARD_GET_RELIC_NUM,Review the relic,レリックを確認
+REWARD_GET_RELIC_CLAIM,Take this relic,このレリックを受け取る
+REWARD_GET_RELIC_SKIP,SKIP,レリックをスキップ
+BATTLE_ITEMS,Items (%d/%d),アイテム (%d/%d)
+BATTLE_ITEMS_EMPTY,No items carried,所持アイテムはありません
 REWARD_GET_ITEM_SKIP,SKIP,アイテムの取得をスキップ
 BATTLE_VICTORY,VICTORY,勝利
+BATTLE_ELITE_ENEMY_NAME,Elite %s,強敵：%s
 BATTLE_DEFEAT_RETRY,DEFEAT - Press Enter to Retry,敗北 - Enterキーで再挑戦
-JOURNEY_TITLE,Choose Your Next Path,次の行き先を選ぶ
-JOURNEY_PROGRESS,Journey progress: %d / 3 battles,旅の進行：%d / 3 戦突破
+JOURNEY_TITLE,Journey Map,冒険ルート
+JOURNEY_PROGRESS,Normal battles cleared: %d / %d maximum,通常戦の突破数：%d戦突破 / 最大%d戦
 JOURNEY_GOLD,Gold: %d,所持ゴールド：%d
-JOURNEY_BATTLE_NODE,Battle %d,第%d戦
+JOURNEY_BATTLE_NODE,Battle,戦闘
+JOURNEY_ELITE_NODE,Elite Battle,エリート戦
 JOURNEY_BOSS_NODE,Boss,ボス
 JOURNEY_REST_CONTINUE,Rest (+30 HP) and continue,休憩して進む（HP +30）
 JOURNEY_CONTINUE,Continue to the next battle,そのまま次の戦闘へ
@@ -26,11 +62,107 @@ JOURNEY_NEW_RUN,Start a new journey,新しい旅を始める
 JOURNEY_UPGRADE_CARD,Upgrade a card,カードを強化
 JOURNEY_UPGRADE_TITLE,Choose a card to upgrade,強化するカードを選ぶ
 JOURNEY_UPGRADE_PROMPT,Choose one card. Its stronger version will stay in your deck.,強化するカードを1枚選びます。強化版はデッキに残ります。
+JOURNEY_VISIT_EVENT,Explore the event node,イベント地点を訪れる
+JOURNEY_EVENT_NODE_TOOLTIP,Optional event stop,任意で立ち寄れるイベント地点
+JOURNEY_EVENT_LEAVE,Leave and continue,立ち寄らずに進む
+JOURNEY_EVENT_HERBALIST_TITLE,The Wandering Herbalist,旅の薬草師
+JOURNEY_EVENT_HERBALIST_BODY,A herbalist shelters beside the road. They offer medicine or a pouch of herbs to sell.,道端で休む薬草師が、薬か売却用の薬草を分けてくれるという。
+JOURNEY_EVENT_HERBALIST_HEAL,"Buy medicine (-10 gold, +25 HP)",薬を買う（ゴールド -10、HP +25）
+JOURNEY_EVENT_HERBALIST_GOLD,Sell the herbs (+20 gold),薬草を売る（ゴールド +20）
+JOURNEY_EVENT_SHRINE_TITLE,The Old Roadside Shrine,街道沿いの古い祠
+JOURNEY_EVENT_SHRINE_BODY,The shrine still holds a faint warmth. You can rest here or take the offerings left by other travelers.,祠にはかすかな温もりが残っている。ここで休むか、旅人の供え物をいただけそうだ。
+JOURNEY_EVENT_SHRINE_HEAL,Pray and recover (+30 HP),祈って回復する（HP +30）
+JOURNEY_EVENT_SHRINE_GOLD,Take the offerings (+30 gold),供え物をいただく（ゴールド +30）
+JOURNEY_EVENT_CARAVAN_TITLE,The Broken Caravan,壊れた旅商人の馬車
+JOURNEY_EVENT_CARAVAN_BODY,A merchant's cart has overturned. Among the scattered goods are a healing tonic and valuables.,旅商人の馬車が横転している。散らばった荷物から薬か換金できそうな品を選べる。
+JOURNEY_EVENT_CARAVAN_HEAL,"Buy the tonic (-20 gold, +30 HP)",薬を買う（ゴールド -20、HP +30）
+JOURNEY_EVENT_CARAVAN_GOLD,Take the valuables (+35 gold),品物をいただく（ゴールド +35）
+JOURNEY_EVENT_FORGE_TITLE,The Forge Beneath the Ashes,灰の下の鍛冶場
+JOURNEY_EVENT_FORGE_BODY,"An old forge sleeps beneath a collapsed road shrine. Its keeper studies the techniques etched into your cards and offers to hone one, if you can spare 30 gold.",崩れた街道祠の奥で、古い炉がかすかに息を吹き返している。煤まみれの鍛冶師は、旅で磨かれた技を一つ鍛え直そうと言った。代価は30ゴールドだ。
+JOURNEY_EVENT_FORGE_UPGRADE,Pay %d gold to choose a card to upgrade,ゴールド %d を払い、カードを1枚強化する
+JOURNEY_EVENT_FORGE_PICK_TITLE,Choose a technique to hone,鍛え直す技を選ぶ
+JOURNEY_EVENT_FORGE_PICK_BODY,The forge flares to life. Choose one card; its stronger form will remain in your deck.,炉に火が戻る。強化するカードを1枚選ぼう。鍛えた技は旅の先でもデッキに残る。
+JOURNEY_EVENT_FORGE_SKIP,Leave the forge without paying,支払わずに鍛冶場を去る
+JOURNEY_NODE_REST,Camp: recover 30 HP,休憩（HP +30）
+JOURNEY_NODE_CAMP,Rest / Upgrade,休憩／強化
+JOURNEY_CAMP_TITLE,Camp,野営地
+JOURNEY_CAMP_BODY,Rest to recover HP or upgrade one card. Choose one benefit.,休憩してHPを回復するか、カードを1枚強化できます。どちらか一方を選んでください。
+JOURNEY_CAMP_REST,Rest (Recover 30 HP),休憩する（HPを30回復）
+JOURNEY_CAMP_UPGRADE,Upgrade a card,カードを1枚強化する
+JOURNEY_CAMP_UPGRADE_UNAVAILABLE,No cards can be upgraded.,強化できるカードがありません。
+JOURNEY_CAMP_UPGRADE_TITLE,Choose a card to upgrade,強化するカードを選択
+JOURNEY_CAMP_UPGRADE_BODY,Choose one card to improve. You will not recover HP at this camp.,カードを1枚選んで強化します。この野営地ではHPは回復しません。
+JOURNEY_NODE_TREASURE,Treasure,宝箱
+JOURNEY_NODE_EVENT,Event,イベント
+JOURNEY_NODE_CONTINUE,Continue,そのまま進む
+JOURNEY_NODE_SHOP,Shop,ショップ
+JOURNEY_SHOP_TITLE,Traveling Shop,旅の商店
+JOURNEY_SHOP_BODY,"Spend gold to add a card or item to your supplies, or buy a relic.",ゴールドでカードやアイテムを購入したり、レリックを買ったりできます。
+JOURNEY_SHOP_CARD,%s — %d Gold,%s — %d ゴールド
+JOURNEY_SHOP_ITEM,%s — %d Gold,%s — %d ゴールド
+JOURNEY_SHOP_RELIC,%s — %d Gold,%s — %d ゴールド
+JOURNEY_SHOP_SOLD,Purchased,購入済み
+JOURNEY_SHOP_LEAVE,Leave the shop,店を出る
+JOURNEY_SHOP_REMOVE,Remove a card (%d Gold),カードを1枚削除（%dゴールド）
+JOURNEY_SHOP_REMOVE_TITLE,Remove a card,カードを削除
+JOURNEY_SHOP_REMOVE_BODY,Choose one card to remove for 60 gold. Your last card cannot be removed.,削除するカードを選んでください（60ゴールド）。最後の1枚は削除できません。
+JOURNEY_SHOP_BACK,Back to the shop,ショップに戻る
+JOURNEY_MAP_CLEARED,Visited,通過済み
+JOURNEY_MAP_NEXT,Choose a connected node to continue.,道がつながった行き先を選んでください。
+JOURNEY_MAP_BACK,Back to map,マップに戻る
+JOURNEY_NODE_HERBALIST,Herbalist,薬草師
+JOURNEY_NODE_SHRINE,Shrine,祠
+JOURNEY_NODE_CARAVAN,Caravan,馬車
+JOURNEY_NODE_JOB_CHANGE,Job Change,転職
+JOURNEY_JOB_CHANGE_TITLE,Change Job?,転職しますか？
+JOURNEY_JOB_CHANGE_BODY,"Become a mage. Your current cards stay in your deck, and future card rewards will come from the mage set. Mages gain 1 max energy each turn.",魔法使いに転職します。今のカードはデッキに残り、以後のカード報酬が魔法使い用に変わります。魔法使いは毎ターンの最大エナジーが1増えます。
+JOURNEY_JOB_CHANGE_ACCEPT,Become a mage,魔法使いに転職する
+JOURNEY_JOB_CHANGE_DECLINE,Stay a warrior,戦士のまま進む
+JOURNEY_JOB_CHANGE_BODY_WARRIOR,"Become a warrior. Your current cards stay in your deck, and future card rewards will come from the warrior set. Warriors recover 5 HP after each battle victory.",戦士に転職します。今のカードはデッキに残り、以後のカード報酬が戦士用に変わります。戦士は戦闘勝利時にHPを5回復します。
+JOURNEY_JOB_CHANGE_ACCEPT_WARRIOR,Become a warrior,戦士に転職する
+JOURNEY_JOB_CHANGE_STAY_MAGE,Stay a mage,魔法使いのまま進む
+JOURNEY_EVENT_JOB_CHANGE_TITLE,A Mentor on the Road,旅路の師
+JOURNEY_EVENT_JOB_CHANGE_BODY_MAGE,"A wandering swordmaster offers to teach you the ways of a mage. Your current cards stay in your deck; future card rewards will come from the mage set. Mages gain 1 max energy each turn.",旅の剣士が魔法使いの技を教えると申し出た。今のカードはデッキに残り、以後のカード報酬は魔法使い用になります。魔法使いは毎ターンの最大エナジーが1増えます。
+JOURNEY_EVENT_JOB_CHANGE_BODY_WARRIOR,"A wandering knight offers to train you as a warrior. Your current cards stay in your deck; future card rewards will come from the warrior set. Warriors recover 5 HP after each battle victory.",旅の騎士が戦士として鍛え直す機会をくれた。今のカードはデッキに残り、以後のカード報酬は戦士用になります。戦士は戦闘勝利時にHPを5回復します。
+JOURNEY_CURRENT_JOB,Current job: %s,現在の職業：%s
+JOURNEY_JOB_WARRIOR,Warrior,戦士
+JOURNEY_JOB_MAGE,Mage,魔法使い
+JOURNEY_JOB_WARRIOR_TRAIT,Recover 5 HP after each battle victory.,戦闘に勝利するたびHPを5回復
+JOURNEY_JOB_MAGE_TRAIT,Gain 1 max energy each turn.,毎ターンの最大エナジー＋1
+JOURNEY_JOB_REWARD_TITLE,Job Change Reward,転職報酬
+JOURNEY_JOB_REWARD_BODY,Choose whether to add this card to your deck before changing jobs.,転職前に、このカードをデッキに加えるか選びます。
+JOURNEY_JOB_REWARD_CLAIM,Add this card to my deck,このカードをデッキに加える
+JOURNEY_JOB_REWARD_SKIP,Skip this card and change job,カードを受け取らず転職する
+JOURNEY_RELIC_TITLE,Treasure,宝箱
+JOURNEY_RELIC_BODY,Choose a relic to carry on your journey.,旅のお供にするレリックを選んでください。
+JOURNEY_RELIC_NONE,There are no new relics here.,新たに入手できるレリックはありません。
+JOURNEY_RELIC_SKIP,Leave the relic and continue,レリックを取らずに進む
+JOURNEY_UPGRADE_NONE,There are no cards left to upgrade.,強化できるカードがありません。
+JOURNEY_UPGRADE_SKIP,Continue without an upgrade,強化せずに進む
+REWARD_BOSS_RELIC,Boss relic acquired: %s,ボスレリックを獲得：%s
+REWARD_ELITE_RELIC,Elite relic acquired: %s,エリート報酬のレリックを獲得：%s
+RELIC_GUARD_CHARM,Guardian Charm,守護のお守り
+RELIC_GUARD_CHARM_DESC,Start each battle with 5 shield.,戦闘開始時にシールドを5得る。
+RELIC_GOLDEN_POUCH,Golden Pouch,黄金の巾着
+RELIC_GOLDEN_POUCH_DESC,Gain 10 extra gold after each battle.,戦闘勝利時にゴールドを10多く得る。
+RELIC_EXPLORER_COMPASS,Explorer's Compass,探検家の羅針盤
+RELIC_EXPLORER_COMPASS_DESC,See one additional relic at treasure nodes.,宝箱で提示されるレリックが1つ増える。
+RELIC_WARDING_BEAD,Warding Bead,守りの数珠
+RELIC_WARDING_BEAD_DESC,Gain 3 shield at the start of each turn.,自分のターン開始時にシールドを3得る。
+RELIC_SWORDSMAN_SIGIL,Swordsman's Sigil,剣士の紋章
+RELIC_SWORDSMAN_SIGIL_DESC,"Whenever you play a card, gain 1 shield.","カードを使うたびにシールドを1得る。"
+RELIC_HUNTER_FANG,Hunter's Fang,狩人の牙
+RELIC_HUNTER_FANG_DESC,Gain 2 gold whenever you defeat an enemy.,敵を倒すたびにゴールドを2得る。
+RELIC_MENDER_RING,Mender's Ring,癒やし手の指輪
+RELIC_MENDER_RING_DESC,Restore 5 HP after winning a battle.,戦闘に勝利するたびにHPを5回復する。
+RELIC_RESTFUL_CHARM,Wayfarer's Charm,旅人のお守り
+RELIC_RESTFUL_CHARM_DESC,Rest sites restore 5 additional HP.,休憩地点を選ぶとHPを5回復する。
 Slime,Slime,スライム
 Poison Slime,Poison Slime,どくスライム
 Lost Pup,Lost Pup,迷子の子犬
 Ancient Wyrm,Ancient Wyrm,古代竜
 Corrosive Spit,Corrosive Spit,酸のつぶて
+Toxic Spit,Toxic Spit,毒液吐き
 Harden,Harden,からだを固める
 Bite,Bite,かみつき
 Howl,Howl,遠ぼえ
@@ -42,3 +174,28 @@ Flame Breath,Flame Breath,火炎の息
 Draconic Charge,Draconic Charge,竜の力をためる
 Gather Power,Gather Power,力をためる
 Tail Smash,Tail Smash,しっぽたたき
+BATTLE_DRAW_PILE_LABEL,Draw Pile (%d),山札（%d枚）
+BATTLE_DISCARD_PILE_LABEL,Discard Pile (%d),捨て札（%d枚）
+BATTLE_PILE_CLOSE,Close,閉じる
+JOURNEY_DECK_BUTTON,Deck (%d),デッキ（%d枚）
+JOURNEY_DECK_TITLE,Current deck (%d cards),現在のデッキ（%d枚）
+JOURNEY_DECK_CLOSE,Close,閉じる
+BATTLE_STATUS_POISONED_LABEL,Poison %d,毒%d
+BATTLE_STATUS_BURNED_LABEL,Burn %d,火傷%d
+BATTLE_STATUS_REGEN_LABEL,Regen %d,再生%d
+BATTLE_STATUS_PARALYZED_LABEL,Paralysis %d,麻痺%d
+BATTLE_STATUS_CONFUSED_LABEL,Confusion %d,混乱%d
+BATTLE_STATUS_FROZEN_LABEL,Frozen %d,凍結%d
+BATTLE_STATUS_STUNNED_LABEL,Stun %d,気絶%d
+BATTLE_STATUS_VALUE_LABEL,%d,%d
+BATTLE_STATUS_REMAINING_TURNS,%d turn(s) remaining,残り%dターン
+BATTLE_STATUS_OFFENSE_TOOLTIP,Attack power is changed by this amount.,攻撃力がこの数値分変化します。
+BATTLE_STATUS_DEFENSE_TOOLTIP,This defense absorbs incoming damage.,この防御値だけ受けるダメージを吸収します。
+BATTLE_STATUS_POISONED_TOOLTIP,"Deals damage at the start of the owner's turn. Its strength drops by 1 after each tick. Reapplying Poison adds its strength.",持ち主のターン開始時にダメージを与え、発動後に強さが1減ります。毒を重ねると強さが加算されます。
+BATTLE_STATUS_BURNED_TOOLTIP,"Deals damage at the start of the owner's turn. Its strength drops by 1 after each tick. Reapplying Burn adds its strength.",持ち主のターン開始時にダメージを与え、発動後に強さが1減ります。火傷を重ねると強さが加算されます。
+BATTLE_STATUS_REGEN_TOOLTIP,Restores this much HP at the start of the owner's turn.,持ち主のターン開始時にこの数値分HPを回復します。
+BATTLE_STATUS_PARALYZED_TOOLTIP,The owner skips its next action.,次の行動を1回休みます。
+BATTLE_STATUS_CONFUSED_TOOLTIP,Confusion is present but has no battle effect yet.,混乱の戦闘効果はまだ実装されていません。
+BATTLE_STATUS_FROZEN_TOOLTIP,The owner skips its next action.,次の行動を1回休みます。
+BATTLE_STATUS_STUNNED_TOOLTIP,The owner skips its next action.,次の行動を1回休みます。
+BATTLE_STATUS_VALUE_TOOLTIP,Status effect value: %d,状態効果の値: %d

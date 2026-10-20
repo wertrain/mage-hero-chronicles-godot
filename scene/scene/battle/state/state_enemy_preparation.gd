@@ -12,6 +12,7 @@ var _icon_table: Dictionary = {
 	EnemyBattleAciton.ActionType.MULTI_TURN_ACTION: AttackWarningIcon.Icons.CRITICAL,
 	EnemyBattleAciton.ActionType.ATTACK_UP: AttackWarningIcon.Icons.UPPER,
 	EnemyBattleAciton.ActionType.ATTACK_DOWN: AttackWarningIcon.Icons.DOWNER,
+	EnemyBattleAciton.ActionType.POISON: AttackWarningIcon.Icons.DOWNER,
 	EnemyBattleAciton.ActionType.UNDEFINED: AttackWarningIcon.Icons.INCANTATION,
 }
 
@@ -24,19 +25,24 @@ func enter():
 		var data: EnemyData = enemy.get_data()
 		execute_enemy_action(enemy, data, _battle_info)
 		var first_action: EnemyBattleAcitonBase = enemy._action_queue.front()
-		enemy.show_warning_icon(_icon_table[first_action._type], first_action._value.execute_battle_action(enemy.get_status()))
+		var preview_value: int = first_action._value.execute_battle_action(enemy.get_status())
+		# 実ダメージと同じルールで、攻撃力補正を固定値攻撃の予告にも反映する。
+		if first_action._type == EnemyBattleAciton.ActionType.ATTACK and first_action._value._type == BattleAcitonValue.ValueType.FIXED:
+			preview_value += enemy.get_status().get_attack_bonus()
+		enemy.show_warning_icon(_icon_table[first_action._type], preview_value)
 
 func update(_delta: float):
 	transitioned.emit("ActionSelection")
 
 # 敵の行動を処理する関数
 func execute_enemy_action(enemy: BattleEnemy, enemy_data: EnemyData, battle_info: BattleInfo):
-	var actions = enemy_data.actions
+	# DataBaseが共有する敵定義の配列自体を並べ替えないよう、この敵用の配列を作る。
+	var actions: Array = enemy_data.actions.duplicate()
 	Random.get_instance().shuffle_array(actions)
 	for index in range(actions.size()):
 		var action = actions[index]
 		# すでに limit に達している場合はスキップ
-		if action._limit > 0 and _action_counters[action] >= action._limit:
+		if action._limit > 0 and int(_action_counters.get(action, 0)) >= action._limit:
 			continue
 		var probability = Random.get_instance().randi_range(0, 100) # ランダムな値（0-100）を生成
 		# 確率をすり抜けて、すべてのアクションが実行されない場合、最後のアクションを実行するようにしておく

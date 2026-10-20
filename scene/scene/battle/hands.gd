@@ -22,7 +22,6 @@ signal active_card_changed(new_active_card_data: CardData)
 signal deck_reshuffled
 signal card_used(card_data: CardData)
 signal card_discarded(card_data: CardData)
-signal card_returned_to_deck(card_data: CardData)
 
 var _player: BattlePlayerStatus
 # 所持している手札カード配列
@@ -73,7 +72,8 @@ func use_active_card() -> bool:
 		return false
 	var use_index = _active_card_index;
 	_active_card_index = -1
-	_use_card(use_index)
+	# 使用中カードの退場中にドロー側の再配置が走らないよう、破棄アニメーション完了を待つ。
+	await _use_card(use_index)
 	return true
 
 func is_enabled_input():
@@ -144,6 +144,16 @@ func _reshuffle():
 	_discard_pile.clear()
 	Random.get_instance().shuffle_array(_card_pile)
 	deck_reshuffled.emit()
+
+func draw_cards(card_count: int) -> void:
+	# カード効果から呼ぶ公開ドロー処理。山札が尽きたら捨て札を戻して続ける。
+	for _draw_index in range(maxi(0, card_count)):
+		if _card_pile.is_empty():
+			if _discard_pile.is_empty():
+				return
+			await _reshuffle()
+		if _draw_card() == null:
+			return
 
 func _ready() -> void:
 	pass
@@ -293,6 +303,9 @@ func _discard_card(index: int) -> void:
 	card_discarded.emit(data)
 	
 func _discard_all_card() -> void:
+	# 0枚のときは空のTweenを作らず、破棄するカードもないのでそのまま戻る。
+	if _cards.is_empty():
+		return
 	var tween_to_discard_pile = get_tree().create_tween()
 	for index in range(_cards.size()):
 		var card = _cards[index]
@@ -313,6 +326,9 @@ func _discard_all_card() -> void:
 ## 枚数に応じたカードの位置を計算し、そこに移動させる
 func _update_card_position(card_count: int) -> Tween:
 	_calculate_cards_position(card_count)
+	# 最後のカードを使った直後など、配置対象が0枚ならTween自体を作らない。
+	if _cards.is_empty():
+		return null
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.set_ease(Tween.EASE_IN_OUT)

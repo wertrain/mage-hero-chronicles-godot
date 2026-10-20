@@ -9,6 +9,8 @@ extends Sprite2D
 @export var atlas_texture: AtlasTexture
 
 func _ready() -> void:
+	# AtlasTextureのregionはResource共有されるため、アイコンごとに複製して個別に切り替える。
+	atlas_texture = atlas_texture.duplicate() as AtlasTexture
 	texture = atlas_texture
 	set_atlas_region(0)
 
