@@ -44,6 +44,9 @@ BATTLE_ITEMS,Items (%d/%d),アイテム (%d/%d)
 BATTLE_ITEMS_EMPTY,No items carried,所持アイテムはありません
 REWARD_GET_ITEM_SKIP,SKIP,アイテムの取得をスキップ
 BATTLE_VICTORY,VICTORY,勝利
+BATTLE_TRANSITION_NORMAL_TITLE,Battle Start,戦闘開始
+BATTLE_TRANSITION_ELITE_TITLE,Elite Encounter,強敵との遭遇
+BATTLE_TRANSITION_BOSS_TITLE,Boss Encounter,ボス戦
 BATTLE_ELITE_ENEMY_NAME,Elite %s,強敵：%s
 BATTLE_DEFEAT_RETRY,DEFEAT - Press Enter to Retry,敗北 - Enterキーで再挑戦
 JOURNEY_TITLE,Journey Map,冒険ルート
@@ -83,6 +86,16 @@ JOURNEY_EVENT_FORGE_UPGRADE,Pay %d gold to choose a card to upgrade,ゴールド
 JOURNEY_EVENT_FORGE_PICK_TITLE,Choose a technique to hone,鍛え直す技を選ぶ
 JOURNEY_EVENT_FORGE_PICK_BODY,The forge flares to life. Choose one card; its stronger form will remain in your deck.,炉に火が戻る。強化するカードを1枚選ぼう。鍛えた技は旅の先でもデッキに残る。
 JOURNEY_EVENT_FORGE_SKIP,Leave the forge without paying,支払わずに鍛冶場を去る
+JOURNEY_EVENT_MIMIC_TITLE,The Chest That Growled,うなり声をあげる宝箱
+JOURNEY_EVENT_MIMIC_BODY,"A battered chest trembles as you approach. It may hold a few coins—or bite back when forced open.",近づくと、古びた宝箱が小刻みに震えた。小銭を受け取って立ち去るか、噛みつかれる危険を冒してこじ開けるか。
+JOURNEY_EVENT_MIMIC_CAREFUL,Take the loose coins (+25 gold),落ちている小銭を拾う（ゴールド +25）
+JOURNEY_EVENT_MIMIC_RISKY,"Force it open (-15 HP, +60 gold)",力ずくで開ける（HP -15、ゴールド +60）
+JOURNEY_EVENT_MIMIC_TOO_WEAK,You are too weak to force it open safely.,力ずくで開けるにはHPが足りません。
+JOURNEY_EVENT_TRAINING_TITLE,The Roadside Mentor,街道の師匠
+JOURNEY_EVENT_TRAINING_BODY,"A veteran adventurer offers to sharpen one technique before your journey continues.",歴戦の冒険者が、旅を続ける前に技をひとつ磨いてやろうと申し出た。
+JOURNEY_EVENT_TRAINING_UPGRADE,Ask the mentor to upgrade a card,師匠にカードを1枚強化してもらう
+JOURNEY_EVENT_TRAINING_PICK_TITLE,A Lesson on the Road,旅路の稽古
+JOURNEY_EVENT_TRAINING_PICK_BODY,Choose one card to improve. The mentor's lesson costs nothing.,強化するカードを1枚選びます。稽古の代金は必要ありません。
 JOURNEY_NODE_REST,Camp: recover 30 HP,休憩（HP +30）
 JOURNEY_NODE_CAMP,Rest / Upgrade,休憩／強化
 JOURNEY_CAMP_TITLE,Camp,野営地
@@ -160,12 +173,33 @@ RELIC_RESTFUL_CHARM_DESC,Rest sites restore 5 additional HP.,休憩地点を選�
 Slime,Slime,スライム
 Poison Slime,Poison Slime,どくスライム
 Lost Pup,Lost Pup,迷子の子犬
+Metal Slime,Metal Slime,メタルスライム
+Stray Dog,Stray Dog,野良犬
+Direhound,Direhound,凶暴な猟犬
+Garden Snake,Garden Snake,庭のヘビ
+Whisp,Whisp,ウィスプ
+Squire,Squire,従騎士
+Petalbloom,Petalbloom,花びらモンスター
 Ancient Wyrm,Ancient Wyrm,古代竜
 Corrosive Spit,Corrosive Spit,酸のつぶて
 Toxic Spit,Toxic Spit,毒液吐き
 Harden,Harden,からだを固める
+Metal Slam,Metal Slam,メタルスラム
 Bite,Bite,かみつき
 Howl,Howl,遠ぼえ
+Maul,Maul,強襲
+Pouncing Charge,Pouncing Charge,飛びかかる構え
+Gather Strength,Gather Strength,力をためる
+Crushing Bite,Crushing Bite,大牙の一撃
+Intimidating Growl,Intimidating Growl,威嚇のうなり声
+Fang,Fang,牙
+Venomous Fang,Venomous Fang,毒牙
+Ghostly Bolt,Ghostly Bolt,霊弾
+Eerie Wail,Eerie Wail,不気味な叫び
+Sword Slash,Sword Slash,剣斬り
+Guard,Guard,防御
+Thorn Lash,Thorn Lash,茨のムチ
+Pollen Cloud,Pollen Cloud,花粉雲
 Tackle,Tackle,たいあたり
 Charging,Charging,ちからをためる
 PowerUp,PowerUp,攻撃力アップ
@@ -190,6 +224,8 @@ BATTLE_STATUS_STUNNED_LABEL,Stun %d,気絶%d
 BATTLE_STATUS_VALUE_LABEL,%d,%d
 BATTLE_STATUS_REMAINING_TURNS,%d turn(s) remaining,残り%dターン
 BATTLE_STATUS_OFFENSE_TOOLTIP,Attack power is changed by this amount.,攻撃力がこの数値分変化します。
+BATTLE_STATUS_STRIKE_POWER_LABEL,Strike +%d,斬撃強化%d
+BATTLE_STATUS_STRIKE_POWER_TOOLTIP,Strike-tagged cards deal this much additional damage.,ストライク系タグを持つカードのダメージがこの数値分増えます。
 BATTLE_STATUS_DEFENSE_TOOLTIP,This defense absorbs incoming damage.,この防御値だけ受けるダメージを吸収します。
 BATTLE_STATUS_POISONED_TOOLTIP,"Deals damage at the start of the owner's turn. Its strength drops by 1 after each tick. Reapplying Poison adds its strength.",持ち主のターン開始時にダメージを与え、発動後に強さが1減ります。毒を重ねると強さが加算されます。
 BATTLE_STATUS_BURNED_TOOLTIP,"Deals damage at the start of the owner's turn. Its strength drops by 1 after each tick. Reapplying Burn adds its strength.",持ち主のターン開始時にダメージを与え、発動後に強さが1減ります。火傷を重ねると強さが加算されます。
@@ -199,3 +235,66 @@ BATTLE_STATUS_CONFUSED_TOOLTIP,Confusion is present but has no battle effect yet
 BATTLE_STATUS_FROZEN_TOOLTIP,The owner skips its next action.,次の行動を1回休みます。
 BATTLE_STATUS_STUNNED_TOOLTIP,The owner skips its next action.,次の行動を1回休みます。
 BATTLE_STATUS_VALUE_TOOLTIP,Status effect value: %d,状態効果の値: %d
+BATTLE_LOG_BUTTON,Battle Log,戦闘ログ
+BATTLE_LOG_TITLE,Battle Balance Log,戦闘バランスログ
+BATTLE_LOG_CLOSE,Close,閉じる
+BATTLE_LOG_CURRENT,"This battle: %s
+Turns: %d | Cards played: %d | HP lost: %d","今回: %s
+ターン数: %d | 使用カード: %d | 被ダメージ: %d"
+BATTLE_LOG_HISTORY_HEADER,Recent battles (latest first),直近の戦闘（新しい順）
+BATTLE_LOG_HISTORY_EMPTY,No completed battles have been recorded yet.,完了した戦闘の記録はまだありません。
+BATTLE_LOG_HISTORY_ROW,"%s | %s | turns %d | cards %d | HP lost %d | seed %s
+","%s | %s | %dターン | カード%d枚 | 被ダメージ%d | seed %s
+"
+CARD_WARRIOR_GUARD_BREAK,Guard Break,崩し斬り
+CARD_WARRIOR_GUARD_BREAK_DESC,Deal 5 damage and reduce the enemy’s attack by 2 for 2 turns.,5ダメージを与え、2ターンの間、敵の攻撃力を2下げる。
+CARD_WARRIOR_GUARD_BREAK_DDESC,A measured strike that creates room to survive the enemy’s next attacks.,敵の次の攻撃をしのぐため、攻めを崩す一撃。
+CARD_MAGE_MIASMA,Miasma,瘴気
+CARD_MAGE_MIASMA_DESC,Apply 2 poison to all enemies for 2 turns.,敵全体に2ターンの間、毒を2与える。
+CARD_MAGE_MIASMA_DDESC,A slow spell that rewards patience against groups of foes.,敵が複数いる戦いで力を発揮する、じわじわ効く魔法。
+RELIC_VANGUARD_SHELL,Vanguard Shell,先陣の甲羅
+RELIC_VANGUARD_SHELL_DESC,Gain 2 shield whenever an enemy is defeated.,敵を倒すたび、シールドを2得る。
+BATTLE_LOG_NORMAL,Normal,通常
+BATTLE_LOG_ELITE,Elite,エリート
+BATTLE_LOG_BOSS,Boss,ボス
+BATTLE_LOG_HISTORY_ROW,"#%d %s %s | %s | %d turns | %d cards | HP lost %d | relics: %s | seed: %s
+","#%d %s %s | %s | %dターン | カード%d枚 | 被ダメージ%d | レリック: %s | seed: %s
+"
+CARD_WARRIOR_RIPOSTE,Riposte,受け流し
+CARD_WARRIOR_RIPOSTE_DESC,Deal 5 damage and gain 4 shield.,5ダメージを与え、シールドを4得る。
+CARD_WARRIOR_RIPOSTE_DDESC,Turn a defensive opening into a counterattack.,守りの隙を反撃につなげる。
+CARD_WARRIOR_RIPOSTE_DESC_UPGRADED,Deal 7 damage and gain 5 shield.,7ダメージを与え、シールドを5得る。
+CARD_WARRIOR_RIPOSTE_DDESC_UPGRADED,A sharper counter that also steadies your guard.,攻めと守りを強めた反撃。
+CARD_WARRIOR_BATTLE_CRY,Battle Cry,戦いの雄叫び
+CARD_WARRIOR_BATTLE_CRY_DESC,Gain 2 attack for 2 turns.,2ターンの間、攻撃力が2上がる。
+CARD_WARRIOR_BATTLE_CRY_DDESC,Gather your courage before committing to an attack.,攻めに移る前に気勢を整える。
+CARD_WARRIOR_BATTLE_CRY_DESC_UPGRADED,Gain 3 attack for 2 turns.,2ターンの間、攻撃力が3上がる。
+CARD_WARRIOR_BATTLE_CRY_DDESC_UPGRADED,A rallying shout with greater force.,より強く気勢を高める雄叫び。
+CARD_MAGE_FROST_SIGIL,Frost Sigil,氷結の印
+CARD_MAGE_FROST_SIGIL_DESC,Deal 5 damage and reduce enemy attack by 2 for 1 turn.,5ダメージを与え、1ターンの間、敵の攻撃力を2下げる。
+CARD_MAGE_FROST_SIGIL_DDESC,A chill rune that blunts the next retaliation.,敵の反撃を鈍らせる冷気のルーン。
+CARD_MAGE_FROST_SIGIL_DESC_UPGRADED,Deal 7 damage and reduce enemy attack by 3 for 1 turn.,7ダメージを与え、1ターンの間、敵の攻撃力を3下げる。
+CARD_MAGE_FROST_SIGIL_DDESC_UPGRADED,A denser rune with a stronger weakening chill.,弱体化を強めた氷結の印。
+CARD_MAGE_ARCANE_RECOVERY,Arcane Renewal,魔力の息継ぎ
+CARD_MAGE_ARCANE_RECOVERY_DESC,Heal 5 HP and draw 1 card.,HPを5回復し、カードを1枚引く。
+CARD_MAGE_ARCANE_RECOVERY_DDESC,Recover your footing and return to the spell flow.,体勢を立て直し、次の術へつなげる。
+CARD_MAGE_ARCANE_RECOVERY_DESC_UPGRADED,Heal 7 HP and draw 1 card.,HPを7回復し、カードを1枚引く。
+CARD_MAGE_ARCANE_RECOVERY_DDESC_UPGRADED,Restore more health without losing tempo.,テンポを保ったまま、より多く回復する。
+ENEMY_HORNED_BEETLE,Horned Beetle,ツノ甲虫
+ENEMY_ACTION_BEETLE_HORN_JAB,Horn Jab,ツノ突き
+ENEMY_ACTION_BEETLE_SHELL_GUARD,Shell Guard,甲羅を固める
+ENEMY_PHANTOM,Phantom,幻影
+ENEMY_ACTION_PHANTOM_HAUNT,Haunting Blow,幻影の一撃
+ENEMY_ACTION_PHANTOM_CHILL,Chilling Curse,冷気の呪い
+ENEMY_IRON_KNIGHT,Iron Knight,鉄騎士
+ENEMY_ACTION_KNIGHT_SWORD_ARC,Sword Arc,剣の一閃
+ENEMY_ACTION_KNIGHT_IRON_GUARD,Iron Guard,鉄壁の構え
+ENEMY_APPRENTICE,Apprentice,見習い魔術師
+ENEMY_ACTION_APPRENTICE_ARCANE_DART,Arcane Dart,魔弾
+ENEMY_ACTION_APPRENTICE_MANA_SURGE,Mana Surge,魔力増幅
+RELIC_SCRIBE_FEATHER,Scribe Feather,書記官の羽根
+RELIC_SCRIBE_FEATHER_DESC,Draw 1 additional card after your opening hand is drawn.,戦闘開始時のドロー後、カードを1枚引く。
+RELIC_IRON_PENNANT,Iron Pennant,鉄の軍旗
+RELIC_IRON_PENNANT_DESC,Gain 3 shield whenever you defeat an enemy.,敵を倒すたび、シールドを3得る。
+RELIC_PILGRIM_TEAR,Pilgrim’s Tear,巡礼者の涙
+RELIC_PILGRIM_TEAR_DESC,Recover 4 HP when you open a treasure.,宝箱を開けるとHPを4回復する。

@@ -30,7 +30,9 @@ func set_status_effect_icons(effects: Array[BattleStatusEffect]) -> void:
 		if BattleStatusEffectIcon.get_icon_type(effect.get_type(), effect.get_value()) == BattleStatusEffectIcon.Icons.None:
 			continue
 		var node: BattleStatusEffectIcon = status_effect_icon_scene.instantiate()
-		node.position = Vector2(44 * visible_index, 0)
+		# 気絶などの文字表示は80px幅。従来の44px間隔では隣の剣アイコンに重なり、
+		# 攻撃力アップが消えたように見えるため、縮小後のラベル幅を確保する。
+		node.position = Vector2(64 * visible_index, 0)
 		node.scale = Vector2(0.8, 0.8)
 		$Node2D_StatusIcons.add_child(node)
 		# 子スプライトの_ready()でアトラスを初期化してから表示内容を設定する。

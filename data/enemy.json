@@ -6,7 +6,7 @@
 			"name": "Slime",
 			"health": 10,
 			"attack": 7,
-			"image": "..\\..\\art\\enemy\\pipo-enemy009.png",
+			"image": "res://art/enemy/pipo-enemy009.png",
 			"actions": [
 				{
 					"guid": "39d65745-6dfe-42de-9b6c-53c54727842a",
@@ -22,7 +22,8 @@
 					"frequency": 80,
 					"id": "0",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				},
 				{
 					"guid": "ed11d30e-fc07-44e5-96ff-3172648ccbc6",
@@ -70,7 +71,8 @@
 							"id": "0"
 						}
 					],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				}
 			],
 			"gold": 5
@@ -81,7 +83,7 @@
 			"name": "Poison Slime",
 			"health": 22,
 			"attack": 5,
-			"image": "..\\..\\art\\enemy\\pipo-enemy009a.png",
+			"image": "res://art/enemy/pipo-enemy009a.png",
 			"actions": [
 				{
 					"guid": "26c1a4c8-70b1-4eaf-a337-d32154ef4421",
@@ -97,7 +99,8 @@
 					"frequency": 55,
 					"id": "0",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				},
 				{
 					"guid": "469efbec-1376-40cc-b8f1-ce34fd0c8938",
@@ -130,7 +133,8 @@
 					"frequency": 20,
 					"id": "2",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				}
 			],
 			"gold": 8
@@ -139,11 +143,46 @@
 			"guid": "0bd520e4-3d59-4fd2-b7e3-ea57e72ab823",
 			"id": "2",
 			"name": "Metal Slime",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy009b.png",
-			"actions": [],
-			"gold": 5
+			"health": 26,
+			"attack": 4,
+			"image": "res://art/enemy/pipo-enemy009b.png",
+			"actions": [
+				{
+					"guid": "16fb89f9-e304-5f68-8ce4-de2bde6d7498",
+					"name": "Harden",
+					"type": "shield",
+					"target": "self",
+					"value": {
+						"guid": "3afc8123-c852-51b9-bcea-27c6c1bbe896",
+						"type": "fixed",
+						"expression": "8"
+					},
+					"steps": [],
+					"frequency": 55,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 1
+				},
+				{
+					"guid": "04f4549f-6fd8-5382-ae9b-ee20aaf70c92",
+					"name": "Metal Slam",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "1cc8bdd8-7aed-573d-bb89-7837200df369",
+						"type": "fixed",
+						"expression": "5"
+					},
+					"steps": [],
+					"frequency": 45,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 12
 		},
 		{
 			"guid": "a0275eb4-c71c-45ea-842c-0e8261ba82be",
@@ -151,7 +190,7 @@
 			"name": "Lost Pup",
 			"health": 20,
 			"attack": 6,
-			"image": "..\\..\\art\\enemy\\pipo-enemy002.png",
+			"image": "res://art/enemy/pipo-enemy002.png",
 			"actions": [
 				{
 					"guid": "b51f3ad2-835f-4a85-b4f3-a3b48943f1f2",
@@ -167,7 +206,8 @@
 					"frequency": 75,
 					"id": "0",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				},
 				{
 					"guid": "d8ef299e-1dbf-453b-9972-9d4a2c9467cf",
@@ -183,7 +223,8 @@
 					"frequency": 25,
 					"id": "1",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				}
 			],
 			"gold": 10
@@ -192,31 +233,163 @@
 			"guid": "760af618-705f-48cc-a92f-a9f2cc641c75",
 			"id": "4",
 			"name": "Stray Dog",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy002a.png",
-			"actions": [],
-			"gold": 5
+			"health": 20,
+			"attack": 4,
+			"image": "res://art/enemy/pipo-enemy002a.png",
+			"actions": [
+				{
+					"guid": "60c66cb6-203c-5d7f-960e-bf7176f69ba7",
+					"name": "Bite",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "99df77d8-b611-575a-ae09-7fe8792d4930",
+						"type": "fixed",
+						"expression": "6"
+					},
+					"steps": [],
+					"frequency": 70,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "ba2df16d-9c85-5639-a751-27547213091d",
+					"name": "Howl",
+					"type": "attackup",
+					"target": "self",
+					"value": {
+						"guid": "5a9cd467-a64f-55d6-9b08-7410cabaecf0",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 30,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 8
 		},
 		{
 			"guid": "8e044d03-d151-43c0-afce-d2277136e83a",
 			"id": "5",
 			"name": "Direhound",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy002b.png",
-			"actions": [],
-			"gold": 5
+			"health": 32,
+			"attack": 7,
+			"image": "res://art/enemy/pipo-enemy002b.png",
+			"actions": [
+				{
+					"guid": "2f4de0ee-52c5-58ea-8567-2a8e962ffc42",
+					"name": "Maul",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "64dc43dd-13f8-57bd-be94-e241d21acdcc",
+						"type": "fixed",
+						"expression": "9"
+					},
+					"steps": [],
+					"frequency": 70,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "ab217e40-a0e6-56c8-b8cd-6315d43d2987",
+					"name": "Pouncing Charge",
+					"type": "multi_turn_action",
+					"target": "player",
+					"value": {
+						"guid": "4b1e40e3-420b-58b2-bb02-e0e14d4923bc",
+						"type": "fixed",
+						"expression": "0"
+					},
+					"steps": [
+						{
+							"guid": "ab2f5c88-fe96-512e-8fab-fc892722a4c9",
+							"name": "Gather Strength",
+							"type": "attackup",
+							"target": "self",
+							"value": {
+								"guid": "cc8e07ad-5954-58f7-b311-b628d7e2530a",
+								"type": "fixed",
+								"expression": "2"
+							},
+							"priority": 0,
+							"id": "0"
+						},
+						{
+							"guid": "6e79231d-69db-5da6-b9de-25aee3b7b7c4",
+							"name": "Crushing Bite",
+							"type": "attack",
+							"target": "player",
+							"value": {
+								"guid": "f81ea403-b06d-57bf-826b-af72d85d0557",
+								"type": "calculation",
+								"expression": "current_attack * 2"
+							},
+							"priority": 0,
+							"id": "1"
+						}
+					],
+					"frequency": 30,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 13
 		},
 		{
 			"guid": "ccaad60b-79cc-49f2-9c64-67b5048c12b8",
 			"id": "6",
 			"name": "Garden Snake",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy003.png",
-			"actions": [],
-			"gold": 5
+			"health": 18,
+			"attack": 3,
+			"image": "res://art/enemy/pipo-enemy003.png",
+			"actions": [
+				{
+					"guid": "ec27c829-81fb-528e-a484-f757aa70a27e",
+					"name": "Fang",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "5af03c96-5560-5422-b7ed-9d10d1446699",
+						"type": "fixed",
+						"expression": "5"
+					},
+					"steps": [],
+					"frequency": 65,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "6e4bd3f6-795b-54a4-acb2-5d927191d951",
+					"name": "Venomous Fang",
+					"type": "poison",
+					"target": "player",
+					"value": {
+						"guid": "d0851d44-9a3b-54c6-8a88-265d5ff249c9",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 35,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 8
 		},
 		{
 			"guid": "184a37d6-70ce-491c-ae0a-6dc3d7d42cc4",
@@ -224,7 +397,7 @@
 			"name": "Serpent",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy003a.png",
+			"image": "res://art/enemy/pipo-enemy003a.png",
 			"actions": [],
 			"gold": 5
 		},
@@ -234,7 +407,7 @@
 			"name": "Viperlord",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy003b.png",
+			"image": "res://art/enemy/pipo-enemy003b.png",
 			"actions": [],
 			"gold": 5
 		},
@@ -244,19 +417,54 @@
 			"name": "Tinyclaw",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy004.png",
+			"image": "res://art/enemy/pipo-enemy004.png",
 			"actions": [],
 			"gold": 5
 		},
 		{
-			"guid": "99460c84-92ff-4e96-b3f2-7446104b9b18",
+			"guid": "81953a1c-ca54-5626-b55a-46225016c4f1",
 			"id": "10",
-			"name": "Horned Beetle",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy004a.png",
-			"actions": [],
-			"gold": 0
+			"name": "ENEMY_HORNED_BEETLE",
+			"health": 30,
+			"attack": 4,
+			"image": "res://art/enemy/pipo-enemy004a.png",
+			"actions": [
+				{
+					"guid": "aedba0f8-a485-52d9-9586-e44710d379ea",
+					"name": "ENEMY_ACTION_BEETLE_HORN_JAB",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "1bfdbf99-145d-57b6-bdf9-74313f9cd748",
+						"type": "fixed",
+						"expression": "7"
+					},
+					"steps": [],
+					"frequency": 55,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "72bf3811-9270-514d-97ff-cc08b9223350",
+					"name": "ENEMY_ACTION_BEETLE_SHELL_GUARD",
+					"type": "shield",
+					"target": "self",
+					"value": {
+						"guid": "aa6e87cf-097f-58b5-a136-2ae5d323f623",
+						"type": "fixed",
+						"expression": "9"
+					},
+					"steps": [],
+					"frequency": 45,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 10
 		},
 		{
 			"guid": "280c0607-c3d0-4135-8040-7b11aa2dd332",
@@ -264,7 +472,7 @@
 			"name": "Ironhorn",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy004b.png",
+			"image": "res://art/enemy/pipo-enemy004b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -272,21 +480,91 @@
 			"guid": "e6b8d458-f3f5-4db7-bcdc-ca0d013d95ac",
 			"id": "12",
 			"name": "Whisp",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy010.png",
-			"actions": [],
-			"gold": 0
+			"health": 22,
+			"attack": 4,
+			"image": "res://art/enemy/pipo-enemy010.png",
+			"actions": [
+				{
+					"guid": "7e9b9b63-7078-52f7-a9dd-8919b1a55f32",
+					"name": "Ghostly Bolt",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "33762ec3-6e45-5db4-9799-c5c1c48f3b7a",
+						"type": "fixed",
+						"expression": "6"
+					},
+					"steps": [],
+					"frequency": 65,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "d71b1a1f-486b-533e-805e-cee9b9adf6b2",
+					"name": "Eerie Wail",
+					"type": "attackdown",
+					"target": "player",
+					"value": {
+						"guid": "dbceafd0-e69f-578a-8849-52447b53d8d1",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 35,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 9
 		},
 		{
-			"guid": "0b8b96a1-028e-4de4-b9b8-688287af8fa1",
+			"guid": "8f809526-01e4-513b-a53a-751d97fd1481",
 			"id": "13",
-			"name": "Phantom",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy010a.png",
-			"actions": [],
-			"gold": 0
+			"name": "ENEMY_PHANTOM",
+			"health": 24,
+			"attack": 4,
+			"image": "res://art/enemy/pipo-enemy010a.png",
+			"actions": [
+				{
+					"guid": "e448c1cd-0cf9-5e9a-b92f-ed53915c7553",
+					"name": "ENEMY_ACTION_PHANTOM_HAUNT",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "f01b8444-dc64-543c-b03d-eb84a8f77f48",
+						"type": "fixed",
+						"expression": "6"
+					},
+					"steps": [],
+					"frequency": 60,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "ddef3874-7675-525b-9004-19d361cc65ca",
+					"name": "ENEMY_ACTION_PHANTOM_CHILL",
+					"type": "attackdown",
+					"target": "player",
+					"value": {
+						"guid": "c970aa64-b3b3-5629-bc70-4227f0f3fc58",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 40,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 2
+				}
+			],
+			"gold": 10
 		},
 		{
 			"guid": "6b916b99-1e74-4e43-9721-bd9f02734c5c",
@@ -294,7 +572,7 @@
 			"name": "Specterlord",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy010b.png",
+			"image": "res://art/enemy/pipo-enemy010b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -304,7 +582,7 @@
 			"name": "Shambler",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy011.png",
+			"image": "res://art/enemy/pipo-enemy011.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -314,7 +592,7 @@
 			"name": "Gravewalker",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy011a.png",
+			"image": "res://art/enemy/pipo-enemy011a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -324,7 +602,7 @@
 			"name": "Deathlord",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy011b.png",
+			"image": "res://art/enemy/pipo-enemy011b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -332,21 +610,91 @@
 			"guid": "3203f6dd-e377-457f-9067-03370447194e",
 			"id": "18",
 			"name": "Squire",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy018.png",
-			"actions": [],
-			"gold": 0
+			"health": 34,
+			"attack": 4,
+			"image": "res://art/enemy/pipo-enemy018.png",
+			"actions": [
+				{
+					"guid": "965a4720-9925-557e-b509-33741ee457e4",
+					"name": "Sword Slash",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "31f045e4-a11c-5dff-ad73-874289223760",
+						"type": "fixed",
+						"expression": "7"
+					},
+					"steps": [],
+					"frequency": 65,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "1a3cd730-cbe1-5470-b381-6a132dc9f7d2",
+					"name": "Guard",
+					"type": "shield",
+					"target": "self",
+					"value": {
+						"guid": "0155d71c-0626-5cc9-af96-5a9dad3e26fb",
+						"type": "fixed",
+						"expression": "8"
+					},
+					"steps": [],
+					"frequency": 35,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 1
+				}
+			],
+			"gold": 12
 		},
 		{
-			"guid": "0ddab57c-5d4a-4347-bd0e-be3e13f3552f",
+			"guid": "554fbfb1-ac1f-52c7-9a39-2401347d131d",
 			"id": "19",
-			"name": "Iron Knight",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy018a.png",
-			"actions": [],
-			"gold": 0
+			"name": "ENEMY_IRON_KNIGHT",
+			"health": 40,
+			"attack": 5,
+			"image": "res://art/enemy/pipo-enemy018a.png",
+			"actions": [
+				{
+					"guid": "58d947e2-5372-59c2-99d5-88cc705f94ed",
+					"name": "ENEMY_ACTION_KNIGHT_SWORD_ARC",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "ad6b8eb1-fec8-5769-85da-a396f37d1358",
+						"type": "fixed",
+						"expression": "8"
+					},
+					"steps": [],
+					"frequency": 60,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "0a4974f8-7bf5-5571-8158-b6e8f70e1390",
+					"name": "ENEMY_ACTION_KNIGHT_IRON_GUARD",
+					"type": "shield",
+					"target": "self",
+					"value": {
+						"guid": "2928fd97-6d35-5fdf-a38c-ee37c62ef744",
+						"type": "fixed",
+						"expression": "11"
+					},
+					"steps": [],
+					"frequency": 40,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 14
 		},
 		{
 			"guid": "2911c0f1-0aef-4779-aced-e6da0a25d9a4",
@@ -354,7 +702,7 @@
 			"name": "Black Paladin",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy018b.png",
+			"image": "res://art/enemy/pipo-enemy018b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -364,7 +712,7 @@
 			"name": "Pebble Golem",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy033.png",
+			"image": "res://art/enemy/pipo-enemy033.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -374,7 +722,7 @@
 			"name": "Stone Golem",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy033a.png",
+			"image": "res://art/enemy/pipo-enemy033a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -384,7 +732,7 @@
 			"name": "Iron Colossus",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy033b.png",
+			"image": "res://art/enemy/pipo-enemy033b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -394,7 +742,7 @@
 			"name": "Brown Bear",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy037.png",
+			"image": "res://art/enemy/pipo-enemy037.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -404,7 +752,7 @@
 			"name": "Big Black",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy037a.png",
+			"image": "res://art/enemy/pipo-enemy037a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -414,7 +762,7 @@
 			"name": "Whiteclaw",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy037b.png",
+			"image": "res://art/enemy/pipo-enemy037b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -424,7 +772,7 @@
 			"name": "Jellipuff",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy046.png",
+			"image": "res://art/enemy/pipo-enemy046.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -434,7 +782,7 @@
 			"name": "Stinger Jelly",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy046a.png",
+			"image": "res://art/enemy/pipo-enemy046a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -444,7 +792,7 @@
 			"name": "Thunderjelly",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy046b.png",
+			"image": "res://art/enemy/pipo-enemy046b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -452,11 +800,46 @@
 			"guid": "f36af1a2-a73a-4ea6-bd72-3e574251a961",
 			"id": "30",
 			"name": "Petalbloom",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy007.png",
-			"actions": [],
-			"gold": 0
+			"health": 26,
+			"attack": 3,
+			"image": "res://art/enemy/pipo-enemy007.png",
+			"actions": [
+				{
+					"guid": "ae83d2df-3c46-567c-9561-158fa1732648",
+					"name": "Thorn Lash",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "97b1e0e0-c2b8-58af-af25-69261b230319",
+						"type": "fixed",
+						"expression": "6"
+					},
+					"steps": [],
+					"frequency": 70,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "ad42ae9a-c68a-5def-91cd-d96a32d2c447",
+					"name": "Pollen Cloud",
+					"type": "poison",
+					"target": "player",
+					"value": {
+						"guid": "2fa62a33-8777-5778-9570-a5e1025109fa",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 30,
+					"id": "1",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 9
 		},
 		{
 			"guid": "1afb5689-79f8-41da-8149-0d3bf3a65132",
@@ -464,7 +847,7 @@
 			"name": "Bloomthorn",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy007a.png",
+			"image": "res://art/enemy/pipo-enemy007a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -474,7 +857,7 @@
 			"name": "Deathblossom",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy007b.png",
+			"image": "res://art/enemy/pipo-enemy007b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -484,7 +867,7 @@
 			"name": "Hatchling",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy021.png",
+			"image": "res://art/enemy/pipo-enemy021.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -494,7 +877,7 @@
 			"name": "Flamewing",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy021a.png",
+			"image": "res://art/enemy/pipo-enemy021a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -504,7 +887,7 @@
 			"name": "Ancient Wyrm",
 			"health": 60,
 			"attack": 9,
-			"image": "..\\..\\art\\enemy\\pipo-enemy021b.png",
+			"image": "res://art/enemy/pipo-enemy021b.png",
 			"actions": [
 				{
 					"guid": "1d6f0f8a-646f-4679-b5fb-46f8d74d5d3c",
@@ -520,7 +903,8 @@
 					"frequency": 70,
 					"id": "0",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				},
 				{
 					"guid": "68d97e14-45ec-4fbd-80e1-6d83f47bf50e",
@@ -561,20 +945,56 @@
 					"frequency": 30,
 					"id": "1",
 					"conditions": [],
-					"priority": 0
+					"priority": 0,
+					"turns": 0
 				}
 			],
 			"gold": 40
 		},
 		{
-			"guid": "987af9a1-963c-4354-8323-58e68b29bcdb",
+			"guid": "75a1811d-fb40-5f81-90e7-933a4917b1e2",
 			"id": "36",
-			"name": "Apprentice",
-			"health": 0,
-			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy025.png",
-			"actions": [],
-			"gold": 0
+			"name": "ENEMY_APPRENTICE",
+			"health": 22,
+			"attack": 3,
+			"image": "res://art/enemy/pipo-enemy025.png",
+			"actions": [
+				{
+					"guid": "a2d20577-02c5-5275-a3b3-9bfdf4280080",
+					"name": "ENEMY_ACTION_APPRENTICE_ARCANE_DART",
+					"type": "attack",
+					"target": "player",
+					"value": {
+						"guid": "b136217e-5f77-5da8-8175-7c3910c7cb95",
+						"type": "fixed",
+						"expression": "5"
+					},
+					"steps": [],
+					"frequency": 65,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				},
+				{
+					"guid": "d09337ef-2425-5215-92fd-c6ec013d22cc",
+					"name": "ENEMY_ACTION_APPRENTICE_MANA_SURGE",
+					"type": "attackup",
+					"target": "self",
+					"value": {
+						"guid": "2a93e95e-88ae-5456-992b-d6bb7b819ebe",
+						"type": "fixed",
+						"expression": "2"
+					},
+					"steps": [],
+					"frequency": 35,
+					"id": "0",
+					"conditions": [],
+					"priority": 0,
+					"turns": 0
+				}
+			],
+			"gold": 9
 		},
 		{
 			"guid": "d3cc5ba0-0caa-4ef7-a38d-a9aec3391971",
@@ -582,7 +1002,7 @@
 			"name": "Spellbinder",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy025a.png",
+			"image": "res://art/enemy/pipo-enemy025a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -592,7 +1012,7 @@
 			"name": "Archmage",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy025b.png",
+			"image": "res://art/enemy/pipo-enemy025b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -602,7 +1022,7 @@
 			"name": "Imp",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy024.png",
+			"image": "res://art/enemy/pipo-enemy024.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -612,7 +1032,7 @@
 			"name": "Hellfiend",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy024a.png",
+			"image": "res://art/enemy/pipo-enemy024a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -622,7 +1042,7 @@
 			"name": "Abyssal Lord",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy024b.png",
+			"image": "res://art/enemy/pipo-enemy024b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -632,7 +1052,7 @@
 			"name": "Wailing Spirit",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy045.png",
+			"image": "res://art/enemy/pipo-enemy045.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -642,7 +1062,7 @@
 			"name": "Haunting Banshee",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy045a.png",
+			"image": "res://art/enemy/pipo-enemy045a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -652,7 +1072,7 @@
 			"name": "Deathwail",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy045b.png",
+			"image": "res://art/enemy/pipo-enemy045b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -662,7 +1082,7 @@
 			"name": "Bonewalker",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy039.png",
+			"image": "res://art/enemy/pipo-enemy039.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -672,7 +1092,7 @@
 			"name": "Skeleton Warrior",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy039a.png",
+			"image": "res://art/enemy/pipo-enemy039a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -682,7 +1102,7 @@
 			"name": "Bone King",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy039b.png",
+			"image": "res://art/enemy/pipo-enemy039b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -692,7 +1112,7 @@
 			"name": "Bonecaster",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy026.png",
+			"image": "res://art/enemy/pipo-enemy026.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -702,7 +1122,7 @@
 			"name": "Dark Lich",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy026a.png",
+			"image": "res://art/enemy/pipo-enemy026a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -712,7 +1132,7 @@
 			"name": "Lich King",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy026b.png",
+			"image": "res://art/enemy/pipo-enemy026b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -722,7 +1142,7 @@
 			"name": "Bloodling",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy040.png",
+			"image": "res://art/enemy/pipo-enemy040.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -732,7 +1152,7 @@
 			"name": "Nightstalker",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy040a.png",
+			"image": "res://art/enemy/pipo-enemy040a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -742,7 +1162,7 @@
 			"name": "Vampire Lord",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy040b.png",
+			"image": "res://art/enemy/pipo-enemy040b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -752,7 +1172,7 @@
 			"name": "Shadow Scout",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy048.png",
+			"image": "res://art/enemy/pipo-enemy048.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -762,7 +1182,7 @@
 			"name": "Nightblade",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy048a.png",
+			"image": "res://art/enemy/pipo-enemy048a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -772,7 +1192,7 @@
 			"name": "Shadowmaster",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy048b.png",
+			"image": "res://art/enemy/pipo-enemy048b.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -782,7 +1202,7 @@
 			"name": "Flutterwing",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy022.png",
+			"image": "res://art/enemy/pipo-enemy022.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -792,7 +1212,7 @@
 			"name": "Skywatcher",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy022a.png",
+			"image": "res://art/enemy/pipo-enemy022a.png",
 			"actions": [],
 			"gold": 0
 		},
@@ -802,7 +1222,7 @@
 			"name": "Stormclaw",
 			"health": 0,
 			"attack": 0,
-			"image": "..\\..\\art\\enemy\\pipo-enemy022b.png",
+			"image": "res://art/enemy/pipo-enemy022b.png",
 			"actions": [],
 			"gold": 0
 		}

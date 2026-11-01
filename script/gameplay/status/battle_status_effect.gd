@@ -11,7 +11,8 @@ enum StatusEffectType {
 	FROZEN,            # 凍結
 	REGEN,             # 再生
 	DEAD,              # 戦闘不能
-	STUNNED            # スタン
+	STUNNED,           # スタン
+	STRIKE_POWER       # ストライク系カードへの追加ダメージ
 }
 
 enum EffectDurationType {

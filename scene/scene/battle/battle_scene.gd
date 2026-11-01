@@ -2,11 +2,20 @@ class_name BattleScene
 extends SceneBase
 
 const CARD_SCENE: PackedScene = preload("res://scene/card/card.tscn")
+const BATTLE_SCENE_PATH := "res://scene/scene/battle/battle_scene.tscn"
+const DEFAULT_ROAD_BATTLE_BACKGROUND: Texture2D = preload("res://art/background/battleback_meadow_cc0.png")
+const DEFAULT_FOREST_BATTLE_BACKGROUND: Texture2D = preload("res://art/background/battleback_forest_cc0.png")
+const DEFAULT_RUINS_BATTLE_BACKGROUND: Texture2D = preload("res://art/background/battleback_cave_cc0.png")
+const DEFAULT_ELITE_BATTLE_BACKGROUND: Texture2D = preload("res://art/background/battleback_dungeon_cc0.png")
+const DEFAULT_BOSS_BATTLE_BACKGROUND: Texture2D = preload("res://art/background/battleback_cave_cc0.png")
 
 ## 通常戦の編成。ルート設定で戦闘数を増やしても、この表を循環して編成を変える。
 const NORMAL_ENCOUNTER_CYCLE := [
-	[0, 0], [1, 0], [3, 0], [0, 0],
-	[1, 3], [1, 1], [3, 3], [1, 3],
+	# 各組み合わせの役割を分け、旅の途中でも違う対処が必要になるようにする。
+	[0, 0], [1, 4], [6, 0], [3, 4], [12, 30],
+	[2, 18], [1, 6], [5, 12], [30, 18], [0, 6, 4],
+	# 追加した敵は単体・混成の両方へ置き、行動の違いを戦闘中に試せるようにする。
+	[10, 0], [13, 4], [19], [36, 6], [10, 13], [19, 2], [36, 30],
 ]
 
 ## 戦闘シーン
@@ -20,6 +29,13 @@ const NORMAL_ENCOUNTER_CYCLE := [
 @export var target_selection_arrow: PackedScene
 ## JourneyScreenの仮背景を置き換える画像。パス画面の線とボタンはこの上に描画する。
 @export var journey_map_background: Texture2D
+## エリアと戦闘種別ごとの背景。ボス戦だけ差し替える場合もここで設定できる。
+@export_group("Battle backgrounds")
+@export var road_battle_background: Texture2D = DEFAULT_ROAD_BATTLE_BACKGROUND
+@export var forest_battle_background: Texture2D = DEFAULT_FOREST_BATTLE_BACKGROUND
+@export var ruins_battle_background: Texture2D = DEFAULT_RUINS_BATTLE_BACKGROUND
+@export var elite_battle_background: Texture2D = DEFAULT_ELITE_BATTLE_BACKGROUND
+@export var boss_battle_background: Texture2D = DEFAULT_BOSS_BATTLE_BACKGROUND
 
 var _battle_info: BattleInfo
 var _enemy: BattleEnemy
@@ -41,6 +57,14 @@ var _pile_inspector_title: Label
 var _pile_inspector_view: CardChoiceView
 var _deck_pile_button: Button
 var _discard_pile_button: Button
+var _battle_log_layer: CanvasLayer
+var _battle_log_label: Label
+var _battle_log_turns: int = 0
+var _battle_log_cards_played: int = 0
+var _battle_log_last_health: int = 0
+var _battle_log_damage_taken: int = 0
+var _battle_log_recorded: bool = false
+var _battle_log_encounter_names: Array[String] = []
 
 func get_battle_info() -> BattleInfo:
 	return _battle_info
@@ -140,6 +164,10 @@ func _ready() -> void:
 	RunData.next_battle_is_boss = false
 	RunData.current_battle_is_elite = RunData.next_battle_is_elite
 	RunData.next_battle_is_elite = false
+	var battle_background := _get_battle_background()
+	$Background.visible = battle_background != null
+	if battle_background != null:
+		$Background.set_battle_background(battle_background)
 	_camera = Camera2D.new()
 	_camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
 	add_child(_camera)
@@ -175,8 +203,16 @@ func _ready() -> void:
 	# encounter list と同じ順番で敵データを割り当てる。
 	for index in range(_enemies.size()):
 		_enemies[index].set_data(enemies_data[enemy_data_ids[index]])
+		_battle_log_encounter_names.append(_enemies[index].get_data().name)
 		if RunData.current_battle_is_elite:
 			_enemies[index].promote_to_elite()
+		if not RunData.current_battle_is_boss:
+			# 通常戦とエリート戦は、突破数に応じて少しずつ耐久・攻撃が上がる。
+			# RunDataの設定値を変えると、序盤の手触りを保ったまま成長速度を調整できる。
+			var scaling: Dictionary = RunData.ENCOUNTER_BALANCE_CONFIG
+			var battles_per_step: int = maxi(1, int(scaling["battles_per_step"]))
+			var depth_steps: int = mini(int(scaling["max_steps"]), floori(float(RunData.completed_battles) / float(battles_per_step)))
+			_enemies[index].scale_for_depth(depth_steps, float(scaling["health_growth_per_step"]), int(scaling["attack_growth_per_step"]))
 	_layout_monsters()
 	Random.get_instance().shuffle_array(_card_pile)
 	# プレイヤーの作成
@@ -188,6 +224,7 @@ func _ready() -> void:
 	_player.status_effects_changed.connect(_on_player_status_effects_changed)
 	_player.shield_reset.connect(_on_player_shield_reset)
 	_player.set_health(RunData.current_health, _player.get_max_health())
+	_battle_log_last_health = _player.get_health()
 	$HealthBar.set_health(_player.get_health(), _player.get_max_health())
 	$HUD.update_energy(_player.get_energy(), _player.get_max_energy())
 	# 手札を作成
@@ -206,12 +243,26 @@ func _ready() -> void:
 	_update_card_pile_num()
 	_update_discard_pile_num()
 	_build_card_pile_inspector()
+	_build_battle_log_ui()
 	_target_selection_arrow = target_selection_arrow.instantiate()
 	add_child(_target_selection_arrow)
 	$StateMachine.current_state.transitioned.emit("BattleStart")
 	_battle_info = BattleInfo.new()
 	_battle_info._enemies = _enemies
 	_battle_info._player = _player
+
+func _get_battle_background() -> Texture2D:
+	if RunData.current_battle_is_boss:
+		return boss_battle_background
+	if RunData.current_battle_is_elite:
+		return elite_battle_background
+	match RunData.starting_route_id:
+		"forest":
+			return forest_battle_background
+		"ruins":
+			return ruins_battle_background
+		_:
+			return road_battle_background
 
 func _on_endturn_button_down():
 	# Tween演出中などに連打されても、行動選択状態からの1回だけ受け付ける。
@@ -237,15 +288,21 @@ func _on_deck_reshuffled():
 	_update_discard_pile_num()
 	
 func _on_card_used(_card_data: CardData):
-	pass
+	_battle_log_cards_played += 1
+	_refresh_battle_log_text()
 	
 func _on_card_discarded(_card_data: CardData):
 	_update_discard_pile_num()
 	
 func _on_player_health_changed(health: int, max_health: int):
 	$HealthBar.set_health(health, max_health)
+	# 回復を差し引かずに、戦闘中に実際に受けたHPダメージを積算する。
+	if health < _battle_log_last_health:
+		_battle_log_damage_taken += _battle_log_last_health - health
+	_battle_log_last_health = health
 	# 次の戦闘へ遷移する前にHPを保存し、シーン再読込後に引き継ぐ。
 	RunData.set_health(health, max_health)
+	_refresh_battle_log_text()
 
 func _on_player_shield_changed(shield: int):
 	$HealthBar.set_shield(shield)
@@ -322,6 +379,10 @@ func _on_relic_hook_triggered(hook, context: Dictionary) -> void:
 	var target_player: BattlePlayerStatus = context.get("player", _player) as BattlePlayerStatus
 	var hook_name: String = RunData.get_relic_hook_name(hook_id)
 	var did_activate: Array[RelicData] = []
+	# プレイヤーのターン開始フックはレリックの有無に関係なく来るので、ターン数計測にも使う。
+	if hook_id == RunData.RelicHook.PLAYER_TURN_START:
+		_battle_log_turns += 1
+		_refresh_battle_log_text()
 	# 開幕シールドは既存フィールドを使い、初回ドロー後という新しい発動時点に集約する。
 	if hook_id == RunData.RelicHook.BATTLE_START_AFTER_DRAW:
 		var shield_amount: int = RunData.get_battle_start_shield()
@@ -355,6 +416,12 @@ func _on_relic_hook_triggered(hook, context: Dictionary) -> void:
 				"bonus_gold", "extra_relic_choice":
 					# 報酬金額や候補数は専用の集計関数が反映し、ここでは発動演出だけ行う。
 					applied = amount > 0
+				"draw":
+					# レリックのドロー効果も通常の山札処理を使い、捨て札再循環や配置を崩さない。
+					if is_instance_valid(_hands):
+						for _draw_index in range(maxi(0, amount)):
+							_hands._draw_card()
+						applied = amount > 0
 			if applied:
 				did_activate.append(relic)
 	for relic in RunData.relics:
@@ -367,6 +434,98 @@ func _on_relic_hook_triggered(hook, context: Dictionary) -> void:
 
 func trigger_relic_hook(hook, context: Dictionary = {}) -> void:
 	RunData.trigger_relic_hook(hook, context)
+
+func _build_battle_log_ui() -> void:
+	# HUDの隅にログを開く入口を置き、戦闘を止めずに現在値を見られるようにする。
+	var button := Button.new()
+	button.text = tr("BATTLE_LOG_BUTTON")
+	button.position = Vector2(1050, 18)
+	button.size = Vector2(210, 38)
+	button.pressed.connect(_toggle_battle_log)
+	$HUD.add_child(button)
+	_battle_log_layer = CanvasLayer.new()
+	_battle_log_layer.layer = 40
+	_battle_log_layer.visible = false
+	add_child(_battle_log_layer)
+	var shade := ColorRect.new()
+	shade.color = Color(0.01, 0.02, 0.04, 0.82)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_battle_log_layer.add_child(shade)
+	var panel := PanelContainer.new()
+	panel.position = Vector2(270, 72)
+	panel.size = Vector2(740, 570)
+	_battle_log_layer.add_child(panel)
+	var content := VBoxContainer.new()
+	content.add_theme_constant_override("separation", 12)
+	panel.add_child(content)
+	var header := HBoxContainer.new()
+	content.add_child(header)
+	var title := Label.new()
+	title.text = tr("BATTLE_LOG_TITLE")
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.add_theme_font_size_override("font_size", 24)
+	header.add_child(title)
+	var close_button := Button.new()
+	close_button.text = tr("BATTLE_LOG_CLOSE")
+	close_button.pressed.connect(_toggle_battle_log)
+	header.add_child(close_button)
+	var history_scroll := ScrollContainer.new()
+	history_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	history_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	content.add_child(history_scroll)
+	_battle_log_label = Label.new()
+	_battle_log_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_battle_log_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_battle_log_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	_battle_log_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	history_scroll.add_child(_battle_log_label)
+	_refresh_battle_log_text()
+
+func _toggle_battle_log() -> void:
+	_battle_log_layer.visible = not _battle_log_layer.visible
+	_refresh_battle_log_text()
+
+func _refresh_battle_log_text() -> void:
+	if not is_instance_valid(_battle_log_label):
+		return
+	var encounter_text: String = ", ".join(PackedStringArray(_battle_log_encounter_names))
+	var current_text: String = tr("BATTLE_LOG_CURRENT") % [encounter_text, _battle_log_turns, _battle_log_cards_played, _battle_log_damage_taken]
+	var history_text := ""
+	var limit: int = mini(10, RunData.battle_balance_logs.size())
+	for index in range(limit):
+		var entry: Dictionary = RunData.battle_balance_logs[index]
+		var relic_names: Array[String] = []
+		for relic_name in entry.get("relics", []):
+			relic_names.append(str(relic_name))
+		var encounter_kind: String = "BATTLE_LOG_BOSS" if bool(entry.get("boss", false)) else "BATTLE_LOG_ELITE" if bool(entry.get("elite", false)) else "BATTLE_LOG_NORMAL"
+		history_text += tr("BATTLE_LOG_HISTORY_ROW") % [int(entry.get("battle_number", 0)), tr(encounter_kind), str(entry.get("result", "?")), str(entry.get("encounter", "?")), int(entry.get("turns", 0)), int(entry.get("cards_played", 0)), int(entry.get("damage_taken", 0)), ", ".join(PackedStringArray(relic_names)), str(entry.get("seed", "?"))]
+	if history_text.is_empty():
+		history_text = tr("BATTLE_LOG_HISTORY_EMPTY")
+	_battle_log_label.text = current_text + "\n\n" + tr("BATTLE_LOG_HISTORY_HEADER") + "\n" + history_text
+
+func record_battle_balance_result(result: String) -> void:
+	# 勝敗が確定した瞬間の値を保存する。報酬処理の再入場でも二重記録しない。
+	if _battle_log_recorded:
+		return
+	_battle_log_recorded = true
+	var encounter_text: String = ", ".join(PackedStringArray(_battle_log_encounter_names))
+	var relic_names: Array[String] = []
+	for relic in RunData.relics:
+		relic_names.append(relic.name)
+	var entry := {
+		"result": result,
+		"encounter": encounter_text,
+		"turns": _battle_log_turns,
+		"cards_played": _battle_log_cards_played,
+		"damage_taken": _battle_log_damage_taken,
+		"seed": RunData.run_seed,
+		"battle_number": RunData.completed_battles + (1 if not RunData.current_battle_is_boss else 0),
+		"elite": RunData.current_battle_is_elite,
+		"boss": RunData.current_battle_is_boss,
+		"relics": relic_names,
+	}
+	RunData.record_battle_balance_log(entry)
+	_refresh_battle_log_text()
 
 func _play_relic_activation(icon: Control) -> void:
 	# 効果発動時の短い点滅を共通化し、他のレリック効果でも使えるようにする。
@@ -612,7 +771,8 @@ func finish_reward_selection() -> void:
 	var journey_screen := JourneyScreen.new()
 	journey_screen.name = "JourneyScreen"
 	journey_screen.show_campaign_clear = RunData.boss_defeated
-	journey_screen.map_background_texture = journey_map_background
+	if journey_map_background != null:
+		journey_screen.map_background_texture = journey_map_background
 	journey_screen.route_selected.connect(_on_journey_route_selected)
 	journey_screen.event_selected.connect(_on_journey_event_selected)
 	journey_screen.relic_selected.connect(_on_journey_relic_selected)
@@ -642,6 +802,9 @@ func _on_journey_route_selected(node_id: String, node_type: String, amount: int)
 		"upgrade":
 			$JourneyScreen.refresh_map()
 			return
+		"event_training":
+			$JourneyScreen.refresh_map()
+			return
 		"event_forge":
 			# 鍛冶イベントは選択後に結果を反映済み。マップへ戻って次の道を選べるようにする。
 			$JourneyScreen.refresh_map()
@@ -656,14 +819,16 @@ func _on_journey_route_selected(node_id: String, node_type: String, amount: int)
 		"battle", "elite", "boss":
 			RunData.next_battle_is_boss = node_type == "boss"
 			RunData.next_battle_is_elite = node_type == "elite"
-			get_tree().reload_current_scene()
+			# Autoloadの遷移演出はシーン再読込後も残り、戦闘種別ごとのタイトルを表示する。
+			SceneTransition.transition_to_battle(BATTLE_SCENE_PATH, node_type)
 
-func _on_journey_event_selected(node_id: String, heal_amount: int, gold_delta: int) -> void:
+func _on_journey_event_selected(node_id: String, health_delta: int, gold_delta: int) -> void:
 	# 支払い可能性を再確認し、イベント効果と現在地を同時に確定する。
 	if gold_delta < 0 and RunData.gold < -gold_delta:
 		return
 	RunData.move_to_route_node(node_id)
-	RunData.heal(heal_amount, _player.get_max_health())
+	# リスク型イベントではHPを失う選択肢もあるため、増減どちらも上限付きで反映する。
+	RunData.set_health(RunData.current_health + health_delta, _player.get_max_health())
 	if gold_delta < 0:
 		RunData.spend_gold(-gold_delta)
 	else:

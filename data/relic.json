@@ -8,7 +8,8 @@
 			"detail_description": "RELIC_GUARD_CHARM_DESC",
 			"battle_start_shield": 5,
 			"battle_victory_gold": 0,
-			"treasure_choice_bonus": 0
+			"treasure_choice_bonus": 0,
+			"hook_effects": []
 		},
 		{
 			"guid": "bc56d43d-7cf7-496c-87ec-dbfc7cae1ffa",
@@ -19,7 +20,13 @@
 			"battle_start_shield": 0,
 			"battle_victory_gold": 0,
 			"treasure_choice_bonus": 0,
-			"hook_effects": [{"trigger": "battle_victory", "type": "bonus_gold", "amount": 10}]
+			"hook_effects": [
+				{
+					"trigger": "battle_victory",
+					"type": "bonus_gold",
+					"amount": 10
+				}
+			]
 		},
 		{
 			"guid": "89539706-c95f-437c-974e-a703be7df346",
@@ -30,7 +37,13 @@
 			"battle_start_shield": 0,
 			"battle_victory_gold": 0,
 			"treasure_choice_bonus": 0,
-			"hook_effects": [{"trigger": "treasure_opened", "type": "extra_relic_choice", "amount": 1}]
+			"hook_effects": [
+				{
+					"trigger": "treasure_opened",
+					"type": "extra_relic_choice",
+					"amount": 1
+				}
+			]
 		},
 		{
 			"guid": "b6746c82-1376-433a-91a1-a811fb654d03",
@@ -38,7 +51,13 @@
 			"name": "RELIC_WARDING_BEAD",
 			"description": "RELIC_WARDING_BEAD_DESC",
 			"detail_description": "RELIC_WARDING_BEAD_DESC",
-			"hook_effects": [{"trigger": "player_turn_start", "type": "shield", "amount": 3}]
+			"hook_effects": [
+				{
+					"trigger": "player_turn_start",
+					"type": "shield",
+					"amount": 3
+				}
+			]
 		},
 		{
 			"guid": "2de70c2e-61ba-473b-8914-e35070f9dd91",
@@ -46,7 +65,13 @@
 			"name": "RELIC_SWORDSMAN_SIGIL",
 			"description": "RELIC_SWORDSMAN_SIGIL_DESC",
 			"detail_description": "RELIC_SWORDSMAN_SIGIL_DESC",
-			"hook_effects": [{"trigger": "card_played", "type": "shield", "amount": 1}]
+			"hook_effects": [
+				{
+					"trigger": "card_played",
+					"type": "shield",
+					"amount": 1
+				}
+			]
 		},
 		{
 			"guid": "1042fac2-59b1-42a0-9d60-2db3541553c7",
@@ -54,7 +79,13 @@
 			"name": "RELIC_HUNTER_FANG",
 			"description": "RELIC_HUNTER_FANG_DESC",
 			"detail_description": "RELIC_HUNTER_FANG_DESC",
-			"hook_effects": [{"trigger": "enemy_defeated", "type": "gold", "amount": 2}]
+			"hook_effects": [
+				{
+					"trigger": "enemy_defeated",
+					"type": "gold",
+					"amount": 2
+				}
+			]
 		},
 		{
 			"guid": "fe2c498a-8f4d-4072-a9df-1eb4c9d20c16",
@@ -62,7 +93,13 @@
 			"name": "RELIC_MENDER_RING",
 			"description": "RELIC_MENDER_RING_DESC",
 			"detail_description": "RELIC_MENDER_RING_DESC",
-			"hook_effects": [{"trigger": "battle_victory", "type": "heal", "amount": 5}]
+			"hook_effects": [
+				{
+					"trigger": "battle_victory",
+					"type": "heal",
+					"amount": 5
+				}
+			]
 		},
 		{
 			"guid": "33f90829-caa2-4f3c-934a-72c3ba3e8c04",
@@ -70,7 +107,71 @@
 			"name": "RELIC_RESTFUL_CHARM",
 			"description": "RELIC_RESTFUL_CHARM_DESC",
 			"detail_description": "RELIC_RESTFUL_CHARM_DESC",
-			"hook_effects": [{"trigger": "route_node_selected", "type": "heal", "amount": 5, "node_type": "rest"}]
+			"hook_effects": [
+				{
+					"trigger": "route_node_selected",
+					"type": "heal",
+					"amount": 5,
+					"node_type": "rest"
+				}
+			]
+		},
+		{
+			"guid": "caefffef-7c84-5b5f-95a8-a398587dd1b6",
+			"id": "8",
+			"name": "RELIC_VANGUARD_SHELL",
+			"description": "RELIC_VANGUARD_SHELL_DESC",
+			"detail_description": "RELIC_VANGUARD_SHELL_DESC",
+			"hook_effects": [
+				{
+					"trigger": "enemy_defeated",
+					"type": "shield",
+					"amount": 2
+				}
+			]
+		},
+		{
+			"guid": "2fcf2b88-8283-582d-9597-6e331db7fad0",
+			"id": "9",
+			"name": "RELIC_SCRIBE_FEATHER",
+			"description": "RELIC_SCRIBE_FEATHER_DESC",
+			"detail_description": "RELIC_SCRIBE_FEATHER_DESC",
+			"hook_effects": [
+				{
+					"trigger": "battle_start_after_draw",
+					"type": "draw",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"guid": "8c924782-d222-5675-b984-2ea051838d09",
+			"id": "10",
+			"name": "RELIC_IRON_PENNANT",
+			"description": "RELIC_IRON_PENNANT_DESC",
+			"detail_description": "RELIC_IRON_PENNANT_DESC",
+			"hook_effects": [
+				{
+					"trigger": "enemy_defeated",
+					"type": "shield",
+					"amount": 3
+				}
+			]
+		},
+		{
+			"guid": "c8725c51-bf83-5ed8-b38a-7b120fe284e1",
+			"id": "11",
+			"name": "RELIC_PILGRIM_TEAR",
+			"description": "RELIC_PILGRIM_TEAR_DESC",
+			"detail_description": "RELIC_PILGRIM_TEAR_DESC",
+			"hook_effects": [
+				{
+					"trigger": "route_node_selected",
+					"type": "heal",
+					"amount": 4,
+					"node_type": "treasure"
+				}
+			]
 		}
 	]
 }

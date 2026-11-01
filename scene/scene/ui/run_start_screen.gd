@@ -126,11 +126,13 @@ func _begin_run() -> void:
 
 func _on_initial_route_selected(node_id: String, node_type: String, _amount: int) -> void:
 	# 開始位置をマップで選び終えたあと、接続先の初戦を選ぶと戦闘へ移る。
-	if node_type != "battle" or not node_id.begins_with("battle_1_"):
+	if node_type not in ["battle", "elite", "boss"] or not node_id.begins_with("battle_1_"):
 		return
-	get_tree().change_scene_to_file(BATTLE_SCENE_PATH)
+	RunData.next_battle_is_boss = node_type == "boss"
+	RunData.next_battle_is_elite = node_type == "elite"
+	SceneTransition.transition_to_battle(BATTLE_SCENE_PATH, node_type)
 
 func _begin_debug_run() -> void:
 	# エディタ実行時と同じ戦士初戦を維持し、毎回この選択画面を操作しなくて済む導線。
 	RunData.prepare_new_run("warrior", "road")
-	get_tree().change_scene_to_file(BATTLE_SCENE_PATH)
+	SceneTransition.transition_to_battle(BATTLE_SCENE_PATH, "battle")

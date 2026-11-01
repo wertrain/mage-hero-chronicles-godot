@@ -15,6 +15,7 @@ func enter():
 			break
 	_result = "BATTLE_VICTORY" if not has_living_enemy else ""
 	if not _result.is_empty():
+		root.record_battle_balance_result("勝利")
 		root.trigger_relic_hook(RunData.RelicHook.BATTLE_VICTORY, {"player": root.get_player()})
 		# ここで進行度を更新するので、報酬後に開くJourneyScreenが次の行き先を表示できる。
 		# 戦士特性の回復は戦闘終了時に反映し、HP表示とRunDataの両方を同期する。

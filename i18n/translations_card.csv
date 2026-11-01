@@ -107,3 +107,63 @@ CARD_WARRIOR_STUNNING_BLOW_DDESC_UPGRADED,Deal 9 damage and stun the enemy for 1
 CARD_WARRIOR_SECOND_WIND_UPGRADED,Second Wind+,戦いの息吹＋
 CARD_WARRIOR_SECOND_WIND_DESC_UPGRADED,Regenerate 4 HP at the start of your next 3 turns.,次の3ターンの開始時にHPを4回復する
 CARD_WARRIOR_SECOND_WIND_DDESC_UPGRADED,Regenerate 4 HP at the start of your next 3 turns. The effect is removed after its final tick.,次の3ターンの開始時にHPを4回復する。最後の発動後に効果は消える
+CARD_WARRIOR_GUARD_BREAK,Guard Break,崩し斬り
+CARD_WARRIOR_GUARD_BREAK_DESC,Deal 5 damage and reduce the enemy’s attack by 2 for 2 turns.,5ダメージを与え、2ターンの間、敵の攻撃力を2下げる。
+CARD_WARRIOR_GUARD_BREAK_DDESC,A measured strike that creates room to survive the enemy’s next attacks.,敵の次の攻撃をしのぐため、攻めを崩す一撃。
+CARD_MAGE_MIASMA,Miasma,瘴気
+CARD_MAGE_MIASMA_DESC,Apply 2 poison to all enemies for 2 turns.,敵全体に2ターンの間、毒を2与える。
+CARD_MAGE_MIASMA_DDESC,A slow spell that rewards patience against groups of foes.,敵が複数いる戦いで力を発揮する、じわじわ効く魔法。
+CARD_WARRIOR_RIPOSTE,Riposte,受け流し
+CARD_WARRIOR_RIPOSTE_DESC,Deal 5 damage and gain 4 shield.,5ダメージを与え、シールドを4得る。
+CARD_WARRIOR_RIPOSTE_DDESC,Turn a defensive opening into a counterattack.,守りの隙を反撃につなげる。
+CARD_WARRIOR_RIPOSTE_UPGRADED,Riposte+,受け流し＋
+CARD_WARRIOR_RIPOSTE_DESC_UPGRADED,Deal 7 damage and gain 5 shield.,7ダメージを与え、シールドを5得る。
+CARD_WARRIOR_RIPOSTE_DDESC_UPGRADED,A sharper counter that also steadies your guard.,攻めと守りを強めた反撃。
+CARD_WARRIOR_BATTLE_CRY,Battle Cry,戦いの雄叫び
+CARD_WARRIOR_BATTLE_CRY_DESC,Gain 2 attack for 2 turns.,2ターンの間、攻撃力が2上がる。
+CARD_WARRIOR_BATTLE_CRY_DDESC,Gather your courage before committing to an attack.,攻めに移る前に気勢を整える。
+CARD_WARRIOR_BATTLE_CRY_UPGRADED,Battle Cry+,戦いの雄叫び＋
+CARD_WARRIOR_BATTLE_CRY_DESC_UPGRADED,Gain 3 attack for 2 turns.,2ターンの間、攻撃力が3上がる。
+CARD_WARRIOR_BATTLE_CRY_DDESC_UPGRADED,A rallying shout with greater force.,より強く気勢を高める雄叫び。
+CARD_MAGE_FROST_SIGIL,Frost Sigil,氷結の印
+CARD_MAGE_FROST_SIGIL_DESC,Deal 5 damage and reduce enemy attack by 2 for 1 turn.,5ダメージを与え、1ターンの間、敵の攻撃力を2下げる。
+CARD_MAGE_FROST_SIGIL_DDESC,A chill rune that blunts the next retaliation.,敵の反撃を鈍らせる冷気のルーン。
+CARD_MAGE_FROST_SIGIL_UPGRADED,Frost Sigil+,氷結の印＋
+CARD_MAGE_FROST_SIGIL_DESC_UPGRADED,Deal 7 damage and reduce enemy attack by 3 for 1 turn.,7ダメージを与え、1ターンの間、敵の攻撃力を3下げる。
+CARD_MAGE_FROST_SIGIL_DDESC_UPGRADED,A denser rune with a stronger weakening chill.,弱体化を強めた氷結の印。
+CARD_MAGE_ARCANE_RECOVERY,Arcane Renewal,魔力の息継ぎ
+CARD_MAGE_ARCANE_RECOVERY_DESC,Heal 5 HP and draw 1 card.,HPを5回復し、カードを1枚引く。
+CARD_MAGE_ARCANE_RECOVERY_DDESC,Recover your footing and return to the spell flow.,体勢を立て直し、次の術へつなげる。
+CARD_MAGE_ARCANE_RECOVERY_UPGRADED,Arcane Renewal+,魔力の息継ぎ＋
+CARD_MAGE_ARCANE_RECOVERY_DESC_UPGRADED,Heal 7 HP and draw 1 card.,HPを7回復し、カードを1枚引く。
+CARD_MAGE_ARCANE_RECOVERY_DDESC_UPGRADED,Restore more health without losing tempo.,テンポを保ったまま、より多く回復する。
+CARD_WARRIOR_BATTLE_FURY,Battle Fury,闘気
+CARD_WARRIOR_BATTLE_FURY_DESC,Gain 2 attack for the rest of the battle.,この戦闘中、攻撃力が2上がる。
+CARD_WARRIOR_BATTLE_FURY_DDESC,A lasting surge of strength that rewards aggressive decks.,戦闘中ずっと攻めを支える、持続する力。
+CARD_WARRIOR_BATTLE_FURY_UPGRADED,Battle Fury+,闘気＋
+CARD_WARRIOR_BATTLE_FURY_DESC_UPGRADED,Gain 3 attack for the rest of the battle.,この戦闘中、攻撃力が3上がる。
+CARD_WARRIOR_BATTLE_FURY_DDESC_UPGRADED,A greater battle-long increase in attack.,戦闘中ずっと攻撃力をさらに高める。
+CARD_WARRIOR_STRIKE_RHYTHM,Strike Rhythm,連撃の構え
+CARD_WARRIOR_STRIKE_RHYTHM_DESC,Strike cards deal 2 more damage for the rest of the battle.,この戦闘中、ストライク系カードのダメージが2増える。
+CARD_WARRIOR_STRIKE_RHYTHM_DDESC,A focused stance that rewards building around Strike cards.,ストライク系カードを集めるほど力を発揮する構え。
+CARD_WARRIOR_STRIKE_RHYTHM_UPGRADED,Strike Rhythm+,連撃の構え＋
+CARD_WARRIOR_STRIKE_RHYTHM_DESC_UPGRADED,Strike cards deal 3 more damage for the rest of the battle.,この戦闘中、ストライク系カードのダメージが3増える。
+CARD_WARRIOR_STRIKE_RHYTHM_DDESC_UPGRADED,A stronger stance for a Strike-focused deck.,ストライク系カードを軸にしたデッキをさらに強化する。
+CARD_WARRIOR_PAIN_FOR_POWER,Pain for Power,痛みを力に
+CARD_WARRIOR_PAIN_FOR_POWER_DESC,Gain Poison 2 and 3 attack for 2 turns.,毒2を受け、2ターンの間、攻撃力が3上がる。
+CARD_WARRIOR_PAIN_FOR_POWER_DDESC,Accept a lingering wound to unleash a burst of strength.,傷を引き受け、短い間だけ大きな力を得る。
+CARD_WARRIOR_PAIN_FOR_POWER_UPGRADED,Pain for Power+,痛みを力に＋
+CARD_WARRIOR_PAIN_FOR_POWER_DESC_UPGRADED,Gain Poison 2 and 4 attack for 2 turns.,毒2を受け、2ターンの間、攻撃力が4上がる。
+CARD_WARRIOR_PAIN_FOR_POWER_DDESC_UPGRADED,Turn the same dangerous bargain into greater force.,危険な代償はそのままに、より強い力を引き出す。
+CARD_WARRIOR_EXPLOIT_WOUND,Exploit Wound,傷口をえぐる
+CARD_WARRIOR_EXPLOIT_WOUND_DESC,"Deal 6 damage. If you are Poisoned, deal 7 more.",6ダメージを与える。自身が毒状態なら、さらに7ダメージ。
+CARD_WARRIOR_EXPLOIT_WOUND_DDESC,Use the pain of your own affliction to press the attack.,自らの状態異常さえ攻めの好機に変える。
+CARD_WARRIOR_EXPLOIT_WOUND_UPGRADED,Exploit Wound+,傷口をえぐる＋
+CARD_WARRIOR_EXPLOIT_WOUND_DESC_UPGRADED,"Deal 8 damage. If you are Poisoned, deal 9 more.",8ダメージを与える。自身が毒状態なら、さらに9ダメージ。
+CARD_WARRIOR_EXPLOIT_WOUND_DDESC_UPGRADED,A heavier blow that cashes in on your affliction.,状態異常を利用して、より大きな一撃を放つ。
+CARD_WARRIOR_FOLLOW_THROUGH,Follow-through Strike,追い打ち
+CARD_WARRIOR_FOLLOW_THROUGH_DESC,Deal 5 damage and draw 1 card. (Strike),5ダメージを与え、カードを1枚引く。（ストライク）
+CARD_WARRIOR_FOLLOW_THROUGH_DDESC,A quick Strike that keeps the chain moving.,攻撃の連鎖をつなぐ素早いストライク。
+CARD_WARRIOR_FOLLOW_THROUGH_UPGRADED,Follow-through Strike+,追い打ち＋
+CARD_WARRIOR_FOLLOW_THROUGH_DESC_UPGRADED,Deal 7 damage and draw 1 card. (Strike),7ダメージを与え、カードを1枚引く。（ストライク）
+CARD_WARRIOR_FOLLOW_THROUGH_DDESC_UPGRADED,A stronger Strike that still keeps your hand moving.,手札を保ちながら攻める、強化されたストライク。

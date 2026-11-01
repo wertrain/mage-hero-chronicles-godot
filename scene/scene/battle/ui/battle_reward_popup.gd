@@ -65,11 +65,9 @@ func _ready() -> void:
 			relic_button.tooltip_text = "%s\n%s" % [_rewarded_relic.name, _rewarded_relic.description]
 			relic_button.visible = true
 	var card_data := database.load_cards_for_job(RunData.current_job)
-	# 現在の職業のカードから3枚を候補として引く。転職前に得たカードはデッキに残る。
-	Random.get_instance().shuffle_array(card_data)
-	var card_count: int = mini(3, card_data.size())
-	for index in range(card_count):
-		_rewarded_cards.append(card_data[index])
+	# 現在の職業から、レアリティ重みと強化版の出現倍率を使って重複なしで選ぶ。
+	# 抽選はRunDataと同じランシード乱数器を使うため、同じ行動なら結果も再現される。
+	_rewarded_cards = _draw_card_reward_choices(card_data)
 	_card_choice_view.set_cards(_rewarded_cards)
 
 	_rewarded_items = database.load_items()
@@ -78,6 +76,53 @@ func _ready() -> void:
 	get_node("CanvasLayer/ColorRect/Control_RewardSelectCard").visible = false
 	get_node("CanvasLayer/ColorRect/Control_RewardSelectItem").visible = false
 	_refresh_reward_menu()
+
+func _draw_card_reward_choices(card_data: Array[CardData]) -> Array[CardData]:
+	var choices: Array[CardData] = []
+	var remaining_cards: Array[CardData] = []
+	for card in card_data:
+		remaining_cards.append(card)
+	if remaining_cards.is_empty():
+		return choices
+
+	# 強化先GUIDを集めると、カード定義にフラグを増やさず強化版を判別できる。
+	var upgraded_guids: Dictionary = {}
+	for card in card_data:
+		if not card.upgrade_guid.is_empty():
+			upgraded_guids[card.upgrade_guid] = true
+
+	var balance: Dictionary = RunData.CARD_REWARD_BALANCE_CONFIG
+	var choice_count: int = mini(maxi(0, int(balance.get("choices_per_reward", 3))), remaining_cards.size())
+	var rarity_weights: Dictionary = balance.get("rarity_weights", {})
+	var upgraded_percent: int = clampi(int(balance.get("upgraded_card_weight_percent", 35)), 0, 100)
+	var random: Random = Random.get_instance()
+
+	# 一度選んだカードを候補から外し、同じカードが複数枠に出ないようにする。
+	for _choice_index in range(choice_count):
+		var total_weight: int = 0
+		var candidate_weights: Array[int] = []
+		for card in remaining_cards:
+			var weight: int = maxi(0, int(rarity_weights.get(card.rarity, 0)))
+			if upgraded_guids.has(card.guid):
+				weight = int(round(float(weight * upgraded_percent) / 100.0))
+			candidate_weights.append(weight)
+			total_weight += weight
+
+		var selected_index: int = 0
+		if total_weight > 0:
+			var roll: int = random.randi_range(1, total_weight)
+			for index in range(candidate_weights.size()):
+				roll -= candidate_weights[index]
+				if roll <= 0:
+					selected_index = index
+					break
+		else:
+			# 重み0のレアリティや強化版を、設定を無視して混ぜない。
+			break
+
+		choices.append(remaining_cards[selected_index])
+		remaining_cards.remove_at(selected_index)
+	return choices
 
 func _build_item_choices() -> void:
 	var area: MarginContainer = get_node("CanvasLayer/ColorRect/Control_RewardSelectItem/CenterContainer/VBoxContainer/MarginContainer_ItemArea")

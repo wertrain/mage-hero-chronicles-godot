@@ -29,8 +29,11 @@ func load_cards() -> Array[CardData]:
 			card.name = tr(c["name"])
 			card.description = tr(c["description"])
 			card.detail_description = tr(c["detail_description"])
+			card.art_path = str(c.get("art_path", ""))
 			card.cost = int(c["cost"])
 			card.rarity = int(c["rarity"])
+			for tag in c.get("tags", []):
+				card.tags.append(str(tag))
 			for a in c["actions"]:
 				var action:BattleAciton = BattleAciton.new()
 				action.set_action_type(a["type"])
@@ -40,6 +43,7 @@ func load_cards() -> Array[CardData]:
 				action.set_status_type(str(a.get("status_type", "poisoned")))
 				action.set_effect_type(a["effect_type"])
 				action._effect_index = int(a["effect_index"])
+				action.set_condition(a.get("condition", {}))
 				card.actions.append(action)
 			_card_dictionary[c["guid"]] = card
 			_cards.append(card)

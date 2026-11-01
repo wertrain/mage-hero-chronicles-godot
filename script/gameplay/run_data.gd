@@ -3,26 +3,26 @@ extends Node
 ## イベントの流れを確認するための一時プリセット。
 ## 通常の戦闘密度へ戻す時はfalseにする。シード抽選と地図の再現性はどちらでも保つ。
 const EVENT_HEAVY_ROUTE_OPTIONS := [
-	[["event_herbalist"], ["event_caravan", "event_forge"], ["event_shrine", "event_herbalist"]],
-	[["event_shrine"], ["event_caravan", "event_forge"], ["event_herbalist", "event_caravan"]],
-	[["event_forge"], ["event_shrine", "event_caravan"], ["event_herbalist", "event_shrine"]],
+	[["event_herbalist", "event_training"], ["event_caravan", "event_forge"], ["event_shrine", "event_herbalist", "event_mimic"]],
+	[["event_shrine", "event_mimic"], ["event_caravan", "event_forge"], ["event_herbalist", "event_caravan", "event_training"]],
+	[["event_forge", "event_training"], ["event_shrine", "event_caravan", "event_mimic"], ["event_herbalist", "event_shrine"]],
 ]
 ## 開始エリアの雰囲気を残しながら、イベント中心の入口ルートを抽選する。
 const EVENT_HEAVY_STARTING_VARIANTS := {
-	"road": [["event_caravan", "event_herbalist"], ["event_forge", "event_caravan"], ["event_shrine", "event_caravan"]],
-	"forest": [["event_herbalist", "event_forge"], ["event_herbalist", "event_caravan"], ["event_caravan", "event_herbalist"]],
-	"ruins": [["event_shrine", "event_forge"], ["event_shrine", "event_caravan"], ["event_forge", "event_shrine"]],
+	"road": [["event_caravan", "event_herbalist"], ["event_forge", "event_caravan"], ["event_shrine", "event_mimic"]],
+	"forest": [["event_herbalist", "event_forge"], ["event_herbalist", "event_training"], ["event_caravan", "event_herbalist"]],
+	"ruins": [["event_shrine", "event_forge"], ["event_shrine", "event_mimic"], ["event_forge", "event_shrine"]],
 }
-const EVENT_HEAVY_EVENT_TYPES := ["event_herbalist", "event_shrine", "event_caravan", "event_forge"]
+const EVENT_HEAVY_EVENT_TYPES := ["event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_mimic", "event_training"]
 ## 初回マップに並べる入口。候補の種類に難易度差は付けず、入口ごとに道筋を抽選する。
 const STARTING_POSITION_IDS := ["far_left", "left", "right", "far_right"]
 
 ## 区間ごとのイベントルート候補。ランシードから候補を選び、ラン中はその結果を保持する。
 ## 各候補は順番に通るノードで、戦闘ルートとは別の道としてJourneyScreenに配置する。
 const ROUTE_SEGMENT_OPTIONS := [
-	[["event_herbalist"], ["event_herbalist", "upgrade"], ["rest", "treasure"], ["event_shrine", "upgrade", "treasure"]],
-	[["treasure"], ["event_shrine", "treasure"], ["event_caravan", "upgrade"], ["rest", "shop", "upgrade"], ["event_forge"]],
-	[["rest"], ["rest", "event_caravan"], ["upgrade", "rest"], ["event_shrine", "shop", "event_caravan"], ["event_forge", "rest"]],
+	[["event_herbalist", "event_training"], ["event_herbalist", "upgrade"], ["rest", "treasure"], ["event_shrine", "event_mimic", "upgrade", "treasure"]],
+	[["treasure"], ["event_shrine", "event_mimic", "treasure"], ["event_caravan", "upgrade"], ["rest", "shop", "upgrade"], ["event_forge", "event_training"]],
+	[["rest"], ["rest", "event_caravan", "event_mimic"], ["upgrade", "rest"], ["event_shrine", "shop", "event_caravan", "event_training"], ["event_forge", "event_mimic", "rest"]],
 ]
 ## マップの難しさと寄り道量を調整する設定。
 ## ボス前ノード数は0にもでき、0なら最後の通常戦からそのままボスへ進む。
@@ -61,7 +61,7 @@ const ROUTE_GENERATION_CONFIG := {
 		"forest": [3, 2, 1],
 		"ruins": [3, 2, 1],
 	},
-	"event_heavy_event_weights": [3, 3, 3, 1],
+	"event_heavy_event_weights": [3, 3, 3, 1, 1, 1],
 	# エリート戦は中盤以降の安全な分岐スロットに配置する。
 	# min/maxを変えると難易度に応じて出現数を調整でき、0なら出現しない。
 	"elite_min_count": 1,
@@ -71,6 +71,22 @@ const ROUTE_GENERATION_CONFIG := {
 	"boss_preparation_max": 4,
 	"boss_preparation_types": ["rest", "treasure", "event_caravan", "upgrade", "shop"],
 	"boss_preparation_weights": [2, 2, 2, 1, 1],
+}
+## 通常戦・エリート戦の成長幅。0にすれば固定難易度、値を上げれば後半が厳しくなる。
+const ENCOUNTER_BALANCE_CONFIG := {
+	"battles_per_step": 3,
+	"health_growth_per_step": 0.08,
+	"attack_growth_per_step": 1,
+	"max_steps": 3,
+}
+## カード報酬の抽選比率。重みは相対値なので合計は任意。
+## rarity は card.json の値（0=基本、1=上級、2=希少）に対応し、
+## 高レアリティを強い効果にする調整はカード定義側、出現しやすさはここで調整する。
+## 強化版も同じレアリティ重みを使い、さらに重み倍率をかけて出現頻度を調整する。
+const CARD_REWARD_BALANCE_CONFIG := {
+	"choices_per_reward": 3,
+	"rarity_weights": {0: 100, 1: 35, 2: 10},
+	"upgraded_card_weight_percent": 35,
 }
 ## ポーションの所持枠。ここを変えると戦闘UIと報酬側の上限表示も追従する。
 const ITEM_CAPACITY := 3
@@ -87,9 +103,9 @@ const STARTING_ROUTE_SEGMENTS := {
 ## 開始エリアごとの特色を残しつつ、同じエリアでも複数の構成からシードで選ぶ。
 ## 各エリアの候補数や内容を変えると、探索の傾向をバランス調整できる。
 const STARTING_ROUTE_VARIANTS := {
-	"road": [["rest", "treasure"], ["rest", "event_caravan"], ["treasure", "rest"], ["shop", "rest"]],
-	"forest": [["event_herbalist", "upgrade"], ["event_herbalist", "rest"], ["upgrade", "event_caravan"], ["job_change", "event_herbalist"]],
-	"ruins": [["event_shrine", "upgrade", "treasure"], ["treasure", "event_shrine"], ["upgrade", "treasure", "event_caravan"], ["shop", "event_shrine"], ["job_change", "upgrade"]],
+	"road": [["rest", "treasure"], ["rest", "event_caravan"], ["treasure", "event_mimic"], ["shop", "rest"]],
+	"forest": [["event_herbalist", "upgrade"], ["event_herbalist", "event_training"], ["upgrade", "event_caravan"], ["job_change", "event_herbalist"]],
+	"ruins": [["event_shrine", "upgrade", "treasure"], ["treasure", "event_mimic"], ["upgrade", "treasure", "event_caravan"], ["shop", "event_shrine"], ["job_change", "upgrade"]],
 }
 ## 転職前後の組み合わせごとに報酬カードを割り当てる。将来の上級職もここへ追加できる。
 const JOB_CHANGE_REWARD_GUIDS := {
@@ -108,6 +124,36 @@ enum RelicHook {
 }
 
 signal relic_hook_triggered(hook: RelicHook, context: Dictionary)
+
+## 戦闘バランス確認用ログ。直近100戦を user:// に保存して比較できるようにする。
+const BATTLE_BALANCE_LOG_PATH := "user://battle_balance_log.json"
+const BATTLE_BALANCE_LOG_LIMIT := 100
+var battle_balance_logs: Array[Dictionary] = []
+
+func _ready() -> void:
+	_load_battle_balance_logs()
+
+func _load_battle_balance_logs() -> void:
+	# ログが壊れていても、ゲーム本編を止めず空の記録から続行する。
+	if not FileAccess.file_exists(BATTLE_BALANCE_LOG_PATH):
+		return
+	var file := FileAccess.open(BATTLE_BALANCE_LOG_PATH, FileAccess.READ)
+	if file == null:
+		return
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if parsed is Array:
+		for entry in parsed:
+			if entry is Dictionary:
+				battle_balance_logs.append(entry)
+
+func record_battle_balance_log(entry: Dictionary) -> void:
+	# 新しい戦闘を先頭へ置き、保存量を上限内に保つ。
+	battle_balance_logs.push_front(entry.duplicate(true))
+	while battle_balance_logs.size() > BATTLE_BALANCE_LOG_LIMIT:
+		battle_balance_logs.pop_back()
+	var file := FileAccess.open(BATTLE_BALANCE_LOG_PATH, FileAccess.WRITE)
+	if file != null:
+		file.store_string(JSON.stringify(battle_balance_logs, "\t"))
 # シーンをまたぐラン中だけの状態を保持する Autoload。
 # 戦闘シーンを再読み込みしても、HP・デッキ・進行度はここに残る。
 var deck: Array[CardData] = []

@@ -1,9 +1,66 @@
 class_name JourneyScreen
 extends CanvasLayer
 
+const ISLAND_COAST_GEOMETRY := preload("res://script/map/island_coast_geometry.gd")
 const CARD_SCENE: PackedScene = preload("res://scene/card/card.tscn")
-## 専用のイベント絵が揃うまで、既存の森背景を差し替え可能な共通プレースホルダーに使う。
-const EVENT_IMAGE_PLACEHOLDER: Texture2D = preload("res://art/background/magicforest.jpg")
+## イベント用の一枚絵。素材の差し替えはこの対応表にまとめる。
+const EVENT_IMAGE_PLACEHOLDER: Texture2D = preload("res://art/background/forest_path_illustration.tres")
+const FOREST_EVENT_ILLUSTRATION: Texture2D = preload("res://art/background/forest_path_illustration.tres")
+const CAVE_EVENT_ILLUSTRATION: Texture2D = preload("res://art/background/cave.png")
+const ISLAND_GROUND_ATLAS: Texture2D = preload("res://art/tileset/32x32mapchip_20210215/Autotile_Expanded/[A]Grass1-Grass2_pipo.png")
+const ISLAND_ROAD_ATLAS: Texture2D = preload("res://art/tileset/32x32mapchip_20210215/Autotile_Expanded/[A]Dirt1_pipo.png")
+const ISLAND_WATER_ATLAS: Texture2D = preload("res://art/tileset/32x32mapchip_20210215/Autotile_Expanded/[A]Water1_pipo.png")
+## sample.tmx と同じ島床・海岸タイルを使用する。
+const ISLAND_GROUND_FILL_TILE := Vector2i(6, 1)
+## キーは欠けている隣接方向（上・右・下・左 = 1・2・4・8）。
+## チップ位置は sample.tmx の「境界線」レイヤーから採った。
+const ISLAND_COAST_TILE_COORDS_BY_MISSING_MASK := {
+	1: Vector2i(6, 2), # 上辺
+	2: Vector2i(5, 1), # 右辺
+	4: Vector2i(6, 0), # 下辺
+	8: Vector2i(7, 1), # 左辺
+	3: Vector2i(5, 3), # 右上
+	6: Vector2i(5, 4), # 右下
+	9: Vector2i(4, 3), # 左上
+	12: Vector2i(4, 4), # 左下
+}
+## 斜め方向だけが海になる角用チップ。向きごとに実チップを使う。
+## キーは欠けている斜め方向（右上・右下・左下・左上 = 1・2・4・8）。
+const ISLAND_COAST_DIAGONAL_TILE_COORDS_BY_MISSING_MASK := {
+	1: Vector2i(5, 2), # 右上の海（└）
+	2: Vector2i(5, 0), # 右下の海（┌）
+	4: Vector2i(7, 0), # 左下の海（┐）
+	8: Vector2i(7, 2), # 左上の海（┘）
+}
+## 道チップは草地の境界チップと並びが異なる箇所がある。
+## sample.tmx の道レイヤーで確認した終端・曲がり角・T字路の配置を含む。
+const ISLAND_ROAD_AUTOTILE_COORDS_BY_MASK := {
+	0: Vector2i(0, 0),
+	1: Vector2i(4, 2),
+	2: Vector2i(1, 0),
+	3: Vector2i(0, 2),
+	4: Vector2i(4, 0),
+	5: Vector2i(4, 1),
+	6: Vector2i(0, 1),
+	7: Vector2i(2, 1),
+	8: Vector2i(3, 0),
+	9: Vector2i(1, 2),
+	10: Vector2i(2, 0),
+	11: Vector2i(2, 2),
+	12: Vector2i(7, 0),
+	13: Vector2i(7, 1),
+	14: Vector2i(3, 1),
+	15: Vector2i(6, 1),
+}
+const ISLAND_TILE_STYLE := {
+	"tile_size": 32,
+	"ocean_grid_size": 32,
+	"water": Vector2i(6, 1),
+	"water_animation_frames": 8,
+	"water_animation_columns": 8,
+	"water_animation_separation": Vector2i(7, 0),
+	"water_animation_frame_duration": 0.12,
+}
 
 ## 戦闘後に表示する全体ルートマップ。
 ## ノードと道筋を一度に見せ、現在地から線でつながる場所だけ選択可能にする。
@@ -18,8 +75,11 @@ signal new_run_requested
 
 ## ノード間隔と横方向の配置。高さはルート構成から自動計算する。
 const MAP_ROW_HEIGHT := 130.0
-## 端の行先にも余白ができるよう、道の配置は変えず背景の左右にセルを足す。
-const MAP_SIDE_PADDING := 80.0
+## 島の中ほどにルートをまとめるための左右余白。
+const MAP_SIDE_PADDING := 560.0
+## 島の中央にルートをまとめるための上下余白。
+const MAP_VERTICAL_PADDING := 400.0
+const ISLAND_RADIUS_FACTOR_MAX := 1.125
 ## 7列にして各開始レーンにイベント道と戦闘道を並べ、横方向の詰まりを避ける。
 const NODE_COLUMNS := [40.0, 140.0, 240.0, 340.0, 440.0, 540.0, 640.0, 740.0, 840.0, 940.0, 1040.0]
 ## マス数ごとの配置パターン。横の間隔を空けて、道とラベルを読みやすくする。
@@ -29,8 +89,7 @@ const ROUTE_COLUMNS_BY_NODE_COUNT := {
 	4: [[0, 3, 7, 10], [0, 2, 8, 10], [1, 4, 6, 9]],
 	5: [[0, 2, 5, 8, 10], [0, 3, 5, 7, 10], [1, 3, 5, 7, 9]],
 }
-const MAP_TILE_SIZE := 64
-const FALLBACK_ROUTE_EVENT_TYPES := ["event_herbalist", "event_shrine", "event_caravan", "event_forge"]
+const FALLBACK_ROUTE_EVENT_TYPES := ["event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_mimic", "event_training"]
 
 var _map_rect := Rect2()
 var _map_content_size := Vector2.ZERO
@@ -45,6 +104,11 @@ var initial_route_selection := false
 var map_background_texture: Texture2D
 var _buttons: Dictionary = {}
 var _node_labels: Dictionary = {}
+var _island_background_layer: Control
+var _island_ocean_layer: TileMapLayer
+var _island_ground_layer: TileMapLayer
+var _island_coast_layer: TileMapLayer
+var _island_road_layer: TileMapLayer
 var _map: Control
 var _map_content: Control
 var _scroll: ScrollContainer
@@ -57,8 +121,18 @@ var _dialog_body: Label
 var _event_illustration_frame: PanelContainer
 var _event_illustration: TextureRect
 var _job_reward_card_view: CardChoiceView
-## イベント名をキーに画像を登録できる。未登録のイベントは共通絵を表示する。
-var _event_illustrations: Dictionary = {}
+## イベント名をキーに画像を登録できる。未登録のイベントは森道の共通絵を表示する。
+var _event_illustrations: Dictionary = {
+	"camp": FOREST_EVENT_ILLUSTRATION,
+	"treasure": CAVE_EVENT_ILLUSTRATION,
+	"event_herbalist": FOREST_EVENT_ILLUSTRATION,
+	"event_shrine": CAVE_EVENT_ILLUSTRATION,
+	"event_caravan": FOREST_EVENT_ILLUSTRATION,
+	"event_forge": CAVE_EVENT_ILLUSTRATION,
+	"event_mimic": CAVE_EVENT_ILLUSTRATION,
+	"event_training": FOREST_EVENT_ILLUSTRATION,
+	"event_job_change": FOREST_EVENT_ILLUSTRATION,
+}
 var _upgrade_backdrop: ColorRect
 var _upgrade_header_panel: PanelContainer
 var _upgrade_window: PanelContainer
@@ -488,15 +562,16 @@ func _select_flexible_event_type(route_types: Array, safe_type: String, row_rng:
 	return selected_event
 
 func _position_route_nodes(last_row: int) -> void:
-	# 行数からマップの高さを決め、左右に背景用の余白を足す。ルート本体の間隔は変えない。
-	_map_rect = Rect2(0, 0, 1080.0 + MAP_SIDE_PADDING * 2.0, (last_row + 1) * MAP_ROW_HEIGHT)
-	# 横幅は背景マップと同じにして、従来どおり画面幅に収める。縦方向には上下の余白を残す。
+	# ルートの大きさと間隔は保ち、広げた島の中央に配置する。
+	var route_height: float = (last_row + 1) * MAP_ROW_HEIGHT
+	var map_height: float = maxf(1800.0, route_height + MAP_VERTICAL_PADDING * 2.0)
+	_map_rect = Rect2(0, 0, 1080.0 + MAP_SIDE_PADDING * 2.0, map_height)
 	_map_content_size = _map_rect.size + Vector2(0, 120)
 	for node_id in _node_data:
 		var node: Dictionary = _node_data[node_id]
 		var column: int = node["column"]
 		var x: float = MAP_SIDE_PADDING + (540.0 if column < 0 else NODE_COLUMNS[column])
-		var y: float = _map_rect.size.y - 45.0 - node["row"] * MAP_ROW_HEIGHT
+		var y: float = _map_rect.size.y * 0.5 + route_height * 0.5 - 45.0 - node["row"] * MAP_ROW_HEIGHT
 		_node_positions[node_id] = Vector2(x, y)
 
 func _add_route_node(node_id: String, node_type: String, label_key: String, row: int, column: int, stage: int = 0) -> void:
@@ -512,7 +587,7 @@ func _label_for_route_type(node_type: String) -> String:
 			return "JOURNEY_NODE_TREASURE"
 		"upgrade":
 			return "JOURNEY_UPGRADE_CARD"
-		"event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_job_change":
+		"event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_mimic", "event_training", "event_job_change":
 			# マップ上ではイベントの中身を伏せ、選択してから内容を明かす。
 			return "JOURNEY_NODE_EVENT"
 		"shop":
@@ -570,8 +645,39 @@ func _build_ui() -> void:
 	_map_content.custom_minimum_size = _map_content_size
 	centering.add_child(_map_content)
 	_map = Control.new()
-	_map.position = (_map_content_size - _map_rect.size) / 2.0
+	var map_origin: Vector2 = (_map_content_size - _map_rect.size) / 2.0
+	_map.position = map_origin
+	_map.size = _map_rect.size
 	_map.custom_minimum_size = _map_rect.size
+	_island_background_layer = Control.new()
+	_island_background_layer.position = map_origin
+	_island_background_layer.size = _map_rect.size
+	_island_background_layer.custom_minimum_size = _map_rect.size
+	_island_background_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_island_background_layer.clip_contents = true
+	_island_background_layer.draw.connect(_draw_island_background)
+	_map_content.add_child(_island_background_layer)
+	_island_ocean_layer = TileMapLayer.new()
+	_island_ocean_layer.position = map_origin
+	_island_ocean_layer.visible = map_background_texture == null
+	_island_ocean_layer.tile_set = _create_island_ocean_tile_set()
+	_map_content.add_child(_island_ocean_layer)
+	_populate_island_ocean()
+	_island_ground_layer = TileMapLayer.new()
+	_island_ground_layer.position = map_origin
+	_island_ground_layer.tile_set = _create_island_ground_tile_set()
+	_map_content.add_child(_island_ground_layer)
+	_populate_island_ground()
+	_island_road_layer = TileMapLayer.new()
+	_island_road_layer.position = _map.position
+	_island_road_layer.tile_set = _create_island_road_tile_set()
+	_map_content.add_child(_island_road_layer)
+	_populate_island_roads()
+	_island_coast_layer = TileMapLayer.new()
+	_island_coast_layer.position = map_origin
+	_island_coast_layer.tile_set = _create_island_coast_tile_set()
+	_map_content.add_child(_island_coast_layer)
+	_populate_island_coast()
 	_map.draw.connect(_draw_map)
 	_map_content.add_child(_map)
 	# ノードはControlとして線の上に配置し、キーボード・マウス双方で選べるようにする。
@@ -855,13 +961,44 @@ func _center_current_node() -> void:
 	if not is_instance_valid(_scroll):
 		return
 	if initial_route_selection and RunData.current_route_node_id == "new_run":
-		# 初回マップは全体を見せつつ、最下段の開始位置が見える位置で開く。
-		_scroll.scroll_vertical = int(_scroll.get_v_scroll_bar().max_value)
+		# 入口ボタン全体が画面内に収まるよう、開始地点の範囲を基準に横位置を決める。
+		var entrance_horizontal_bar: HScrollBar = _scroll.get_h_scroll_bar()
+		var entrance_horizontal_max_scroll: int = maxi(0, int(entrance_horizontal_bar.max_value - entrance_horizontal_bar.page))
+		var entrance_left: float = _map_rect.size.x
+		var entrance_right: float = 0.0
+		var found_entrance := false
+		for node_id in _node_positions:
+			if _node_data[node_id]["type"] != "start_position":
+				continue
+			found_entrance = true
+			var entrance_x: float = _map.position.x + _node_positions[node_id].x
+			var half_button_width: float = float(_buttons[node_id].custom_minimum_size.x) * 0.5
+			entrance_left = minf(entrance_left, entrance_x - half_button_width)
+			entrance_right = maxf(entrance_right, entrance_x + half_button_width)
+		if found_entrance:
+			var horizontal_target: int = int((entrance_left + entrance_right - entrance_horizontal_bar.page) * 0.5)
+			_scroll.scroll_horizontal = clampi(horizontal_target, 0, entrance_horizontal_max_scroll)
+		else:
+			_scroll.scroll_horizontal = int(entrance_horizontal_max_scroll / 2.0)
+		# 開始地点を画面下寄りに置き、入口と上へ続くルートを同時に見せる。
+		for node_id in _node_positions:
+			if _node_data[node_id]["type"] != "start_position":
+				continue
+			var entrance_y: float = _map.position.y + _node_positions[node_id].y
+			var vertical_bar: VScrollBar = _scroll.get_v_scroll_bar()
+			var vertical_max_scroll: int = maxi(0, int(vertical_bar.max_value - vertical_bar.page))
+			var desired_screen_y: float = vertical_bar.page * 0.76
+			var target_scroll: int = int(entrance_y - desired_screen_y)
+			_scroll.scroll_vertical = clampi(target_scroll, 0, vertical_max_scroll)
+			return
 		return
+	# 通常表示は島マップの中央を基準に横位置を保つ。
+	var map_horizontal_bar: HScrollBar = _scroll.get_h_scroll_bar()
+	var map_horizontal_max_scroll: int = maxi(0, int(map_horizontal_bar.max_value - map_horizontal_bar.page))
+	_scroll.scroll_horizontal = int(map_horizontal_max_scroll / 2.0)
 	if not _node_positions.has(RunData.current_route_node_id):
 		return
-	var map_top: float = (_map_content_size.y - _map_rect.size.y) / 2.0
-	var current_y: float = map_top + _node_positions[RunData.current_route_node_id].y
+	var current_y: float = _map.position.y + _node_positions[RunData.current_route_node_id].y
 	_scroll.scroll_vertical = maxi(0, int(current_y - _scroll.size.y / 2.0))
 
 func refresh_map() -> void:
@@ -879,24 +1016,7 @@ func _node_label(node_id: String, data: Dictionary) -> String:
 	return tr(data["label"])
 
 func _draw_map() -> void:
-	# 専用タイル画像がなくても、色と小さな草むらで地形のマス目を表現する。
-	if map_background_texture:
-		_map.draw_texture_rect(map_background_texture, _map_rect, false, Color(0.38, 0.48, 0.43, 0.72))
-	else:
-		_map.draw_rect(_map_rect, Color(0.16, 0.23, 0.17, 1.0))
-		for tile_y in range(0, int(_map_rect.size.y), MAP_TILE_SIZE):
-			for tile_x in range(0, int(_map_rect.size.x), MAP_TILE_SIZE):
-				var tile_rect := Rect2(tile_x, tile_y, MAP_TILE_SIZE, MAP_TILE_SIZE)
-				var tile_variant: int = (floori(float(tile_x) / MAP_TILE_SIZE) * 7 + floori(float(tile_y) / MAP_TILE_SIZE) * 11) % 5
-				var grass_tone: float = 0.015 * float(tile_variant - 2)
-				_map.draw_rect(tile_rect, Color(0.17 + grass_tone, 0.25 + grass_tone, 0.18 + grass_tone, 1.0))
-				_map.draw_rect(tile_rect, Color(0.62, 0.72, 0.48, 0.07), false, 1.0)
-				if tile_variant == 1 or tile_variant == 4:
-					# 草の短い線をタイルごとに散らし、単色の格子に見えないようにする。
-					var tuft := Vector2(tile_x + 18 + tile_variant * 5, tile_y + 31)
-					var grass_color := Color(0.48, 0.59, 0.34, 0.34)
-					_map.draw_line(tuft, tuft + Vector2(-3, -6), grass_color, 2.0)
-					_map.draw_line(tuft, tuft + Vector2(3, -8), grass_color, 2.0)
+	# 地形と装飾は専用レイヤーに描き、ルートと行先マスを前面に保つ。
 	for node_id in _node_data:
 		if not _visible_route_nodes.has(node_id):
 			continue
@@ -907,7 +1027,9 @@ func _draw_map() -> void:
 			var end: Vector2 = _node_positions[next_id]
 			var visited := _is_visited(node_id) and _is_visited(next_id)
 			var next_step: bool = node_id == RunData.current_route_node_id and _reachable.has(next_id)
-			var path_color := Color(0.98, 0.75, 0.32, 1.0) if visited or next_step else Color(0.38, 0.42, 0.39, 0.48)
+			if not visited and not next_step:
+				continue
+			var path_color := Color(0.98, 0.75, 0.32, 1.0)
 			var edge_key: String = _route_edge_key(str(node_id), str(next_id))
 			var channel_offset: float = float(_route_edge_channel_offsets.get(edge_key, 0.0))
 			_draw_route_connection(start, end, path_color, channel_offset)
@@ -920,6 +1042,256 @@ func _draw_map() -> void:
 			continue
 		_draw_route_node(node_id)
 	_draw_player_marker()
+
+func _draw_island_background() -> void:
+	# 明示的な背景差し替えが指定された場合だけ、この最下層へ画像を描く。
+	if map_background_texture != null:
+		_island_background_layer.draw_texture_rect(map_background_texture, _map_rect, false, Color(0.55, 0.66, 0.62, 0.8))
+
+func _create_island_ocean_tile_set() -> TileSet:
+	var tile_set := TileSet.new()
+	var tile_size: int = int(ISLAND_TILE_STYLE["ocean_grid_size"])
+	tile_set.tile_size = Vector2i(tile_size, tile_size)
+	var atlas := TileSetAtlasSource.new()
+	atlas.texture = ISLAND_WATER_ATLAS
+	atlas.texture_region_size = Vector2i(tile_size, tile_size)
+	var water_tile: Vector2i = ISLAND_TILE_STYLE["water"]
+	atlas.create_tile(water_tile)
+	_configure_island_water_animation(atlas, water_tile)
+	tile_set.add_source(atlas, 0)
+	return tile_set
+
+func _configure_island_water_animation(atlas: TileSetAtlasSource, tile_coords: Vector2i) -> void:
+	# 海アトラスは同じタイルセットを8フレーム横に並べている。
+	atlas.set_tile_animation_columns(tile_coords, int(ISLAND_TILE_STYLE["water_animation_columns"]))
+	atlas.set_tile_animation_separation(tile_coords, ISLAND_TILE_STYLE["water_animation_separation"])
+	atlas.set_tile_animation_frames_count(tile_coords, int(ISLAND_TILE_STYLE["water_animation_frames"]))
+	for frame_index in range(int(ISLAND_TILE_STYLE["water_animation_frames"])):
+		atlas.set_tile_animation_frame_duration(
+			tile_coords,
+			frame_index,
+			float(ISLAND_TILE_STYLE["water_animation_frame_duration"])
+		)
+
+func _populate_island_ocean() -> void:
+	# 海を先に全域へ敷き、島と道を上のTileMapLayerで重ねる。
+	_island_ocean_layer.clear()
+	var tile_size: int = int(ISLAND_TILE_STYLE["ocean_grid_size"])
+	var column_count: int = ceili(_map_rect.size.x / float(tile_size))
+	var row_count: int = ceili(_map_rect.size.y / float(tile_size))
+	var water_tile: Vector2i = ISLAND_TILE_STYLE["water"]
+	for tile_y in range(row_count):
+		for tile_x in range(column_count):
+			_island_ocean_layer.set_cell(Vector2i(tile_x, tile_y), 0, water_tile)
+
+func _make_island_outline(inset: float) -> PackedVector2Array:
+	# island_preview と同じ放射状の輪郭にし、上下端も海岸線が丸く閉じるようにする。
+	var outline := PackedVector2Array()
+	var center: Vector2 = _map_rect.size * 0.5
+	var radius_x: float = maxf(1.0, (_map_rect.size.x * 0.5 - 32.0) / ISLAND_RADIUS_FACTOR_MAX - inset)
+	var route_height: float = maxf(1.0, _map_rect.size.y - MAP_VERTICAL_PADDING * 2.0)
+	var radius_y: float = maxf(1.0, minf(route_height * 0.5 + 140.0, (_map_rect.size.y * 0.5 - 48.0) / ISLAND_RADIUS_FACTOR_MAX) - inset)
+	var point_count: int = maxi(48, ceili(_map_rect.size.y / 20.0))
+	for point_index in range(point_count):
+		var angle: float = TAU * float(point_index) / float(point_count)
+		var radius: float = _island_radius_factor(angle)
+		outline.append(center + Vector2(cos(angle) * radius_x, sin(angle) * radius_y) * radius)
+	return outline
+
+func _point_inside_island(point: Vector2, inset: float) -> bool:
+	var center: Vector2 = _map_rect.size * 0.5
+	var radius_x: float = maxf(1.0, (_map_rect.size.x * 0.5 - 32.0) / ISLAND_RADIUS_FACTOR_MAX - inset)
+	var route_height: float = maxf(1.0, _map_rect.size.y - MAP_VERTICAL_PADDING * 2.0)
+	var radius_y: float = maxf(1.0, minf(route_height * 0.5 + 140.0, (_map_rect.size.y * 0.5 - 48.0) / ISLAND_RADIUS_FACTOR_MAX) - inset)
+	var normalized_offset: Vector2 = Vector2((point.x - center.x) / radius_x, (point.y - center.y) / radius_y)
+	var angle: float = atan2(normalized_offset.y, normalized_offset.x)
+	return normalized_offset.length() <= _island_radius_factor(angle)
+
+func _island_radius_factor(angle: float) -> float:
+	# ランのシードで凹凸を変えつつ、ルートが島外へ出ないよう変化幅を控えめにする。
+	var phase: float = float(posmod(int(RunData.run_seed), 10007)) / 10007.0 * TAU
+	return 1.095 + sin(angle * 4.0 + phase) * 0.012 + cos(angle * 7.0 - phase) * 0.009 + sin(angle * 11.0 + phase * 0.7) * 0.006
+
+func _create_island_road_tile_set() -> TileSet:
+	# 草地と土の展開済みオートタイルから、隣接方向に対応する全パターンを登録。
+	var tile_set := TileSet.new()
+	var tile_size: int = int(ISLAND_TILE_STYLE["tile_size"])
+	tile_set.tile_size = Vector2i(tile_size, tile_size)
+	var atlas := TileSetAtlasSource.new()
+	atlas.texture = ISLAND_ROAD_ATLAS
+	atlas.texture_region_size = Vector2i(tile_size, tile_size)
+	for atlas_value in ISLAND_ROAD_AUTOTILE_COORDS_BY_MASK.values():
+		var atlas_coords: Vector2i = atlas_value
+		atlas.create_tile(atlas_coords)
+	tile_set.add_source(atlas, 0)
+	return tile_set
+
+func _create_island_ground_tile_set() -> TileSet:
+	# sample.tmx の草原レイヤーと同じ、全面が草地のタイルで島の内側を塗る。
+	var tile_set := TileSet.new()
+	var tile_size: int = int(ISLAND_TILE_STYLE["tile_size"])
+	tile_set.tile_size = Vector2i(tile_size, tile_size)
+	var atlas := TileSetAtlasSource.new()
+	atlas.texture = ISLAND_GROUND_ATLAS
+	atlas.texture_region_size = Vector2i(tile_size, tile_size)
+	atlas.create_tile(ISLAND_GROUND_FILL_TILE)
+	tile_set.add_source(atlas, 0)
+	return tile_set
+
+func _create_island_coast_tile_set() -> TileSet:
+	# sample.tmx の境界線レイヤーで使われている海岸チップを重ねる。
+	var tile_set := TileSet.new()
+	var tile_size: int = int(ISLAND_TILE_STYLE["tile_size"])
+	tile_set.tile_size = Vector2i(tile_size, tile_size)
+	var atlas := TileSetAtlasSource.new()
+	atlas.texture = ISLAND_WATER_ATLAS
+	atlas.texture_region_size = Vector2i(tile_size, tile_size)
+	var coast_tile_coords: Array = ISLAND_COAST_TILE_COORDS_BY_MISSING_MASK.values()
+	coast_tile_coords.append_array(ISLAND_COAST_DIAGONAL_TILE_COORDS_BY_MISSING_MASK.values())
+	var created_tile_coords: Dictionary = {}
+	for atlas_value in coast_tile_coords:
+		var atlas_coords: Vector2i = atlas_value
+		if created_tile_coords.has(atlas_coords):
+			continue
+		atlas.create_tile(atlas_coords)
+		_configure_island_water_animation(atlas, atlas_coords)
+		created_tile_coords[atlas_coords] = true
+	tile_set.add_source(atlas, 0)
+	return tile_set
+
+func _populate_island_ground() -> void:
+	# 行ごとの海岸位置をセル化し、1行だけ飛び出す境界を中央値でならしてから塗る。
+	var tile_size: int = int(ISLAND_TILE_STYLE["tile_size"])
+	var column_count: int = ceili(_map_rect.size.x / float(tile_size))
+	var row_count: int = ceili(_map_rect.size.y / float(tile_size))
+	var left_edges: Array[int] = []
+	var right_edges: Array[int] = []
+	_island_ground_layer.clear()
+	for tile_y in range(row_count):
+		var first_land_cell: int = -1
+		var last_land_cell: int = -1
+		for tile_x in range(column_count):
+			var sample_position := Vector2((float(tile_x) + 0.5) * tile_size, (float(tile_y) + 0.5) * tile_size)
+			if _point_inside_island(sample_position, 0.0):
+				if first_land_cell < 0:
+					first_land_cell = tile_x
+				last_land_cell = tile_x
+		left_edges.append(first_land_cell)
+		right_edges.append(last_land_cell)
+	left_edges = _smooth_island_edge_cells(left_edges)
+	right_edges = _smooth_island_edge_cells(right_edges)
+	for tile_y in range(row_count):
+		if left_edges[tile_y] < 0 or right_edges[tile_y] < left_edges[tile_y]:
+			continue
+		for tile_x in range(left_edges[tile_y], right_edges[tile_y] + 1):
+			_island_ground_layer.set_cell(Vector2i(tile_x, tile_y), 0, ISLAND_GROUND_FILL_TILE)
+	var land_cells: Dictionary = {}
+	for cell in _island_ground_layer.get_used_cells():
+		land_cells[cell] = true
+	land_cells = ISLAND_COAST_GEOMETRY.smooth_and_sanitize_land(
+		land_cells,
+		column_count,
+		row_count,
+		ISLAND_COAST_TILE_COORDS_BY_MISSING_MASK
+	)
+	_island_ground_layer.clear()
+	for cell in land_cells:
+		_island_ground_layer.set_cell(cell, 0, ISLAND_GROUND_FILL_TILE)
+
+func _smooth_island_edge_cells(edge_cells: Array[int]) -> Array[int]:
+	# 3行の中央値で孤立した1セル幅の出っ張り・へこみだけを抑える。
+	var smoothed_edges: Array[int] = []
+	for row_index in range(edge_cells.size()):
+		var previous_edge: int = edge_cells[maxi(0, row_index - 1)]
+		var current_edge: int = edge_cells[row_index]
+		var next_edge: int = edge_cells[mini(edge_cells.size() - 1, row_index + 1)]
+		var neighborhood: Array[int] = [previous_edge, current_edge, next_edge]
+		neighborhood.sort()
+		smoothed_edges.append(neighborhood[1])
+	return smoothed_edges
+
+func _populate_island_coast() -> void:
+	# 海岸は欠けている方向を見て、sample.tmx と同じ向きのチップを重ねる。
+	_island_coast_layer.clear()
+	var land_cells: Dictionary = {}
+	for cell_value in _island_ground_layer.get_used_cells():
+		var land_cell: Vector2i = cell_value
+		land_cells[land_cell] = true
+	for cell_value in land_cells.keys():
+		var land_cell: Vector2i = cell_value
+		var missing_mask: int = ISLAND_COAST_GEOMETRY.missing_cardinal_mask(land_cells, land_cell)
+		var atlas_coords: Vector2i
+		var diagonal_missing_mask: int = ISLAND_COAST_GEOMETRY.missing_diagonal_mask(land_cells, land_cell)
+		if missing_mask == 0:
+			# 上下左右が陸地でも、斜めの海に接する角には境界チップを置く。
+			if not ISLAND_COAST_DIAGONAL_TILE_COORDS_BY_MISSING_MASK.has(diagonal_missing_mask):
+				continue
+			atlas_coords = ISLAND_COAST_DIAGONAL_TILE_COORDS_BY_MISSING_MASK[diagonal_missing_mask]
+		else:
+			atlas_coords = _coast_tile_for_missing_mask(missing_mask)
+		_island_coast_layer.set_cell(land_cell, 0, atlas_coords)
+
+func _diagonal_missing_mask(cells: Dictionary, cell: Vector2i) -> int:
+	return ISLAND_COAST_GEOMETRY.missing_diagonal_mask(cells, cell)
+
+func _coast_tile_for_missing_mask(missing_mask: int) -> Vector2i:
+	return ISLAND_COAST_GEOMETRY.coast_tile_for_missing_mask(missing_mask, ISLAND_COAST_TILE_COORDS_BY_MISSING_MASK)
+
+func _populate_island_roads() -> void:
+	# 生成済みグラフの直角経路をセル座標へ変換する。接続形状は隣接セルから決まる。
+	_island_road_layer.clear()
+	var road_cells: Dictionary = {}
+	var land_cells: Dictionary = {}
+	for cell_value in _island_ground_layer.get_used_cells():
+		land_cells[cell_value] = true
+	for node_id in _node_data:
+		var start: Vector2 = _node_positions[node_id]
+		for next_id in _node_data[node_id]["next"]:
+			if not _node_positions.has(next_id):
+				continue
+			var edge_key: String = _route_edge_key(str(node_id), str(next_id))
+			var points: Array[Vector2] = _route_connection_points(start, _node_positions[next_id], float(_route_edge_channel_offsets.get(edge_key, 0.0)))
+			for point_index in range(points.size() - 1):
+				_add_road_segment_cells(road_cells, points[point_index], points[point_index + 1])
+	var land_road_cells: Dictionary = {}
+	for cell_value in road_cells.keys():
+		var road_cell: Vector2i = cell_value
+		# 経路端や曲がり角が海側へはみ出さないよう、草地セルの上だけに道を置く。
+		if land_cells.has(road_cell):
+			land_road_cells[road_cell] = true
+	road_cells = land_road_cells
+	for cell_value in road_cells.keys():
+		var road_cell: Vector2i = cell_value
+		var connection_mask: int = _orthogonal_connection_mask(road_cells, road_cell)
+		var atlas_coords: Vector2i = ISLAND_ROAD_AUTOTILE_COORDS_BY_MASK[connection_mask]
+		_island_road_layer.set_cell(road_cell, 0, atlas_coords)
+
+func _orthogonal_connection_mask(cells: Dictionary, cell: Vector2i) -> int:
+	var mask := 0
+	if cells.has(cell + Vector2i.UP):
+		mask |= 1
+	if cells.has(cell + Vector2i.RIGHT):
+		mask |= 2
+	if cells.has(cell + Vector2i.DOWN):
+		mask |= 4
+	if cells.has(cell + Vector2i.LEFT):
+		mask |= 8
+	return mask
+
+func _add_road_segment_cells(road_cells: Dictionary, start: Vector2, end: Vector2) -> void:
+	var tile_size: float = float(ISLAND_TILE_STYLE["tile_size"])
+	var start_cell := Vector2i(floori(start.x / tile_size), floori(start.y / tile_size))
+	var end_cell := Vector2i(floori(end.x / tile_size), floori(end.y / tile_size))
+	if start_cell.y == end_cell.y:
+		var low_x: int = mini(start_cell.x, end_cell.x)
+		var high_x: int = maxi(start_cell.x, end_cell.x)
+		for cell_x in range(low_x, high_x + 1):
+			road_cells[Vector2i(cell_x, start_cell.y)] = true
+	else:
+		var low_y: int = mini(start_cell.y, end_cell.y)
+		var high_y: int = maxi(start_cell.y, end_cell.y)
+		for cell_y in range(low_y, high_y + 1):
+			road_cells[Vector2i(start_cell.x, cell_y)] = true
 
 func _draw_route_connection(start: Vector2, end: Vector2, path_color: Color, channel_offset: float = 0.0) -> void:
 	var points: Array[Vector2] = _route_connection_points(start, end, channel_offset)
@@ -981,7 +1353,7 @@ func _draw_route_node(node_id: String) -> void:
 			tile_color = Color(0.22, 0.31, 0.4, 1.0)
 		"start_position":
 			tile_color = Color(0.16, 0.34, 0.36, 1.0)
-		"event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_job_change":
+		"event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_mimic", "event_training", "event_job_change":
 			tile_color = Color(0.18, 0.32, 0.31, 1.0)
 	var tile := Rect2(center - Vector2(23, 20), Vector2(46, 40))
 	_map.draw_rect(tile, tile_color)
@@ -1198,7 +1570,7 @@ func _on_node_pressed(node_id: String) -> void:
 	match node_type:
 		"shop":
 			_show_shop(node_id)
-		"event_herbalist", "event_shrine", "event_caravan", "event_forge":
+		"event_herbalist", "event_shrine", "event_caravan", "event_forge", "event_mimic", "event_training":
 			_show_event(node_id)
 		"event_job_change":
 			_show_job_change(node_id, true)
@@ -1231,7 +1603,7 @@ func _show_job_change(node_id: String, is_event_offer: bool = false) -> void:
 	else:
 		_dialog_body.text = tr("JOURNEY_JOB_CHANGE_BODY" if target_is_mage else "JOURNEY_JOB_CHANGE_BODY_WARRIOR")
 	_clear_dialog_buttons()
-	_event_illustration.texture = EVENT_IMAGE_PLACEHOLDER
+	_event_illustration.texture = _event_illustrations.get("event_job_change", EVENT_IMAGE_PLACEHOLDER) as Texture2D
 	_event_illustration_frame.visible = true
 	var accept_key: String = "JOURNEY_JOB_CHANGE_ACCEPT" if target_is_mage else "JOURNEY_JOB_CHANGE_ACCEPT_WARRIOR"
 	var stay_key: String = "JOURNEY_JOB_CHANGE_DECLINE" if RunData.current_job == "warrior" else "JOURNEY_JOB_CHANGE_STAY_MAGE"
@@ -1414,6 +1786,30 @@ func _show_event(node_id: String) -> void:
 	var event_type: String = _node_data[node_id]["type"]
 	var prefix: String = event_type.trim_prefix("event_").to_upper()
 	_prepare_illustrated_dialog("JOURNEY_EVENT_" + prefix + "_TITLE", "JOURNEY_EVENT_" + prefix + "_BODY", event_type)
+	if prefix == "MIMIC":
+		# 安全に小銭を得るか、傷を覚悟で宝箱をこじ開けて大金を狙う。
+		var careful_button := _dialog_button(tr("JOURNEY_EVENT_MIMIC_CAREFUL"))
+		careful_button.custom_minimum_size = Vector2(0, 48)
+		careful_button.pressed.connect(func(): event_selected.emit(node_id, 0, 25))
+		var risky_button := _dialog_button(tr("JOURNEY_EVENT_MIMIC_RISKY"))
+		risky_button.custom_minimum_size = Vector2(0, 48)
+		# イベントでHPが0になる敗北処理はまだないため、致命傷になる選択肢は出さない。
+		risky_button.disabled = RunData.current_health <= 15
+		if risky_button.disabled:
+			risky_button.tooltip_text = tr("JOURNEY_EVENT_MIMIC_TOO_WEAK")
+		risky_button.pressed.connect(func(): event_selected.emit(node_id, -15, 60))
+		_dialog.visible = true
+		return
+	if prefix == "TRAINING":
+		# 旅の師匠には、カードを磨いてもらうか、何も頼まず別れるかを選べる。
+		var training_button := _dialog_button(tr("JOURNEY_EVENT_TRAINING_UPGRADE"))
+		training_button.disabled = not _has_upgradeable_card()
+		if training_button.disabled:
+			training_button.tooltip_text = tr("JOURNEY_CAMP_UPGRADE_UNAVAILABLE")
+		training_button.pressed.connect(_show_upgrade.bind(node_id, 0, "JOURNEY_EVENT_TRAINING_PICK_TITLE", "JOURNEY_EVENT_TRAINING_PICK_BODY", "event_training"))
+		_dialog_button(tr("JOURNEY_EVENT_LEAVE")).pressed.connect(func(): route_selected.emit(node_id, "event_training", 0))
+		_dialog.visible = true
+		return
 	if prefix == "FORGE":
 		# 強化するカードがない・支払いができない時は、イベントを開始できない。
 		var forge_cost: int = 30
@@ -1477,7 +1873,8 @@ func _show_upgrade(node_id: String, gold_cost: int = 0, title_key: String = "JOU
 		_layout_upgrade_window(false)
 	else:
 		# 強化候補は数が少なくても同じ一覧UIを使う。大量時は枠内で確実にスクロールできる。
-		_card_choice_view.set_cards(upgrade_choices, true, true)
+		# 選択中のカードと並べて、対応する強化後カードをホバープレビューに表示する。
+		_card_choice_view.set_cards(upgrade_choices, true, true, _upgrade_targets)
 		_card_choice_view.present_cards()
 		_layout_upgrade_window(true)
 	_upgrade_backdrop.visible = true

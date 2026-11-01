@@ -51,6 +51,17 @@ func promote_to_elite() -> void:
 	_battle_status.add_status_effects(BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.OFFENSE, 2))
 	_name_label.text = tr("BATTLE_ELITE_ENEMY_NAME") % _enemy_data.name
 
+func scale_for_depth(steps: int, health_growth_per_step: float, attack_growth_per_step: int) -> void:
+	# 3戦ごとのような節目で耐久と攻撃をわずかに上げ、長い旅でも敵が脅威であり続ける。
+	if steps <= 0 or _enemy_data == null:
+		return
+	var scaled_health: int = ceili(float(_battle_status.get_max_health()) * (1.0 + health_growth_per_step * float(steps)))
+	_battle_status.set_health(scaled_health, scaled_health)
+	$HealthBar.set_health(scaled_health, scaled_health)
+	var attack_bonus: int = attack_growth_per_step * steps
+	if attack_bonus > 0:
+		_battle_status.add_status_effects(BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.OFFENSE, attack_bonus))
+
 func show_warning_icon(icon_type: AttackWarningIcon.Icons, value: int) -> void:
 	$AttackWarningIcon.set_icon(icon_type, value)
 	$AttackWarningIcon.set_visible(true)

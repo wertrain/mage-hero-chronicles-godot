@@ -19,6 +19,9 @@ func enter_with_params(params: Dictionary):
 	root.trigger_relic_hook(RunData.RelicHook.CARD_PLAYED, {"player": player_status, "card": card_data})
 	for a in card_data.actions:
 		var action: BattleAciton = a
+		var selected_enemy_status: BattleStatus = enemy.get_status() if is_instance_valid(enemy) else null
+		if not action.is_condition_met(player_status, selected_enemy_status):
+			continue
 		if action.get_type() == BattleAciton.ActionType.DAMAGE:
 			var targets: Array[BattleEnemy] = []
 			# 単体攻撃は選択対象、全体攻撃は生存中の全員、ランダム攻撃は生存者から選ぶ。
@@ -42,6 +45,8 @@ func enter_with_params(params: Dictionary):
 				# 計算式攻撃はcurrent_attackで補正済みなので、固定ダメージにだけ強化／弱体を足す。
 				if action.get_value()._type == BattleAcitonValue.ValueType.FIXED:
 					damage += player_status.get_attack_bonus()
+				if card_data.tags.has("strike"):
+					damage += player_status.get_strike_bonus()
 				# HPが尽きた敵には死亡状態と退場演出を付け、以後の対象選択から除外する。
 				if false == target.damage(damage):
 					target.get_status().add_status_effects(BattleStatusEffect.new(BattleStatusEffect.StatusEffectType.DEAD, 0))

@@ -1,6 +1,12 @@
 # mage-hero-chronicles-godot
 
+## Game data
+
+Edit game definitions in `data/data.dpo` with the Depot VS Code extension. Treat `card.json`, `deck.json`, `enemy.json`, `item.json`, and `relic.json` as generated runtime files. After changing the Depot database, run `python data/data_export.py` from the project root to regenerate them.
+
 ## Acknowledgment
+
+CC0 card illustrations, battle backgrounds and their individual sources are documented in [art/credits.md](art/credits.md).
 
 Assets currently in use (including temporary use)
 This repository license does not apply to these assets

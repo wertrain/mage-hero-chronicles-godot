@@ -14,6 +14,12 @@ position = Vector2(0, -12)
 scale = Vector2(0.041, 0.041)
 texture = ExtResource("1_6rydu")
 
+[node name="Sprite2D_Illustration" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -25)
+scale = Vector2(0.25, 0.25)
+texture_filter = 2
+
 [node name="Sprite2D_Card" type="Sprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_6e3ec")

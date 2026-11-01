@@ -42,6 +42,13 @@ func get_attack_bonus() -> int:
 		bonus += effect.get_value()
 	return bonus
 
+func get_strike_bonus() -> int:
+	# ストライクタグを持つカードだけが参照する専門化ボーナス。
+	var bonus := 0
+	for effect in get_status_effects_by_type(BattleStatusEffect.StatusEffectType.STRIKE_POWER):
+		bonus += effect.get_value()
+	return bonus
+
 func set_health(health: int, max_health: int) -> void:
 	_max_health = max_health
 	_health = health

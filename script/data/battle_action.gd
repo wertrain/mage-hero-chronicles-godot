@@ -26,6 +26,8 @@ var _turns: int
 var _status_type: BattleStatusEffect.StatusEffectType = BattleStatusEffect.StatusEffectType.POISONED
 var _effect_type: EffectSpawner.EffectType
 var _effect_index: int
+## 条件付き効果は、現在の状態異常などを参照して一部のアクションだけを発動する。
+var _condition: Dictionary = {}
 
 func get_type() -> ActionType:
 	return _type
@@ -47,6 +49,25 @@ func get_effect_type() -> EffectSpawner.EffectType:
 
 func get_effect_index() -> int:
 	return _effect_index
+
+func set_condition(condition: Variant) -> void:
+	if condition is Dictionary:
+		_condition = condition.duplicate(true)
+
+func is_condition_met(player_status: BattleStatus, selected_enemy_status: BattleStatus) -> bool:
+	if _condition.is_empty():
+		return true
+	var condition_target: BattleStatus = player_status
+	if str(_condition.get("target", "self")) == "enemy":
+		condition_target = selected_enemy_status
+	if condition_target == null:
+		return false
+	var required_type := _string_to_status_type(str(_condition.get("status_type", "poisoned")))
+	var required_value: int = maxi(1, int(_condition.get("minimum_value", 1)))
+	for effect in condition_target.get_status_effects_by_type(required_type):
+		if effect.get_value() >= required_value:
+			return true
+	return false
 
 func set_action_type(type: String) -> void:
 	_type = _string_to_action_type(type)
@@ -80,6 +101,7 @@ func _string_to_status_type(type: String) -> BattleStatusEffect.StatusEffectType
 		"frozen": return BattleStatusEffect.StatusEffectType.FROZEN
 		"stunned": return BattleStatusEffect.StatusEffectType.STUNNED
 		"regen": return BattleStatusEffect.StatusEffectType.REGEN
+		"strike_power": return BattleStatusEffect.StatusEffectType.STRIKE_POWER
 	return BattleStatusEffect.StatusEffectType.POISONED
 
 func _string_to_action_target(target: String) -> ActionTarget:

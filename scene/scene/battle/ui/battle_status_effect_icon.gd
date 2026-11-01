@@ -22,6 +22,8 @@ static func get_icon_type(type: BattleStatusEffect.StatusEffectType, value: int)
 	match type:
 		BattleStatusEffect.StatusEffectType.OFFENSE:
 			return Icons.ATTACK_UP if value >= 0 else Icons.ATTACK_DOWN
+		BattleStatusEffect.StatusEffectType.STRIKE_POWER:
+			return Icons.ATTACK_UP
 		BattleStatusEffect.StatusEffectType.DEFENSE:
 			return Icons.DEFENCE_UP if value >= 0 else Icons.DEFENCE_DOWN
 		BattleStatusEffect.StatusEffectType.DEAD:
@@ -70,12 +72,16 @@ func _status_label(type: BattleStatusEffect.StatusEffectType, value: int) -> Str
 			return tr("BATTLE_STATUS_FROZEN_LABEL") % value
 		BattleStatusEffect.StatusEffectType.STUNNED:
 			return tr("BATTLE_STATUS_STUNNED_LABEL") % value
+		BattleStatusEffect.StatusEffectType.STRIKE_POWER:
+			return tr("BATTLE_STATUS_STRIKE_POWER_LABEL") % value
 	return (tr("BATTLE_STATUS_VALUE_LABEL") % value)
 
 func _status_tooltip_key(type: BattleStatusEffect.StatusEffectType) -> String:
 	match type:
 		BattleStatusEffect.StatusEffectType.OFFENSE:
 			return "BATTLE_STATUS_OFFENSE_TOOLTIP"
+		BattleStatusEffect.StatusEffectType.STRIKE_POWER:
+			return "BATTLE_STATUS_STRIKE_POWER_TOOLTIP"
 		BattleStatusEffect.StatusEffectType.DEFENSE:
 			return "BATTLE_STATUS_DEFENSE_TOOLTIP"
 		BattleStatusEffect.StatusEffectType.POISONED:
